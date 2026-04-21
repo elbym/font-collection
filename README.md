@@ -89,33 +89,6 @@ Comissioned by The Mozilla Foundation and Telefonica S.A for their mobile OS. Ve
 
 ![Fira Sans](./previews/cream/Fira_Sans_Regular.png)
 
-# Mono
-
-### [JetBrains Mono](https://github.com/jetbrains/jetbrainsmono)
-
-It's just pleasant to my eyes.
-
-![JetBrains Mono](./previews/dark/JetBrains_Mono_Regular.png)
-
-
-### [Maple Mono](https://font.subf.dev/en/download/)
-
-I'm tying to befriend it.
-
-![Maple Mono Regular](./previews/dark/Maple_Mono_Regular.png)
-
-### [Fira Code](https://github.com/tonsky/FiraCode)
-
-My former monotype font. I sadly leave it behind, but JetBrains Mono is just nicer to stare at.
-
-![Fira Code Regular](./previews/dark/Fira_Code_Regular.png)
-
-### [Cascadia Code](https://github.com/microsoft/cascadia-code)
-
-Basically just for its cursive variant for the comments.
-
-![Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_Cursive.png)
-
 ## The classics
 These are just the classics.
 
@@ -165,6 +138,34 @@ A little more fancy Futura
 Open-source font inspired by Highway Gothic on american road signs. 
 
 ![Overpass](./previews/cream/Overpass_Regular.png)
+
+## Mono
+
+### [JetBrains Mono](https://github.com/jetbrains/jetbrainsmono)
+
+It's just pleasant to my eyes.
+
+![JetBrains Mono](./previews/dark/JetBrains_Mono_Regular.png)
+
+
+### [Maple Mono](https://font.subf.dev/en/download/)
+
+I'm tying to befriend it.
+
+![Maple Mono Regular](./previews/dark/Maple_Mono_Regular.png)
+
+### [Fira Code](https://github.com/tonsky/FiraCode)
+
+My former monotype font. I sadly leave it behind, but JetBrains Mono is just nicer to stare at.
+
+![Fira Code Regular](./previews/dark/Fira_Code_Regular.png)
+
+### [Cascadia Code](https://github.com/microsoft/cascadia-code)
+
+Basically just for its cursive variant for the comments.
+
+![Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_Cursive.png)
+
 
 ## Not Comic Sans
 
