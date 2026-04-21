@@ -17,19 +17,19 @@ List of Font. In no specific order.
     - [Inter](#inter)
     - [Metropolis](#metropolis)
     - [Fira Sans](#fira-sans)
+* The classic must haves
+    - [Tex Gyre Collection](#tex-gyre)
+    - [Libre Caslon](#libre-caslon-text)
+    - [Cormorant Garamond](#cormorant-garamond)
+* Very nice to have
+    - [Titillium](#titillium)
+    - [Jost](#jost)
+    - [Overpass](#overpass)
 * Mono spaced fonts
     - [JetBrains Mono](#jetbrains-mono)
     - [Fira Code](#fira-code)
     - [Maple Mono](#maple-mono)
     - [Cascadia Code](#cascadia-code)
-* Very nice to have
-    - [Titillium](#titillium)
-    - [Jost](#jost)
-    - [Overpass](#overpass)
-* The classic must haves
-    - [Tex Gyre Collection](#tex-gyre)
-    - [Cormorant Garamond](#cormorant-garamond)
-    - [Libre Caslon](#libre-caslon-text)
 * Not Comic Sans
     - [Krikikrak](#krikikrak)
     - [Hand of Sean](#hand-of-sean)
@@ -77,14 +77,17 @@ I like this one for headers and larger text.
 
 ![Metropolis](./previews/light/Metropolis_Regular.png)
 
+### [IBM Plex Sans](https://github.com/IBM/plex)
 
+The IBM Plex font family is just a nice and very readable font.
 
-### [Titillium](http://nta.accademiadiurbino.it/titillium/)
+![IBM Plex Sans](./previews/light/IBM_Plex_Sans_Regular.png)
 
-For when you need a slightly different look.
+### [Fira Sans](https://mozilla.github.io/Fira/)
 
+Comissioned by The Mozilla Foundation and Telefonica S.A for their mobile OS. Very similar to Erik Spiekermanns "FF Meta".
 
-![Titillium Web](./previews/light/Titillium_Web_Regular.png)
+![Fira Sans](./previews/cream/Fira_Sans_Regular.png)
 
 # Mono
 
@@ -112,34 +115,6 @@ My former monotype font. I sadly leave it behind, but JetBrains Mono is just nic
 Basically just for its cursive variant for the comments.
 
 ![Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_Cursive.png)
-
-# Honorable Mentions
-
-![Titillium](./previews/cream/Titillium_Web_Regular.png)
-
-### [Jost](https://github.com/indestructible-type/Jost)
-
-A little more fancy Futura
-
-![Jost*](./previews/cream/Jost__Book.png)
-
-
-### [IBM Plex Sans](https://github.com/IBM/plex)
-
-The IBM Plex font family is just a nice and very readable font.
-
-![IBM Plex Sans](./previews/light/IBM_Plex_Sans_Regular.png)
-
-### [Fira Sans](https://mozilla.github.io/Fira/)
-
-Comissioned by The Mozilla Foundation and Telefonica S.A for their mobile OS. Very similar to Erik Spiekermanns "FF Meta".
-
-![Fira Sans](./previews/cream/Fira_Sans_Regular.png)
-
-### [Overpass](https://overpassfont.org/)
-Open-source font inspired by Highway Gothic on american road signs. 
-
-![Overpass](./previews/cream/Overpass_Regular.png)
 
 ## The classics
 These are just the classics.
@@ -172,6 +147,24 @@ Didn't knew of before Teuderun and I like it a lot.
 Caslon clone specifically optimized for web body text. Also available as [Libre Caslon Display](https://github.com/impallari/Libre-Caslon-Display/)
 
 ![Libre Caslon Text](./previews/cream/Libre_Caslon_Text_Regular.png)
+
+## Very nice to have
+### [Titillium](http://nta.accademiadiurbino.it/titillium/)
+
+For when you need a slightly different look.
+
+![Titillium](./previews/cream/Titillium_Web_Regular.png)
+
+### [Jost](https://github.com/indestructible-type/Jost)
+
+A little more fancy Futura
+
+![Jost*](./previews/cream/Jost__Book.png)
+
+### [Overpass](https://overpassfont.org/)
+Open-source font inspired by Highway Gothic on american road signs. 
+
+![Overpass](./previews/cream/Overpass_Regular.png)
 
 ## Not Comic Sans
 
