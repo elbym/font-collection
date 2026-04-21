@@ -111,7 +111,7 @@ My former monotype font. I sadly leave it behind, but JetBrains Mono is just nic
 
 Basically just for its cursive variant for the comments.
 
-![Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_cursive.png)
+![Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_Cursive.png)
 
 # Honorable Mentions
 
