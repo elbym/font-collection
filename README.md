@@ -21,7 +21,7 @@ List of Font. In no specific order.
     - [JetBrains Mono](#jetbrains-mono)
     - [Fira Code](#fira-code)
     - [Maple Mono](#maple-mono)
-    - [Cascadia Code](#casadia-code)
+    - [Cascadia Code](#cascadia-code)
 * Very nice to have
     - [Titillium](#titillium)
     - [Jost](#jost)
