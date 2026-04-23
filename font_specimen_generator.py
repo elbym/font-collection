@@ -179,9 +179,11 @@ def draw_specimen(font_path: str, output_path: str,
     PUNCT  = "@ „ “ ! \" # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \\ ] ^ _ ` { | } ~"
 
     SAMPLES = [
+        # ("Hamburgefonts", "heading"),
+        (LOWER, "heading"),
+        (DIGITS, "heading"),
         ("The stiffi fly likes sparkly stones", "heading"),
-        ("Hamburgefonts", "heading"),
-        ("Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Jovencillo emponzoñado de whisky: ¡qué figurota exhibe! Voyez le brick géant que j'examine près du wharf The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.", "body_lg"),
+        ("Zwölf Boxkämpfer jagen Viktor quer über den großen Sylter Deich. Jovencillo emponzoñado de whisky: ¡qué figurota exhibe! Voyez le brick géant que j'examine près du wharf The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.", "body_lg"),
         # ("Zwölf Boxkämpfer jagen Viktor quer über den großen\n Sylter Deich. Jovencillo emponzoñado de whisky: ¡qué figurota exhibe! \n Voyez le brick géant que j'examine près du wharf The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.", "body_md"),
         # ("Zwölf Boxkämpfer jagen Viktor quer über den großen\n Sylter Deich. Jovencillo emponzoñado de whisky: ¡qué figurota exhibe! \n Voyez le brick géant que j'examine près du wharf The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.", "body_sm"),
     ]
