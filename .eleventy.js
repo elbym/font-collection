@@ -1,3 +1,4 @@
+const { HtmlBasePlugin } = require("@11ty/eleventy");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 module.exports = function (eleventyConfig) {
@@ -20,6 +21,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("permalink", () => {
     return (data) => `${data.page.filePathStem}.html`;
   });
+
+
+  // Aktiviert das automatische Ersetzen aller URLs basierend auf deinem pathPrefix
+  eleventyConfig.addPlugin(HtmlBasePlugin);
 
   return {
     dir: {
