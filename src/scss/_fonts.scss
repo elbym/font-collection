@@ -1,38 +1,41 @@
+@use "breakpoints" as bp;
 /*
   Overrides to specific specimen pages
   The specimen page uses the foldername as a baseclass
 */
 
 
-@media (min-width: 768px) {
-    .playwritedela {
-        p {
-            font-weight: 200;
-        }
-        .specimen-poster {
-            border-image-source: unset;
-            border: 1rem double skyblue;
-            padding: 1rem;
-        }
-    }
-    .junction {
-        .specimen-poster {
-            border-image-source: url("../img/borders/LightBlue/border_lines.svg");
-        }
-    }
+@include bp.media-breakpoint-up(md) {
+  .playwritedela {
+      p {
+          font-weight: 200;
+      }
+      .specimen-poster {
+          border-image-source: unset;
+          border: 1rem double skyblue;
+          padding: 1rem;
+      }
   }
+
+  .junction {
+      .specimen-poster {
+          border-image-source: url("../img/borders/LightBlue/border_lines.svg");
+      }
+  }
+
   .junction {
     .specimen-poster {
       border-image-source: url("../img/borders/LightBlue/border_lines.svg");
     }
   }
+
   .metropolis {
     h1 {
           text-transform: uppercase;
           font-weight: 900;
     }
     .specimen-poster {
-      border-image-source: url("../img/borders/border-diagonal.svg");
+      // border-image-source: url("../img/borders/border-diagonal.svg");
       border-image-source: repeating-linear-gradient(
           -45deg,
           transparent,
@@ -45,39 +48,25 @@
       border-image-width: 1rem;
     }
   }
-  .specimen-poster {
-    border-image-source: url("../img/borders/border-diagonal.svg");
-    border-image-source: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 1rem,
-      #ccc 1rem,
-      #ccc 2rem
-    );
-    border-image-slice: 40;
-    border-image-repeat: round;
-    border-image-width: 1rem;
-    // border: 1rem solid #111;
-    // padding: 1rem;
-  }
+
   .overpass {
-    // background: #01735C;
-    // color:antiquewhite;
     .specimen-poster {
       border-image-source: url("../img/borders/DarkSeaGreen/border_lines.svg");
     }
   }
+
   .dinish {
     .specimen-poster {
       border-image-source: url("../img/borders/LightBlue/border_lines.svg");
     }
   }
+
   .ibmplexserif {
     .specimen-poster {
       border-image-source: url("../img/borders/LightBlue/border_line_1.svg");
-      // border-image-width: 4rem;
     }
   }
+
   .jetbrainsmono,
   .maplemono {
     .specimen-poster {
@@ -87,6 +76,7 @@
       border-image-width: 2rem;
     }
   }
+
   .playwritedela,
   .krikikrak {
     .specimen-poster {
@@ -96,8 +86,10 @@
       border-image-width: 4rem;
     }
   }
+
   .atkinsonhyperlegiblenext {
-  .specimen-poster {
-    border: 1rem dotted slategray;
+    .specimen-poster {
+      border: 1rem dotted slategray;
+    }
   }
 }

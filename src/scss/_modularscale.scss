@@ -5,28 +5,33 @@
 $base-size: 1rem !default;
 $ratio: 1.314 !default;
 $steps: 6 !default;
+$negative-steps: 2 !default; // Neue Variable für kleinere Größen
 $base-line-height: 1.33 !default;
 $base-margin: 0.5rem !default;
 $line-height-reduction: 0.05 !default;
 
 // Neue Variablen für die Fluid Typography
-$fluid-min-width: 20rem !default;   // z.B. 320px
-$fluid-max-width: 80rem !default;   // z.B. 1280px
+$fluid-min-width: 20rem !default; // z.B. 320px
+$fluid-max-width: 80rem !default; // z.B. 1280px
 
 $modular-scale: ();
 
 // Berechnung der Map
-@for $i from 0 through $steps {
+@for $i from -$negative-steps through $steps {
   $size: $base-size * math.pow($ratio, $i);
   $lh: $base-line-height - ($i * $line-height-reduction);
   $margin: $base-margin * math.pow($ratio, $i);
-  
-  $modular-scale: map.set($modular-scale, "step-#{$i}", (
-    "size": $size,
-    "line-height": math.max($lh, 1),
-    "margin-bottom": math.max($margin, 0.5rem), // Einheiten korrigiert
-    "margin-top": math.max($margin, 0.25rem)
-  ));
+
+  $modular-scale: map.set(
+    $modular-scale,
+    "step-#{$i}",
+    (
+      "size": $size,
+      "line-height": math.max($lh, 1),
+      "margin-bottom": math.max($margin, 0.5rem),
+      "margin-top": math.max($margin, 0.25rem),
+    )
+  );
 }
 
 // Hilfsfunktion: Berechnet den bevorzugten Wert für clamp (vw-Anteil)
@@ -39,10 +44,10 @@ $modular-scale: ();
 // Erweitertes Mixin für responsive Schriftgrößen
 @mixin ms($step, $responsive: false, $min-size-factor: 0.75) {
   $config: map.get($modular-scale, "step-#{$step}");
-  
+
   @if $config {
     $max-size: map.get($config, "size");
-    
+
     @if $responsive {
       // Berechnet automatisch ein Minimum (z.B. 75% der Zielgröße)
       $min-size: $max-size * $min-size-factor;

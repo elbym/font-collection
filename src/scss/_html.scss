@@ -1,26 +1,19 @@
-// :root {
-//     --color-background: PeachPuff;
-//     --color-highlight: LightSkyBlue;
-// }
+@use "breakpoints" as bp;
 
 html {
     scroll-behavior: smooth;
     font-size: clamp(1rem, 5cqi + 1rem, 1.25rem);
-    @media (min-width: 768px) {
+    @include bp.media-breakpoint-up(md) {
         font-size: 1.25rem;
         line-height: 1.5rem;
-        // font-size: 1.75rem;
-        // line-height: 1.5rem;
     }
 }
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     background-color: #FAF9F6;
     color: #100F09;
-    display: flex;
-    justify-content: center;
 }
 header {
-    // border-bottom: 0.025rem solid #ccc;
     background-color: var(--color-background);
     padding-bottom: 1rem;
 }
@@ -32,5 +25,9 @@ header {
     margin: 0;
  }
 .container {
-    flex-basis: 80%;
+    margin: 0 auto;
+    width: 100%;
+    @include bp.media-breakpoint-up(lg) {
+        max-width: 960px;
+    }
 }

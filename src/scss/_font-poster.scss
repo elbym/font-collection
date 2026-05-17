@@ -1,14 +1,11 @@
+@use "breakpoints" as bp;
 @use "modularscale";
 @use "grid";
 
-.specimen {
-    // background-image: url("../img/Texturelabs_Paper_305XL.jpg");
-    // background-size: cover;
-}
 .specimen-poster {
     line-height: 1.25rem;
 
-    @media (min-width: 768px) {
+    @include bp.media-breakpoint-up(lg) {
         margin: 0.5rem;
         padding: 2rem 3rem;
         border-image-source: url("../img/borders/Tan/border_historical.svg");
@@ -71,7 +68,7 @@
         }
     }
     .letters {
-        font-size: clamp(1rem, 6cqi, 10cqw);
+        font-size: clamp(1rem, 3cqi + 2rem, 4rem);
     }
     .hero-letters {
         color: var(--color-highlight);
@@ -234,9 +231,6 @@
         }
         padding-top: 1em;
     }
-}
-.letters__alphabet {
-    font-size: 1.5em;
 }
 .ascii {
     display: flex;
