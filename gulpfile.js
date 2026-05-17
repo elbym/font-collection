@@ -40,7 +40,7 @@ function copyFonts() {
   return src("src/fonts/**/*", { encoding: false }).pipe(dest("dist/fonts"));
 }
 function copyImages() {
-  return src("src/img/**/*", { encoding: false }).pipe(dest("dist/img"));
+  return src("src/img/**/*").pipe(dest("dist/img"));
 }
 function copyJS() {
   return src("src/js/**/*").pipe(dest("dist/js"));
@@ -63,7 +63,6 @@ function serve(done) {
 // 4. Watcher
 function watchFiles() {
   watch("src/scss/**/*.scss", compileSass);
-  // Auch Fonts überwachen, falls du im laufenden Betrieb neue hinzufügst
   watch("src/fonts/**/*", copyFonts);
   watch("src/img/**/*", copyImages);
   watch("src/js/**/*", copyJS);

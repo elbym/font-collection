@@ -11,7 +11,7 @@
   }
   .junction {
     .specimen-poster {
-      border-image-source: url("../img/LightBlue/border_lines.svg");
+      border-image-source: url("../img/borders/LightBlue/border_lines.svg");
     }
   }
 
@@ -21,7 +21,7 @@
       font-weight: 900;
     }
     .specimen-poster {
-      border-image-source: url("../img/border-diagonal.svg");
+      border-image-source: url("../img/borders/border-diagonal.svg");
       border-image-source: repeating-linear-gradient(
         -45deg,
         transparent,
@@ -40,24 +40,24 @@
     // background: #01735C;
     // color:antiquewhite;
     .specimen-poster {
-      border-image-source: url("../img/DarkSeaGreen/border_lines.svg");
+      border-image-source: url("../img/borders/DarkSeaGreen/border_lines.svg");
     }
   }
   .dinish {
     .specimen-poster {
-      border-image-source: url("../img/LightBlue/border_lines.svg");
+      border-image-source: url("../img/borders/LightBlue/border_lines.svg");
     }
   }
   .ibmplexserif {
     .specimen-poster {
-      border-image-source: url("../img/LightBlue/border_line_1.svg");
+      border-image-source: url("../img/borders/LightBlue/border_line_1.svg");
       // border-image-width: 4rem;
     }
   }
 .jetbrainsmono,
 .maplemono {
     .specimen-poster {
-      border-image-source: url("../img/border-hash.svg");
+      border-image-source: url("../img/borders/border-hash.svg");
       border-image-slice: 40;
       border-image-repeat: round;
       border-image-width: 2rem;
@@ -66,7 +66,7 @@
   .playwritedela,
   .krikikrak {
     .specimen-poster {
-      border-image-source: url("../img/border-doodle.svg");
+      border-image-source: url("../img/borders/border-doodle.svg");
       border-image-slice: 40;
       border-image-repeat: round;
       border-image-width: 4rem;

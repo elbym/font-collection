@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-Italic[wght].woff2") format("woff2");
+  font-weight: 400;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville[wght].woff2") format("woff2");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-SemiBoldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "LibreBaskerville";
+  src: url("../../fonts/LibreBaskerville/LibreBaskerville-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "normal";
+  font-display: swap;
+}
+.specimen-poster {
+  font-family: "LibreBaskerville", sans-serif;
+}

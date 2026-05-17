@@ -18,23 +18,7 @@
 @include declare-font(
   'TexGyreHeros',
   'TexGyreHeros',
-  'texgyreheroscn-italic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'TexGyreHeros',
-  'TexGyreHeros',
   'texgyreheros-regular.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'TexGyreHeros',
-  'TexGyreHeros',
-  'texgyreheroscn-regular.woff2',
   400,
   'normal'
 );
@@ -50,23 +34,7 @@
 @include declare-font(
   'TexGyreHeros',
   'TexGyreHeros',
-  'texgyreheroscn-bolditalic.woff2',
-  700,
-  'italic'
-);
-
-@include declare-font(
-  'TexGyreHeros',
-  'TexGyreHeros',
   'texgyreheros-bold.woff2',
-  700,
-  'normal'
-);
-
-@include declare-font(
-  'TexGyreHeros',
-  'TexGyreHeros',
-  'texgyreheroscn-bold.woff2',
   700,
   'normal'
 );

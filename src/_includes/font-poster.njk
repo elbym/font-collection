@@ -48,6 +48,11 @@
         </article>
     </section>
 
+    <section class="font-in-use">
+        <h2>Images</h2>
+        {% include "font-image-list.njk" %}
+    </section>
+
     <section class="alphabet">
         <article>
             <div class="alphabet_letters upper">
@@ -93,16 +98,7 @@
     </section>
 
     <section class="font-in-use">
-        {% if gallery %}
-        <ul>
-        {% for item in gallery %}
-            <li>
-            <img src="{{ item.url }}" alt="{{ item.alt }}">
-            <span>{{ item.alt }} (Quelle: {{ item.source }})</span>
-            </li>
-        {% endfor %}
-        {% endif %}
-        </ul>
+        {% include "font-image-list.njk" %}
     </section>
 
     <section class="waterfall">
