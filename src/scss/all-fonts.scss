@@ -1,0 +1,2437 @@
+
+
+@use "font-mixin" as *;
+
+
+
+
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-RegularItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext',
+  'AtkinsonHyperlegibleNext-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+.atkinsonhyperlegiblenext {
+    font-family: 'AtkinsonHyperlegibleNext', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.bodoni {
+    font-family: 'Bodoni', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.cormorant {
+    font-family: 'Cormorant', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.dinish {
+    font-family: 'DINish', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidot.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotBoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotBold.woff2',
+  700,
+  'normal'
+);
+
+
+.gfsdidot {
+    font-family: 'GFSDidot', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans Text',
+  'IBMPlexSans',
+  'IBMPlexSans-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans Text',
+  'IBMPlexSans',
+  'IBMPlexSans-Text.woff2',
+  400,
+  'normal'
+);
+
+
+.ibmplexsans {
+    font-family: 'IBMPlexSans', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif Text',
+  'IBMPlexSerif',
+  'IBMPlexSerif-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif Text',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Text.woff2',
+  400,
+  'normal'
+);
+
+
+.ibmplexserif {
+    font-family: 'IBMPlexSerif', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+.jetbrainsmono {
+    font-family: 'JetBrainsMono', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.junction {
+    font-family: 'Junction', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.krikikrak {
+    font-family: 'Krikikrak', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.leaguespartan {
+    font-family: 'LeagueSpartan', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.libertinussans {
+    font-family: 'LibertinusSans', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif Display',
+  'LibertinusSerif',
+  'LibertinusSerif-Display-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-SemiboldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Semibold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif Initials',
+  'LibertinusSerif',
+  'LibertinusSerif-Initials-Regular.woff2',
+  400,
+  'normal'
+);
+
+
+.libertinusserif {
+    font-family: 'LibertinusSerif', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.librebaskerville {
+    font-family: 'LibreBaskerville', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'LibreCaslon Display',
+  'LibreCaslon',
+  'LibreCaslonDisplay-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.librecaslon {
+    font-family: 'LibreCaslon Display', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextLightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextLight.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextRegular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextMediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextMedium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextSemiboldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextSemibold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextBoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextBold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextExtraboldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextExtrabold.woff2',
+  800,
+  'normal'
+);
+
+
+.literata {
+    font-family: 'Literata', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+.maplemono {
+    font-family: 'MapleMono', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-RegularItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.metropolis {
+    font-family: 'Metropolis', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.overpass {
+    font-family: 'Overpass', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Regular.woff2',
+  400,
+  'normal'
+);
+
+
+.playwritedela {
+    font-family: 'PlaywriteDELA', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyreadventor {
+    font-family: 'TexGyreAdventor', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyrebonum {
+    font-family: 'TexGyreBonum', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyreHeros',
+  'TexGyreHeros',
+  'texgyreheros-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreHeros',
+  'TexGyreHeros',
+  'texgyreheros-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreHeros',
+  'TexGyreHeros',
+  'texgyreheros-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreHeros',
+  'TexGyreHeros',
+  'texgyreheros-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyreheros {
+    font-family: 'TexGyreHeros', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyrepagella {
+    font-family: 'TexGyrePagella', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyreschola {
+    font-family: 'TexGyreSchola', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-bold.woff2',
+  700,
+  'normal'
+);
+
+
+.texgyretermes {
+    font-family: 'TexGyreTermes', sans-serif;
+}
+

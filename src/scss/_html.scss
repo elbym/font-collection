@@ -24,7 +24,13 @@ header {
     background-color: var(--color-background);
     padding-bottom: 1rem;
 }
-
+ img {
+    max-width: 100%;
+    height: auto;
+ }
+ figure {
+    margin: 0;
+ }
 .container {
     flex-basis: 80%;
 }

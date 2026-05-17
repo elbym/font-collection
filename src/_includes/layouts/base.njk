@@ -8,13 +8,16 @@
   {% if selectedFontFolder is defined %}
   <link rel="stylesheet" href="/css/fonts/{{selectedFontFolder}}.css">
   {% endif %}
+  {% if color %}
   <style>
-    {% if color %}
     :root {
         --color: {{ color }};
     }
-    {% endif %}
   </style>
+  {% endif %}
+  {% if extra_css %}
+    <link rel="stylesheet" href="{{ extra_css | url }}">
+  {% endif %}
 </head>
 <body class="specimen {{ selectedFontFolder | slugify }}">
   <div class="container">

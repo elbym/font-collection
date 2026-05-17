@@ -44,7 +44,7 @@
 
     <section class="hero-word">
         <article>
-            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold">{{ heroword or site.heroword }}</p>
+            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color or site.color }}">{{ heroword or site.heroword }}</p>
         </article>
     </section>
 
@@ -71,6 +71,9 @@
         </article>
     </section>
 
+    <section class="font-gallery">
+        {% include "font-image-list.njk" %}
+    </section>
 
     <section class="about-the-font">
         <article>
@@ -90,19 +93,6 @@
             <p class="display-size-1">positvm, tam upsis librorvm avtoribvs</p>
             <p><small>accommodatvm</small></p>
         </article>
-    </section>
-
-    <section class="font-in-use">
-        {% if gallery %}
-        <ul>
-        {% for item in gallery %}
-            <li>
-            <img src="{{ item.url }}" alt="{{ item.alt }}">
-            <span>{{ item.alt }} (Quelle: {{ item.source }})</span>
-            </li>
-        {% endfor %}
-        {% endif %}
-        </ul>
     </section>
 
     <section class="waterfall">

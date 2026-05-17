@@ -39,10 +39,11 @@ h3 {
     text-align: justify;
 }
 .ligature {
-    font-feature-settings:
-        "ss01" 1,
-        "ss02" 1,
-        "onum" 1;
+    font-variant-ligatures: common-ligatures;
+    // font-feature-settings:
+    //     "ss01" 1,
+    //     "ss02" 1,
+    //     "onum" 1;
 }
 .small-caps {
     text-transform: lowercase;

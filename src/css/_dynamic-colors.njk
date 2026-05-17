@@ -1,0 +1,16 @@
+---
+permalink: "../src/scss/_html_colornames.scss"
+---
+{# Generate a list of all used HTML Colornames #}
+
+.cornflowerblue {
+  color: CornflowerBlue;
+}
+
+{% for p in collections.all %}
+  {% if p.data.color and p.data.selectedFontFolder %}
+.{{ p.data.color | slugify }} {
+  color: {{ p.data.color }};
+}
+  {% endif %}
+{% endfor %}
