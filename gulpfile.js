@@ -4,9 +4,9 @@ const browserSync = require("browser-sync").create();
 const cp = require("child_process");
 const { rimrafSync } = require("rimraf");
 
-const nunjucksRender = require("gulp-nunjucks-render");
-const cleanCSS = require("gulp-clean-css");   // NEU
-const htmlmin = require("gulp-htmlmin");       // NEU
+const cleanCSS = require("gulp-clean-css"); // For minifying CSS
+const htmlmin = require("gulp-htmlmin"); // For minifying HTML
+const replace = require("gulp-replace"); // For replacing strings in files (e.g., CSS URLs)
 
 function clean(done) {
   rimrafSync("dist");
@@ -25,6 +25,15 @@ function compileSass() {
 function compileSassMinified() {
   return src("src/scss/**/*.scss")
     .pipe(sass().on("error", sass.logError))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(dest("dist/css"));
+}
+
+// 1c. SASS Task mit CSS-Minifizierung und URL-Prefixing für GitHub Pages
+function compileSassGhPages() {
+  return src("src/scss/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(replace(/url\(['"]?(\.\.\/fonts\/)(.*?)['"]?\)/g, 'url("/font-collection/fonts/$2")'))
     .pipe(cleanCSS({ level: 2 }))
     .pipe(dest("dist/css"));
 }
@@ -116,7 +125,7 @@ exports.build = series(
 exports.ghpages = series(
   clean,
   buildEleventyGhPages,
-  parallel(copyImages, copyFonts, copyJS, compileSassMinified),
+  parallel(copyImages, copyFonts, copyJS, compileSassGhPages), // Use compileSassGhPages for ghpages build
   minifyHTML,
 );
 
