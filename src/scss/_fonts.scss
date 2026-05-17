@@ -1,3 +1,9 @@
+/*
+  Overrides to specific specimen pages
+  The specimen page uses the foldername as a baseclass
+*/
+
+
 @media (min-width: 768px) {
 .playwritedela {
     p {
@@ -71,5 +77,11 @@
       border-image-repeat: round;
       border-image-width: 4rem;
     }
+  }
+}
+
+.atkinsonhyperlegiblenext {
+  .specimen-poster {
+    border: 1rem dotted slategray;
   }
 }
