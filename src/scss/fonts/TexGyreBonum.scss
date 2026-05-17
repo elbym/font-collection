@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreBonum',
+  'TexGyreBonum',
+  'texgyrebonum-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyreBonum', sans-serif;
+}

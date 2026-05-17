@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'PlaywriteDESAS',
+  'PlaywriteDESAS',
+  'PlaywriteDESAS-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDESAS',
+  'PlaywriteDESAS',
+  'PlaywriteDESAS-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDESAS',
+  'PlaywriteDESAS',
+  'PlaywriteDESAS-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDESAS',
+  'PlaywriteDESAS',
+  'PlaywriteDESAS-Regular.woff2',
+  400,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'PlaywriteDESAS', sans-serif;
+}

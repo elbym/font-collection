@@ -1,0 +1,38 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSans',
+  'LibertinusSans',
+  'LibertinusSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'LibertinusSans', sans-serif;
+}

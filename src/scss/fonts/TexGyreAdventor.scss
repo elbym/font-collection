@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreAdventor',
+  'TexGyreAdventor',
+  'texgyreadventor-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyreAdventor', sans-serif;
+}

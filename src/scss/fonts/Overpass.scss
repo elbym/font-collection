@@ -1,0 +1,158 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Overpass',
+  'Overpass',
+  'Overpass-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Overpass', sans-serif;
+}

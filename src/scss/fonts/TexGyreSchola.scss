@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreSchola',
+  'TexGyreSchola',
+  'texgyreschola-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyreSchola', sans-serif;
+}

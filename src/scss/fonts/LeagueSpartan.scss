@@ -1,0 +1,78 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'LeagueSpartan',
+  'LeagueSpartan',
+  'LeagueSpartan-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'LeagueSpartan', sans-serif;
+}

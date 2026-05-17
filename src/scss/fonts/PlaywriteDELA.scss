@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'PlaywriteDELA',
+  'PlaywriteDELA',
+  'PlaywriteDELA-Regular.woff2',
+  400,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'PlaywriteDELA', sans-serif;
+}

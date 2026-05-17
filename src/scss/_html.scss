@@ -1,0 +1,28 @@
+// :root {
+//     --color-background: PeachPuff;
+//     --color-highlight: LightSkyBlue;
+// }
+
+html {
+    scroll-behavior: smooth;
+    font-size: clamp(1rem, 5cqi + 1rem, 1.25rem);
+    @media (min-width: 768px) {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+    }
+}
+body {
+    background-color: #FAF9F6;
+    color: #100F09;
+    display: flex;
+    justify-content: center;
+}
+header {
+    // border-bottom: 0.025rem solid #ccc;
+    background-color: var(--color-background);
+    padding-bottom: 1rem;
+}
+
+.container {
+    flex-basis: 80%;
+}

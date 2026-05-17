@@ -1,0 +1,59 @@
+@use "modularscale";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+h1 {
+    @include modularscale.ms(3, $responsive: true);
+}
+h2 {
+    @include modularscale.ms(2, $responsive: true);
+}
+h3 {
+    @include modularscale.ms(1, $responsive: true);
+}
+@for $i from 1 through 6 {
+    .display-size-#{$i} {
+        @include modularscale.ms($i, $responsive: true);
+    }
+}
+@media (min-width: 768px) {
+    .p-2-col {
+        column-count: 2;
+        column-gap: 2rem;
+    }
+
+}
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: 700;
+}
+.justify {
+    text-align: justify;
+}
+.ligature {
+    font-feature-settings:
+        "ss01" 1,
+        "ss02" 1,
+        "onum" 1;
+}
+.text-align-right {
+    text-align: right;
+}
+.initials {
+    &::first-letter {
+        font-size: 4.4em;
+        color: #888;
+        float: left;
+        margin: 0.625rem 0.25rem 0 0;
+        padding: 0 0 0.125rem 0.0612rem;
+        font-weight: 500;
+    }
+}

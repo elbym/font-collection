@@ -1,0 +1,178 @@
+<div class="specimen-poster">
+
+    <header class="header">
+        <p>{{ fontauthor }}</p>
+        <h1><span id="fonttitle">{{ title }}</span></h1>
+        <p>{{ fontyear }}</p>
+        <small><em><a href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></em></small>
+        {% if tags %}
+            <ul class="keywords">
+                {% for tag in tags %}
+                <li>{{ tag }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </header>
+
+    <section class="letters">
+        <article>
+            <p>Aa Rr Ee</p>
+            <p class="italic">Aa Rr Ee</p>
+        </article>
+    </section>
+
+    <section class="hero-letters">
+        {# <p class="big">{{ heroletter or site.heroletter}}</p> #}
+        <div class="cmyk">
+            <div class="layer cyan"></div>
+            <div class="layer magenta"></div>
+            <div class="layer yellow"></div>
+            <div class="layer black"></div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
+            <defs>
+                <clipPath id="text-clip">
+                    <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
+                        {{ heroletter or site.heroletter}}
+                    </text>
+                </clipPath>
+            </defs>
+        </svg>
+    </section>
+
+    <section class="hero-word">
+        <article>
+            <p class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold">{{ heroword or site.heroword }}</p>
+        </article>
+    </section>
+
+    <section class="alphabet">
+        <article>
+            <div class="alphabet_letters upper">
+                {% for i in range(65, 91) %}
+                <span>{{ i | chr }}</span>
+                {% endfor %}
+            </div>
+            <div class="alphabet_letters upper">
+                {% for i in range(97, 123) %}
+                <span>{{ i | chr }}</span>
+                {% endfor %}
+            </div>
+            <div class="alphabet_letters numbers">
+                {% for i in range(48, 58) %}
+                <span>{{ i | chr }}</span>
+                {% endfor %}
+                {% for i in range(31, 47) %}
+                <span>{{ i | chr }}</span>
+                {% endfor %}
+            </div>
+        </article>
+    </section>
+
+
+    <section class="about-the-font">
+        <article>
+            {% if aboutthefont %}<p class="initials">{{ aboutthefont }}</p>{% endif %}
+            {% if abouttheauthor %}<p>{{ abouttheauthor }}</p>{% endif %}
+        </article>
+    </section>
+
+    <section class="latin">
+        <article>
+            <p class="display-size-3">specimen</p>
+            <p class="display-size-5">Chara ctere v m sev</p>
+            <p class="p-2-col justify initials">{{ heroparagraph or site.heroparagraph }}</p>
+            <p class="display-size-4">typorvm probatissimor vm,</p>
+            <p class="display-size-3">incondetie qvidem, sed secvn</p>
+            <p class="display-size-2">dvm svas tamen differentias pro</p>
+            <p class="display-size-1">positvm, tam upsis librorvm avtoribvs</p>
+            <p><small>accommodatvm</small></p>
+        </article>
+    </section>
+
+    <section class="font-in-use">
+        {% if gallery %}
+        <ul>
+        {% for item in gallery %}
+            <li>
+            <img src="{{ item.url }}" alt="{{ item.alt }}">
+            <span>{{ item.alt }} (Quelle: {{ item.source }})</span>
+            </li>
+        {% endfor %}
+        {% endif %}
+        </ul>
+    </section>
+
+    <section class="waterfall">
+        <article>
+          {# Wir holen uns nur die Schriften für den gewählten Ordner aus dem globalen 'fonts' Objekt #}
+          {% set activeFonts = fonts[selectedFontFolder] %}
+          <h2>{{ selectedFontFolder }} Family</h2>
+
+          {% if activeFonts %}
+            {% for font in activeFonts %}
+              <section>
+                <small>
+                  {{ font.displayName }} <br>({{ font.weight }}, {{ font.style }})
+                </small>
+                <p {% if font.optical %} class="{{ font.optical | slugify }}" {% endif %}
+                   style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
+                   Quick nymph bugs vex fjord waltz
+                </p>
+              </section>
+            {% endfor %}
+          {% else %}
+            <p>Keine Schriften im Ordner "{{ selectedFontFolder }}" gefunden.</p>
+          {% endif %}
+        </article>
+
+    </section>
+    <section>
+        <article class="justify">
+            <p class="initials">Es gibt im Moment in diese <em>Mannschaft</em>, oh, einige Spieler vergessen ihnen <strong>Profi</strong> was sie sind. Ich lese nicht sehr viele <strong><em>Zeitungen</em></strong>, aber ich habe gehört viele Situationen. Erstens: wir haben nicht offensiv gespielt. Es gibt keine deutsche Mannschaft spielt offensiv und die Name offensiv wie Bayern. Letzte Spiel hatten wir in Platz drei Spitzen: Elber, Jancka und dann Zickler. Wir müssen nicht vergessen Zickler.</p>
+            <h2 class="ligatures italic">Zickler ist eine Spitzen mehr, Mehmet eh mehr Basler</h2>
+            <p class="bold">Ist klar diese Wörter, ist möglich verstehen, was ich hab gesagt? Danke. Offensiv, offensiv ist wie machen wir in Platz. </p>
+            <p class="p-2-col">Zweitens: ich habe erklärt mit diese zwei Spieler: nach Dortmund brauchen vielleicht Halbzeit Pause. Ich habe auch andere Mannschaften gesehen in Europa nach diese Mittwoch.
+            Ich habe gesehen auch zwei Tage die Training. Ein Trainer ist nicht ein Idiot! Ein Trainer sei sehen was passieren in Platz. In diese Spiel es waren zwei, drei diese Spieler waren schwach wie eine Flasche leer!
+            Haben Sie gesehen Mittwoch, welche Mannschaft hat gespielt Mittwoch? Hat gespielt Mehmet oder gespielt Basler oder hat gespielt Trapattoni? Diese Spieler beklagen mehr als sie spielen! Wissen Sie, warum die Italienmannschaften kaufen nicht diese Spieler? Weil wir haben gesehen viele Male solche Spiel!
+            </p>
+            <h3>...wenn es gab Fragen, ich kann Worte wiederholen...</h3>
+            <p>Es gibt im Moment in diese Mannschaft, oh, einige Spieler vergessen ihnen Profi was sie sind. Ich lese nicht sehr viele Zeitungen, aber ich habe gehört viele Situationen. Erstens: wir haben nicht offensiv gespielt. Es gibt keine deutsche Mannschaft spielt offensiv und die Name offensiv wie Bayern. Letzte Spiel hatten wir in Platz drei Spitzen: Elber, Jancka und dann Zickler. Wir müssen nicht vergessen Zickler.</p>
+        </article>
+    </section>
+
+    <section class="ascii">
+      {#
+      | Unicode Range |  Dezimal  |        Inhalt        |
+      | ------------- | --------- | -------------------- |
+      | U+0020–U+007E | 32–126    | Basis ASCII          |
+      | U+00A0–U+00FF | 160–255   | Latein-1 (ü, é, ñ …) |
+      | U+0100–U+017F | 256–383   | Latein Erweitert-A   |
+      | U+0180–U+024F | 384–591   | Latein Erweitert-B   |
+      | U+0400–U+04FF | 1024–1279 | Kyrillisch           |
+      | U+0600–U+06FF | 1536–1791 | Arabisch             |
+      #}
+
+      <h2>Basic ASCII</h2>
+      {% for i in range(33, 126) %}
+      <span class="l">{{ i | chr }}</span>
+      {% endfor %}
+
+      <h2>Latin-1</h2>
+      {% for i in range(160, 255) %}
+      <span class="l">{{ i | chr }}</span>
+      {% endfor %}
+
+      <h2>Latein Erweitert-A</h2>
+      {% for i in range(256, 383) %}
+      <span class="l">{{ i | chr }}</span>
+      {% endfor %}
+
+      <h2>Latein Erweitert-B</h2>
+      {% for i in range(348, 591) %}
+      <span class="l">{{ i | chr }}</span>
+      {% endfor %}
+
+    </section>
+
+</div>

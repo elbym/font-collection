@@ -1,0 +1,19 @@
+<header>
+<nav>
+    <ul>
+      {% set navPages = collections.all | eleventyNavigation %}
+
+      {%- for entry in navPages | sort(false, false, 'family') %}
+        <li{% if entry.url == page.url %} class="bold;"{% endif %}>
+          <a href="{{ entry.url }}">{{ entry.title }}</a>
+        </li>
+      {%- endfor %}
+    </ul>
+
+    <ul>
+  {% for item in navigation | sort(false, false, 'family') %}
+    <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+  {% endfor %}
+</ul>
+  </nav>
+</header>

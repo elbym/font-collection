@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidot.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotBoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'GFSDidot',
+  'GFSDidot',
+  'GFSDidotBold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'GFSDidot', sans-serif;
+}

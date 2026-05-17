@@ -1,0 +1,102 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'Cormorant-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'CormorantGaramond',
+  'CormorantGaramond',
+  'CormorantGaramond-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'CormorantGaramond', sans-serif;
+}

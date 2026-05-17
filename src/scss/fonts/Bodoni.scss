@@ -1,0 +1,62 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Bodoni',
+  'Bodoni',
+  'Bodoni-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Bodoni', sans-serif;
+}

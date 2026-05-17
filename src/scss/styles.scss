@@ -1,0 +1,80 @@
+@use "html";
+@use "typography";
+@use "font-poster";
+@use "fonts";
+
+header {
+    nav {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            li {
+                display: flex;
+                padding: .5rem .5rem 0 0;
+            }
+        }
+    }
+}
+
+:root {
+    --dot-size: 4px;
+    --dot-start: 20%;
+    --dot-end: 35%;
+}
+
+// Müssen gleiche Größe haben
+.cmyk,
+.cmyk-mask {
+    width: 100%;
+}
+.cmyk-mask,
+.cmyk {
+    clip-path: url("#text-clip");
+}
+
+/* Basis-Styling für alle Farbebenen */
+.layer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    /* Größer als Container wegen der Rotation */
+    mix-blend-mode: multiply;
+    background-size: var(--dot-size) var(--dot-size);
+    width: 40rem;
+    height: 40rem;
+    // transform-origin: top;
+}
+
+.cyan {
+    background-image: radial-gradient(
+        hsla(180, 100%, 50%, .95)calc(var(--dot-start) * 0.9),
+        hsl(180, 100%, 50%)var(--dot-start),
+        transparent var(--dot-end));
+    transform: rotate(15deg);
+}
+
+.magenta {
+    background-image: radial-gradient(
+        hsla(300, 100%, 50%, .95)calc(var(--dot-start) * 0.9),
+        hsl(300, 100%, 50%)var(--dot-start),
+        transparent var(--dot-end));
+    transform: rotate(75deg);
+}
+
+.yellow {
+    background-image: radial-gradient(
+        hsla(60, 100%, 50%, .95)calc(var(--dot-start) * 0.9),
+        hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2),
+        transparent calc(var(--dot-end) * 1.2));
+    transform: rotate(0deg);
+}
+
+.black {
+    background-image: radial-gradient(
+        hsla(0, 0%, 0%, 0.5) calc(var(--dot-start) * 0.7),
+        hsla(0, 0%, 0%, 0.6) calc(var(--dot-start) * 0.8),
+        transparent var(--dot-end));
+    transform: rotate(45deg);
+}

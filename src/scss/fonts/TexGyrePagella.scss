@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyrePagella',
+  'TexGyrePagella',
+  'texgyrepagella-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyrePagella', sans-serif;
+}

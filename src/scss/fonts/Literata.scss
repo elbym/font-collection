@@ -1,0 +1,238 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextLightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextLight.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextRegular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextMediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextMedium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextSemiboldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextSemibold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextBoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextBold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextExtraboldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Literata Text',
+  'Literata',
+  'LiterataTT-TextExtrabold.woff2',
+  800,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Literata', sans-serif;
+}

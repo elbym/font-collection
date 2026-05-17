@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'LibreCaslon Display',
+  'LibreCaslon',
+  'LibreCaslonDisplay-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreCaslon Text',
+  'LibreCaslon',
+  'LibreCaslonText-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'LibreCaslon Display', sans-serif;
+}

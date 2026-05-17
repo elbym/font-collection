@@ -1,0 +1,78 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif Display',
+  'LibertinusSerif',
+  'LibertinusSerif-Display-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-SemiboldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Semibold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'LibertinusSerif',
+  'LibertinusSerif',
+  'LibertinusSerif-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'LibertinusSerif Initials',
+  'LibertinusSerif',
+  'LibertinusSerif-Initials-Regular.woff2',
+  400,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'LibertinusSerif', sans-serif;
+}

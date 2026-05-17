@@ -1,0 +1,142 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'MapleMono',
+  'MapleMono',
+  'MapleMono-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'MapleMono', sans-serif;
+}

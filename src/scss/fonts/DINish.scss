@@ -1,0 +1,350 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'DINish', sans-serif;
+}

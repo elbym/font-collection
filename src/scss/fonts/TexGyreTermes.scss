@@ -1,0 +1,46 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-bolditalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TexGyreTermes',
+  'TexGyreTermes',
+  'texgyretermes-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyreTermes', sans-serif;
+}

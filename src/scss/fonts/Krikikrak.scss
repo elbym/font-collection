@@ -1,0 +1,62 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Krikikrak',
+  'Krikikrak',
+  'KrikikrakTape-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Krikikrak', sans-serif;
+}

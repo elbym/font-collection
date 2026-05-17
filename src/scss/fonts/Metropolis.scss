@@ -1,0 +1,158 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-RegularItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Metropolis',
+  'Metropolis',
+  'Metropolis-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Metropolis', sans-serif;
+}

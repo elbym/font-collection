@@ -1,0 +1,142 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSerif Text',
+  'IBMPlexSerif',
+  'IBMPlexSerif-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSerif Text',
+  'IBMPlexSerif',
+  'IBMPlexSerif-Text.woff2',
+  400,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'IBMPlexSerif', sans-serif;
+}

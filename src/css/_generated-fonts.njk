@@ -1,0 +1,33 @@
+---
+pagination:
+  data: fonts
+  size: 1
+  alias: folderName
+permalink: "../src/scss/fonts/{{ folderName }}.scss"
+dynamicPermalink: true
+---
+{#
+  Dieses Template nutzt die bereinigten Daten aus der fonts.js.
+  Der Unterstrich im Permalink markiert die Datei als Sass-Partial.
+#}
+
+@use "../font-mixin" as *;
+{% set items = fonts[folderName] %}
+{% set firstFont = items[0] %}
+
+
+{# 2. Die einzelnen @font-face Deklarationen #}
+{% for font in items %}
+@include declare-font(
+  '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
+  '{{ folderName }}',
+  '{{ font.fileName }}',
+  {{ font.weight }},
+  '{{ font.style }}'
+);
+{% endfor %}
+
+{# 1. Die allgemeine CSS-Regel für die Familie (nur einmalig) #}
+.specimen-poster {
+    font-family: '{{ firstFont.family }}{% if firstFont.optical %} {{ firstFont.optical }}{% endif %}', sans-serif;
+}

@@ -1,0 +1,22 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TexGyreChorus',
+  'TexGyreChorus',
+  'texgyrechorus-mediumitalic.woff2',
+  500,
+  'italic'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TexGyreChorus', sans-serif;
+}

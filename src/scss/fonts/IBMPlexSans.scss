@@ -1,0 +1,142 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans',
+  'IBMPlexSans',
+  'IBMPlexSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'IBMPlexSans Text',
+  'IBMPlexSans',
+  'IBMPlexSans-TextItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'IBMPlexSans Text',
+  'IBMPlexSans',
+  'IBMPlexSans-Text.woff2',
+  400,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'IBMPlexSans', sans-serif;
+}

@@ -1,0 +1,62 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'Junction-bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Junction',
+  'Junction',
+  'junction-bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Junction', sans-serif;
+}
