@@ -44,7 +44,7 @@
 
     <section class="hero-word">
         <article>
-            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold">{{ heroword or site.heroword }}</p>
+            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color or site.color }}">{{ heroword or site.heroword }}</p>
         </article>
     </section>
 

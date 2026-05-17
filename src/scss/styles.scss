@@ -2,6 +2,7 @@
 @use "typography";
 @use "font-poster";
 @use "fonts";
+@use "html_colornames";
 
 header {
     nav {
@@ -28,8 +29,6 @@ header {
     width: 100%;
     clip-path: url("#text-clip");
     transform: translateX(50%);
-}
-.cmyk-mask{
 }
 
 /* Basis-Styling für alle Farbebenen */

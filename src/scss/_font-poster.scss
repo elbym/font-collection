@@ -256,3 +256,41 @@
 
     }
 }
+.font-family-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    .card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: #eee;
+        border: .0125rem solid #ccc;
+        padding-bottom: 1rem;
+    }
+    a {
+        text-decoration: none;;
+    }
+    h3,
+    p {
+        margin: 0;
+    }
+    h3 {
+        background: #ccc;
+        padding: 1rem;
+        font-weight: 600;
+        margin-bottom: .5rem;
+    }
+    p {
+        padding: 0 1rem;
+
+    }
+    .heroword {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-weight: 600;
+        text-align: right;
+    }
+}
