@@ -5,6 +5,8 @@ const cp = require("child_process");
 const { rimrafSync } = require("rimraf");
 
 const nunjucksRender = require("gulp-nunjucks-render");
+const cleanCSS = require("gulp-clean-css");   // NEU
+const htmlmin = require("gulp-htmlmin");       // NEU
 
 function clean(done) {
   rimrafSync("dist");
@@ -17,6 +19,14 @@ function compileSass() {
     .pipe(sass().on("error", sass.logError))
     .pipe(dest("dist/css"))
     .pipe(browserSync.stream());
+}
+
+// 1b. SASS Task mit CSS-Minifizierung (nur für Builds)
+function compileSassMinified() {
+  return src("src/scss/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(dest("dist/css"));
 }
 
 // 2. Eleventy Task
@@ -33,6 +43,18 @@ function buildEleventyGhPages() {
     stdio: "inherit",
     shell: true,
   });
+}
+
+// HTML minifizieren (läuft nach Eleventy, da Eleventy die HTML-Dateien erzeugt)
+function minifyHTML() {
+  return src("dist/**/*.html")
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      removeComments: true,
+      minifyCSS: true,   // Inline-CSS ebenfalls minifizieren
+      minifyJS: true,    // Inline-JS ebenfalls minifizieren
+    }))
+    .pipe(dest("dist"));
 }
 
 // 3. Copy Static files
@@ -82,18 +104,20 @@ exports.default = series(
   watchFiles,
 );
 
-// Normaler lokaler Build ohne Prefix
+// Produktions-Build: mit Minifizierung
 exports.build = series(
   clean,
   buildEleventy,
-  parallel(copyImages, copyFonts, copyJS, compileSass),
+  parallel(copyImages, copyFonts, copyJS, compileSassMinified),
+  minifyHTML,
 );
 
-// GitHub Pages mit Prefix
+// GitHub Pages mit Prefix + Minifizierung
 exports.ghpages = series(
   clean,
   buildEleventyGhPages,
-  parallel(copyImages, copyFonts, copyJS, compileSass),
+  parallel(copyImages, copyFonts, copyJS, compileSassMinified),
+  minifyHTML,
 );
 
 exports.clean = series(clean);
