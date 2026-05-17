@@ -33,7 +33,7 @@ function compileSassMinified() {
 function compileSassGhPages() {
   return src("src/scss/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(replace(/url\(['"]?(?:(?:\.\.\/)+|fonts\/)(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
+    .pipe(replace(/url\(['"]?(?:\.\.\/)*fonts\/(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
     .pipe(cleanCSS({ level: 2 }))
     .pipe(dest("dist/css"));
 }
