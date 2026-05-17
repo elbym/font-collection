@@ -16,6 +16,11 @@ module.exports = function (eleventyConfig) {
     return childUrl.startsWith(parentUrl) && childUrl !== parentUrl;
   });
 
+  // Setzt das globale Permalink-Verhalten auf dateiname.html statt dateiname/index.html
+  eleventyConfig.addGlobalData("permalink", () => {
+    return (data) => `${data.page.filePathStem}.html`;
+  });
+
   return {
     dir: {
       input: "src",
