@@ -1,3 +1,10 @@
+# git
+
+## Github Pages deploy
+  git subtree push --prefix dist origin gh-pages
+
+
+
 # Font Poster
 * https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375
 * https://printedmatterclass.wordpress.com/2012/11/10/type-specimen-sheets-homework-assignment
