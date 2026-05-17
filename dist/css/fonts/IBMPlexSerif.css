@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-ThinItalic.woff2") format("woff2");
+  font-weight: 100;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-ExtraLightItalic.woff2") format("woff2");
+  font-weight: 200;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-SemiBoldItalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif Text";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-TextItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBMPlexSerif Text";
+  src: url("../../fonts/IBMPlexSerif/IBMPlexSerif-Text.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: swap;
+}
+.specimen-poster {
+  font-family: "IBMPlexSerif", sans-serif;
+}

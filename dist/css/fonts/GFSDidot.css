@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "GFSDidot";
+  src: url("../../fonts/GFSDidot/GFSDidotItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "GFSDidot";
+  src: url("../../fonts/GFSDidot/GFSDidot.woff2") format("woff2");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: swap;
+}
+@font-face {
+  font-family: "GFSDidot";
+  src: url("../../fonts/GFSDidot/GFSDidotBoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "italic";
+  font-display: swap;
+}
+@font-face {
+  font-family: "GFSDidot";
+  src: url("../../fonts/GFSDidot/GFSDidotBold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: "normal";
+  font-display: swap;
+}
+.specimen-poster {
+  font-family: "GFSDidot", sans-serif;
+}
