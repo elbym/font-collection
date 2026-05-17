@@ -1,6 +1,10 @@
 @use "modularscale";
 @use "grid";
 
+.specimen {
+    // background-image: url("../img/Texturelabs_Paper_305XL.jpg");
+    // background-size: cover;
+}
 .specimen-poster {
     line-height: 1.25rem;
 
@@ -16,14 +20,39 @@
 
     .header {
         text-align: center;
-        border-bottom: 0.025rem solid #ccc;
-        padding-bottom: 3rem;
+        border-bottom: 0.125rem solid var(--color);
+        padding-bottom: 1rem;
         line-height: 50%;
 
+        .author {
+            font-size: .861rem;
+            line-height: 100%;
+            color: var(--color);
+            font-variant-caps: small-caps;
+        }
+        .year {
+            color: var(--color);
+            font-variant-numeric: oldstyle-nums;
+        }
+        .fontinfo {
+            margin: 0 auto;
+            max-width: 60%;
+            font-size: .681rem;
+            line-height: 100%;
+            color: var(--color);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
         h1 {
             font-size: 3rem;
             letter-spacing: 0.15ch;
             min-height: 1em;
+            font-weight: 600;
+        }
+        a {
+            font-weight: 200;
+            font-size: .681rem;
+            font-variant-caps: small-caps;
         }
     }
     .seperator {
@@ -49,15 +78,10 @@
         background: var(--color-background);
         padding: 1rem;
         position: relative;
-        margin-left: 1rem;
 
-        #text-clip text,
-        .big {
-            margin: 0;
+        #text-clip text{
+            margin:0;
             line-height: 100%;
-            // font-size: clamp(min(1cqi, 1rem), 16cqi, max(50cqi, 16rem));
-            // font-size: 10cqmax;
-            // font-size: clamp(3rem, 6cqi + 3rem, 30rem);
             font-size: calc(6cqi + 6rem);
             font-weight: 900;
         }
@@ -96,7 +120,7 @@
         overflow: hidden;
 
         span {
-            display: flex;
+            display: flex;;
             flex: 0 0 auto;
         }
     }
@@ -146,6 +170,7 @@
         line-height: 0.5rem;
     }
 }
+
 
 .demo {
     &__word,
@@ -201,5 +226,6 @@
         text-align: center;
         padding: 0.75rem;
         border: 0.025rem solid #eee;
+
     }
 }

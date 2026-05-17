@@ -1,10 +1,12 @@
 <div class="specimen-poster">
 
     <header class="header">
-        <p>{{ fontauthor }}</p>
+        <p class="author">{{ fontauthor }}</p>
         <h1><span id="fonttitle">{{ title }}</span></h1>
-        <p>{{ fontyear }}</p>
-        <small><em><a href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></em></small>
+        <p class="year">{{ fontyear }}</p>
+        {% if fontinfo %}<p class="fontinfo">{{ fontinfo }}</p>{% endif %}
+        {% if url %}
+        <p><a href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
         {% if tags %}
             <ul class="keywords">
                 {% for tag in tags %}
@@ -42,7 +44,7 @@
 
     <section class="hero-word">
         <article>
-            <p class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold">{{ heroword or site.heroword }}</p>
+            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold">{{ heroword or site.heroword }}</p>
         </article>
     </section>
 
@@ -80,7 +82,7 @@
     <section class="latin">
         <article>
             <p class="display-size-3">specimen</p>
-            <p class="display-size-5">Chara ctere v m sev</p>
+            <p class="display-size-5">Chara <span class="small-caps">de</span> sev</p>
             <p class="p-2-col justify initials">{{ heroparagraph or site.heroparagraph }}</p>
             <p class="display-size-4">typorvm probatissimor vm,</p>
             <p class="display-size-3">incondetie qvidem, sed secvn</p>
