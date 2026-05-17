@@ -22,6 +22,15 @@ header {
   padding-bottom: 1rem;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
 .container {
   flex-basis: 80%;
 }
@@ -117,7 +126,7 @@ h3 {
 }
 
 .ligature {
-  font-feature-settings: "ss01" 1, "ss02" 1, "onum" 1;
+  font-variant-ligatures: common-ligatures;
 }
 
 .small-caps {
@@ -201,8 +210,8 @@ h3 {
 @media (min-width: 768px) {
   .specimen-poster {
     margin: 0.5rem;
-    padding: 2rem 4rem;
-    border-image-source: url("../img/Tan/border_historical.svg");
+    padding: 2rem 3rem;
+    border-image-source: url("../img/borders/Tan/border_historical.svg");
     border-image-slice: 41.5%;
     border-image-width: 3rem;
     border-image-outset: 1rem;
@@ -276,6 +285,32 @@ h3 {
 .specimen-poster .hero-word {
   grid-column: 1/span 2;
   text-align: right;
+}
+.specimen-poster .font-gallery {
+  grid-column: 1/span 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+.specimen-poster .font-gallery figcaption {
+  font-size: 0.861rem;
+}
+.specimen-poster .font-gallery .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.specimen-poster .font-gallery .gallery-item {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.specimen-poster .font-gallery .image-source {
+  font-size: 0.681em;
+  display: flex;
 }
 .specimen-poster .latin {
   text-align: center;
@@ -409,6 +444,47 @@ h3 {
   border: 0.025rem solid #eee;
 }
 
+.font-family-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.font-family-card-list .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+  border: 0.0125rem solid #ccc;
+  padding-bottom: 1rem;
+}
+.font-family-card-list a {
+  text-decoration: none;
+}
+.font-family-card-list h3,
+.font-family-card-list p {
+  margin: 0;
+}
+.font-family-card-list h3 {
+  background: #ccc;
+  padding: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.font-family-card-list p {
+  padding: 0 1rem;
+}
+.font-family-card-list .heroword {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+/*
+  Overrides to specific specimen pages
+  The specimen page uses the foldername as a baseclass
+*/
 @media (min-width: 768px) {
   .playwritedela p {
     font-weight: 200;
@@ -456,6 +532,90 @@ h3 {
     border-image-width: 4rem;
   }
 }
+.atkinsonhyperlegiblenext .specimen-poster {
+  border: 1rem dotted slategray;
+}
+
+.cornflowerblue {
+  color: CornflowerBlue;
+}
+
+.mediumblue {
+  color: MediumBlue;
+}
+
+.sienna {
+  color: Sienna;
+}
+
+.darkblue {
+  color: DarkBlue;
+}
+
+.mediumorchid {
+  color: MediumOrchid;
+}
+
+.mediumblue {
+  color: MediumBlue;
+}
+
+.mediumblue {
+  color: MediumBlue;
+}
+
+.deeppink {
+  color: DeepPink;
+}
+
+.seagreen {
+  color: seagreen;
+}
+
+.coral {
+  color: Coral;
+}
+
+.teal {
+  color: Teal;
+}
+
+.indigo {
+  color: Indigo;
+}
+
+.cadetblue {
+  color: CadetBlue;
+}
+
+.saddlebrown {
+  color: SaddleBrown;
+}
+
+.royalblue {
+  color: RoyalBlue;
+}
+
+.darkslateblue {
+  color: DarkSlateBlue;
+}
+
+.salmon {
+  color: Salmon;
+}
+
+.crimson {
+  color: Crimson;
+}
+
+.darkslateblue {
+  color: DarkSlateBlue;
+}
+
+.darkkhaki {
+  color: DarkKhaki;
+}
+
 header nav ul {
   display: flex;
   flex-wrap: wrap;
