@@ -5,7 +5,7 @@
 
       {% for entry in navPages | sort(false, false, 'family') %}
         <li{% if entry.url == page.url %} class="active"{% endif %}>
-          <a href="{{ entry.url }}">{{ entry.title }}</a>
+          <a href="{{ entry.url }}#poster">{{ entry.title }}</a>
         </li>
       {% endfor %}
     </ul>
