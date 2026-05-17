@@ -1,0 +1,27 @@
+---
+permalink: "../src/scss/all-fonts.scss"
+---
+{#
+  Dieses Template nutzt die bereinigten Daten aus der fonts.js.
+  Es generiert nun alle Fonts in eine einzige Datei und erstellt Klassen pro Ordner.
+#}
+
+@use "font-mixin" as *;
+
+{% for folderName, items in fonts %}
+{% set firstFont = items[0] %}
+
+{% for font in items %}
+@include declare-font(
+  '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
+  '{{ folderName }}',
+  '{{ font.fileName }}',
+  {{ font.weight or 400 }},
+  '{{ font.style }}'
+);
+{% endfor %}
+
+.{{ folderName | slugify }} {
+    font-family: '{{ firstFont.family }}{% if firstFont.optical %} {{ firstFont.optical }}{% endif %}', sans-serif;
+}
+{% endfor %}
