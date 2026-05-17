@@ -6,6 +6,7 @@ const { rimrafSync } = require("rimraf");
 
 const cleanCSS = require("gulp-clean-css"); // For minifying CSS
 const htmlmin = require("gulp-htmlmin"); // For minifying HTML
+const htmlbeautify = require("gulp-html-beautify"); // For beautifying HTML
 const replace = require("gulp-replace"); // For replacing strings in files (e.g., CSS URLs)
 
 function clean(done) {
@@ -66,6 +67,20 @@ function minifyHTML() {
     .pipe(dest("dist"));
 }
 
+// HTML verschönern
+function beautifyHTML() {
+  const options = {
+    indent_size: 2,
+    indent_char: " ",
+    unformatted: ["code", "pre", "em", "strong", "span", "i", "b", "br"],
+    preserve_newlines: true,
+    max_preserve_newlines: 2,
+  };
+  return src("dist/**/*.html")
+    .pipe(htmlbeautify(options))
+    .pipe(dest("dist"));
+}
+
 // 3. Copy Static files
 function copyFonts() {
   return src("src/fonts/**/*", { encoding: false }).pipe(dest("dist/fonts"));
@@ -118,7 +133,7 @@ exports.build = series(
   clean,
   buildEleventy,
   parallel(copyImages, copyFonts, copyJS, compileSassMinified),
-  minifyHTML,
+  beautifyHTML,
 );
 
 // GitHub Pages mit Prefix + Minifizierung

@@ -1,7 +1,7 @@
 # git
 
 ## Github Pages deploy
-  git subtree push --prefix dist origin gh-pages
+  git add -f dist/ && git commit -m"ghpages deploy" && git subtree push --prefix dist origin gh-pages
 
 
 

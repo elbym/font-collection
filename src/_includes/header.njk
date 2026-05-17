@@ -4,7 +4,7 @@
       {% set navPages = collections.all | eleventyNavigation %}
 
       {% for entry in navPages | sort(false, false, 'family') %}
-        <li class="{{ entry.title | slugify }}{% if entry.url == page.url %} active{% endif %}">
+        <li{% if entry.url == page.url %} class="active"{% endif %}>
           <a href="{{ entry.url }}">{{ entry.title }}</a>
         </li>
       {% endfor %}
