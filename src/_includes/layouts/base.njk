@@ -6,7 +6,7 @@
   <title>{{ title or site.title }}</title>
   <link rel="stylesheet" href="/css/styles.css">
   {% if selectedFontFolder is defined %}
-  <link rel="stylesheet" href="../css/fonts/{{selectedFontFolder}}.css">
+  <link rel="stylesheet" href="/css/fonts/{{selectedFontFolder}}.css">
   {% endif %}
 </head>
 <body class="specimen {{ selectedFontFolder | slugify }}">
