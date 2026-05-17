@@ -27,21 +27,26 @@ function buildEleventy() {
   });
 }
 
-// 3. Fonts Task
+// 2b. Eleventy Task für GitHub Pages (mit Pathprefix)
+function buildEleventyGhPages() {
+  return cp.spawn("npx", ["@11ty/eleventy", "--quiet", "--pathprefix=font-collection"], {
+    stdio: "inherit",
+    shell: true,
+  });
+}
+
+// 3. Copy Static files
 function copyFonts() {
   return src("src/fonts/**/*", { encoding: false }).pipe(dest("dist/fonts"));
 }
-
-// 4. Fonts Task
 function copyImages() {
   return src("src/img/**/*", { encoding: false }).pipe(dest("dist/img"));
-  return src("src/js/**/*").pipe(dest("dist/js"));
 }
-// 4. Fonts Task
 function copyJS() {
   return src("src/js/**/*").pipe(dest("dist/js"));
 }
-// 5. Browser-Sync
+
+// 3. Browser-Sync
 function serve(done) {
   browserSync.init({
     server: { baseDir: "./dist" },
@@ -55,7 +60,7 @@ function serve(done) {
   done();
 }
 
-// 6. Watcher
+// 4. Watcher
 function watchFiles() {
   watch("src/scss/**/*.scss", compileSass);
   // Auch Fonts überwachen, falls du im laufenden Betrieb neue hinzufügst
@@ -73,15 +78,22 @@ function watchFiles() {
 }
 
 exports.default = series(
-  // parallel(copyFonts, copyImages, copyJS, buildEleventy, compileSass),
-  parallel(copyImages, copyJS, buildEleventy, compileSass),
+  parallel(copyFonts, copyImages, copyJS, buildEleventy, compileSass),
   serve,
   watchFiles,
 );
 
+// Normaler lokaler Build ohne Prefix
 exports.build = series(
   clean,
   buildEleventy,
+  parallel(copyImages, copyFonts, copyJS, compileSass),
+);
+
+// GitHub Pages mit Prefix
+exports.ghpages = series(
+  clean,
+  buildEleventyGhPages,
   parallel(copyImages, copyFonts, copyJS, compileSass),
 );
 
