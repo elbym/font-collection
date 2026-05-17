@@ -36,10 +36,10 @@ extra_css: "/css/all-fonts.css"
       {% endif %}
     {% endfor %}
     <article class="card {{ folder | slugify }}">
-      <h3>{% if fontPageUrl %}<a class="{{ color | slugify }}" href="{{ fontPageUrl | url }}">{{ familyName }}</a>{% else %}{{ familyName }}{% endif %}</h3>
+      <h3>{% if fontPageUrl %}<a class="{{ color | slugify }}" href="{{ fontPageUrl }}">{{ familyName }}</a>{% else %}{{ familyName }}{% endif %}</h3>
       <p>Aa Rr Ee</p>
       <p class="italic">Aa Rr Ee</p>
-      <p class="heroword ligature display-size-2 {{ color | slugify }}"><a class="{{ color | slugify }}" href="{{ fontPageUrl | url }}">{{ heroText }}</a></p>
+      <p class="heroword ligature display-size-2 {{ color | slugify }}"><a class="{{ color | slugify }}" href="{{ fontPageUrl }}">{{ heroText }}</a></p>
       <p>0123456789</p>
     </article>
   {% endfor %}
