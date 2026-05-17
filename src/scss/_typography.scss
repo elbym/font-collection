@@ -44,6 +44,11 @@ h3 {
         "ss02" 1,
         "onum" 1;
 }
+.small-caps {
+    text-transform: lowercase;
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp" on;
+}
 .text-align-right {
     text-align: right;
 }
