@@ -1,4 +1,5 @@
 @use "modularscale";
+@use "breakpoints" as bp;
 
 h1,
 h2,
@@ -22,7 +23,7 @@ h3 {
         @include modularscale.ms($i, $responsive: true);
     }
 }
-@media (min-width: 768px) {
+@include bp.media-breakpoint-up(md) {
     .p-2-col {
         column-count: 2;
         column-gap: 2rem;

@@ -1,3 +1,5 @@
+@use "breakpoints" as bp;
+
 .specimen-poster {
     display: grid;
     grid-template-columns: 1fr;
@@ -13,18 +15,14 @@
     .hero-letters {
         display: none;
     }
-    @media (min-width: 512px) {
-        .hero-letters {
-            grid-column: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+    .hero-letters {
+        grid-column: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-
-    @media (min-width: 768px) {
+    @include bp.media-breakpoint-up(md) {
         grid-template-columns: 3fr 2fr;
         .header,
         .seperator,

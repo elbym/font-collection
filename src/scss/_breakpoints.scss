@@ -1,0 +1,78 @@
+@use "sass:map";
+
+// Bootstrap 5 Breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+// Hilfsfunktion: Gibt den Wert des nächsten Breakpoints zurück
+@function _get-next-breakpoint($name) {
+  $breakpoint-names: map.keys($grid-breakpoints);
+  $n: index($breakpoint-names, $name);
+  @if $n != null and $n < length($breakpoint-names) {
+    @return map.get($grid-breakpoints, nth($breakpoint-names, $n + 1));
+  }
+  @return null;
+}
+
+// Mobile-First: Ab einer bestimmten Größe (min-width)
+@mixin media-breakpoint-up($name) {
+  $min: map.get($grid-breakpoints, $name);
+  @if $min and $min != 0 {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Desktop-First: Bis zu einer bestimmten Größe (max-width)
+// Nutzt 0.02px Abzug um Kollisionen zu vermeiden (Standard in Bootstrap)
+@mixin media-breakpoint-down($name) {
+  $max: map.get($grid-breakpoints, $name);
+  @if $max and $max != 0 {
+    @media (max-width: ($max - 0.02px)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Bereich zwischen zwei Breakpoints
+@mixin media-breakpoint-between($lower, $upper) {
+  $min: map.get($grid-breakpoints, $lower);
+  $max: map.get($grid-breakpoints, $upper);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: ($max - 0.02px)) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower) { @content; }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper) { @content; }
+  }
+}
+
+// Nur für einen spezifischen Breakpoint-Bereich
+@mixin media-breakpoint-only($name) {
+  $min: map.get($grid-breakpoints, $name);
+  $next: _get-next-breakpoint($name);
+
+  @if $min != null and $next != null {
+    @media (min-width: $min) and (max-width: ($next - 0.02px)) {
+      @content;
+    }
+  } @else if $next == null {
+    @include media-breakpoint-up($name) { @content; }
+  } @else {
+    @include media-breakpoint-down($name) { @content; }
+  }
+}
