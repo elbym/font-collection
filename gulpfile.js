@@ -7,7 +7,6 @@ const { rimrafSync } = require("rimraf");
 const cleanCSS = require("gulp-clean-css"); // For minifying CSS
 const htmlmin = require("gulp-htmlmin"); // For minifying HTML
 const htmlbeautify = require("gulp-html-beautify"); // For beautifying HTML
-const replace = require("gulp-replace"); // For replacing strings in files (e.g., CSS URLs)
 const sourcemaps = require("gulp-sourcemaps");
 
 function clean(done) {
@@ -94,6 +93,9 @@ function copyImages() {
 function copyJS() {
   return src("src/js/**/*").pipe(dest("dist/js"));
 }
+function copyFavicon() {
+  return src(["src/favicon.ico", "src/favicon.svg"], { allowEmpty: true }).pipe(dest("dist"));
+}
 
 // 3. Browser-Sync
 function serve(done) {
@@ -126,6 +128,7 @@ function watchFiles() {
 }
 
 exports.default = series(
+  copyFavicon,
   parallel(copyFonts, copyImages, copyJS, buildEleventy, compileSass),
   serve,
   watchFiles,
@@ -135,7 +138,7 @@ exports.default = series(
 exports.build = series(
   clean,
   buildEleventy,
-  parallel(copyImages, copyFonts, copyJS, compileSassMinified),
+  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileSassMinified),
   beautifyHTML,
 );
 
@@ -143,7 +146,7 @@ exports.build = series(
 exports.ghpages = series(
   clean,
   buildEleventyGhPages,
-  parallel(copyImages, copyFonts, copyJS, compileSassGhPages), // Use compileSassGhPages for ghpages build
+  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileSassGhPages),
   minifyHTML,
 );
 
