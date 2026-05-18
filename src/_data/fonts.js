@@ -9,12 +9,15 @@ module.exports = function () {
   const weightMap = {
     extrabold: 800,
     extralight: 200,
+    ultralight: 200,
     semibold: 600,
+    heavy: 900,
     black: 900,
-    bold: 700,
-    thin: 100,
-    light: 300,
     medium: 500,
+    light: 300,
+    hair: 100,
+    thin: 100,
+    bold: 700,
     regular: 400,
   };
 
