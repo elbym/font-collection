@@ -22,6 +22,13 @@ module.exports = function (eleventyConfig) {
     return (data) => `${data.page.filePathStem}.html`;
   });
 
+  // Such-Filter für Deep-Access (z.B. data.selectedFontFolder)
+  eleventyConfig.addFilter("find", (arr, key, value) =>
+    arr.find(item => {
+      const val = key.split(".").reduce((o, k) => o?.[k], item);
+      return val === value;
+    })
+  );
 
   // Aktiviert das automatische Ersetzen aller URLs basierend auf deinem pathPrefix
   eleventyConfig.addPlugin(HtmlBasePlugin);
