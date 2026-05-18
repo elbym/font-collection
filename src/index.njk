@@ -27,7 +27,7 @@ extra_css: "/css/all-fonts.css"
         {% if fontPageUrl %}
           <a class="{{ color | slugify }}"
              href="{{ fontPageUrl }}"
-             {% if backgrounds.length > 0 %}style="background-image: url('{{ backgrounds | random }}');"{% endif %}>
+             {% if backgrounds.length > 0 %}style="background-image: url('{{ backgrounds | random | url }}');"{% endif %}>
              <h3>{{ familyName }}</h3>
           </a>
         {% else %}
