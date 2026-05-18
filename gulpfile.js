@@ -147,7 +147,8 @@ exports.ghpages = series(
   clean,
   buildEleventyGhPages,
   parallel(copyImages, copyFonts, copyJS, copyFavicon, compileSassGhPages),
-  minifyHTML,
+  // minifyHTML,
+  beautifyHTML,
 );
 
 exports.clean = series(clean);
