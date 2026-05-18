@@ -2,12 +2,8 @@
 <div class="specimen-poster">
 
     <header class="header">
-        <p class="author small">{{ fontauthor }}</p>
-        <h1><span id="fonttitle">{{ title }}</span></h1>
         <p class="year">{{ fontyear }}</p>
-        {% if fontinfo %}<p class="fontinfo">{{ fontinfo }}</p>{% endif %}
-        {% if url %}
-        <p><a class="small" href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
+        <p class="author">{{ fontauthor }}</p>
         {% if tags %}
             <ul class="keywords">
                 {% for tag in tags %}
@@ -15,9 +11,11 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <article class="comment">
-            {% if comment %}<p class="small">{{ comment }}</p>{% endif %}
-        </article>
+        <h1><span id="fonttitle">{{ title }}</span></h1>
+        {% if url %}<p><a href="{{ url }}" class="small" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
+        {% if comment %}
+            <article class="comment"><p>{{ comment }}</p></article>
+        {% endif %}
     </header>
 
 
@@ -101,39 +99,35 @@
     </section>
 
     <section class="waterfall">
+        {# Wir holen uns nur die Schriften für den gewählten Ordner aus dem globalen 'fonts' Objekt #}
+        {% set activeFonts = fonts[selectedFontFolder] %}
+
+        {% if activeFonts %}
         <article>
-          {# Wir holen uns nur die Schriften für den gewählten Ordner aus dem globalen 'fonts' Objekt #}
-          {% set activeFonts = fonts[selectedFontFolder] %}
-          <h2>{{ selectedFontFolder }} Family</h2>
-
-          {% if activeFonts %}
-            {% for font in activeFonts %}
-              <section>
-                <small>
-                  {{ font.displayName }} <br>({{ font.weight }}, {{ font.style }})
-                </small>
-                <p {% if font.optical %} class="{{ font.optical | slugify }}" {% endif %}
-                   style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
+        <h2>{{ selectedFontFolder }} Family</h2>
+        {% for font in activeFonts %}
+            <small>
+                {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
+            </small>
+            <p {% if font.optical %} class="{{ font.optical | slugify }}" {% endif %} style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
                    Quick nymph bugs vex fjord waltz
-                </p>
-              </section>
+            </p>
             {% endfor %}
-          {% else %}
+            {% else %}
             <p>Keine Schriften im Ordner "{{ selectedFontFolder }}" gefunden.</p>
-          {% endif %}
         </article>
-
+        {% endif %}
     </section>
-    <section>
-        <article class="justify">
+
+    <section class="paragraph">
+        <article class="">
             <p class="initials">Es gibt im Moment in diese <em>Mannschaft</em>, oh, einige Spieler vergessen ihnen <strong>Profi</strong> was sie sind. Ich lese nicht sehr viele <strong><em>Zeitungen</em></strong>, aber ich habe gehört viele Situationen. Erstens: wir haben nicht offensiv gespielt. Es gibt keine deutsche Mannschaft spielt offensiv und die Name offensiv wie Bayern. Letzte Spiel hatten wir in Platz drei Spitzen: Elber, Jancka und dann Zickler. Wir müssen nicht vergessen Zickler.</p>
             <h2 class="ligatures italic">Zickler ist eine Spitzen mehr, Mehmet eh mehr Basler</h2>
-            <p class="bold">Ist klar diese Wörter, ist möglich verstehen, was ich hab gesagt? Danke. Offensiv, offensiv ist wie machen wir in Platz. </p>
-            <p class="p-2-col">Zweitens: ich habe erklärt mit diese zwei Spieler: nach Dortmund brauchen vielleicht Halbzeit Pause. Ich habe auch andere Mannschaften gesehen in Europa nach diese Mittwoch.
+            <p class="p-2-col"><span class="bold"> Ist klar diese Wörter, ist möglich verstehen, was ich hab gesagt? Danke. Offensiv, offensiv ist wie machen wir in Platz. </span>Zweitens: ich habe erklärt mit diese zwei Spieler: nach Dortmund brauchen vielleicht Halbzeit Pause. Ich habe auch andere Mannschaften gesehen in Europa nach diese Mittwoch.
             Ich habe gesehen auch zwei Tage die Training. Ein Trainer ist nicht ein Idiot! Ein Trainer sei sehen was passieren in Platz. In diese Spiel es waren zwei, drei diese Spieler waren schwach wie eine Flasche leer!
             Haben Sie gesehen Mittwoch, welche Mannschaft hat gespielt Mittwoch? Hat gespielt Mehmet oder gespielt Basler oder hat gespielt Trapattoni? Diese Spieler beklagen mehr als sie spielen! Wissen Sie, warum die Italienmannschaften kaufen nicht diese Spieler? Weil wir haben gesehen viele Male solche Spiel!
             </p>
-            <h3>...wenn es gab Fragen, ich kann Worte wiederholen...</h3>
+            <h2 class="bold">...wenn es gab Fragen, ich kann Worte wiederholen...</h2>
             <p>Es gibt im Moment in diese Mannschaft, oh, einige Spieler vergessen ihnen Profi was sie sind. Ich lese nicht sehr viele Zeitungen, aber ich habe gehört viele Situationen. Erstens: wir haben nicht offensiv gespielt. Es gibt keine deutsche Mannschaft spielt offensiv und die Name offensiv wie Bayern. Letzte Spiel hatten wir in Platz drei Spitzen: Elber, Jancka und dann Zickler. Wir müssen nicht vergessen Zickler.</p>
         </article>
     </section>
