@@ -36,7 +36,11 @@ extra_css: "/css/all-fonts.css"
         <a class="{{ color | slugify }}" href="{{ fontPageUrl }}#poster">{{ heroText }}</a>
       </p>
       <p>0123456789</p>
-      {% if comment %}<p class="comment">{{ comment }}</p>{% endif %}
+      {% if comment %}
+        <p class="comment small">
+          {{ comment[:200] }}{% if comment | length > 200 %}…{% endif %}
+        </p>
+      {% endif %}
     </article>
   {% endfor %}
 </section>
