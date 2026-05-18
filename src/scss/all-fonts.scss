@@ -623,6 +623,54 @@
 
 
 @include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.firacode {
+    font-family: 'FiraCode', sans-serif;
+}
+
+
+
+
+@include declare-font(
   'FiraSans',
   'FiraSans',
   'FiraSans-ThinItalic.woff2',
