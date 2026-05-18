@@ -49,8 +49,6 @@
         a {
             font-weight: 200;
             font-size: 0.681rem;
-            // @include modularscale.ms(-1, $responsive: true);
-            // font-variant-caps: small-caps;
         }
     }
     .seperator {
@@ -208,42 +206,6 @@
     }
 }
 
-/* .demo {
-    &__word,
-    &__paragraph {
-        border-bottom: 0.025rem solid #ccc;
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-    }
-    &__alphabet {
-        text-align: justify;
-        font-size: 1.5em;
-    }
-    &__hero {
-        font-size: 12em;
-        line-height: 100%;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
-    &__word {
-        border-top: 0.025rem solid #ccc;
-        font-size: 2em;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        text-align: right;
-    }
-    &__paragraph {
-        p {
-            margin: 0 0 1em 0;
-            break-inside: avoid;
-        }
-        p + p {
-            text-indent: 2ch;
-        }
-        padding-top: 1em;
-    }
-} */
 .ascii {
     display: flex;
     flex-wrap: wrap;
