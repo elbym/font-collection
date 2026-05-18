@@ -11,5 +11,5 @@ module.exports = function () {
   return fs.readdirSync(bgDir)
     .filter(file => /\.(jpe?g|png|webp|svg)$/i.test(file))
     // Wir geben den Pfad relativ zum dist-Ordner zurück
-    .map(file => `../img/background/${file}`);
+    .map(file => `/img/background/${file}`);
 };
