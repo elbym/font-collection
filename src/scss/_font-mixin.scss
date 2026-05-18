@@ -4,7 +4,7 @@
         font-family: "#{$family}";
 
         // Dynamischer Pfad basierend auf deiner neuen Ordnerstruktur
-        src: url("../fonts/#{$folder}/#{$filename}") format("woff2");
+        src: url("../../fonts/#{$folder}/#{$filename}") format("woff2");
 
         font-weight: $weight;
         font-style: $style;
