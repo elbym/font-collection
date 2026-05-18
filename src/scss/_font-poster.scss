@@ -8,7 +8,7 @@
 
     @include bp.media-breakpoint-up(lg) {
         margin: 0.5rem;
-        padding: 3rem;
+        padding: 3rem 4rem;
         border-image-source: url("../img/borders/Tan/border_historical.svg");
         border-image-slice: 41.5%;
         border-image-width: 3rem;
@@ -29,6 +29,7 @@
         .year {
             color: var(--color);
             font-variant-numeric: oldstyle-nums;
+            margin-bottom: 1rem;
         }
         .fontinfo {
             margin: 0 auto;
@@ -138,27 +139,26 @@
         }
     }
     .waterfall {
+        article {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+        p, small {
+            flex: 1 0 100%;
+        }
         p {
             @include modularscale.ms(2, $responsive: true);
-            flex: 1 0 auto;
             padding: 0 0 0.5rem 0;
             margin: 0 0 0.5rem 0;
             border-bottom: 0.025rem solid #ccc;
         }
 
-        section {
-            display: flex;
-            flex-direction: row-reverse;
-            /* justify-content: baseline; */
-            align-items: baseline;
-        }
-
         small {
-            flex: 1;
-            text-align: right;
-            font-size: 0.5rem;
             color: #ccc;
-            line-height: 0.5rem;
+            @include modularscale.ms(-1, $responsive: true);
+            // text-align: right;
         }
     }
 
@@ -171,14 +171,20 @@
         h2 {
             flex: 0 0 100%;
         }
-
         .l {
-            flex: 0 0 3ch;
-            height: 3ch;
-            line-height: 2rem;
-            text-align: center;
-            padding: 0.75rem;
-            border: 0.025rem solid #eee;
+            flex: 0 0 2ch;
+            height: 2ch;
+            padding: .25rem;
+        }
+        @include bp.media-breakpoint-up(lg) {
+            .l {
+                flex: 0 0 3ch;
+                height: 3ch;
+                line-height: 2rem;
+                text-align: center;
+                padding: 0.75rem;
+                border: 0.025rem solid #eee;
+            }
         }
     }
 
