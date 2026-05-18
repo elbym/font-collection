@@ -106,14 +106,14 @@
 
 <polygon
    fill="none"
-   stroke="#D2B48C"
+   stroke="#00008B"
    stroke-miterlimit="10"
    points="1187.52,446.5 1187.52,439.5 1265.52,439.5 1265.52,446.5 1273.52,446.5 1273.52,442.5 1269.52,442.5 1269.52,450.5 1276.52,450.5 1276.52,528.5 1269.52,528.5 1269.52,536.5 1273.52,536.5 1273.52,532.5 1265.52,532.5 1265.52,539.5 1187.52,539.5 1187.52,532.5 1179.52,532.5 1179.52,536.5 1183.52,536.5 1183.52,528.5 1176.52,528.5 1176.52,450.5 1183.52,450.5 1183.52,442.5 1179.52,442.5 1179.52,446.5 "
    id="polygon95"
    transform="matrix(0.99104453,0,0,0.99009405,-409.2289,2.7008044)"
-   style="stroke:#D2B48C;stroke-opacity:1" />
+   style="stroke:#e6adad;stroke-opacity:1" />
 <path
    id="path14"
-   style="fill:none;stroke:#D2B48C;stroke-width:10;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+   style="fill:none;stroke:#00008B;stroke-width:10;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
    d="m 657.5,544.5 v -25 h -30 v 15 h 15 v -30 h -25 v -30 h 25 v -30 h -15 v 15 h 30 v -25 h 30 v 25 h 30 v -15 h -15 v 30 h 25 v 30 h -25 v 30 h 15 v -15 h -30 v 25 z"
    sodipodi:nodetypes="ccccccccccccccccccccccccccccc" /></svg>

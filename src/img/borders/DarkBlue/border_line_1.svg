@@ -97,5 +97,5 @@
 
 <path
    id="rect1"
-   style="fill:none;stroke-width:10;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke:#add8e6;stroke-opacity:1"
+   style="fill:none;stroke-width:10;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke:#00008B;stroke-opacity:1"
    d="M 636.99414 434.5 A 25 25 0 0 1 617.5 453.99414 L 617.5 525.00586 A 25 25 0 0 1 636.99414 544.5 L 707.75781 544.5 A 25 25 0 0 1 727.5 523.58398 L 727.5 453.99414 A 25 25 0 0 1 708.00586 434.5 L 636.99414 434.5 z " /></svg>

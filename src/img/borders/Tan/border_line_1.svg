@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-
 <svg
    version="1.1"
    id="Ebene_2"
@@ -12,7 +10,7 @@
    enable-background="new 612.5 429.5 120 120"
    xml:space="preserve"
    sodipodi:docname="border_line_1.svg"
-   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,32 +24,27 @@
    inkscape:pageopacity="0.0"
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
-   inkscape:zoom="0.87283493"
-   inkscape:cx="482.33633"
-   inkscape:cy="246.89663"
+   inkscape:zoom="3.4913397"
+   inkscape:cx="62.01058"
+   inkscape:cy="50.983294"
    inkscape:window-width="2560"
-   inkscape:window-height="1387"
-   inkscape:window-x="-8"
-   inkscape:window-y="22"
+   inkscape:window-height="1371"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Ebene_2" />
+   inkscape:current-layer="Ebene_2"
+   showgrid="false" />
 
 
 
 
 
 
-<rect
-   x="626"
-   y="443"
-   display="none"
-   fill="none"
-   stroke="#000000"
-   stroke-width="2"
-   stroke-miterlimit="10"
-   width="93"
-   height="93"
-   id="rect14" />
+
+
+
+
+
 
 
 
@@ -103,12 +96,6 @@
 
 
 <path
-   fill="none"
-   stroke="#D2B48C"
-   stroke-miterlimit="10"
-   d="m 723.001,442.727 v 93.547 c -1.786,0 -3.227,1.44 -3.227,3.227 h -93.547 c 0,-1.786 -1.44,-3.227 -3.227,-3.227 v -93.547 c 1.786,0 3.227,-1.44 3.227,-3.227 h 93.547 c 0,1.786 1.441,3.227 3.227,3.227 z"
-   id="path65" />
-
-
-
-</svg>
+   id="rect1"
+   style="fill:none;stroke-width:10;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke:#D2B48C;stroke-opacity:1"
+   d="M 636.99414 434.5 A 25 25 0 0 1 617.5 453.99414 L 617.5 525.00586 A 25 25 0 0 1 636.99414 544.5 L 707.75781 544.5 A 25 25 0 0 1 727.5 523.58398 L 727.5 453.99414 A 25 25 0 0 1 708.00586 434.5 L 636.99414 434.5 z " /></svg>
