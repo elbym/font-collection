@@ -1,12 +1,12 @@
 ---
-permalink: "../src/scss/all-fonts.scss"
+permalink: "../src/scss/fonts/all-fonts.scss"
 ---
 {#
   Dieses Template nutzt die bereinigten Daten aus der fonts.js.
   Es generiert nun alle Fonts in eine einzige Datei und erstellt Klassen pro Ordner.
 #}
 
-@use "font-mixin" as *;
+@use "../font-mixin" as *;
 
 {% for folderName, items in fonts %}
 {% set firstFont = items[0] %}
