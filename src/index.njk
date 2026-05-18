@@ -23,18 +23,20 @@ extra_css: "/css/all-fonts.css"
     {% set comment = page.data.comment if (page and page.data.comment)  else "" %}
 
     <article class="card {{ folder | slugify }}">
-      <h3>
+
         {% if fontPageUrl %}
-          <a class="{{ color | slugify }}" href="{{ fontPageUrl }}">{{ familyName }}</a>
+          <a class="{{ color | slugify }}"
+             href="{{ fontPageUrl }}"
+             {% if backgrounds.length > 0 %}style="background-image: url('{{ backgrounds | random }}');"{% endif %}>
+             <h3>{{ familyName }}</h3>
+          </a>
         {% else %}
-          {{ familyName }}
+          <h3>{{ familyName }}</h3>
         {% endif %}
-      </h3>
+
       <p>Aa Rr Ee</p>
       <p class="italic">Aa Rr Ee</p>
-      <p contenteditable="true" class="heroword ligature display-size-2">
-        <a class="{{ color | slugify }}" href="{{ fontPageUrl }}">{{ heroText }}</a>
-      </p>
+      <p class="heroword ligature display-size-2 {{ color | slugify }}">{{ heroText }}</p>
       <p>0123456789</p>
       {% if comment %}
         <p class="comment small">

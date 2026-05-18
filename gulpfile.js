@@ -36,7 +36,7 @@ function compileSassMinified() {
 function compileSassGhPages() {
   return src("src/scss/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(replace(/url\(['"]?(?:\.\.\/)*fonts\/(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
+    // .pipe(replace(/url\(['"]?(?:\.\.\/)*fonts\/(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
     .pipe(cleanCSS({ level: 2 }))
     .pipe(dest("dist/css"));
 }
@@ -88,7 +88,7 @@ function copyFonts() {
   return src("src/fonts/**/*", { encoding: false }).pipe(dest("dist/fonts"));
 }
 function copyImages() {
-  return src("src/img/**/*").pipe(dest("dist/img"));
+  return src("src/img/**/*", { encoding: false }).pipe(dest("dist/img"));
 }
 function copyJS() {
   return src("src/js/**/*").pipe(dest("dist/js"));
