@@ -1,13 +1,13 @@
-<a id="poster">
+<a id="poster"></a>
 <div class="specimen-poster">
 
     <header class="header">
-        <p class="author">{{ fontauthor }}</p>
+        <p class="author small">{{ fontauthor }}</p>
         <h1><span id="fonttitle">{{ title }}</span></h1>
         <p class="year">{{ fontyear }}</p>
         {% if fontinfo %}<p class="fontinfo">{{ fontinfo }}</p>{% endif %}
         {% if url %}
-        <p><a href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
+        <p><a class="small" href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
         {% if tags %}
             <ul class="keywords">
                 {% for tag in tags %}
@@ -15,7 +15,11 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        <article class="comment">
+            {% if comment %}<p class="italic">{{ comment }}</p>{% endif %}
+        </article>
     </header>
+
 
     <section class="letters">
         <article>
@@ -45,7 +49,7 @@
 
     <section class="hero-word">
         <article>
-            <p {% if color %}style="color: {{ color }};"{% endif %} class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color or site.color }}">{{ heroword or site.heroword }}</p>
+            <p contenteditable="true" class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color | slugify }}">{{ heroword or site.heroword }}</p>
         </article>
     </section>
 
@@ -65,7 +69,7 @@
                 {% for i in range(48, 58) %}
                 <span>{{ i | chr }}</span>
                 {% endfor %}
-                {% for i in range(31, 47) %}
+                {% for i in range(32, 47) %}
                 <span>{{ i | chr }}</span>
                 {% endfor %}
             </div>

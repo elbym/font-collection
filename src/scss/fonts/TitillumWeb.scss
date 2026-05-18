@@ -1,0 +1,102 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'TitillumWeb', sans-serif;
+}

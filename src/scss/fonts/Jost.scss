@@ -1,0 +1,158 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-200-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-200-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-300-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-300-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-HairlineItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-400-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-600-SemiItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-Hairline.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-400-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-600-Semi.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-500-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-500-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-700-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-700-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-900-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-900-Black.woff2',
+  900,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Jost', sans-serif;
+}

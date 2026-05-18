@@ -623,6 +623,318 @@
 
 
 @include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'FiraCode',
+  'FiraCode',
+  'FiraCode-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.firacode {
+    font-family: 'FiraCode', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraLightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraLight.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-EightItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-FourItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-HairItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-TwoItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Eight.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Four.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Hair.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Two.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Ultra.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+.firasans {
+    font-family: 'FiraSans', sans-serif;
+}
+
+
+
+
+@include declare-font(
   'GFSDidot',
   'GFSDidot',
   'GFSDidotItalic.woff2',
@@ -935,6 +1247,302 @@
 
 
 @include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'Inter-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'Inter Display',
+  'Inter',
+  'InterDisplay-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.inter {
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+
+@include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
   'JetBrainsMono-ThinItalic.woff2',
@@ -1065,6 +1673,158 @@
 
 .jetbrainsmono {
     font-family: 'JetBrainsMono', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-200-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-200-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-300-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-300-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-HairlineItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-400-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-600-SemiItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-Hairline.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-400-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-600-Semi.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-500-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-500-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-700-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-700-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-900-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-900-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.jost {
+    font-family: 'Jost', sans-serif;
 }
 
 
@@ -2433,5 +3193,101 @@
 
 .texgyretermes {
     font-family: 'TexGyreTermes', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'TitillumWeb',
+  'TitillumWeb',
+  'TitilliumWeb-Black.woff2',
+  900,
+  'normal'
+);
+
+
+.titillumweb {
+    font-family: 'TitillumWeb', sans-serif;
 }
 

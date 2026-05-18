@@ -1,14 +1,26 @@
 <header>
-<nav>
+  <nav>
     <ul class="primary">
+      <li{% if page.url == "/" or page.url == "/index.html" %} class="active"{% endif %}>
+        <a href="/">Index</a>
+      </li>
+
       {% set navPages = collections.all | eleventyNavigation %}
 
-      {% for entry in navPages | sort(false, false, 'family') %}
+      {# Chained stable sort: unwichtigstes zuerst, wichtigstes zuletzt #}
+      {% set sortedNav = navPages
+        | sort(false, false, 'title')
+        | sort(false, false, 'family')
+        | sort(false, false, 'order') %}
+
+      {% for entry in sortedNav %}
+        {% if loop.first or entry.family != sortedNav[loop.index0 - 1].family %}
+          <li class="nav-category">{{ entry.family | default('Other') }}</li>
+        {% endif %}
         <li{% if entry.url == page.url %} class="active"{% endif %}>
-          <a href="{{ entry.url }}#poster">{{ entry.title }}</a>
+          <a href="{{ entry.url }}">{{ entry.title }}</a>
         </li>
       {% endfor %}
     </ul>
-
   </nav>
 </header>
