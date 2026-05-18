@@ -20,7 +20,6 @@
         text-align: center;
         // border-bottom: 0.125rem solid var(--color);
         padding-bottom: 1rem;
-        line-height: 50%;
 
         .author {
             // @include modularscale.ms(-1, $responsive: true);
@@ -72,7 +71,7 @@
 
     .letters {
         line-height: 100%;
-        font-size: clamp(1rem, 6cqi + 1rem, 5.5rem);
+        font-size: clamp(1rem, 6cqi + 1rem, 4rem);
         p {
             margin: 0;
         }
@@ -84,6 +83,7 @@
         color: var(--color-highlight);
         background: var(--color-background);
         padding: 1rem;
+        min-height: 10rem;
         position: relative;
         overflow: hidden;
 
