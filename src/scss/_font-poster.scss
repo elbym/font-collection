@@ -9,8 +9,8 @@
     @include bp.media-breakpoint-up(lg) {
         margin: 0.5rem;
         padding: 3rem 4rem;
-        border-image-source: url("../img/borders/Tan/border_historical.svg");
-        border-image-slice: 41.5%;
+        border-image-source: url("../img/borders/Tan/border_line_1.svg");
+        border-image-slice: 40%;
         border-image-width: 3rem;
         border-image-outset: 1rem;
         border-image-repeat: round round;
@@ -112,7 +112,7 @@
             padding: 0;
         }
         .gallery-item {
-            flex: 0 0 30%;
+            flex: 1 1 25%;
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
@@ -158,7 +158,8 @@
         small {
             color: #ccc;
             @include modularscale.ms(-1, $responsive: true);
-            // text-align: right;
+            text-align: right;
+            margin-bottom: 0;
         }
     }
 

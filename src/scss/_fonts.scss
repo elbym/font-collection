@@ -4,92 +4,90 @@
   The specimen page uses the foldername as a baseclass
 */
 
-
 @include bp.media-breakpoint-up(lg) {
-  .playwritedela {
-      p {
-          font-weight: 200;
-      }
-      .specimen-poster {
-          border-image-source: unset;
-          border: 1rem double skyblue;
-          padding: 1rem;
-      }
-  }
-
-  .junction {
-      .specimen-poster {
-          border-image-source: url("../img/borders/LightBlue/border_lines.svg");
-      }
-  }
-
-  .junction {
-    .specimen-poster {
-      border-image-source: url("../img/borders/LightBlue/border_lines.svg");
+    .playwritedela {
+        p {
+            font-weight: 200;
+        }
+        .specimen-poster {
+            border-image-source: unset;
+            border: 1rem double skyblue;
+            padding: 1rem;
+        }
     }
-  }
 
-  .metropolis {
-    h1 {
-          text-transform: uppercase;
-          font-weight: 900;
+    .junction,
+    .firasans {
+        .specimen-poster {
+            border-image-source: url("../img/borders/LightBlue/border_lines.svg");
+        }
     }
-    .specimen-poster {
-      // border-image-source: url("../img/borders/border-diagonal.svg");
-      border-image-source: repeating-linear-gradient(
-          -45deg,
-          transparent,
-          transparent 1rem,
-          #ccc 1rem,
-          #ccc 2rem
-      );
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 1rem;
-    }
-  }
 
-  .overpass {
-    .specimen-poster {
-      border-image-source: url("../img/borders/DarkSeaGreen/border_lines.svg");
+    .bodoni,
+    .cormorant,
+    .librebaskerville,
+    .librecaslon,
+    .texgyrepagella {
+        .specimen-poster {
+            border-image-source: url("../img/borders/Tan/border_historical.svg");
+            border-image-slice: 41.5%;
+        }
     }
-  }
+    .metropolis {
+        .specimen-poster {
+            border-image-source: repeating-linear-gradient(-45deg, transparent, transparent 1rem, #ccc 1rem,P #ccc 2rem);
+            border-image-slice: 40;
+            border-image-repeat: round;
+            border-image-width: 1rem;
+        }
+    }
 
-  .dinish {
-    .specimen-poster {
-      border-image-source: url("../img/borders/LightBlue/border_lines.svg");
+    .overpass {
+        .specimen-poster {
+            border-image-source: url("../img/borders/DarkSeaGreen/border_lines.svg");
+        }
     }
-  }
 
-  .ibmplexserif {
-    .specimen-poster {
-      border-image-source: url("../img/borders/LightBlue/border_line_1.svg");
+    .dinish {
+        .specimen-poster {
+            border-image-source: url("../img/borders/LightBlue/border_lines.svg");
+        }
     }
-  }
 
-  .jetbrainsmono,
-  .maplemono {
-    .specimen-poster {
-      border-image-source: url("../img/borders/border-hash.svg");
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 2rem;
+    .jetbrainsmono,
+    .maplemono {
+        .specimen-poster {
+            border-image-source: url("../img/borders/border-hash.svg");
+            border-image-slice: 40;
+            border-image-repeat: round;
+            border-image-width: 2rem;
+        }
     }
-  }
+    .kalam,
+    .krikikrak,
+    .playwritedela,
+    .texgyreschola {
+        .specimen-poster {
+            border-image-source: url("../img/borders/border-doodle.svg");
+            border-image-slice: 40;
+            border-image-repeat: round;
+            border-image-width: 4rem;
+        }
+    }
 
-  .playwritedela,
-  .krikikrak {
-    .specimen-poster {
-      border-image-source: url("../img/borders/border-doodle.svg");
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 4rem;
+    .atkinsonhyperlegiblenext {
+        .specimen-poster {
+            border: 1rem dotted slategray;
+        }
     }
-  }
 
-  .atkinsonhyperlegiblenext {
-    .specimen-poster {
-      border: 1rem dotted slategray;
+    .metropolis,
+    .jost,
+    .titillumweb,
+    .texgyreadventor,
+    .inter {
+        .specimen-poster {
+            border: 1rem double slategray;
+        }
     }
-  }
 }
