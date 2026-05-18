@@ -8,6 +8,7 @@ const cleanCSS = require("gulp-clean-css"); // For minifying CSS
 const htmlmin = require("gulp-htmlmin"); // For minifying HTML
 const htmlbeautify = require("gulp-html-beautify"); // For beautifying HTML
 const replace = require("gulp-replace"); // For replacing strings in files (e.g., CSS URLs)
+const sourcemaps = require("gulp-sourcemaps");
 
 function clean(done) {
   rimrafSync("dist");
@@ -17,7 +18,9 @@ function clean(done) {
 // 1. SASS Task
 function compileSass() {
   return src("src/scss/**/*.scss")
+    .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
+    .pipe(sourcemaps.write("."))
     .pipe(dest("dist/css"))
     .pipe(browserSync.stream());
 }
