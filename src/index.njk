@@ -1,9 +1,6 @@
 ---
 layout: layouts/base.njk
 title: Index
-eleventyNavigation:
-  key: Index
-  order: 0
 extra_css: "/css/all-fonts.css"
 ---
 
@@ -18,29 +15,28 @@ extra_css: "/css/all-fonts.css"
 
 <section class="font-family-card-list">
   {% for folder, items in fonts %}
-    {# Suche den Seitentitel basierend auf dem selectedFontFolder #}
-    {% set familyName = items[0].family %}
-    {% set heroText = site.heroword %}
-    {% set fontPageUrl = "" %}
-    {% set color = "cornflowerblue" %}
-    {% for p in collections.all %}
-      {% if p.data.selectedFontFolder == folder %}
-        {% set familyName = p.data.title %}
-        {% set fontPageUrl = p.url %}
-        {% if p.data.heroword %}
-          {% set heroText = p.data.heroword %}
-        {% endif %}
-        {% if p.data.color %}
-          {% set color = p.data.color %}
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+    {% set page = collections.all | find("data.selectedFontFolder", folder) %}
+    {% set familyName = page.data.title   if page                        else items[0].family %}
+    {% set fontPageUrl = page.url          if page                        else "" %}
+    {% set heroText    = page.data.heroword if (page and page.data.heroword) else site.heroword %}
+    {% set color       = page.data.color   if (page and page.data.color)    else "cornflowerblue" %}
+    {% set comment     = page.data.comment if (page and page.data.comment)  else "" %}
+
     <article class="card {{ folder | slugify }}">
-      <h3>{% if fontPageUrl %}<a class="{{ color | slugify }}" href="{{ fontPageUrl }}#poster">{{ familyName }}</a>{% else %}{{ familyName }}{% endif %}</h3>
+      <h3>
+        {% if fontPageUrl %}
+          <a class="{{ color | slugify }}" href="{{ fontPageUrl }}#poster">{{ familyName }}</a>
+        {% else %}
+          {{ familyName }}
+        {% endif %}
+      </h3>
       <p>Aa Rr Ee</p>
       <p class="italic">Aa Rr Ee</p>
-      <p class="heroword ligature display-size-2 {{ color | slugify }}"><a class="{{ color | slugify }}" href="{{ fontPageUrl }}#poster">{{ heroText }}</a></p>
+      <p contenteditable="true" class="heroword ligature display-size-2 {{ color | slugify }}">
+        <a class="{{ color | slugify }}" href="{{ fontPageUrl }}#poster">{{ heroText }}</a>
+      </p>
       <p>0123456789</p>
+      {% if comment %}<p class="comment">{{ comment }}</p>{% endif %}
     </article>
   {% endfor %}
 </section>
