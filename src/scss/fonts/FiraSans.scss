@@ -1,0 +1,270 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ThinItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Thin.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraLightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraLight.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-BookItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-EightItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-FourItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-HairItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-HeavyItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-TwoItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraItalic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Book.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Eight.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Four.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Hair.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Heavy.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Two.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Ultra.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraBoldItalic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-ExtraBold.woff2',
+  800,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'FiraSans', sans-serif;
+}

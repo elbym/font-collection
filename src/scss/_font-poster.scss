@@ -4,10 +4,11 @@
 
 .specimen-poster {
     line-height: 1.25rem;
+    padding: 1rem;
 
     @include bp.media-breakpoint-up(lg) {
         margin: 0.5rem;
-        padding: 2rem 3rem;
+        padding: 3rem;
         border-image-source: url("../img/borders/Tan/border_historical.svg");
         border-image-slice: 41.5%;
         border-image-width: 3rem;
@@ -17,12 +18,12 @@
 
     .header {
         text-align: center;
-        border-bottom: 0.125rem solid var(--color);
+        // border-bottom: 0.125rem solid var(--color);
         padding-bottom: 1rem;
         line-height: 50%;
 
         .author {
-            font-size: .861rem;
+            // @include modularscale.ms(-1, $responsive: true);
             line-height: 100%;
             color: var(--color);
             font-variant-caps: small-caps;
@@ -34,7 +35,7 @@
         .fontinfo {
             margin: 0 auto;
             max-width: 60%;
-            font-size: .681rem;
+            font-size: 0.681rem;
             line-height: 100%;
             color: var(--color);
             font-style: italic;
@@ -48,8 +49,9 @@
         }
         a {
             font-weight: 200;
-            font-size: .681rem;
-            font-variant-caps: small-caps;
+            font-size: 0.681rem;
+            // @include modularscale.ms(-1, $responsive: true);
+            // font-variant-caps: small-caps;
         }
     }
     .seperator {
@@ -67,22 +69,32 @@
             display: block;
         }
     }
+
     .letters {
-        font-size: clamp(1rem, 3cqi + 2rem, 4rem);
+        line-height: 100%;
+        font-size: clamp(1rem, 6cqi + 1rem, 5.5rem);
+        p {
+            margin: 0;
+        }
+    }
+    .comment {
+        text-align: center;
     }
     .hero-letters {
         color: var(--color-highlight);
         background: var(--color-background);
         padding: 1rem;
         position: relative;
+        overflow: hidden;
 
-        #text-clip text{
-            margin:0;
+        #text-clip text {
+            margin: 0;
             line-height: 100%;
-            font-size: calc(6cqi + 6rem);
+            font-size: clamp(8rem, 40cqw + 1rem, 12rem);
             font-weight: 900;
         }
     }
+
     .hero-word {
         grid-column: 1 / span 2;
         text-align: right;
@@ -93,7 +105,7 @@
         flex-wrap: wrap;
 
         figcaption {
-            font-size: .861rem;
+            font-size: 0.861rem;
         }
         .gallery {
             display: flex;
@@ -110,7 +122,7 @@
             margin-bottom: 2rem;
         }
         .image-source {
-            font-size: .681em;
+            font-size: 0.681em;
             display: flex;
         }
     }
@@ -144,7 +156,7 @@
         overflow: hidden;
 
         span {
-            display: flex;;
+            display: flex;
             flex: 0 0 auto;
         }
     }
@@ -195,8 +207,7 @@
     }
 }
 
-
-.demo {
+/* .demo {
     &__word,
     &__paragraph {
         border-bottom: 0.025rem solid #ccc;
@@ -231,7 +242,7 @@
         }
         padding-top: 1em;
     }
-}
+} */
 .ascii {
     display: flex;
     flex-wrap: wrap;
@@ -247,7 +258,6 @@
         text-align: center;
         padding: 0.75rem;
         border: 0.025rem solid #eee;
-
     }
 }
 .font-family-card-list {
@@ -261,11 +271,11 @@
         display: flex;
         flex-direction: column;
         background: #eee;
-        border: .0125rem solid #ccc;
+        border: 0.0125rem solid #ccc;
         padding-bottom: 1rem;
     }
     a {
-        text-decoration: none;;
+        text-decoration: none;
     }
     h3,
     p {
@@ -275,11 +285,10 @@
         background: #ccc;
         padding: 1rem;
         font-weight: 600;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
     }
     p {
         padding: 0 1rem;
-
     }
     .heroword {
         padding-top: 1rem;

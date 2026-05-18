@@ -17,13 +17,19 @@ header {
             gap: .5rem;
             align-items: center;
             li {
-                background: #ccc;
+                background: Gainsboro;
                 display: flex;
                 padding: .5rem;
 
                 &.active {
-                    background: skyblue;
+                    background: Thistle;
                 }
+
+            }
+            .nav-category {
+                font-weight: 900;
+                background: DarkSlateBlue;
+                color: white;
             }
         }
         a {
@@ -75,8 +81,7 @@ header {
         hsla(300, 100%, 50%, .95)calc(var(--dot-start) * 0.9),
         hsl(300, 100%, 50%)var(--dot-start),
         transparent var(--dot-end));
-    transform: rotate(75deg)
-        translate(-50%, 0%);
+    transform: rotate(75deg) translate(-50%, 0%);
 }
 
 .yellow {
@@ -84,8 +89,7 @@ header {
         hsla(60, 100%, 50%, .95)calc(var(--dot-start) * 0.9),
         hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2),
         transparent calc(var(--dot-end) * 1.2));
-    transform: rotate(0deg)
-        translate(-50%, -50%);
+    transform: rotate(0deg) translate(0%, -50%);
 }
 
 .black {
@@ -93,6 +97,5 @@ header {
         hsla(0, 0%, 0%, 0.5) calc(var(--dot-start) * 0.7),
         hsla(0, 0%, 0%, 0.6) calc(var(--dot-start) * 0.8),
         transparent var(--dot-end));
-    transform: rotate(45deg)
-        translate(-50%, -25%);
+    transform: rotate(45deg) translate(-50%, -25%);
 }

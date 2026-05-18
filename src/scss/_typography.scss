@@ -46,6 +46,9 @@ h3 {
     //     "ss02" 1,
     //     "onum" 1;
 }
+.small {
+    @include modularscale.ms(-1, $responsive: true);
+}
 .small-caps {
     text-transform: lowercase;
     font-variant-caps: small-caps;
