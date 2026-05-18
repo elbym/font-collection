@@ -10,9 +10,25 @@
 @include declare-font(
   'Jost',
   'Jost',
+  'Jost-100-HairlineItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
   'Jost-200-ThinItalic.woff2',
   100,
   'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-Hairline.woff2',
+  100,
+  'normal'
 );
 
 @include declare-font(
@@ -42,14 +58,6 @@
 @include declare-font(
   'Jost',
   'Jost',
-  'Jost-100-HairlineItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
   'Jost-400-BookItalic.woff2',
   400,
   'italic'
@@ -66,22 +74,6 @@
 @include declare-font(
   'Jost',
   'Jost',
-  'Jost-800-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
-  'Jost-100-Hairline.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
   'Jost-400-Book.woff2',
   400,
   'normal'
@@ -91,14 +83,6 @@
   'Jost',
   'Jost',
   'Jost-600-Semi.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
-  'Jost-800-Heavy.woff2',
   400,
   'normal'
 );
@@ -138,9 +122,25 @@
 @include declare-font(
   'Jost',
   'Jost',
+  'Jost-800-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
   'Jost-900-BlackItalic.woff2',
   900,
   'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-Heavy.woff2',
+  900,
+  'normal'
 );
 
 @include declare-font(

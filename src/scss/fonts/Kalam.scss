@@ -1,0 +1,38 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+
+.specimen-poster {
+    font-family: 'Kalam', sans-serif;
+}

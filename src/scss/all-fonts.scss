@@ -329,23 +329,7 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINish-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINish-Italic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINishCondensed-HeavyItalic.woff2',
   400,
   'italic'
 );
@@ -361,25 +345,9 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINishExpanded-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINishExpanded-Italic.woff2',
   400,
   'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINish-Heavy.woff2',
-  400,
-  'normal'
 );
 
 @include declare-font(
@@ -393,23 +361,7 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINishCondensed-Heavy.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINishCondensed-Regular.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINishExpanded-Heavy.woff2',
   400,
   'normal'
 );
@@ -577,7 +529,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINish-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINishCondensed-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-HeavyItalic.woff2',
   900,
   'italic'
 );
@@ -593,7 +561,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINishExpanded-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINish-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Heavy.woff2',
   900,
   'normal'
 );
@@ -609,7 +593,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINishCondensed-Heavy.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINishExpanded-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Heavy.woff2',
   900,
   'normal'
 );
@@ -697,7 +697,23 @@
 @include declare-font(
   'FiraSans',
   'FiraSans',
+  'FiraSans-UltraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
   'FiraSans-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-UltraLight.woff2',
   200,
   'normal'
 );
@@ -713,23 +729,7 @@
 @include declare-font(
   'FiraSans',
   'FiraSans',
-  'FiraSans-UltraLightItalic.woff2',
-  300,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
   'FiraSans-Light.woff2',
-  300,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-UltraLight.woff2',
   300,
   'normal'
 );
@@ -745,55 +745,7 @@
 @include declare-font(
   'FiraSans',
   'FiraSans',
-  'FiraSans-EightItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-FourItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-HairItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
   'FiraSans-Italic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-TwoItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-UltraItalic.woff2',
   400,
   'italic'
 );
@@ -809,55 +761,7 @@
 @include declare-font(
   'FiraSans',
   'FiraSans',
-  'FiraSans-Eight.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-Four.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-Hair.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-Heavy.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
   'FiraSans-Regular.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-Two.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'FiraSans',
-  'FiraSans',
-  'FiraSans-Ultra.woff2',
   400,
   'normal'
 );
@@ -923,6 +827,22 @@
   'FiraSans',
   'FiraSans-ExtraBold.woff2',
   800,
+  'normal'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'FiraSans',
+  'FiraSans',
+  'FiraSans-Heavy.woff2',
+  900,
   'normal'
 );
 
@@ -1681,9 +1601,25 @@
 @include declare-font(
   'Jost',
   'Jost',
+  'Jost-100-HairlineItalic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
   'Jost-200-ThinItalic.woff2',
   100,
   'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-100-Hairline.woff2',
+  100,
+  'normal'
 );
 
 @include declare-font(
@@ -1713,14 +1649,6 @@
 @include declare-font(
   'Jost',
   'Jost',
-  'Jost-100-HairlineItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
   'Jost-400-BookItalic.woff2',
   400,
   'italic'
@@ -1737,22 +1665,6 @@
 @include declare-font(
   'Jost',
   'Jost',
-  'Jost-800-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
-  'Jost-100-Hairline.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
   'Jost-400-Book.woff2',
   400,
   'normal'
@@ -1762,14 +1674,6 @@
   'Jost',
   'Jost',
   'Jost-600-Semi.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'Jost',
-  'Jost',
-  'Jost-800-Heavy.woff2',
   400,
   'normal'
 );
@@ -1809,9 +1713,25 @@
 @include declare-font(
   'Jost',
   'Jost',
+  'Jost-800-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
   'Jost-900-BlackItalic.woff2',
   900,
   'italic'
+);
+
+@include declare-font(
+  'Jost',
+  'Jost',
+  'Jost-800-Heavy.woff2',
+  900,
+  'normal'
 );
 
 @include declare-font(
@@ -1881,6 +1801,38 @@
 
 .junction {
     font-family: 'Junction', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Kalam',
+  'Kalam',
+  'Kalam-Bold.woff2',
+  700,
+  'normal'
+);
+
+
+.kalam {
+    font-family: 'Kalam', sans-serif;
 }
 
 

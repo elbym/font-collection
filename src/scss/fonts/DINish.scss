@@ -58,23 +58,7 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINish-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINish-Italic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINishCondensed-HeavyItalic.woff2',
   400,
   'italic'
 );
@@ -90,25 +74,9 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINishExpanded-HeavyItalic.woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINishExpanded-Italic.woff2',
   400,
   'italic'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINish-Heavy.woff2',
-  400,
-  'normal'
 );
 
 @include declare-font(
@@ -122,23 +90,7 @@
 @include declare-font(
   'DINish',
   'DINish',
-  'DINishCondensed-Heavy.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
   'DINishCondensed-Regular.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'DINish',
-  'DINish',
-  'DINishExpanded-Heavy.woff2',
   400,
   'normal'
 );
@@ -306,7 +258,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINish-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINishCondensed-BlackItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishCondensed-HeavyItalic.woff2',
   900,
   'italic'
 );
@@ -322,7 +290,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINishExpanded-HeavyItalic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINish-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINish-Heavy.woff2',
   900,
   'normal'
 );
@@ -338,7 +322,23 @@
 @include declare-font(
   'DINish',
   'DINish',
+  'DINishCondensed-Heavy.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
   'DINishExpanded-Black.woff2',
+  900,
+  'normal'
+);
+
+@include declare-font(
+  'DINish',
+  'DINish',
+  'DINishExpanded-Heavy.woff2',
   900,
   'normal'
 );
