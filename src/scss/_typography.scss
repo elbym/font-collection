@@ -51,6 +51,9 @@ header {
     //     "ss02" 1,
     //     "onum" 1;
 }
+.upper {
+    text-transform: uppercase;
+}
 .small {
     @include ms.modscale(-1, $responsive: true);
 }

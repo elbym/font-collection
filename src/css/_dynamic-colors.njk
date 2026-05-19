@@ -5,10 +5,10 @@ permalink: "../src/scss/_html_colornames.scss"
 {# Generate a color values from site.js #}
 {# the default #}
 .{{ site.color | slugify }} {
-  color: color-mix(in oklab, var(--color-mix) 20%, {{ site.color }} 80%);
+  color: color-mix(in oklab, {{ site.color }}, var(--color-mix-light) 20%);
 }
 .bg-{{ site.color | slugify }} {
-  background-color: {{ site.color }};
+  background-color: color-mix(in oklab, {{ site.color }}, var(--color-mix-light) 20%);
 }
 
 {# Generate a list of all used HTML Colornames in Frontmatter #}
@@ -16,10 +16,10 @@ permalink: "../src/scss/_html_colornames.scss"
   {% if p.data.color and p.data.selectedFontFolder %}
 .{{ p.data.color | slugify }} {
   {# color: {{ p.data.color }}; #}
-  color: color-mix(in oklab, var(--color-mix) 20%, {{ p.data.color }} 80%);
+  color: color-mix(in oklab, {{ p.data.color }}, var(--color-mix-light) 20%);
 }
 .bg-{{ p.data.color | slugify }} {
-  background-color: {{ p.data.color }};
+  background-color: color-mix(in oklab, {{ p.data.color }}, var(--color-mix-light) 20%);
 }
   {% endif %}
 {% endfor %}

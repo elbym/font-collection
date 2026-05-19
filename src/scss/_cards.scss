@@ -34,19 +34,20 @@ html {
         text-align: center;
         min-height: 6rem;
         // text-decoration: none;
-        color: var(--color-highlight);
+        color: var(--color-text);
         text-shadow: .05rem .05rem 0 var(--color-text-shadow);
         margin-bottom: 1rem;
         background-size: 135%;
         background-position: 50% 50%;
         background-blend-mode: screen;
         transition: background-size .5s ease-out;
+
         @media (prefers-color-scheme: dark) {
-        background-blend-mode: multiply;
+            background-blend-mode: multiply;
         }
 
         &:hover {
-            background-size: 150%;
+            background-size: 145%;
         }
     }
     h3,

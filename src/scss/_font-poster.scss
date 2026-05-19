@@ -22,11 +22,11 @@
 
         .author {
             line-height: 100%;
-            color: var(--color);
+            color: var(--color-accent);
             font-variant-caps: small-caps;
         }
         .year {
-            color: var(--color);
+            color: var(--color-accent);
             font-variant-numeric: oldstyle-nums;
             margin-bottom: 1rem;
         }
@@ -34,7 +34,7 @@
             margin: 0 auto;
             max-width: 60%;
             line-height: 100%;
-            color: var(--color);
+            color: var(--color-accent);
             margin-bottom: 1rem;
         }
         h1 {
@@ -73,6 +73,7 @@
     .comment {
         padding-top: 1rem;
         text-align: center;
+        color: var(--color-text-muted);
     }
     .hero-letters {
         color: var(--color-highlight);
@@ -127,15 +128,6 @@
             margin: 0;
             line-height: 150%;
         }
-        .display-size-1,
-        .display-size-2,
-        .display-size-3,
-        .display-size-4,
-        .display-size-5,
-        .display-size-6 {
-            text-transform: uppercase;
-            // font-variant-caps: small-caps;
-        }
     }
     .waterfall {
         article {
@@ -172,8 +164,8 @@
             flex: 0 0 100%;
         }
         .l {
-            flex: 0 0 2ch;
-            height: 2ch;
+            flex: 0 0 3ch;
+            height: 3ch;
             padding: .25rem;
         }
         @include bp.media-breakpoint-up(lg) {
@@ -183,7 +175,7 @@
                 line-height: 2rem;
                 text-align: center;
                 padding: 0.75rem;
-                border: 0.025rem solid #eee;
+                border: 0.025rem solid var(--color-border);
             }
         }
     }

@@ -75,10 +75,23 @@ header {
 
 .yellow {
     background-image: radial-gradient(hsla(60, 100%, 50%, .95)calc(var(--dot-start) * 0.9), hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2), transparent calc(var(--dot-end) * 1.2));
-    transform: rotate(0deg) translate(0%, -50%);
+    transform: rotate(0deg) translate(-25%, -50%);
 }
 
 .black {
     background-image: radial-gradient(hsla(0, 0%, 0%, 0.5) calc(var(--dot-start) * 0.7), hsla(0, 0%, 0%, 0.6) calc(var(--dot-start) * 0.8), transparent var(--dot-end));
     transform: rotate(45deg) translate(-50%, -25%);
+}
+.svg_seperator {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    .line {
+        fill: none;
+        stroke: var(--color-border);
+        stroke-width: .15;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: none;
+    }
 }

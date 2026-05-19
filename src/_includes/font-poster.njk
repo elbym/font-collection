@@ -16,6 +16,8 @@
         {% if comment %}
             <article class="comment"><p>{{ comment }}</p></article>
         {% endif %}
+        <svg class="svg_seperator" xmlns="http://www.w3.org/2000/svg" width="358.929" height="11" viewBox="0 0 94.967 2.91"><path d="M35.547 37.418h1.87v1.87h-1.87z" class="line" transform="rotate(-45 -2.564 6.642)"/><path d="m54.24 0 1.322 1.323-1.322 1.323M51.594 2.646 50.27 1.323 51.594 0" class="line" transform="translate(-5.448 .132)"/><path d="M55.592 1.323h44.676" class="line" transform="translate(-5.448 .132)"/><path d="m99.607.661.661.662-.661.661" class="line" transform="translate(-5.448 .132)"/><path d="M5.594 1.323h44.677" class="line" transform="translate(-5.448 .132)"/><path d="m6.242 1.984-.662-.661.662-.662" class="line" transform="translate(-5.448 .132)"/></svg>
+
     </header>
 
 
@@ -78,27 +80,31 @@
         {% include "font-image-list.njk" %}
     </section>
 
-    <section class="about-the-font">
+    {# <section class="about-the-font">
         <article>
             {% if aboutthefont %}<p class="initials">{{ aboutthefont }}</p>{% endif %}
             {% if abouttheauthor %}<p>{{ abouttheauthor }}</p>{% endif %}
         </article>
-    </section>
+    </section> #}
 
     <section class="latin">
+        <svg class="svg_seperator" xmlns="http://www.w3.org/2000/svg" width="358.929" height="11" viewBox="0 0 94.967 2.91"><path d="M35.547 37.418h1.87v1.87h-1.87z" class="line" transform="rotate(-45 -2.564 6.642)"/><path d="m54.24 0 1.322 1.323-1.322 1.323M51.594 2.646 50.27 1.323 51.594 0" class="line" transform="translate(-5.448 .132)"/><path d="M55.592 1.323h44.676" class="line" transform="translate(-5.448 .132)"/><path d="m99.607.661.661.662-.661.661" class="line" transform="translate(-5.448 .132)"/><path d="M5.594 1.323h44.677" class="line" transform="translate(-5.448 .132)"/><path d="m6.242 1.984-.662-.661.662-.662" class="line" transform="translate(-5.448 .132)"/></svg>
+
         <article>
-            <p class="display-size-3">specimen</p>
-            <p class="display-size-5">Chara <span class="small-caps">de</span> sev</p>
+            <p class="display-size-3 upper">specimen</p>
+            <p class="display-size-5 upper">Chara <span class="small-caps">de</span> sev</p>
             <p class="p-2-col justify initials">{{ heroparagraph or site.heroparagraph }}</p>
-            <p class="display-size-4">typorvm probatissimor vm,</p>
-            <p class="display-size-3">incondetie qvidem, sed secvn</p>
-            <p class="display-size-2">dvm svas tamen differentias pro</p>
+            <p class="display-size-4 upper">Typorvm probatissimor,</p>
+            <p class="display-size-3">Incondetie qvidem, sed secvn</p>
+            <p class="display-size-2 upper">dvm svas tamen differentias pro</p>
             <p class="display-size-1">positvm, tam upsis librorvm avtoribvs</p>
             <p><small>accommodatvm</small></p>
         </article>
     </section>
 
     <section class="waterfall">
+        <svg class="svg_seperator" xmlns="http://www.w3.org/2000/svg" width="358.929" height="11" viewBox="0 0 94.967 2.91"><path d="M35.547 37.418h1.87v1.87h-1.87z" class="line" transform="rotate(-45 -2.564 6.642)"/><path d="m54.24 0 1.322 1.323-1.322 1.323M51.594 2.646 50.27 1.323 51.594 0" class="line" transform="translate(-5.448 .132)"/><path d="M55.592 1.323h44.676" class="line" transform="translate(-5.448 .132)"/><path d="m99.607.661.661.662-.661.661" class="line" transform="translate(-5.448 .132)"/><path d="M5.594 1.323h44.677" class="line" transform="translate(-5.448 .132)"/><path d="m6.242 1.984-.662-.661.662-.662" class="line" transform="translate(-5.448 .132)"/></svg>
+
         {# Wir holen uns nur die Schriften für den gewählten Ordner aus dem globalen 'fonts' Objekt #}
         {% set activeFonts = fonts[selectedFontFolder] %}
 
