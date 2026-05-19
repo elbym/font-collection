@@ -38,6 +38,13 @@ $modular-scale: ();
 @function _get-fluid-value($min-size, $max-size) {
   $v-size: math.div(100 * ($max-size - $min-size), $fluid-max-width - $fluid-min-width);
   $r-size: math.div($fluid-min-width * $max-size - $fluid-max-width * $min-size, $fluid-min-width - $fluid-max-width);
+
+  // Ergebnisse auf 3 Nachkommastellen runden
+  $v-size: math.div(math.round($v-size * 1000), 1000);
+  $r-size: math.div(math.round($r-size * 1000), 1000);
+  $min-size: math.div(math.round($min-size * 1000), 1000);
+  $max-size: math.div(math.round($max-size * 1000), 1000);
+
   @return clamp(#{$min-size}, #{$v-size}cqi + #{$r-size}, #{$max-size});
 }
 
