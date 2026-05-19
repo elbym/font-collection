@@ -49,7 +49,7 @@ $modular-scale: ();
 }
 
 // Erweitertes Mixin für responsive Schriftgrößen
-@mixin ms($step, $responsive: false, $min-size-factor: 0.75) {
+@mixin modscale($step, $responsive: false, $min-size-factor: 0.75) {
   $config: map.get($modular-scale, "step-#{$step}");
 
   @if $config {

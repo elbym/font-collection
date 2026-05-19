@@ -1,4 +1,4 @@
-@use "modularscale";
+@use "modularscale" as ms;
 @use "breakpoints" as bp;
 
 h1,
@@ -10,17 +10,22 @@ h6 {
     font-weight: 400;
 }
 h1 {
-    @include modularscale.ms(3, $responsive: true);
+    @include ms.modscale(3, $responsive: true);
 }
 h2 {
-    @include modularscale.ms(2, $responsive: true);
+    @include ms.modscale(2, $responsive: true);
 }
 h3 {
-    @include modularscale.ms(1, $responsive: true);
+    @include ms.modscale(1, $responsive: true);
 }
 @for $i from 1 through 6 {
     .display-size-#{$i} {
-        @include modularscale.ms($i, $responsive: true);
+        @include ms.modscale($i, $responsive: true);
+    }
+}
+header {
+    nav {
+        @include ms.modscale(-1, $responsive: true);
     }
 }
 @include bp.media-breakpoint-up(md) {
@@ -47,7 +52,7 @@ h3 {
     //     "onum" 1;
 }
 .small {
-    @include modularscale.ms(-1, $responsive: true);
+    @include ms.modscale(-1, $responsive: true);
 }
 .small-caps {
     text-transform: lowercase;

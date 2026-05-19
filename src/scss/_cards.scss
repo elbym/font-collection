@@ -1,5 +1,5 @@
 @use "breakpoints" as bp;
-@use "modularscale";
+@use "modularscale" as ms;
 
 
 .font-family-card-list {
@@ -50,7 +50,7 @@
         }
     }
     h3 {
-        @include modularscale.ms(4, $responsive: true);
+        @include ms.modscale(4, $responsive: true);
         padding: 1rem;
         font-weight: 600;
     }
@@ -59,7 +59,7 @@
     }
     .letters,
     .heroword {
-        @include modularscale.ms(3, $responsive: true);
+        @include ms.modscale(3, $responsive: true);
         margin: 0;
     }
     .heroword {

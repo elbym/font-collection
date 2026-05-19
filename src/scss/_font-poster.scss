@@ -1,5 +1,5 @@
 @use "breakpoints" as bp;
-@use "modularscale";
+@use "modularscale" as ms;
 @use "grid";
 
 .specimen-poster {
@@ -21,7 +21,6 @@
         padding-bottom: 1rem;
 
         .author {
-            // @include modularscale.ms(-1, $responsive: true);
             line-height: 100%;
             color: var(--color);
             font-variant-caps: small-caps;
@@ -149,7 +148,7 @@
             flex: 1 0 100%;
         }
         p {
-            @include modularscale.ms(2, $responsive: true);
+            @include ms.modscale(2, $responsive: true);
             padding: 0 0 0.5rem 0;
             margin: 0 0 0.5rem 0;
             border-bottom: 0.025rem solid #ccc;
@@ -157,7 +156,7 @@
 
         small {
             color: #ccc;
-            @include modularscale.ms(-1, $responsive: true);
+            @include ms.modscale(-1, $responsive: true);
             text-align: right;
             margin-bottom: 0;
         }

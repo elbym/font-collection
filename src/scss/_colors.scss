@@ -1,17 +1,62 @@
 :root {
-  --color-text: hsl(280, 10%, 10%);
-  --color-background: hsl(54, 100%, 90%);
-  --color-border: hsla(0, 0%, 80%, 0.25);
+  --color-base-text: #1a1a2e;
+  --color-base-text-muted: #5a5a7a;
+  --color-base-background: #f5f4f0;
+  --color-base-surface: #ffffff;
+  --color-base-highlight: #6c63ff;
+  --color-base-accent: #ff6584;
+  --color-base-border: #d4d2e3;
+  --color-base-success: #2ec4a9;
 
-//   --color-text: hsl(121, 82%, 50%);
-//   --color-background: hsl(333, 58%, 85%);
-//   --color-border: hsla(0, 0%, 80%, 0.25);
+  --color-mix-light: #00ff15;
+  --color-mix-dark: #111;
+
+  --color-text:         color-mix(in oklab, var(--color-base-text) 80%,        var(--color-mix-light) 20%);
+  --color-text-muted:   color-mix(in oklab, var(--color-base-text-muted) 80%,  var(--color-mix-light) 20%);
+  --color-background:   color-mix(in oklab, var(--color-base-background) 80%,  var(--color-mix-light) 20%);
+  --color-surface:      color-mix(in oklab, var(--color-base-surface) 80%,     var(--color-mix-light) 20%);
+  --color-highlight:    color-mix(in oklab, var(--color-base-highlight) 80%,   var(--color-mix-light) 20%);
+  --color-accent:       color-mix(in oklab, var(--color-base-accent) 80%,      var(--color-mix-light) 20%);
+  --color-border:       color-mix(in oklab, var(--color-base-border) 80%,      var(--color-mix-light) 20%);
+  --color-success:      color-mix(in oklab, var(--color-base-success) 80%,     var(--color-mix-light) 20%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: color-mix(in oklab, var(--color-base-text) 20%, var(--color-mix-dark) 80%);
+    --color-text-muted: color-mix(in oklab, var(--color-base-text-muted) 20%, var(--color-mix-dark) 80%);
+    --color-background: color-mix(in oklab, var(--color-base-background) 20%, var(--color-mix-dark) 80%);
+    --color-surface: color-mix(in oklab, var(--color-base-surface) 20%, var(--color-mix-dark) 80%);
+    --color-highlight: color-mix(in oklab, var(--color-base-highlight) 20%, var(--color-mix-dark) 80%);
+    --color-accent: color-mix(in oklab, var(--color-base-accent) 20%, var(--color-mix-dark) 80%);
+    --color-border: color-mix(in oklab, var(--color-base-border) 20%, var(--color-mix-dark) 80%);
+    --color-success: color-mix(in oklab, var(--color-base-success) 20%, var(--color-mix-dark) 80%);
+  }
 }
 
 body {
-    color: var(--color-text);
-    background-color: var(--color-background);
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 header {
-    background-color: var(--color-background);
+  background-color: var(--color-background);
+}
+
+header {
+  nav {
+    ul {
+      li {
+        background: var(--color-text-muted);
+
+        &.active {
+          background: var(--color-highlight);
+        }
+      }
+
+      .nav-category {
+        background: var(--color-highlight);
+        color: var(--color-accent);
+      }
+    }
+  }
 }
