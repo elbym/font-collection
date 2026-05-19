@@ -1,16 +1,25 @@
 ---
 permalink: "../src/scss/_html_colornames.scss"
 ---
-{# Generate a list of all used HTML Colornames #}
 
-.cornflowerblue {
-  color: CornflowerBlue;
+{# Generate a color values from site.js #}
+{# the default #}
+.{{ site.color | slugify }} {
+  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, {{ site.color }} 50%);
+}
+.bg-{{ site.color | slugify }} {
+  background-color: {{ site.color }};
 }
 
+{# Generate a list of all used HTML Colornames in Frontmatter #}
 {% for p in collections.all %}
   {% if p.data.color and p.data.selectedFontFolder %}
 .{{ p.data.color | slugify }} {
-  color: {{ p.data.color }};
+  {# color: {{ p.data.color }}; #}
+  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, {{ p.data.color }} 50%);
+}
+.bg-{{ p.data.color | slugify }} {
+  background-color: {{ p.data.color }};
 }
   {% endif %}
 {% endfor %}
