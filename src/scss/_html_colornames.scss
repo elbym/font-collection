@@ -15,6 +15,16 @@
   
 
   
+.skyblue {
+  
+  color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
+}
+.bg-skyblue {
+  background-color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
+}
+  
+
+  
 .sienna {
   
   color: color-mix(in oklab, Sienna, var(--color-mix-light) 20%);
@@ -274,16 +284,6 @@
 
   
 
-  
-
-  
-.skyblue {
-  
-  color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
-.bg-skyblue {
-  background-color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
   
 
   
