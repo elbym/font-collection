@@ -76,12 +76,12 @@
         color: var(--color-text-muted);
     }
     .hero-letters {
-        color: var(--color-highlight);
-        background: var(--color-background);
+        // color: var(--color-highlight);
+        // background: var(--color-background);
         padding: 1rem;
-        min-height: 12rem;
+        // min-height: 12rem;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
 
         #text-clip text {
             margin: 0;

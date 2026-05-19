@@ -15,16 +15,6 @@
   
 
   
-.skyblue {
-  
-  color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
-.bg-skyblue {
-  background-color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
-  
-
-  
 .sienna {
   
   color: color-mix(in oklab, Sienna, var(--color-mix-light) 20%);
@@ -67,6 +57,16 @@
   
 
   
+.mediumorchid {
+  
+  color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
+}
+.bg-mediumorchid {
+  background-color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
+}
+  
+
+  
 .mediumblue {
   
   color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
@@ -83,6 +83,16 @@
 }
 .bg-mediumblue {
   background-color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
+}
+  
+
+  
+.darkslateblue {
+  
+  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
+}
+.bg-darkslateblue {
+  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
 }
   
 
@@ -103,6 +113,26 @@
 }
 .bg-mediumblue {
   background-color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
+}
+  
+
+  
+.seagreen {
+  
+  color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
+}
+.bg-seagreen {
+  background-color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
+}
+  
+
+  
+.coral {
+  
+  color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
+}
+.bg-coral {
+  background-color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
 }
   
 
@@ -134,6 +164,8 @@
 .bg-darkkhaki {
   background-color: color-mix(in oklab, DarkKhaki, var(--color-mix-light) 20%);
 }
+  
+
   
 
   
@@ -191,52 +223,6 @@
   
 
   
-
-  
-
-  
-.mediumorchid {
-  
-  color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
-}
-.bg-mediumorchid {
-  background-color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
-}
-  
-
-  
-.darkslateblue {
-  
-  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
-}
-.bg-darkslateblue {
-  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
-}
-  
-
-  
-.seagreen {
-  
-  color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
-}
-.bg-seagreen {
-  background-color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
-}
-  
-
-  
-.coral {
-  
-  color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
-}
-.bg-coral {
-  background-color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
-}
-  
-
-  
-
-  
 .darkslateblue {
   
   color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
@@ -284,6 +270,20 @@
 
   
 
+  
+
+  
+
+  
+
+  
+.skyblue {
+  
+  color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
+}
+.bg-skyblue {
+  background-color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
+}
   
 
   

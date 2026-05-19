@@ -11,13 +11,13 @@ html {
 
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
     flex-direction: column;
+    gap: 1rem;
 
     .card {
         border-radius: .5rem;
         border: 1px solid var(--color-border);
-        margin: 1rem;
+        // margin: 1rem;
         padding: 1rem;
         background: var(--color-surface);
         padding-bottom: 1rem;

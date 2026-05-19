@@ -3,21 +3,20 @@
 .specimen-poster {
     display: grid;
     grid-template-columns: 1fr;
+    overflow: hidden;
     header,
     section {
-        grid-column: 1 / span 2;
-    }
-    .letters {
         grid-column: 1;
     }
-    .hero-letters {
-        display: none;
+    .hero-letters,
+    .letters {
+        // grid-column: 1;
     }
     .hero-letters {
         // grid-column: 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
     }
 
     @include bp.media-breakpoint-up(md) {
