@@ -1,0 +1,17 @@
+:root {
+  --color-text: hsl(280, 10%, 10%);
+  --color-background: hsl(54, 100%, 90%);
+  --color-border: hsla(0, 0%, 80%, 0.25);
+
+//   --color-text: hsl(121, 82%, 50%);
+//   --color-background: hsl(333, 58%, 85%);
+//   --color-border: hsla(0, 0%, 80%, 0.25);
+}
+
+body {
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+header {
+    background-color: var(--color-background);
+}

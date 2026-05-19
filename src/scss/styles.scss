@@ -1,10 +1,14 @@
 @use "breakpoints" as bp;
 @use "modularscale";
+@use "html_colornames";
+
+@use "colors";
 @use "html";
 @use "typography";
 @use "font-poster";
+@use "cards";
 @use "fonts";
-@use "html_colornames";
+
 
 header {
     nav {
@@ -44,7 +48,10 @@ header {
     --dot-start: 20%;
     --dot-end: 35%;
 }
-
+.cmyk-mask {
+    width: 0;
+    height: 0;
+}
 // Müssen gleiche Größe haben
 .cmyk,
 .cmyk-mask {
