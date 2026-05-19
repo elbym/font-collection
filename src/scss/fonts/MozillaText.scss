@@ -1,0 +1,38 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+
+  
+  
+    
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  400,
+  'italic',
+  true
+);
+  
+    
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  400,
+  'normal',
+  true
+);
+  
+
+
+
+.specimen-poster {
+    font-family: 'MozillaText Text', sans-serif;
+}

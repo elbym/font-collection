@@ -1,0 +1,38 @@
+
+
+@use "../font-mixin" as *;
+
+
+
+
+
+
+
+  
+  
+    
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  400,
+  'italic',
+  true
+);
+  
+    
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  400,
+  'normal',
+  true
+);
+  
+
+
+
+.specimen-poster {
+    font-family: 'MozillaHeadline Headline', sans-serif;
+}
