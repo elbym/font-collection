@@ -2,7 +2,7 @@
 
 
 .indigo {
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, indigo 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, indigo 80%);
 }
 .bg-indigo {
   background-color: indigo;
@@ -15,11 +15,9 @@
   
 
   
-
-  
 .mediumblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumBlue 80%);
 }
 .bg-mediumblue {
   background-color: MediumBlue;
@@ -29,7 +27,7 @@
   
 .sienna {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Sienna 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Sienna 80%);
 }
 .bg-sienna {
   background-color: Sienna;
@@ -41,7 +39,7 @@
   
 .darkblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DarkBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, DarkBlue 80%);
 }
 .bg-darkblue {
   background-color: DarkBlue;
@@ -51,7 +49,7 @@
   
 .seagreen {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, SeaGreen 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, SeaGreen 80%);
 }
 .bg-seagreen {
   background-color: SeaGreen;
@@ -61,7 +59,7 @@
   
 .tomato {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Tomato 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Tomato 80%);
 }
 .bg-tomato {
   background-color: Tomato;
@@ -69,9 +67,19 @@
   
 
   
+.mediumorchid {
+  
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumOrchid 80%);
+}
+.bg-mediumorchid {
+  background-color: MediumOrchid;
+}
+  
+
+  
 .mediumblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumBlue 80%);
 }
 .bg-mediumblue {
   background-color: MediumBlue;
@@ -81,17 +89,27 @@
   
 .mediumblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumBlue 80%);
 }
 .bg-mediumblue {
   background-color: MediumBlue;
+}
+  
+
+  
+.darkslateblue {
+  
+  color: color-mix(in oklab, var(--color-mix) 20%, DarkSlateBlue 80%);
+}
+.bg-darkslateblue {
+  background-color: DarkSlateBlue;
 }
   
 
   
 .deeppink {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DeepPink 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, DeepPink 80%);
 }
 .bg-deeppink {
   background-color: DeepPink;
@@ -101,7 +119,7 @@
   
 .mediumblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumBlue 80%);
 }
 .bg-mediumblue {
   background-color: MediumBlue;
@@ -109,9 +127,29 @@
   
 
   
+.seagreen {
+  
+  color: color-mix(in oklab, var(--color-mix) 20%, seagreen 80%);
+}
+.bg-seagreen {
+  background-color: seagreen;
+}
+  
+
+  
 .coral {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Coral 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Coral 80%);
+}
+.bg-coral {
+  background-color: Coral;
+}
+  
+
+  
+.coral {
+  
+  color: color-mix(in oklab, var(--color-mix) 20%, Coral 80%);
 }
 .bg-coral {
   background-color: Coral;
@@ -121,7 +159,7 @@
   
 .teal {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Teal 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Teal 80%);
 }
 .bg-teal {
   background-color: Teal;
@@ -131,7 +169,7 @@
   
 .darkkhaki {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DarkKhaki 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, DarkKhaki 80%);
 }
 .bg-darkkhaki {
   background-color: DarkKhaki;
@@ -141,9 +179,11 @@
   
 
   
+
+  
 .indigo {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Indigo 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Indigo 80%);
 }
 .bg-indigo {
   background-color: Indigo;
@@ -155,7 +195,7 @@
   
 .cadetblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, CadetBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, CadetBlue 80%);
 }
 .bg-cadetblue {
   background-color: CadetBlue;
@@ -165,7 +205,7 @@
   
 .darkslateblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DarkSlateBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, DarkSlateBlue 80%);
 }
 .bg-darkslateblue {
   background-color: DarkSlateBlue;
@@ -175,7 +215,7 @@
   
 .saddlebrown {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, SaddleBrown 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, SaddleBrown 80%);
 }
 .bg-saddlebrown {
   background-color: SaddleBrown;
@@ -185,7 +225,7 @@
   
 .royalblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, RoyalBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, RoyalBlue 80%);
 }
 .bg-royalblue {
   background-color: RoyalBlue;
@@ -193,55 +233,9 @@
   
 
   
-
-  
-
-  
-.mediumorchid {
-  
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumOrchid 50%);
-}
-.bg-mediumorchid {
-  background-color: MediumOrchid;
-}
-  
-
-  
 .darkslateblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DarkSlateBlue 50%);
-}
-.bg-darkslateblue {
-  background-color: DarkSlateBlue;
-}
-  
-
-  
-.seagreen {
-  
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, seagreen 50%);
-}
-.bg-seagreen {
-  background-color: seagreen;
-}
-  
-
-  
-.coral {
-  
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Coral 50%);
-}
-.bg-coral {
-  background-color: Coral;
-}
-  
-
-  
-
-  
-.darkslateblue {
-  
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, DarkSlateBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, DarkSlateBlue 80%);
 }
 .bg-darkslateblue {
   background-color: DarkSlateBlue;
@@ -251,7 +245,7 @@
   
 .salmon {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Salmon 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Salmon 80%);
 }
 .bg-salmon {
   background-color: Salmon;
@@ -261,7 +255,7 @@
   
 .crimson {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, Crimson 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, Crimson 80%);
 }
 .bg-crimson {
   background-color: Crimson;
@@ -277,11 +271,17 @@
   
 .mediumblue {
   
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, MediumBlue 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, MediumBlue 80%);
 }
 .bg-mediumblue {
   background-color: MediumBlue;
 }
+  
+
+  
+
+  
+
   
 
   

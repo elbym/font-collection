@@ -1,7 +1,11 @@
 @use "breakpoints" as bp;
 @use "modularscale" as ms;
 
-
+html {
+    transition-property: color, background-color, background-blend-mode;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 .font-family-card-list {
     background: var(--color-background);
 
@@ -15,18 +19,11 @@
         border: 1px solid var(--color-border);
         margin: 1rem;
         padding: 1rem;
-        background: var(--color-background);
-        color: #eee;
-        background: #222;
-        text-shadow: .05rem .05rem 0 var(--color-text);
+        background: var(--color-surface);
         padding-bottom: 1rem;
         letter-spacing: 0.05ch;
     }
 
-    h3,
-    p {
-        margin: 0;
-    }
     a {
         border-top-left-radius: .5rem;
         border-top-right-radius: .5rem;
@@ -37,17 +34,24 @@
         text-align: center;
         min-height: 6rem;
         // text-decoration: none;
-        color: #eee;
+        color: var(--color-highlight);
+        text-shadow: .05rem .05rem 0 var(--color-text-shadow);
         margin-bottom: 1rem;
-
         background-size: 135%;
         background-position: 50% 50%;
-        background-blend-mode: hard-light;
+        background-blend-mode: screen;
         transition: background-size .5s ease-out;
+        @media (prefers-color-scheme: dark) {
+        background-blend-mode: multiply;
+        }
 
         &:hover {
             background-size: 150%;
         }
+    }
+    h3,
+    p {
+        margin: 0;
     }
     h3 {
         @include ms.modscale(4, $responsive: true);
@@ -59,7 +63,7 @@
     }
     .letters,
     .heroword {
-        @include ms.modscale(3, $responsive: true);
+        @include ms.modscale(5, $responsive: true);
         margin: 0;
     }
     .heroword {
@@ -82,7 +86,11 @@
         justify-content: flex-start;
 
         .card {
-            flex: 1;
+            flex: 1 25%;
+            .letters,
+            .heroword {
+                @include ms.modscale(3, $responsive: true);
+            }
         }
     }
 }

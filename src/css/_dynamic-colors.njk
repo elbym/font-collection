@@ -5,7 +5,7 @@ permalink: "../src/scss/_html_colornames.scss"
 {# Generate a color values from site.js #}
 {# the default #}
 .{{ site.color | slugify }} {
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, {{ site.color }} 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, {{ site.color }} 80%);
 }
 .bg-{{ site.color | slugify }} {
   background-color: {{ site.color }};
@@ -16,7 +16,7 @@ permalink: "../src/scss/_html_colornames.scss"
   {% if p.data.color and p.data.selectedFontFolder %}
 .{{ p.data.color | slugify }} {
   {# color: {{ p.data.color }}; #}
-  color: color-mix(in oklab, hsl(0, 0%, 60%) 50%, {{ p.data.color }} 50%);
+  color: color-mix(in oklab, var(--color-mix) 20%, {{ p.data.color }} 80%);
 }
 .bg-{{ p.data.color | slugify }} {
   background-color: {{ p.data.color }};
