@@ -47,26 +47,6 @@
   
 
   
-.tomato {
-  
-  color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
-}
-.bg-tomato {
-  background-color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
-}
-  
-
-  
-.mediumorchid {
-  
-  color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
-}
-.bg-mediumorchid {
-  background-color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
-}
-  
-
-  
 .mediumblue {
   
   color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
@@ -83,16 +63,6 @@
 }
 .bg-mediumblue {
   background-color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
-}
-  
-
-  
-.darkslateblue {
-  
-  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
-}
-.bg-darkslateblue {
-  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
 }
   
 
@@ -113,26 +83,6 @@
 }
 .bg-mediumblue {
   background-color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
-}
-  
-
-  
-.seagreen {
-  
-  color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
-}
-.bg-seagreen {
-  background-color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
-}
-  
-
-  
-.coral {
-  
-  color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
-}
-.bg-coral {
-  background-color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
 }
   
 
@@ -164,8 +114,6 @@
 .bg-darkkhaki {
   background-color: color-mix(in oklab, DarkKhaki, var(--color-mix-light) 20%);
 }
-  
-
   
 
   
@@ -223,6 +171,52 @@
   
 
   
+
+  
+
+  
+.mediumorchid {
+  
+  color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
+}
+.bg-mediumorchid {
+  background-color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
+}
+  
+
+  
+.darkslateblue {
+  
+  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
+}
+.bg-darkslateblue {
+  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
+}
+  
+
+  
+.seagreen {
+  
+  color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
+}
+.bg-seagreen {
+  background-color: color-mix(in oklab, seagreen, var(--color-mix-light) 20%);
+}
+  
+
+  
+.coral {
+  
+  color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
+}
+.bg-coral {
+  background-color: color-mix(in oklab, Coral, var(--color-mix-light) 20%);
+}
+  
+
+  
+
+  
 .darkslateblue {
   
   color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
@@ -257,8 +251,6 @@
   
 
   
-
-  
 .mediumblue {
   
   color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
@@ -266,14 +258,6 @@
 .bg-mediumblue {
   background-color: color-mix(in oklab, MediumBlue, var(--color-mix-light) 20%);
 }
-  
-
-  
-
-  
-
-  
-
   
 
   
@@ -286,5 +270,39 @@
 }
   
 
+  
+.tomato {
+  
+  color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+}
+.bg-tomato {
+  background-color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+}
+  
+
+  
+
+  
+
+  
+
+  
+.rebeccapurple {
+  
+  color: color-mix(in oklab, RebeccaPurple, var(--color-mix-light) 20%);
+}
+.bg-rebeccapurple {
+  background-color: color-mix(in oklab, RebeccaPurple, var(--color-mix-light) 20%);
+}
+  
+
+  
+.orangered {
+  
+  color: color-mix(in oklab, OrangeRed, var(--color-mix-light) 20%);
+}
+.bg-orangered {
+  background-color: color-mix(in oklab, OrangeRed, var(--color-mix-light) 20%);
+}
   
 
