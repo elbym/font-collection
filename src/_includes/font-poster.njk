@@ -2,15 +2,15 @@
 <div class="specimen-poster">
 
     <header class="header">
-        <p class="year">{{ fontyear }}</p>
-        <p class="author">{{ fontauthor }}</p>
         {% if tags %}
-            <ul class="keywords">
+            <ul class="keywords italic ligatures">
                 {% for tag in tags %}
                 <li>{{ tag }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
+        <p class="year">{{ fontyear }}</p>
+        <p class="author">{{ fontauthor }}</p>
         <h1><span id="fonttitle">{{ title }}</span></h1>
         {% if url %}<p><a href="{{ url }}" class="small" target="_blank" rel="noopener">{{ url }}</a></p>{% endif %}
         {% if comment %}
@@ -29,10 +29,10 @@
         <article class="hero-letters">
             {# <p class="big">{{ heroletter or site.heroletter}}</p> #}
             <div class="cmyk">
-                <div class="cmyk-layer cyan"></div>
-                <div class="cmyk-layer magenta"></div>
-                <div class="cmyk-layer yellow"></div>
-                <div class="cmyk-layer black"></div>
+                <div class="cmyk-layer cmyk_cyan"></div>
+                <div class="cmyk-layer cmyk_magenta"></div>
+                <div class="cmyk-layer cmyk_yellow"></div>
+                <div class="cmyk-layer cmyk_black"></div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
                 <defs>
@@ -46,7 +46,7 @@
         </article>
 
         <article class="hero-word">
-            <p contenteditable="true" class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color | slugify }}">{{ heroword or site.heroword }}</p>
+            <p contenteditable="true" class="display-size-6 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color | slugify }}">{{ heroword or site.heroword }}</p>
         </article>
 
         <article class="alphabet">
