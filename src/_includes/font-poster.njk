@@ -20,52 +20,47 @@
 
     </header>
 
-
-    <section class="letters">
-        <article>
+    <section class="hero">
+        <article class="letters">
             <p>Aa Rr Ee</p>
             <p class="italic">Aa Rr Ee</p>
         </article>
-    </section>
 
-    <section class="hero-letters">
-        {# <p class="big">{{ heroletter or site.heroletter}}</p> #}
-        <div class="cmyk">
-            <div class="cmyk-layer cyan"></div>
-            <div class="cmyk-layer magenta"></div>
-            <div class="cmyk-layer yellow"></div>
-            <div class="cmyk-layer black"></div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
-            <defs>
-                <clipPath id="text-clip">
-                    <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
-                        {{ heroletter or site.heroletter}}
-                    </text>
-                </clipPath>
-            </defs>
-        </svg>
-    </section>
+        <article class="hero-letters">
+            {# <p class="big">{{ heroletter or site.heroletter}}</p> #}
+            <div class="cmyk">
+                <div class="cmyk-layer cyan"></div>
+                <div class="cmyk-layer magenta"></div>
+                <div class="cmyk-layer yellow"></div>
+                <div class="cmyk-layer black"></div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
+                <defs>
+                    <clipPath id="text-clip">
+                        <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
+                            {{ heroletter or site.heroletter}}
+                        </text>
+                    </clipPath>
+                </defs>
+            </svg>
+        </article>
 
-    <section class="hero-word">
-        <article>
+        <article class="hero-word">
             <p contenteditable="true" class="display-size-5 {% if herostyle %}{{ herostyle }}{% endif %} ligatures bold {{ color | slugify }}">{{ heroword or site.heroword }}</p>
         </article>
-    </section>
 
-    <section class="alphabet">
-        <article>
+        <article class="alphabet">
             <div class="alphabet_letters upper">
                 {% for i in range(65, 91) %}
                 <span>{{ i | chr }}</span>
                 {% endfor %}
             </div>
-            <div class="alphabet_letters upper">
+            <div class="alphabet_letters">
                 {% for i in range(97, 123) %}
                 <span>{{ i | chr }}</span>
                 {% endfor %}
             </div>
-            <div class="alphabet_letters numbers">
+            <div class="alphabet_letters numbers old-nums">
                 {% for i in range(48, 58) %}
                 <span>{{ i | chr }}</span>
                 {% endfor %}
@@ -109,10 +104,14 @@
         {% set activeFonts = fonts[selectedFontFolder] %}
 
         {% if activeFonts %}
+        {# Wir prüfen, ob variable Fonts vorhanden sind. Wenn ja, nutzen wir nur diese, sonst die statischen. #}
+        {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+        {% set displayFonts = varFonts if varFonts | length > 0 else activeFonts %}
+
         <article>
             <h2>{{ selectedFontFolder }} Family</h2>
 
-            {% for font in activeFonts %}
+            {% for font in displayFonts %}
 
                 {# Variable Schriften #}
                 {% if font.isVariable %}

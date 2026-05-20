@@ -62,6 +62,9 @@ header {
     font-variant-caps: small-caps;
     font-feature-settings: "smcp" on;
 }
+.old-nums {
+    font-variant-numeric: oldstyle-nums;
+}
 .text-align-right {
     text-align: right;
 }
