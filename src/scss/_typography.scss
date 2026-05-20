@@ -28,12 +28,14 @@ header {
         @include ms.modscale(-1, $responsive: true);
     }
 }
-@include bp.media-breakpoint-up(md) {
-    .p-2-col {
+.p-2-col {
+    column-gap: 2rem;
+    @include bp.media-breakpoint-up(md) {
         column-count: 2;
-        column-gap: 2rem;
     }
-
+    @include bp.media-breakpoint-up(xl) {
+        column-count: 3;
+    }
 }
 .italic {
     font-style: italic;
