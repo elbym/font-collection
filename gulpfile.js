@@ -2,6 +2,7 @@ const { src, dest, watch, series, parallel } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const browserSync = require("browser-sync").create();
 const cp = require("child_process");
+const concat = require("gulp-concat"); // Added for concatenating font SCSS files
 const { rimrafSync } = require("rimraf");
 
 const cleanCSS = require("gulp-clean-css"); // For minifying CSS
@@ -15,8 +16,8 @@ function clean(done) {
 }
 
 // 1. SASS Task
-function compileSass() {
-  return src("src/scss/**/*.scss")
+function compileMainSass() {
+  return src(["src/scss/**/*.scss"])
     .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(sourcemaps.write("."))
@@ -24,17 +25,37 @@ function compileSass() {
     .pipe(browserSync.stream());
 }
 
-// 1b. SASS Task mit CSS-Minifizierung (nur für Builds)
-function compileSassMinified() {
-  return src("src/scss/**/*.scss")
+// 1a. SASS Task für Fonts (zu all-fonts.css)
+function compileFontsScss() {
+  return src("src/scss/fonts/**/*.scss")
+    .pipe(sourcemaps.init())
+    .pipe(sass().on("error", sass.logError))
+    .pipe(concat("all-fonts.css")) // Concatenate all font SCSS into one file
+    .pipe(sourcemaps.write("."))
+    .pipe(dest("dist/css"))
+    .pipe(browserSync.stream());
+}
+
+// 1b. SASS Task mit CSS-Minifizierung (nur für Builds) - Main SCSS
+function compileMainSassMinified() {
+  return src(["src/scss/**/*.scss"])
     .pipe(sass().on("error", sass.logError))
     .pipe(cleanCSS({ level: 2 }))
     .pipe(dest("dist/css"));
 }
 
-// 1c. SASS Task mit CSS-Minifizierung und URL-Prefixing für GitHub Pages
-function compileSassGhPages() {
-  return src("src/scss/**/*.scss")
+// 1c. SASS Task mit CSS-Minifizierung (nur für Builds) - Fonts SCSS
+function compileFontsScssMinified() {
+  return src("src/scss/fonts/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(concat("all-fonts.css"))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(dest("dist/css"));
+}
+
+// 1d. SASS Task mit CSS-Minifizierung und URL-Prefixing für GitHub Pages - Main SCSS
+function compileMainSassGhPages() {
+  return src(["src/scss/**/*.scss"])
     .pipe(sass().on("error", sass.logError))
     // .pipe(replace(/url\(['"]?(?:\.\.\/)*fonts\/(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
     .pipe(cleanCSS({ level: 2 }))
@@ -42,6 +63,16 @@ function compileSassGhPages() {
 }
 
 // 2. Eleventy Task
+// 1e. SASS Task mit CSS-Minifizierung und URL-Prefixing für GitHub Pages - Fonts SCSS
+function compileFontsScssGhPages() {
+  return src("src/scss/fonts/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(concat("all-fonts.css"))
+    // .pipe(replace(/url\(['"]?(?:\.\.\/)*fonts\/(.*?)['"]?\)/g, 'url("/font-collection/fonts/$1")'))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(dest("dist/css"));
+}
+
 function buildEleventy() {
   return cp.spawn("npx", ["@11ty/eleventy", "--quiet"], {
     stdio: "inherit",
@@ -113,14 +144,15 @@ function serve(done) {
 
 // 4. Watcher
 function watchFiles() {
-  watch("src/scss/**/*.scss", compileSass);
+  watch(["src/scss/**/*.scss", "!src/scss/fonts/**/*.scss"], compileMainSass); // Watch main SCSS
+  watch("src/scss/fonts/**/*.scss", compileFontsScss); // Watch font SCSS
   watch("src/fonts/**/*", copyFonts);
   watch("src/img/**/*", copyImages);
   watch("src/js/**/*", copyJS);
 
   watch(
-    ["src/**/*.njk", "src/**/*.md", "src/**/*.html"],
-    series(buildEleventy, (done) => {
+    ["src/**/*.njk", "src/**/*.md", "src/**/*.html", "src/_data/**/*.js"], // Added _data/**/*.js to watch for changes in font data
+    series(buildEleventy, parallel(compileMainSass, compileFontsScss), (done) => { // Recompile SCSS after Eleventy rebuilds
       browserSync.reload();
       done();
     }),
@@ -128,8 +160,9 @@ function watchFiles() {
 }
 
 exports.default = series(
-  copyFavicon,
-  parallel(copyFonts, copyImages, copyJS, buildEleventy, compileSass),
+  clean, // Added clean to default task for a fresh start
+  buildEleventy, // Eleventy must run first to generate font SCSS files
+  parallel(copyFonts, copyImages, copyJS, copyFavicon, compileMainSass, compileFontsScss),
   serve,
   watchFiles,
 );
@@ -137,16 +170,16 @@ exports.default = series(
 // Produktions-Build: mit Minifizierung
 exports.build = series(
   clean,
-  buildEleventy,
-  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileSassMinified),
+  buildEleventy, // Eleventy must run first to generate font SCSS files
+  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileMainSassMinified, compileFontsScssMinified),
   beautifyHTML,
 );
 
 // GitHub Pages mit Prefix + Minifizierung
 exports.ghpages = series(
   clean,
-  buildEleventyGhPages,
-  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileSassGhPages),
+  buildEleventyGhPages, // Eleventy must run first to generate font SCSS files
+  parallel(copyImages, copyFonts, copyJS, copyFavicon, compileMainSassGhPages, compileFontsScssGhPages),
   // minifyHTML,
   beautifyHTML,
 );
