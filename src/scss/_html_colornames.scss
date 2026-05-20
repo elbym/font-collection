@@ -12,19 +12,6 @@
 
 
 
-
-
-
-.skyblue {
-
-  color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
-.bg-skyblue {
-  background-color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
-}
-
-
-
 .sienna {
 
   color: color-mix(in oklab, Sienna, var(--color-mix-light) 20%);
@@ -34,16 +21,6 @@
 }
 
 
-
-
-
-.darkblue {
-
-  color: color-mix(in oklab, DarkBlue, var(--color-mix-light) 20%);
-}
-.bg-darkblue {
-  background-color: color-mix(in oklab, DarkBlue, var(--color-mix-light) 20%);
-}
 
 
 
@@ -139,8 +116,6 @@
 
 
 
-
-
 .cadetblue {
 
   color: color-mix(in oklab, CadetBlue, var(--color-mix-light) 20%);
@@ -171,16 +146,6 @@
 
 
 
-.royalblue {
-
-  color: color-mix(in oklab, RoyalBlue, var(--color-mix-light) 20%);
-}
-.bg-royalblue {
-  background-color: color-mix(in oklab, RoyalBlue, var(--color-mix-light) 20%);
-}
-
-
-
 
 
 
@@ -191,16 +156,6 @@
 }
 .bg-mediumorchid {
   background-color: color-mix(in oklab, MediumOrchid, var(--color-mix-light) 20%);
-}
-
-
-
-.darkslateblue {
-
-  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
-}
-.bg-darkslateblue {
-  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
 }
 
 
@@ -271,6 +226,17 @@
 
 
 
+.tomato {
+
+  color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+}
+.bg-tomato {
+  background-color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+}
+
+
+
+
 .skyblue {
 
   color: color-mix(in oklab, SkyBlue, var(--color-mix-light) 20%);
@@ -281,12 +247,12 @@
 
 
 
-.tomato {
+.darkslateblue {
 
-  color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+  color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
 }
-.bg-tomato {
-  background-color: color-mix(in oklab, Tomato, var(--color-mix-light) 20%);
+.bg-darkslateblue {
+  background-color: color-mix(in oklab, DarkSlateBlue, var(--color-mix-light) 20%);
 }
 
 
@@ -316,5 +282,19 @@
 }
 
 
-  
+
+.royalblue {
+
+  color: color-mix(in oklab, RoyalBlue, var(--color-mix-light) 20%);
+}
+.bg-royalblue {
+  background-color: color-mix(in oklab, RoyalBlue, var(--color-mix-light) 20%);
+}
+
+
+
+
+
+
+
 
