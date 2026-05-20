@@ -22,7 +22,7 @@
 
   // CMYK Pattern
   --dot-size: 4px;
-  --dot-start: 20%;
+  --dot-start: 30%;
   --dot-end: 35%;
 }
 
@@ -41,9 +41,10 @@
     --color-text-shadow: color-mix(in oklab, var(--color-base-shadow), var(--color-mix-light) 20%);
     --color-surface: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 80%);
 
-    //CMYK Pattern
     // increase the cmyk pattern in dark mode
-    --dot-size: 12px;
+    --dot-size: 6px;
+    --dot-start: 35%;
+    --dot-end: 40%;
   }
   // Dim images
   img {

@@ -30,6 +30,6 @@ header {
     width: 90%;
 
     @include bp.media-breakpoint-up(lg) {
-        max-width: 960px;
+        max-width: 1680px;
     }
 }

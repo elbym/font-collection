@@ -7,133 +7,29 @@
 
 
 
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-ThinItalic.woff2',
-  100,
-  'italic'
-);
 
+  
+  
+    
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Thin.woff2',
-  100,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-ExtraLightItalic.woff2',
-  200,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-ExtraLight.woff2',
-  200,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-LightItalic.woff2',
-  300,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-Light.woff2',
-  300,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-Italic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   400,
-  'italic'
+  'italic',
+  true
 );
-
+  
+    
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Regular.woff2',
+  'JetBrainsMono[wght].woff2',
   400,
-  'normal'
+  'normal',
+  true
 );
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-MediumItalic.woff2',
-  500,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-Medium.woff2',
-  500,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-SemiBoldItalic.woff2',
-  600,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-SemiBold.woff2',
-  600,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-BoldItalic.woff2',
-  700,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-Bold.woff2',
-  700,
-  'normal'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-ExtraBoldItalic.woff2',
-  800,
-  'italic'
-);
-
-@include declare-font(
-  'JetBrainsMono',
-  'JetBrainsMono',
-  'JetBrainsMono-ExtraBold.woff2',
-  800,
-  'normal'
-);
+  
 
 
 
