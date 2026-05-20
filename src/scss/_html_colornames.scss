@@ -17,21 +17,6 @@
 
 
 
-
-
-
-
-
-.steelblue {
-
-  color: color-mix(in oklab, steelblue, var(--color-mix-light) 20%);
-}
-.bg-steelblue {
-  background-color: color-mix(in oklab, steelblue, var(--color-mix-light) 20%);
-}
-
-
-
 .saddlebrown {
 
   color: color-mix(in oklab, saddlebrown, var(--color-mix-light) 20%);
@@ -69,7 +54,6 @@
 .bg-dodgerblue {
   background-color: color-mix(in oklab, dodgerblue, var(--color-mix-light) 20%);
 }
-
 
 
 .midnightblue {
@@ -267,7 +251,6 @@
 }
 
 
-
 .darkgoldenrod {
 
   color: color-mix(in oklab, darkgoldenrod, var(--color-mix-light) 20%);
@@ -285,7 +268,6 @@
 .bg-sienna {
   background-color: color-mix(in oklab, sienna, var(--color-mix-light) 20%);
 }
-
 
 
 .maroon {
@@ -317,27 +299,6 @@
 }
 
 
-
-.orangered {
-
-  color: color-mix(in oklab, orangered, var(--color-mix-light) 20%);
-}
-.bg-orangered {
-  background-color: color-mix(in oklab, orangered, var(--color-mix-light) 20%);
-}
-
-
-
-.darkorange {
-
-  color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
-}
-.bg-darkorange {
-  background-color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
-}
-
-
-
 .forestgreen {
 
   color: color-mix(in oklab, forestgreen, var(--color-mix-light) 20%);
@@ -345,17 +306,6 @@
 .bg-forestgreen {
   background-color: color-mix(in oklab, forestgreen, var(--color-mix-light) 20%);
 }
-
-
-
-.royalblue {
-
-  color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
-}
-.bg-royalblue {
-  background-color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
-}
-
 
 
 .goldenrod {
@@ -377,13 +327,12 @@
 }
 
 
+.crimson {
 
-.lightslategray {
-
-  color: color-mix(in oklab, lightslategray, var(--color-mix-light) 20%);
+  color: color-mix(in oklab, Crimson, var(--color-mix-light) 20%);
 }
-.bg-lightslategray {
-  background-color: color-mix(in oklab, lightslategray, var(--color-mix-light) 20%);
+.bg-crimson {
+  background-color: color-mix(in oklab, Crimson, var(--color-mix-light) 20%);
 }
 
 
@@ -739,6 +688,98 @@
 }
 .bg-teal {
   background-color: color-mix(in oklab, teal, var(--color-mix-light) 20%);
+}
+
+
+
+.darkred {
+
+  color: color-mix(in oklab, darkred, var(--color-mix-light) 20%);
+}
+.bg-darkred {
+  background-color: color-mix(in oklab, darkred, var(--color-mix-light) 20%);
+}
+
+
+
+
+
+.orangered {
+
+  color: color-mix(in oklab, orangered, var(--color-mix-light) 20%);
+}
+.bg-orangered {
+  background-color: color-mix(in oklab, orangered, var(--color-mix-light) 20%);
+}
+
+
+
+.steelblue {
+
+  color: color-mix(in oklab, steelblue, var(--color-mix-light) 20%);
+}
+.bg-steelblue {
+  background-color: color-mix(in oklab, steelblue, var(--color-mix-light) 20%);
+}
+
+
+
+.darkorange {
+
+  color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
+}
+.bg-darkorange {
+  background-color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
+}
+
+
+
+.royalblue {
+
+  color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
+}
+.bg-royalblue {
+  background-color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
+}
+
+
+
+.olivedrab {
+
+  color: color-mix(in oklab, olivedrab, var(--color-mix-light) 20%);
+}
+.bg-olivedrab {
+  background-color: color-mix(in oklab, olivedrab, var(--color-mix-light) 20%);
+}
+
+
+
+.burlywood {
+
+  color: color-mix(in oklab, burlywood, var(--color-mix-light) 20%);
+}
+.bg-burlywood {
+  background-color: color-mix(in oklab, burlywood, var(--color-mix-light) 20%);
+}
+
+
+
+.jetblack {
+
+  color: color-mix(in oklab, jetblack, var(--color-mix-light) 20%);
+}
+.bg-jetblack {
+  background-color: color-mix(in oklab, jetblack, var(--color-mix-light) 20%);
+}
+
+
+
+.crimson {
+
+  color: color-mix(in oklab, crimson, var(--color-mix-light) 20%);
+}
+.bg-crimson {
+  background-color: color-mix(in oklab, crimson, var(--color-mix-light) 20%);
 }
 
 

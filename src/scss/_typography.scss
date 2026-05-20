@@ -59,6 +59,9 @@ header {
 .small {
     @include ms.modscale(-1, $responsive: true);
 }
+.smaller {
+    @include ms.modscale(-2, $responsive: true);
+}
 .small-caps {
     text-transform: lowercase;
     font-variant-caps: small-caps;
