@@ -37,8 +37,8 @@ extra_css: "/css/fonts/all-fonts.css"
       <p class="letters">Aa Rr Ee</p>
       <p class="letters italic">Aa Rr Ee</p>
 
-      <p class="heroword ligature display-size-2 {{ color | slugify }}">{{ heroText }}</p>
-      <p>0123456789</p>
+      <p class="display-size-2 heroword ligature {{ color | slugify }}">{{ heroText }}</p>
+      <p class="display-size-2 text-align-right old-nums">0123456789</p>
       {# {% if comment %}
         <p class="comment small">
           {{ comment | truncate(100, true, "…") }}

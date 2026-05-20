@@ -209,14 +209,6 @@
 @include declare-font(
   'Cormorant',
   'Cormorant',
-  'Cormorant-Italic[wght].woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Cormorant',
-  'Cormorant',
   'Cormorant-Regular.woff2',
   400,
   'normal'
@@ -268,6 +260,78 @@
   'Cormorant-Bold.woff2',
   700,
   'normal'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Cormorant',
+  'Cormorant',
+  'Cormorant-Italic[wght].woff2',
+  900,
+  'italic'
 );
 
 
@@ -1454,6 +1518,150 @@
   'normal'
 );
 
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable-Italic.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'Inter',
+  'Inter',
+  'InterVariable.woff2',
+  900,
+  'normal'
+);
+
 
 .inter {
     font-family: 'Inter', sans-serif;
@@ -1465,7 +1673,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-ThinItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   100,
   'italic'
 );
@@ -1473,7 +1681,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Thin.woff2',
+  'JetBrainsMono[wght].woff2',
   100,
   'normal'
 );
@@ -1481,7 +1689,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-ExtraLightItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   200,
   'italic'
 );
@@ -1489,7 +1697,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-ExtraLight.woff2',
+  'JetBrainsMono[wght].woff2',
   200,
   'normal'
 );
@@ -1497,7 +1705,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-LightItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   300,
   'italic'
 );
@@ -1505,7 +1713,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Light.woff2',
+  'JetBrainsMono[wght].woff2',
   300,
   'normal'
 );
@@ -1513,7 +1721,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Italic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   400,
   'italic'
 );
@@ -1521,7 +1729,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Regular.woff2',
+  'JetBrainsMono[wght].woff2',
   400,
   'normal'
 );
@@ -1529,7 +1737,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-MediumItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   500,
   'italic'
 );
@@ -1537,7 +1745,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Medium.woff2',
+  'JetBrainsMono[wght].woff2',
   500,
   'normal'
 );
@@ -1545,7 +1753,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-SemiBoldItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   600,
   'italic'
 );
@@ -1553,7 +1761,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-SemiBold.woff2',
+  'JetBrainsMono[wght].woff2',
   600,
   'normal'
 );
@@ -1561,7 +1769,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-BoldItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   700,
   'italic'
 );
@@ -1569,7 +1777,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-Bold.woff2',
+  'JetBrainsMono[wght].woff2',
   700,
   'normal'
 );
@@ -1577,7 +1785,7 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-ExtraBoldItalic.woff2',
+  'JetBrainsMono-Italic[wght].woff2',
   800,
   'italic'
 );
@@ -1585,8 +1793,24 @@
 @include declare-font(
   'JetBrainsMono',
   'JetBrainsMono',
-  'JetBrainsMono-ExtraBold.woff2',
+  'JetBrainsMono[wght].woff2',
   800,
+  'normal'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono-Italic[wght].woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'JetBrainsMono',
+  'JetBrainsMono',
+  'JetBrainsMono[wght].woff2',
+  900,
   'normal'
 );
 
@@ -2081,23 +2305,7 @@
 @include declare-font(
   'LibreBaskerville',
   'LibreBaskerville',
-  'LibreBaskerville-Italic[wght].woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
   'LibreBaskerville-Regular.woff2',
-  400,
-  'normal'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville[wght].woff2',
   400,
   'normal'
 );
@@ -2147,6 +2355,150 @@
   'LibreBaskerville',
   'LibreBaskerville-Bold.woff2',
   700,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville-Italic[wght].woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'LibreBaskerville',
+  'LibreBaskerville',
+  'LibreBaskerville[wght].woff2',
+  900,
   'normal'
 );
 
@@ -2241,14 +2593,6 @@
 @include declare-font(
   'Literata',
   'Literata',
-  'Literata-Italic[opsz,wght].woff2',
-  400,
-  'italic'
-);
-
-@include declare-font(
-  'Literata',
-  'Literata',
   'Literata-Regular.woff2',
   400,
   'normal'
@@ -2324,6 +2668,78 @@
   'Literata-Black.woff2',
   900,
   'normal'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'Literata',
+  'Literata',
+  'Literata-Italic[opsz,wght].woff2',
+  900,
+  'italic'
 );
 
 @include declare-font(
@@ -2713,6 +3129,662 @@
 
 .metropolis {
     font-family: 'Metropolis', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-ExtraLightItalic.woff',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-ExtraLight.woff',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-LightItalic.woff',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Light.woff',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Italic.woff',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Regular.woff',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-SemiBoldItalic.woff',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-SemiBold.woff',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-BoldItalic.woff',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Bold.woff',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadlineItalic-Variable.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaHeadline Headline',
+  'MozillaHeadline',
+  'MozillaHeadline-Variable.woff2',
+  900,
+  'normal'
+);
+
+
+.mozillaheadline {
+    font-family: 'MozillaHeadline Headline', sans-serif;
+}
+
+
+
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  100,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  100,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-ExtraLightItalic.woff',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-ExtraLightItalic.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  200,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-ExtraLight.woff',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-ExtraLight.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  200,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-LightItalic.woff',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-LightItalic.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  300,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Light.woff',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Light.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  300,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Italic.woff',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Italic.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  400,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Regular.woff',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Regular.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  400,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-MediumItalic.woff',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-MediumItalic.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  500,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Medium.woff',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Medium.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  500,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-SemiBoldItalic.woff',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-SemiBoldItalic.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  600,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-SemiBold.woff',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-SemiBold.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  600,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-BoldItalic.woff',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-BoldItalic.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  700,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Bold.woff',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Bold.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  700,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  800,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  800,
+  'normal'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaTextItalic-Variable.woff2',
+  900,
+  'italic'
+);
+
+@include declare-font(
+  'MozillaText Text',
+  'MozillaText',
+  'MozillaText-Variable.woff2',
+  900,
+  'normal'
+);
+
+
+.mozillatext {
+    font-family: 'MozillaText Text', sans-serif;
 }
 
 

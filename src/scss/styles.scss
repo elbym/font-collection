@@ -24,7 +24,7 @@ header {
             }
 
             .nav-category {
-                font-weight: 900;
+                font-weight: 600;
             }
         }
 
@@ -83,28 +83,71 @@ header {
 
     mix-blend-mode: multiply;
     @media (prefers-color-scheme: dark) {
-        mix-blend-mode: darken;
+        mix-blend-mode: lighten;
     }
 }
 
 .cyan {
-    background-image: radial-gradient(hsla(180, 100%, 50%, .95)calc(var(--dot-start) * 0.9), hsl(180, 100%, 50%)var(--dot-start), transparent var(--dot-end));
-    transform: rotate(15deg) translate(-25%, -50%);
+    transform: rotate(15deg) translate(0%, -50%);
+    background-image: radial-gradient(
+        hsl(180, 100%, 50%) var(--dot-start),
+        transparent var(--dot-end)
+    );
 }
 
 .magenta {
-    background-image: radial-gradient(hsla(300, 100%, 50%, .95)calc(var(--dot-start) * 0.9), hsl(300, 100%, 50%)var(--dot-start), transparent var(--dot-end));
-    transform: rotate(75deg) translate(-25%, -0%);
+    transform: rotate(75deg) translate(-25%, -25%);
+    background-image: radial-gradient(
+        hsl(300, 100%, 50%) var(--dot-start),
+        transparent var(--dot-end)
+    );
 }
 
 .yellow {
-    background-image: radial-gradient(hsla(60, 100%, 50%, .95)calc(var(--dot-start) * 0.9), hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2), transparent calc(var(--dot-end) * 1.2));
-    transform: rotate(0deg) translate(-25%, -50%);
+    transform: rotate(0deg) translate(0%, -50%);
+    background-image: radial-gradient(
+        hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2),
+        transparent calc(var(--dot-end) * 1.2)
+    );
 }
 
 .black {
-    background-image: radial-gradient(hsla(0, 0%, 0%, 0.5) calc(var(--dot-start) * 0.7), hsla(0, 0%, 0%, 0.6) calc(var(--dot-start) * 0.8), transparent var(--dot-end));
     transform: rotate(45deg) translate(-25%, -25%);
+    background-image: radial-gradient(
+        hsla(0, 0%, 0%, 0.6) var(--dot-start),
+        transparent var(--dot-end)
+    );
+}
+
+
+@media (prefers-color-scheme: dark) {
+    .cyan {
+        background-image: radial-gradient(
+            hsla(180, 100%, 50%, .8) var(--dot-start),
+            transparent var(--dot-end)
+        );
+    }
+
+    .magenta {
+        background-image: radial-gradient(
+            hsla(300, 100%, 50%, .8) var(--dot-start),
+            transparent var(--dot-end)
+        );
+    }
+
+    .yellow {
+        background-image: radial-gradient(
+            hsla(60, 100%, 50%, .8) calc(var(--dot-start) * 1.2),
+            transparent calc(var(--dot-end) * 1.2)
+        );
+    }
+
+    .black {
+        background-image: radial-gradient(
+            hsla(0, 0%, 0%, .5) var(--dot-start),
+            transparent var(--dot-end)
+        );
+    }
 }
 
 

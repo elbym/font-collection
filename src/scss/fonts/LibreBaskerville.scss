@@ -7,85 +7,29 @@
 
 
 
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-Italic.woff2',
-  400,
-  'italic'
-);
 
+  
+  
+    
 @include declare-font(
   'LibreBaskerville',
   'LibreBaskerville',
   'LibreBaskerville-Italic[wght].woff2',
   400,
-  'italic'
+  'italic',
+  true
 );
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-Regular.woff2',
-  400,
-  'normal'
-);
-
+  
+    
 @include declare-font(
   'LibreBaskerville',
   'LibreBaskerville',
   'LibreBaskerville[wght].woff2',
   400,
-  'normal'
+  'normal',
+  true
 );
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-MediumItalic.woff2',
-  500,
-  'italic'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-Medium.woff2',
-  500,
-  'normal'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-SemiBoldItalic.woff2',
-  600,
-  'italic'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-SemiBold.woff2',
-  600,
-  'normal'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-BoldItalic.woff2',
-  700,
-  'italic'
-);
-
-@include declare-font(
-  'LibreBaskerville',
-  'LibreBaskerville',
-  'LibreBaskerville-Bold.woff2',
-  700,
-  'normal'
-);
+  
 
 
 

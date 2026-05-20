@@ -7,117 +7,29 @@
 
 
 
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-ExtraLightItalic.woff2',
-  200,
-  'italic'
-);
 
+  
+  
+    
 @include declare-font(
   'AtkinsonHyperlegibleNext',
   'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-ExtraLight.woff2',
-  200,
-  'normal'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-LightItalic.woff2',
-  300,
-  'italic'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-Light.woff2',
-  300,
-  'normal'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-RegularItalic.woff2',
+  'AtkinsonHyperlegibleNextVF-VariableItalic.woff2',
   400,
-  'italic'
+  'italic',
+  true
 );
-
+  
+    
 @include declare-font(
   'AtkinsonHyperlegibleNext',
   'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-Regular.woff2',
+  'AtkinsonHyperlegibleNextVF-Variable.woff2',
   400,
-  'normal'
+  'normal',
+  true
 );
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-MediumItalic.woff2',
-  500,
-  'italic'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-Medium.woff2',
-  500,
-  'normal'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-SemiBoldItalic.woff2',
-  600,
-  'italic'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-SemiBold.woff2',
-  600,
-  'normal'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-BoldItalic.woff2',
-  700,
-  'italic'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-Bold.woff2',
-  700,
-  'normal'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-ExtraBoldItalic.woff2',
-  800,
-  'italic'
-);
-
-@include declare-font(
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext',
-  'AtkinsonHyperlegibleNext-ExtraBold.woff2',
-  800,
-  'normal'
-);
+  
 
 
 
