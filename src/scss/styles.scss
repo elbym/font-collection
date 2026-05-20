@@ -87,7 +87,7 @@ header {
     }
 }
 
-.cyan {
+.cmyk_cyan {
     transform: rotate(15deg) translate(0%, -50%);
     background-image: radial-gradient(
         hsl(180, 100%, 50%) var(--dot-start),
@@ -95,7 +95,7 @@ header {
     );
 }
 
-.magenta {
+.cmyk_magenta {
     transform: rotate(75deg) translate(-25%, -25%);
     background-image: radial-gradient(
         hsl(300, 100%, 50%) var(--dot-start),
@@ -103,7 +103,7 @@ header {
     );
 }
 
-.yellow {
+.cmyk_yellow {
     transform: rotate(0deg) translate(0%, -50%);
     background-image: radial-gradient(
         hsl(60, 100%, 50%) calc(var(--dot-start) * 1.2),
@@ -111,7 +111,7 @@ header {
     );
 }
 
-.black {
+.cmyk_black {
     transform: rotate(45deg) translate(-25%, -25%);
     background-image: radial-gradient(
         hsla(0, 0%, 0%, 0.6) var(--dot-start),
@@ -121,28 +121,28 @@ header {
 
 
 @media (prefers-color-scheme: dark) {
-    .cyan {
+    .cmyk_cyan {
         background-image: radial-gradient(
             hsla(180, 100%, 50%, .8) var(--dot-start),
             transparent var(--dot-end)
         );
     }
 
-    .magenta {
+    .cmyk_magenta {
         background-image: radial-gradient(
             hsla(300, 100%, 50%, .8) var(--dot-start),
             transparent var(--dot-end)
         );
     }
 
-    .yellow {
+    .cmyk_yellow {
         background-image: radial-gradient(
             hsla(60, 100%, 50%, .8) calc(var(--dot-start) * 1.2),
             transparent calc(var(--dot-end) * 1.2)
         );
     }
 
-    .black {
+    .cmyk_black {
         background-image: radial-gradient(
             hsla(0, 0%, 0%, .5) var(--dot-start),
             transparent var(--dot-end)
