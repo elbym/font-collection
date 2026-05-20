@@ -14,10 +14,26 @@ dynamicPermalink: true
 @use "../font-mixin" as *;
 {% set items = fonts[folderName] %}
 {% set firstFont = items[0] %}
+{% set varFonts = items | selectattr("isVariable") | list %}
 
 
 {# 2. Die einzelnen @font-face Deklarationen #}
-{% for font in items %}
+{% if varFonts | length > 0 %}
+  {# Variable Schriften: Nur eine Deklaration pro Stil (Normal/Italic) #}
+  {% for style, styleFonts in varFonts | groupby("style") %}
+    {% set font = styleFonts[0] %}
+@include declare-font(
+  '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
+  '{{ folderName }}',
+  '{{ font.fileName }}',
+  400,
+  '{{ font.style }}',
+  true
+);
+  {% endfor %}
+{% else %}
+  {# Statische Schriften: Jede Datei/Gewicht Kombination einzeln #}
+  {% for font in items %}
 @include declare-font(
   '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
   '{{ folderName }}',
@@ -26,6 +42,7 @@ dynamicPermalink: true
   '{{ font.style }}'
 );
 {% endfor %}
+{% endif %}
 
 {# 1. Die allgemeine CSS-Regel für die Familie (nur einmalig) #}
 .specimen-poster {
