@@ -642,5 +642,103 @@
 }
 
 
-  
+
+.darkorange {
+
+  color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
+}
+.bg-darkorange {
+  background-color: color-mix(in oklab, darkorange, var(--color-mix-light) 20%);
+}
+
+
+
+.forestgreen {
+
+  color: color-mix(in oklab, forestgreen, var(--color-mix-light) 20%);
+}
+.bg-forestgreen {
+  background-color: color-mix(in oklab, forestgreen, var(--color-mix-light) 20%);
+}
+
+
+
+.royalblue {
+
+  color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
+}
+.bg-royalblue {
+  background-color: color-mix(in oklab, royalblue, var(--color-mix-light) 20%);
+}
+
+
+
+.goldenrod {
+
+  color: color-mix(in oklab, goldenrod, var(--color-mix-light) 20%);
+}
+.bg-goldenrod {
+  background-color: color-mix(in oklab, goldenrod, var(--color-mix-light) 20%);
+}
+
+
+
+.tan {
+
+  color: color-mix(in oklab, tan, var(--color-mix-light) 20%);
+}
+.bg-tan {
+  background-color: color-mix(in oklab, tan, var(--color-mix-light) 20%);
+}
+
+
+
+.lightslategray {
+
+  color: color-mix(in oklab, lightslategray, var(--color-mix-light) 20%);
+}
+.bg-lightslategray {
+  background-color: color-mix(in oklab, lightslategray, var(--color-mix-light) 20%);
+}
+
+
+
+.mediumorchid {
+
+  color: color-mix(in oklab, mediumorchid, var(--color-mix-light) 20%);
+}
+.bg-mediumorchid {
+  background-color: color-mix(in oklab, mediumorchid, var(--color-mix-light) 20%);
+}
+
+
+
+.rosybrown {
+
+  color: color-mix(in oklab, rosybrown, var(--color-mix-light) 20%);
+}
+.bg-rosybrown {
+  background-color: color-mix(in oklab, rosybrown, var(--color-mix-light) 20%);
+}
+
+
+
+.darkslategray {
+
+  color: color-mix(in oklab, darkslategray, var(--color-mix-light) 20%);
+}
+.bg-darkslategray {
+  background-color: color-mix(in oklab, darkslategray, var(--color-mix-light) 20%);
+}
+
+
+
+.teal {
+
+  color: color-mix(in oklab, teal, var(--color-mix-light) 20%);
+}
+.bg-teal {
+  background-color: color-mix(in oklab, teal, var(--color-mix-light) 20%);
+}
+
 
