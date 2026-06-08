@@ -1,0 +1,61 @@
+# Globale Hintergrundbilder für Font Cards
+# ==========================================
+# Bilder werden beim Build heruntergeladen und in diesem Ordner gespeichert.
+# Die heruntergeladenen Dateien sind gitignored – nur diese urls.txt wird committed.
+# Bereits vorhandene Dateien werden nicht erneut heruntergeladen.
+# Zum Erzwingen: Datei löschen, dann npx gulp download (oder npx gulp).
+#
+# ── UNSPLASH (images.unsplash.com) ────────────────────────────────────────────
+# 1. Foto auf unsplash.com öffnen
+# 2. Rechtsklick auf das Bild → „Bild in neuem Tab öffnen"
+#    Die URL beginnt mit https://images.unsplash.com/photo-…
+# → Der Build setzt ?w= automatisch auf IMAGE_MAX_WIDTH (Maximalgröße in gulpfile.js).
+#
+# ── PEXELS (images.pexels.com) ────────────────────────────────────────────────
+# 1. Foto auf pexels.com öffnen
+# 2. Rechtsklick auf das Bild → „Bildadresse kopieren"
+#    Die URL beginnt mit https://images.pexels.com/photos/…
+# → Der Build setzt ?w= automatisch auf IMAGE_MAX_WIDTH.
+#
+# Format: eine URL pro Zeile, optional: eigener-name=https://...
+# =============================================================================
+
+# --- Landschaft ---------------------------------------------------------------
+landschaft-gruene-huegel=https://images.unsplash.com/photo-4VDrSK0ixA4
+landschaft-rollende-huegel=https://images.unsplash.com/photo-cs-fGIqlKQs
+landschaft-nebel-morgen=https://images.unsplash.com/photo-RFrA46eVE9A
+landschaft-herbst-nebel=https://images.unsplash.com/photo-9qBhI8D0Af0
+landschaft-gruene-huegel-wolken=https://images.unsplash.com/photo-cZsMqzp-sfE
+
+# --- Meer ---------------------------------------------------------------------
+meer-blauer-horizont=https://images.unsplash.com/photo-wiDClFXgo7c
+meer-sonnenuntergang=https://images.unsplash.com/photo-NXLvcQi0hfQ
+meer-sonnenuntergang-2=https://images.unsplash.com/photo-Q1QrSDeSXFw
+meer-blauer-himmel=https://images.unsplash.com/photo-Nss5UaBZtCc
+meer-goldener-sonnenuntergang=https://images.unsplash.com/photo-QiqzDLiCPO0
+
+# --- Berge --------------------------------------------------------------------
+berge-alpen=https://images.unsplash.com/photo-vddccTqwal8
+berge-alpen-schweiz=https://images.unsplash.com/photo-E8eCrbekbLw
+berge-see=https://images.unsplash.com/photo-N4C2DMEpWxo
+berge-landschaft=https://images.unsplash.com/photo-l0M6bjXsj_I
+berge-bergsee=https://images.unsplash.com/photo-U_mKUrPMXW0
+
+# --- Innenstadt ---------------------------------------------------------------
+innenstadt-luftbild-la=https://images.unsplash.com/photo-QTdjjOGEDMA
+innenstadt-luftbild-abend=https://images.unsplash.com/photo-3mdHgIGJdrM
+innenstadt-luftbild-skyline=https://images.unsplash.com/photo-GTbRLPZ124Q
+innenstadt-strasse=https://images.unsplash.com/photo-Tzy2JDvjtRo
+innenstadt-gebaeude=https://images.unsplash.com/photo-FNh5arlXGOQ
+
+# --- Flughafen ----------------------------------------------------------------
+flughafen-terminal=https://images.unsplash.com/photo-BjxZPkpfGmM
+flughafen-maschinen=https://images.unsplash.com/photo-tvxusDB5hOA
+flughafen-fahnen=https://images.unsplash.com/photo-_Y8_pyEXFxk
+flughafen-sw=https://images.unsplash.com/photo-DNJNreMMP3Q
+
+# --- Büro ---------------------------------------------------------------------
+buero-modern=https://images.unsplash.com/photo-ieDXimQcLeM
+buero-homeoffice=https://images.unsplash.com/photo-KuMvKpNwh4k
+buero-tastatur=https://images.unsplash.com/photo-HoEYgBL_Gcs
+buero-pflanze=https://images.unsplash.com/photo-0lrpNScIBp4
