@@ -8,31 +8,6 @@ pagination:
 permalink: "{{ folder.url }}.html"
 ---
 
-{# ── Rekursives Navigationsmakro ───────────────────────────── #}
-{% macro navTree(nodes, fontFolders, currentFolder) %}
-  <ul>
-    {% for node in nodes %}
-      {% set children = node | getChildNodes(fontFolders) %}
-      {% set isActive  = (node.path == currentFolder.path) %}
-      {% set isAncestor = node | isAncestorOf(currentFolder) %}
-      <li class="
-        {%- if isActive %} is-active{%- endif %}
-        {%- if isAncestor %} is-ancestor{%- endif %}
-        {%- if children.length %} has-children{%- endif %}
-      ">
-        <a href="/{{ node.url }}.html"
-          {% if isActive %}aria-current="page"{% endif %}
-          {% if node.color %}style="--nav-accent: {{ node.color }}"{% endif %}>
-          {{ node.title }}
-        </a>
-        {% if children.length and (isActive or isAncestor) %}
-          {{ navTree(children, fontFolders, currentFolder) }}
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
-{% endmacro %}
-
 {# ── Breadcrumb ────────────────────────────────────────────── #}
 {% set ancestors = folder | getAncestors(fontFolders) %}
 {% if ancestors.length %}
@@ -44,56 +19,6 @@ permalink: "{{ folder.url }}.html"
     <span aria-current="page">{{ folder.title }}</span>
   </nav>
 {% endif %}
-
-{# ── Hauptnavigation ─────────────────────────────────────────
-  Ist doppelt mit src/_includes/header.njk, könnte aber für die mobile Ansicht in der Zukunft noch relevant werden.
-#}
-{# <nav aria-label="Fonts">
-  {{ navTree(fontFolders | getRootNodes, fontFolders, folder) }}
-</nav> #}
-
-{# ── Hero ──────────────────────────────────────────────────── #}
-{# <header class="font-hero"
-  {% if folder.color %}style="--color-accent: {{ folder.color }}"{% endif %}>
-
-  {% if folder.heroletter %}
-    <span class="hero-letter"
-      style="font-weight: {{ folder.herostyle }}">{{ folder.heroletter }}</span>
-  {% endif %}
-
-  <div class="hero-meta">
-    <h1>{{ folder.title }}</h1>
-
-    {% if folder.heroword %}
-      <p class="hero-word"
-        style="font-weight: {{ folder.herostyle }}">{{ folder.heroword }}</p>
-    {% endif %}
-
-    <dl class="font-info">
-      {% if folder.fontauthor %}
-        <dt>Designer</dt>
-        <dd>{{ folder.fontauthor }}</dd>
-      {% endif %}
-      {% if folder.fontyear %}
-        <dt>Jahr</dt>
-        <dd>{{ folder.fontyear }}</dd>
-      {% endif %}
-      {% if folder.sourceUrl %}
-        <dt>Quelle</dt>
-        <dd><a href="{{ folder.sourceUrl }}" target="_blank" rel="noopener">
-          {{ folder.sourceUrl | replace("https://", "") }}</a></dd>
-      {% endif %}
-    </dl>
-
-    {% if folder.tags.length %}
-      <ul class="font-tags" aria-label="Tags">
-        {% for tag in folder.tags %}
-          <li>{{ tag }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
-</header> #}
 
 {# ── Seiteninhalt ──────────────────────────────────────────── #}
 {% set children = folder | getChildNodes(fontFolders) %}
@@ -109,15 +34,8 @@ permalink: "{{ folder.url }}.html"
   </article>
   {% endif %}
 
-  {# {% for variant in fontVariants %}
-    <p style="font-weight: {{ variant.weight }}; font-style: {{ variant.style }};">
-      {{ variant.displayName }}
-    </p>
-  {% endfor %} #}
-
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}
-  {# <p>{{ folder.allFonts | length }} font styles in this group</p> #}
 
   {% if folder.content %}
   <article class="font-content">
