@@ -3,15 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ folder.title or title or site.title }}</title>
-  <meta name="description" content="{{ folder.description or site.description or 'A personal collection of free and open-source fonts with detailed specimen pages.' }}">
+
+  {# ── Computed SEO variables ────────────────────────────────── #}
+  {%- if folder -%}
+    {%- if folder.isLeaf -%}
+      {%- set pageTitle = folder.title + " | " + site.title -%}
+      {%- set pageDesc = "Specimen page for " + folder.title
+        + ((" — a " + (folder.tags | join(", ")) + " typeface") if folder.tags.length else "")
+        + ((" by " + folder.fontauthor) if folder.fontauthor else "") + "." -%}
+      {%- set ogType = "article" -%}
+      {%- set robotsContent = "index, follow" -%}
+    {%- else -%}
+      {%- set pageTitle = folder.title + " Fonts | " + site.title -%}
+      {%- set pageDesc = "Browse " + folder.title + " fonts in this personal font collection." -%}
+      {%- set ogType = "website" -%}
+      {%- set robotsContent = "index, follow" -%}
+    {%- endif -%}
+  {%- elif tag -%}
+    {%- set pageTitle = "Tag: " + tag + " | " + site.title -%}
+    {%- set pageDesc = 'Browse all fonts tagged "' + tag + '" in this personal font collection.' -%}
+    {%- set ogType = "website" -%}
+    {%- set robotsContent = "noindex, follow" -%}
+  {%- else -%}
+    {%- set pageTitle = (title + " | " + site.title) if title else site.title -%}
+    {%- set pageDesc = site.description -%}
+    {%- set ogType = "website" -%}
+    {%- set robotsContent = "index, follow" -%}
+  {%- endif -%}
+  {%- set pageUrl = site.url + page.url -%}
+  {%- set pageColor = folder.color if (folder and folder.color) else site.color -%}
+
+  <title>{{ pageTitle }}</title>
+
+  {# ── Core SEO ──────────────────────────────────────────────── #}
+  <meta name="description" content="{{ pageDesc }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta name="robots" content="{{ robotsContent }}">
+  <link rel="canonical" href="{{ pageUrl }}">
+
+  {# ── Open Graph ────────────────────────────────────────────── #}
+  <meta property="og:type" content="{{ ogType }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDesc }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  {# ── Twitter Card ──────────────────────────────────────────── #}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ pageDesc }}">
+
+  {# ── Theme color ───────────────────────────────────────────── #}
+  <meta name="theme-color" content="{{ pageColor or 'indigo' }}">
+
+  {# ── Stylesheets ───────────────────────────────────────────── #}
   <link rel="stylesheet" href="/css/styles.css">
 
   {% if folder.key is defined %}
   <link rel="stylesheet" href="/css/webfonts/all-fonts.css">
   {% endif %}
 
-  {% if folder.color %}
+  {% if folder and folder.color %}
   <style>
     :root {
         --color-base-primary: {{ folder.color }};
@@ -23,8 +75,49 @@
     <link rel="stylesheet" href="{{ extra_css }}">
   {% endif %}
 
+  {# ── Icons ─────────────────────────────────────────────────── #}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico" sizes="any">
+
+  {# ── JSON-LD Structured Data ───────────────────────────────── #}
+  {% if folder and folder.isLeaf %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ folder.title }}",
+    "description": "{{ pageDesc | replace('"', '\\"') }}",
+    "url": "{{ pageUrl }}"{% if folder.fontauthor %},
+    "author": {
+      "@type": "Person",
+      "name": "{{ folder.fontauthor }}"
+    }{% endif %}{% if folder.fontyear %},
+    "dateCreated": "{{ folder.fontyear }}"{% endif %}{% if folder.tags.length %},
+    "keywords": [{% for t in folder.tags %}"{{ t }}"{% if not loop.last %}, {% endif %}{% endfor %}]{% endif %}{% if folder.sourceUrl %},
+    "sameAs": "{{ folder.sourceUrl }}"{% endif %}
+  }
+  </script>
+  {% elif not folder and not tag %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "description": "{{ site.description }}",
+    "url": "{{ site.url }}"
+  }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ pageTitle }}",
+    "description": "{{ pageDesc | replace('"', '\\"') }}",
+    "url": "{{ pageUrl }}"
+  }
+  </script>
+  {% endif %}
 </head>
 
 <body class="specimen font-{{ folder.key | slugify }}">
