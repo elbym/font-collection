@@ -2,15 +2,37 @@
 # ==========================================
 # Bilder werden beim Build heruntergeladen und in diesem Ordner gespeichert.
 # Die heruntergeladenen Dateien sind gitignored – nur diese urls.txt wird committed.
-#
-# Format: eine URL pro Zeile
-#   https://images.unsplash.com/photo-xxxxx?w=1200
-#
-# Optional: eigener Dateiname vor dem =-Zeichen (Endung wird automatisch erkannt)
-#   abstrakt=https://images.unsplash.com/photo-xxxxx?w=1200
-#
-# Zeilen mit # werden ignoriert.
 # Bereits vorhandene Dateien werden nicht erneut heruntergeladen.
-# Zum Erzwingen: Datei löschen und neu bauen.
+# Zum Erzwingen: Datei löschen, dann npx gulp download (oder npx gulp).
 #
-# Tipp: npx gulp download  → nur Bilder herunterladen, ohne vollständigen Build
+# ── UNSPLASH (images.unsplash.com) ────────────────────────────────────────────
+# 1. Foto auf unsplash.com öffnen
+# 2. Rechtsklick auf das Bild → „Bild in neuem Tab öffnen" (oder „Bildadresse kopieren")
+#    Die URL beginnt mit https://images.unsplash.com/photo-…
+# 3. Empfehlung: ?w=1920 anhängen (Sharp skaliert ohnehin auf max. 960 px)
+#
+# Beispiel:
+#   textur-papier=https://images.unsplash.com/photo-1517697471339-4aa32003c11a?w=1920
+#   https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920
+#
+# ── PEXELS (images.pexels.com) ────────────────────────────────────────────────
+# 1. Foto auf pexels.com öffnen
+# 2. Rechtsklick auf das Bild → „Bildadresse kopieren"
+#    Die URL beginnt mit https://images.pexels.com/photos/…
+# 3. Empfehlung: Bereits vorhandene Größenparameter durch ?w=1920 ersetzen
+#
+# Beispiel:
+#   marmor=https://images.pexels.com/photos/1557183/pexels-photo-1557183.jpeg?w=1920
+#   https://images.pexels.com/photos/235986/pexels-photo-235986.jpeg?w=1920
+#
+# ── EIGENER DATEINAME ─────────────────────────────────────────────────────────
+# Optional: eigenen Dateinamen vor die URL stellen (Endung wird automatisch erkannt)
+#   mein-name=https://...
+#
+# ── EIGENE URLs ───────────────────────────────────────────────────────────────
+# Jede direkte Bild-URL funktioniert (JPG, PNG, WebP, AVIF).
+# HTTP-Weiterleitungen werden automatisch verfolgt.
+#
+# =============================================================================
+# Bilder hier eintragen:
+
