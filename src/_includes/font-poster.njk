@@ -7,7 +7,6 @@
     {% if folder.tags.length %}
       <ul class="keywords ligatures">
         {% for tag in folder.tags %}
-          {# <li>{{ tag }}</li> #}
           <li>
             <a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a>
           </li>

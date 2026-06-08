@@ -75,7 +75,6 @@
     padding: 1rem;
     position: relative;
     isolation: isolate;
-    // container-type: inline-size;
 
     #text-clip text {
       margin: 0;
@@ -101,10 +100,8 @@
 
     line-height: 350%;
 
-    // font-size: clamp(1rem, 6cqi + 1rem, 4rem);
     p {
       margin: 1rem;
-      // margin-bottom: .75em;
     }
   }
 
@@ -235,13 +232,10 @@
 
     p {
       @include ms.modscale(2, $responsive: true);
-      // padding: 0 0 0.5rem 0;
-      // margin: 0 0 0.5rem 0;
       line-height: 1.25;
       height: 1lh;
       margin: 0;
       padding: 0;
-      // border-bottom: 0.025rem solid #ccc;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis ellipsis;
@@ -266,7 +260,6 @@
     }
 
     p {
-      // @include ms.modscale(1, $responsive: true);
       font-size: 1.33rem;
       margin: 0;
     }
@@ -317,15 +310,6 @@
       opacity: 0.35;
     }
 
-    // @include bp.media-breakpoint-up(lg) {
-    //     .l {
-    //         flex: 0 0 3ch;
-    //         height: 3ch;
-    //         line-height: 2rem;
-    //         padding: 0.75rem;
-    //         border: 0.025rem solid var(--color-border);
-    //     }
-    // }
   }
 
   .alphabet_letters {
@@ -334,7 +318,6 @@
     line-height: 2rem;
     max-height: 2rem;
     letter-spacing: 0.66ch;
-    // justify-content: space-between;
     flex-wrap: wrap;
     overflow: hidden;
 
@@ -366,13 +349,6 @@
     font-size: 1.5rem;
   }
 }
-
-@include bp.media-breakpoint-up(lg) {
-  .hero {
-    // font-size: 300%;
-  }
-}
-
 
 /*
   Overrides to specific specimen pages
