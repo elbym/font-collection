@@ -19,6 +19,8 @@ const http = require("http");
 // Konfiguration
 // ---------------------------------------------------------------------------
 
+const IMAGE_MAX_WIDTH = 960;
+
 const PATHS = {
   mainScss: "src/scss/**/*.scss",
   fontsScss: "src/scss/webfonts/**/*.scss",
@@ -29,9 +31,9 @@ const PATHS = {
 };
 
 const SHARP_OPTS = {
-  jpg_to_webp: { quality: 75, resize: { width: 960, fit: "inside", withoutEnlargement: true } },
-  jpeg_to_webp: { quality: 75, resize: { width: 960, fit: "inside", withoutEnlargement: true } },
-  png_to_webp: { quality: 75, resize: { width: 960, fit: "inside", withoutEnlargement: true } },
+  jpg_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
+  jpeg_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
+  png_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
 };
 
 // ---------------------------------------------------------------------------
@@ -112,6 +114,20 @@ function extFromContentType(ct = "") {
   return ".jpg";
 }
 
+/**
+ * Setzt den ?w=-Parameter für bekannte Bild-CDNs auf IMAGE_MAX_WIDTH,
+ * damit nicht unnötig große Originale heruntergeladen werden.
+ * Andere URLs werden unverändert zurückgegeben.
+ */
+function limitImageUrl(urlStr) {
+  let u;
+  try { u = new URL(urlStr); } catch { return urlStr; }
+  const limitedHosts = ["images.unsplash.com", "images.pexels.com"];
+  if (!limitedHosts.includes(u.hostname)) return urlStr;
+  u.searchParams.set("w", String(IMAGE_MAX_WIDTH));
+  return u.toString();
+}
+
 /** Prüft, ob ein Bild mit dem gegebenen Stammnamen (ohne Erweiterung) bereits existiert. */
 function imageAlreadyExists(dir, stem) {
   return [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"].some(
@@ -188,7 +204,7 @@ async function downloadBackgroundImages() {
     const dir = path.dirname(urlFile);
     for (const { filename, url } of parseUrlFile(urlFile)) {
       const stem = filename ? path.parse(filename).name : stemFromUrl(url);
-      if (!imageAlreadyExists(dir, stem)) pending.push({ url, dir, stem });
+      if (!imageAlreadyExists(dir, stem)) pending.push({ url: limitImageUrl(url), dir, stem });
     }
   }
 

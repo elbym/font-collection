@@ -9,21 +9,23 @@
 # 1. Foto auf unsplash.com öffnen
 # 2. Rechtsklick auf das Bild → „Bild in neuem Tab öffnen" (oder „Bildadresse kopieren")
 #    Die URL beginnt mit https://images.unsplash.com/photo-…
-# 3. Empfehlung: ?w=1920 anhängen (Sharp skaliert ohnehin auf max. 960 px)
+# → Der Build setzt ?w= automatisch auf die konfigurierte Maximalgröße (IMAGE_MAX_WIDTH).
+#   Ein manuell gesetzter ?w=-Parameter wird dabei überschrieben.
 #
 # Beispiel:
-#   textur-papier=https://images.unsplash.com/photo-1517697471339-4aa32003c11a?w=1920
-#   https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920
+#   textur-papier=https://images.unsplash.com/photo-1517697471339-4aa32003c11a
+#   https://images.unsplash.com/photo-1558618666-fcd25c85cd64
 #
 # ── PEXELS (images.pexels.com) ────────────────────────────────────────────────
 # 1. Foto auf pexels.com öffnen
 # 2. Rechtsklick auf das Bild → „Bildadresse kopieren"
 #    Die URL beginnt mit https://images.pexels.com/photos/…
-# 3. Empfehlung: Bereits vorhandene Größenparameter durch ?w=1920 ersetzen
+# → Der Build setzt ?w= automatisch auf die konfigurierte Maximalgröße (IMAGE_MAX_WIDTH).
+#   Andere Query-Parameter (auto=compress etc.) können stehen bleiben oder entfernt werden.
 #
 # Beispiel:
-#   marmor=https://images.pexels.com/photos/1557183/pexels-photo-1557183.jpeg?w=1920
-#   https://images.pexels.com/photos/235986/pexels-photo-235986.jpeg?w=1920
+#   marmor=https://images.pexels.com/photos/1557183/pexels-photo-1557183.jpeg
+#   https://images.pexels.com/photos/235986/pexels-photo-235986.jpeg
 #
 # ── EIGENER DATEINAME ─────────────────────────────────────────────────────────
 # Optional: eigenen Dateinamen vor die URL stellen (Endung wird automatisch erkannt)
