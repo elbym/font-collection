@@ -12,8 +12,8 @@ const UNICODE_RANGES = {
   abc_lower: [97, 122],
   digits: [48, 58],
   punctuation: [33, 48],
-  fractions: [8528, 8591],
-  ligatures: [64256, 64335],
+  fractions: [8528, 8544],   // U+2150–U+215F: vulgar fractions only (⅐ … ⅟)
+  ligatures: [64256, 64263], // U+FB00–U+FB06: Latin ligatures only (ﬀ ﬁ ﬂ ﬃ ﬄ ﬅ ﬆ)
   latin1: [160, 255],
   latinExtA: [256, 383],
   latinExtB: [384, 591],
