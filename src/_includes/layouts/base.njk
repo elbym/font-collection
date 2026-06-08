@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ folder.title or site.title }}</title>
+  <title>{{ folder.title or title or site.title }}</title>
+  <meta name="description" content="{{ folder.description or site.description or 'A personal collection of free and open-source fonts with detailed specimen pages.' }}">
   <link rel="stylesheet" href="/css/styles.css">
 
   {% if folder.key is defined %}
