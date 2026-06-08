@@ -1,0 +1,48 @@
+{% if fontImages[folder.key] %}
+  <ul class="gallery">
+    {% for image in fontImages[folder.key] %}
+      {# Prüfe, ob es ein Override für diesen Dateinamen gibt #}
+      {% set override = folder.imageOverrides[image.filename] if (folder.imageOverrides and folder.imageOverrides[image.filename]) else null %}
+
+      {# Bestimme den Alt-Text: Objekt-Eigenschaft > String-Wert > Standard-Alt #}
+      {% set displayAlt = image.alt %}
+      {% if override %}
+        {% if override.alt %}
+          {% set displayAlt = override.alt %}
+        {% elif override is string %}
+          {% set displayAlt = override %}
+        {% endif %}
+      {% endif %}
+
+      <li class="gallery-item">
+        <figure>
+          <img src="{{ image.src }}" alt="{{ displayAlt }}" loading="lazy">
+          <figcaption>
+            {% if override.alt %}
+              {{ displayAlt }}            {% endif %}
+
+            {% if override.source %}
+              {% set displaySource = override.source %}
+
+              {# Entferne das Protokoll (http://, https://) #}
+              {% if displaySource.indexOf('://') > -1 %}
+                {% set displaySource = displaySource.split('://')[1] %}
+              {% endif %}
+
+              {# Extrahiere den Teil vor dem ersten Schrägstrich (Pfad) #}
+              {% if displaySource.indexOf('/') > -1 %}
+                {% set displaySource = displaySource.split('/')[0] %}
+              {% endif %}
+              <span class="image-source">
+              Source:  <a href="{{ override.source }}" target="_blank" rel="noopener">{{ displaySource }}</a></span>
+            {% else %}
+              {{ image.filename }}
+            {% endif %}
+          </figcaption>
+        </figure>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+
+{% endif %}

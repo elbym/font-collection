@@ -1,0 +1,25 @@
+title: Metropolis
+url: https://github.com/dw5/Metropolis
+
+tags: Geometric Grotesk
+
+comment: "Heavily inspired by a city protected by a dark knight."
+
+fontauthor: Chris Simpson
+fontyear: 2017
+
+heroletter: Gt
+heroword: "Batman"
+herostyle:
+color: midnightblue
+
+imageOverrides:
+  "Gotham_Yes_we_Can.jpg":
+    alt: "Obama used the Gotham font in his campaign in 2008"
+    source: "https://commons.wikimedia.org/wiki/File:Yes_we_Can.jpg"
+  "Obama_Building_on_the_past.png":
+    alt: "Obama officially uses the Gotham typeface"
+    source: "https://www.obama.org/stories/building-on-the-past-looking-ahead/"
+  "article_1.png":
+    alt: "Deepdive of the The History of the Gotham Typeface by Jonathan Hoefler"
+    source: "https://jonathanhoefler.com/articles/history-of-the-gotham-font"

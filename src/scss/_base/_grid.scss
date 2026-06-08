@@ -1,0 +1,24 @@
+@use "../_includes/breakpoints" as bp;
+
+@include bp.media-breakpoint-up(md) {
+    main.grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem 3rem;
+    }
+    .specimen-poster {
+        .font-gallery {
+            grid-column: 1 / span 2;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: 5fr 4fr;
+            // grid-gap: 3rem;
+            align-items: center;
+        }
+        .hero-word,
+        .alphabet {
+            grid-column: 1 / span 2;
+        }
+    }
+}

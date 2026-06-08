@@ -1,0 +1,18 @@
+@mixin declare-font($family, $folder, $filename, $weight: 400, $style: normal, $isVariable: false) {
+    @font-face {
+        // Die Anführungszeichen werden durch die Interpolation sicher gesetzt
+        font-family: "#{$family}";
+
+        // Dynamischer Pfad basierend auf deiner neuen Ordnerstruktur
+        src: url("../../webfonts/#{$folder}/#{$filename}") format("woff2");
+
+        @if $isVariable {
+            font-weight: 100 900;
+        } @else {
+            font-weight: $weight;
+        }
+
+        font-style: $style;
+        font-display: block;
+    }
+}

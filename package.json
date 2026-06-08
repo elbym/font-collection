@@ -1,0 +1,30 @@
+{
+  "name": "specimen-pages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "browser-sync": "^3.0.4",
+    "gulp": "^5.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-html-minifier-terser": "^8.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-prettier": "^6.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-sharp-optimize-images": "^4.0.3",
+    "gulp-sourcemaps": "^2.6.5",
+    "js-yaml": "^4.2.0",
+    "rimraf": "^6.1.3",
+    "sass": "^1.99.0"
+  }
+}

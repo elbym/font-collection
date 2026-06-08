@@ -1,0 +1,10 @@
+@use "../_includes/modularscale" as ms;
+@use "../_includes/breakpoints" as bp;
+
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--color-text-muted);
+    @include ms.modscale(-1, $responsive: true);
+}

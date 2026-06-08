@@ -1,0 +1,49 @@
+---
+pagination:
+  data: fontLeaves
+  size: 1
+  alias: folder
+permalink: "../src/scss/webfonts/{{ folder.key | slugify }}.scss"
+dynamicPermalink: true
+---
+{#
+  Paginiert über fontLeaves – nur Blatt-Nodes (Ordner mit echten Font-Dateien).
+  Gruppen-Ordner werden bereits in der Datenquelle herausgefiltert.
+  Der Unterstrich im Permalink markiert die Datei als Sass-Partial.
+#}
+
+@use "../_includes/font-mixin" as *;
+{% set items = folder.ownFonts %}
+{% set firstFont = items[0] %}
+{% set varFonts = items | selectattr("isVariable") | list %}
+
+{# @font-face Deklarationen #}
+{% if varFonts | length > 0 %}
+  {# Variable Schriften: eine Deklaration pro Stil (Normal / Italic) #}
+  {% for style, styleFonts in varFonts | groupby("style") %}
+    {% set font = styleFonts[0] %}
+@include declare-font(
+  '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
+  '{{ folder.path }}',
+  '{{ font.fileName }}',
+  400,
+  {{ font.style }},
+  true
+);
+  {% endfor %}
+{% else %}
+  {# Statische Schriften: jede Datei / Gewicht-Kombination einzeln #}
+  {% for font in items %}
+@include declare-font(
+  '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}',
+  '{{ folder.path }}',
+  '{{ font.fileName }}',
+  {{ font.weight }},
+  {{ font.style }}
+);
+  {% endfor %}
+{% endif %}
+{# Allgemeine CSS-Regel für die Familie #}
+.font-{{ folder.key | slugify }} {
+    font-family: '{{ firstFont.family }}{% if firstFont.optical %} {{ firstFont.optical }}{% endif %}', sans-serif;
+}

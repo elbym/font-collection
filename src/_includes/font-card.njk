@@ -1,0 +1,39 @@
+{# Erwartet 'node' aus fontFolders (z. B. aus der index.njk-Schleife
+   oder beim Einbinden von Gruppenübersichten in specimen.njk) #}
+
+{% set _title    = node.title %}
+{% set _url      = "/" + node.url + ".html" %}
+{% set _heroText = node.heroword or site.heroword %}
+{% set _color    = node.color or site.color %}
+{% set _tags     = node.tags if node.tags.length else [] %}
+
+<article class="card font-{{ node.key | slugify }}">
+  {# Prefer per-font backgrounds from `fontBackgrounds`, fallback to global `backgrounds` #}
+  {% set fontBg = fontBackgrounds[node.key] if (fontBackgrounds and fontBackgrounds[node.key]) else [] %}
+  {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}
+  <header 
+    class="{{ _color | slugify }} bg-{{ _color | slugify }}" 
+    {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
+    >
+    <a href="{{ _url }}">
+      <h3>{{ _title }}</h3>
+    </a>
+  </header>
+
+  <main>
+    <p class="letters">Aa Rr Ee</p>
+    <p class="letters italic">Aa Rr Ee</p>
+
+    <p class="display-size-2 heroword ligature {{ _color | slugify }}">{{ _heroText }}</p>
+    <p class="display-size-2 numbers text-align-right old-nums">0123456789</p>
+  </main>
+  {% if _tags.length %}
+  <footer style="background: color-mix(in oklab, {{ _color }}, transparent 50%);">
+    <ul class="keywords small ligatures">
+      {% for tag in _tags %}
+        <li><a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+  </footer>
+  {% endif %}
+</article>

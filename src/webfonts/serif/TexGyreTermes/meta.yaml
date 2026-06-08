@@ -1,0 +1,14 @@
+title: Tex Gyre Termes
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+
+tags: Serif, Garalde
+
+comment: "TeX Gyre Termes can be used as a replacement for the renowned Times (new) Roman font (designed by Stanley Morison together with Starling Burgess and Victor Lardent for the London newspaper “The Times”; it was first issued by the Monotype Corporation in 1932)"
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: The Times
+herostyle:
+color: darkslategray

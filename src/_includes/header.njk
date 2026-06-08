@@ -1,0 +1,60 @@
+<header>
+  <nav aria-label="Hauptnavigation">
+
+    {# ── Rekursives Makro für Font-Nodes ──────────────────────── #}
+    {%- macro renderFontNode(node, fontFolders, currentFolder) -%}
+      {%- set children = node | getChildNodes(fontFolders) -%}
+      {%- set isActive   = currentFolder and (node.path == currentFolder.path) -%}
+      {%- set isAncestor = currentFolder and (node | isAncestorOf(currentFolder)) -%}
+      {%- set isOpen = isActive or isAncestor -%}
+      <li class="
+        {%- if isActive %}is-active {%- endif %}
+        {%- if isAncestor %}is-ancestor {%- endif %}
+        {%- if children.length %}has-children{%- endif %}
+      ">
+        <a href="/{{ node.url }}.html"
+          {%- if isActive %} aria-current="page"{% endif %}
+          {%- if children.length %} aria-expanded="{{ 'true' if isOpen else 'false' }}"{% endif %}
+          {%- if node.color %} style="--nav-accent: {{ node.color }}"{% endif %}>
+          {{ node.title }}
+        </a>
+        {%- if children.length and isOpen -%}
+          <ul aria-label="{{ node.title }}">
+            {%- for child in children -%}
+              {{ renderFontNode(child, fontFolders, currentFolder) }}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endmacro -%}
+
+    <ul class="primary">
+
+      {# ── Manuelle Seiten (index.njk, alternativen.njk …) ─────── #}
+      {% set manualPages = collections.all | getManualNav %}
+      {%- for entry in manualPages %}
+        <li{% if entry.url == page.url %} class="is-active"{% endif %}>
+          <a href="{{ entry.url }}"
+            {%- if entry.url == page.url %} aria-current="page"{% endif %}>
+            {{ entry.title }}
+          </a>
+        </li>
+      {%- endfor %}
+
+      {# ── Fonts-Gruppe ─────────────────────────────────────────── #}
+      {%- set fontRoots = fontFolders | getRootNodes -%}
+      {%- if fontRoots.length %}
+        <li class="nav-group
+          {%- if folder %} is-open{%- endif %}">
+          <span class="nav-group-label" id="nav-group-fonts">Fonts</span>
+          <ul aria-labelledby="nav-group-fonts">
+            {%- for node in fontRoots -%}
+              {{ renderFontNode(node, fontFolders, folder) }}
+            {%- endfor -%}
+          </ul>
+        </li>
+      {%- endif %}
+
+    </ul>
+  </nav>
+</header>

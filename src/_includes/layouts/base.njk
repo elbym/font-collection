@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ folder.title or site.title }}</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  {% if folder.key is defined %}
+  <link rel="stylesheet" href="/css/webfonts/all-fonts.css">
+  {% endif %}
+  
+  {% if color %}
+  <style>
+    :root {
+        --color-base-primary: {{ color }};
+    }
+  </style>
+  {% endif %}
+
+  {% if extra_css %}
+    <link rel="stylesheet" href="{{ extra_css }}">
+  {% endif %}
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico" sizes="any">
+</head>
+
+<body class="specimen font-{{ folder.key | slugify }}">
+
+  <div class="container">
+
+  {% include "header.njk" %}
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  {% include "footer.njk" %}
+  
+  </div>
+</body>
+</html>

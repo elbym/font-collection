@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+extra_css: "/css/webfonts/all-fonts.css"
+pagination:
+  data: fontTags
+  size: 1
+  alias: tag
+permalink: "tag/{{ tag | slugify }}.html"
+---
+
+<h1>{{ tag }}</h1>
+
+<section class="font-family-card-list">
+  {% for node in fontFolders %}
+    {% if node.isLeaf and tag in node.tags %}
+      {% include "font-card.njk" %}
+    {% endif %}
+  {% endfor %}
+</section>

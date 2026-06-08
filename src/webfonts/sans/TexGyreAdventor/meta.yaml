@@ -1,0 +1,19 @@
+title: Tex Gyre Adventor
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+
+tags: Geometric Grotesk
+
+comment: "TeX Gyre Adventor can be used as a replacement for ITC Avant Garde Gothic (designed by Herb Lubalin and Tom Carnase, 1970)"
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Avant Garde
+herostyle:
+color: goldenrod
+
+imageOverrides:
+  "ArcRaiders_KeyArt_Main_1-1_2160x2160.png)":
+    alt: "Embark Studios Press Kit (via fontsinuse.com)"
+    source: "https://www.embark-studios.com/press"

@@ -1,0 +1,19 @@
+title: Jost*
+url: https://github.com/indestructible-type/Jost
+
+tags: Geometric Grotesk
+
+comment: "A little more fancy Futura"
+
+fontauthor: Owen Earl
+fontyear:
+
+heroletter: Aa
+heroword: Airline
+herostyle:
+color: mediumslateblue
+
+imageOverrides:
+  "Futura_ad_1928.png":
+    alt: "Futura ad from 1928 (via fontsinuse.com)"
+    source: "https://iaddb.org/?query=search=ccobjectid=3297530&showtype=record"

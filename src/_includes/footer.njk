@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <p>made with ❤️, 11ty and font from a lot of people.</p>
+</footer>
+
+<script src="/js/fitty.min.js"></script>
+<script>
+    /* Fires `fitty` once fonts are loaded and applied */
+    document.fonts.ready.then( function () {
+      requestAnimationFrame( function () {
+        fitty( '.fitty', {
+          minSize: 5,
+          maxSize: 9600,
+        } );
+      } );
+    } );
+</script>

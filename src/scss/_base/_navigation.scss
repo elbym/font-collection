@@ -1,0 +1,38 @@
+@use "../_includes/modularscale" as ms;
+@use "../_includes/breakpoints" as bp;
+
+
+header {
+  nav {
+    @include ms.modscale(-1, $responsive: true);
+    
+    a {
+      color: var(--color-text);
+    }
+    
+    ul {
+      li {
+        background: var(--color-surface);
+        // border-bottom: .1rem solid var(--color-border);
+        outline: 1px dashed hotpink;
+
+        &.active {
+          background: var(--color-accent);
+          a {
+            color: var(--color-background);
+          }
+        }
+      }
+      
+      .nav-group {
+        ul {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
+.breadcrumb {
+  margin: 1rem 0 2rem 0;
+}

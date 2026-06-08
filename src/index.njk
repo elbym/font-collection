@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+title: Index
+extra_css: "/css/webfonts/all-fonts.css"
+
+eleventyNavigation:
+  key: Index
+  order: 0
+---
+<h1>Personal collection of (mostly free) fonts</h1>
+<blockquote>Everyone has a favorite font, right? RIGHT!?</blockquote>
+
+<p>This is just a personal and opinionated collection of fonts that stuck with me and started as an excuse to show off the <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (I asked Claude to cobble together). I switched to a <a href="https://elbym.github.io/font-collection/">HTML preview</a> instead.</p>
+<p>This list is also influenced by <a hred="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> and <a href="https://typotheque.luuse.io/">Free Font Library</a> and <a href="https://typotheque.luuse.io/">the free fontlibrary.</a></p>
+
+
+<p>The speciment poster is heavily inspired by (copied from) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> at the University of Frankfurt.</p>
+
+
+<p>Why did i stumbel across this so late? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> has wonderfull specimen layouts for his <a href="https://www.forthehearts.net/playfair">Playfair</a> font <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html">word tower Specimen Demo</a></p>
+
+<h2>List of Font. In no specific order.</h2>
+
+<section class="font-family-card-list">
+  {% for node in fontFolders %}
+    {% if node.isLeaf %}
+      {% include "font-card.njk" %}
+    {% endif %}
+  {% endfor %}
+</section>
+
+<h2>python font_specimen_generator.py</h2>
+<p>
+  Asked Claude to cobble together a python script to generate the font specimen preview inspired by the ones on <a href="https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics">Wikipedia</a>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png" alt="Preview of the Sample Wikipedia font specimen">
+</p>
+
+<p>Currently supports 3 different themes: cream, dark, white</p>
+
+<h4>Examples:</h4>
+<code>
+python font_specimen_generator.py --input ./fonts --output ./previews
+python font_specimen_generator.py --input ./fonts --output ./previews --theme white
+python font_specimen_generator.py --input ./fonts --output ./previews --width 1400 --theme cream
+python font_specimen_generator.py --input ./fonts --output ./previews --overwrite
+</code>

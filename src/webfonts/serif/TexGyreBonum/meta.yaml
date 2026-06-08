@@ -1,0 +1,14 @@
+title: Tex Gyre Bonum
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+
+tags: Serif, Garalde, Slab Serif
+
+comment: "TeX Gyre Bonum can be used as a replacement for ITC Bookman (designed by Alexander Phemister, 1860, redesigned by Edward Benguiat, 1975)"
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Book
+herostyle:
+color: tan

@@ -1,0 +1,204 @@
+<a id="poster"></a>
+<div class="specimen-poster">
+  {# Fonts für den aktuellen Ordner — kommt jetzt aus dem folder-Objekt der Pagination #}
+  {% set activeFonts = folder.ownFonts %}
+
+  <header class="header">
+    {% if folder.tags.length %}
+      <ul class="keywords small ligatures">
+        {% for tag in folder.tags %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <p class="author">{{ folder.fontauthor }}</p>
+    <h1 class="ligatures display-size-5">
+      <span id="fonttitle">{{ folder.title }}</span></h1>
+    <p class="year">{{ folder.fontyear }}</p>
+    {% if folder.sourceUrl %}
+      <p>
+        <a href="{{ folder.sourceurl }}" class="small" target="_blank" rel="noopener">{{ folder.sourceUrl }}</a>
+      </p>
+    {% endif %}
+    {% if folder.comment %}
+      <article class="comment">
+        <p>{{ folder.comment }}</p>
+      </article>
+    {% endif %}
+
+    {% if folder.content %}
+      <article class="font-content">
+        {{ folder.content | markdownify | safe }}
+      </article>
+    {% endif %}
+
+    {% include "seperator.njk" %}
+  </header>
+
+  <section class="hero">
+    <article class="letters">
+      <p class="fitty">Aa Rr Ee</p>
+      <p class="fitty italic">Aa Rr Ee</p>
+    </article>
+
+    <article class="hero-letters">
+      <div class="cmyk">
+        <div class="cmyk-layer cmyk_cyan"></div>
+        <div class="cmyk-layer cmyk_magenta"></div>
+        <div class="cmyk-layer cmyk_yellow"></div>
+        <div class="cmyk-layer cmyk_black"></div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
+        <defs>
+          <clippath id="text-clip">
+            <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
+              {{ folder.heroletter or site.heroletter }}
+            </text>
+          </clippath>
+        </defs>
+      </svg>
+    </article>
+
+    <article class="hero-word">
+      <p contenteditable="true"
+               class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
+        {{ folder.heroword or site.heroword }}
+      </p>
+    </article>
+
+    <article class="alphabet">
+      <div class="alphabet_letters upper">
+        {% for char in "abc_upper" | unicodeChars %}
+          <span>{{ char }}</span>
+        {% endfor %}
+      </div>
+      <div class="alphabet_letters">
+        {% for char in "abc_lower" | unicodeChars %}
+          <span>{{ char }}</span>
+        {% endfor %}
+      </div>
+      <div class="alphabet_letters numbers old-nums">
+        {% for char in "digits" | unicodeChars %}
+          <span>{{ char }}</span>
+        {% endfor %}
+        {% for char in "punctuation" | unicodeChars %}
+          <span>{{ char }}</span>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+
+  <section class="font-gallery">
+    {% include "font-image-list.njk" %}
+  </section>
+
+  <section class="latin">
+    {% include "seperator.njk" %}
+
+    <article id="fitty">
+      {% set displayFont = null %}
+      {% for f in activeFonts %}
+        {% if f.optical == 'Display' and not displayFont %}
+          {% set displayFont = f %}
+        {% endif %}
+      {% endfor %}
+
+      <p class="upper">Specimen</p>
+      <p class="upper fitty">Character <span class="small-caps">VM</span> sev</p>
+      {% if displayFont %}
+        <p class="display-size-5 small-caps fitty"
+                   style="font-family: '{{ displayFont.family }} {{ displayFont.optical }}';">
+                   Also in Display weight
+                </p>
+      {% endif %}
+      <p class="upper italic fitty">Typorum probatissimorum,</p>
+      <p class="fitty">Incondite qvidem, sed secundum</p>
+      <p class="upper fitty">svas tamen differentias propositum</p>
+    </article>
+  </section>
+
+  <section class="paragraph-blocks">
+    {% for size in[
+      28,
+      24,
+      20,
+      16,
+      12,
+      8
+    ] %}
+      <article class="font-size-{{ size }}">
+        <small>Size: {{ size }}px</small>
+        <p class="justify initials">
+          {{ paragraph[size] or site["paragraph" + size] }}
+        </p>
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="waterfall">
+    {% include "seperator.njk" %}
+
+    {% if activeFonts %}
+      {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+      {% set displayFonts = varFonts if varFonts | length > 0 else
+        activeFonts %}
+
+      <article>
+        <h2>{{ folder.title }} Family</h2>
+
+        {% for font in displayFonts %}
+          {% if font.isVariable %}
+            <small>
+              {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
+                    <span class="badge--variable" title="variable font">VAR</span>
+            </small>
+          {% else %}
+            <small>
+              {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
+                </small>
+          {% endif %}
+          <p
+                    {% if font.optical %} class="{{ font.optical | slugify }}"{% endif %}
+                    style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
+            {{ site.panagram }}
+          </p>
+        {% endfor %}
+      </article>
+    {% else %}
+      <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
+    {% endif %}
+  </section>
+
+  <section class="ascii">
+    <h2>Basic ASCII</h2>
+    {% for char in "ascii" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+
+    <h2>Ligatures</h2>
+    {% for char in "ligatures" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+
+    <h2>Fractions</h2>
+    {% for char in "fractions" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+
+    <h2>Latin-1</h2>
+    {% for char in "latin1" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+
+    <h2>Latein Erweitert-A</h2>
+    {% for char in "latinExtA" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+
+    <h2>Latein Erweitert-B</h2>
+    {% for char in "latinExtB" | unicodeChars %}
+      <span class="l">{{ char }}</span>
+    {% endfor %}
+  </section>
+
+</div>

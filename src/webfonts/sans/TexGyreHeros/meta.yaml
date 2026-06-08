@@ -1,0 +1,19 @@
+title: Tex Gyre Heros
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+
+tags: Neo-Grotesk
+
+comment: "TeX Gyre Heros can be used as a replacement for a popular font Helvetica, also known as Swiss (prepared by Max Miedinger with Eduard Hoffmann, 1957, at the Haas Type Foundry)"
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Swiss Cheese
+herostyle:
+color: red
+
+imageOverrides:
+  "use_of_helvetica.png":
+    alt: "Famous Brands that Uses Helvetica"
+    source: "https://www.graphicpear.com/blog/famous-brands-uses-helvetica/"

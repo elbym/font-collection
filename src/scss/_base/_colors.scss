@@ -1,0 +1,75 @@
+:root {
+  // base colors
+  --color-base-text: hsl(0, 0%, 0%);
+  --color-base-shadow: hsla(0, 0%, 25%, .8);
+  --color-base-background: #f5f4f0;
+  --color-base-primary: RoyalBlue;
+
+  // Mix colors
+  --color-mix-light: #fff;
+  --color-mix-dark: #111;
+
+  --color-text:         color-mix(in oklab, var(--color-base-text),        var(--color-mix-light) 20%);
+  --color-text-muted:   color-mix(in oklab, var(--color-base-text),  var(--color-mix-light) 50%);
+  --color-background:   color-mix(in oklab, var(--color-base-background),  var(--color-mix-light) 20%);
+
+  --color-accent:       color-mix(in oklab, var(--color-base-primary),      var(--color-mix-light) 20%);
+  --color-highlight:    color-mix(in oklab, var(--color-base-primary),      var(--color-mix-light) 60%);
+  --color-border:       color-mix(in oklab, var(--color-base-primary),      var(--color-mix-light) 50%);
+
+  --color-text-shadow:  color-mix(in oklab, var(--color-base-shadow),      var(--color-mix-light) 20%);
+  --color-surface:      color-mix(in oklab, var(--color-base-background),     var(--color-mix-dark) 20%);
+
+  // CMYK process colors
+  --cmyk-cyan:    hsl(196, 100%, 47%);
+  --cmyk-magenta: hsl(321, 100%, 46%);
+  --cmyk-yellow:  hsl(56, 100%, 50%);
+  --cmyk-black:   hsla(0, 0%, 0%, 0.6);
+
+  // CMYK Pattern
+  --dot-size: .4cqw;
+  --dot-start: 30%;
+  --dot-end: 35%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Mix colors
+
+    --color-text: color-mix(in oklab, var(--color-base-text), var(--color-mix-light) 90%);
+    --color-text-muted: color-mix(in oklab, var(--color-base-text), var(--color-mix-light) 70%);
+    --color-background: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 90%);
+
+    --color-accent: color-mix(in oklab, var(--color-base-primary), var(--color-mix-light) 40%);
+    --color-highlight: color-mix(in oklab, var(--color-base-primary), var(--color-mix-dark) 50%);
+    --color-border: color-mix(in oklab, var(--color-base-primary), var(--color-mix-dark) 50%);
+
+    --color-text-shadow: color-mix(in oklab, var(--color-base-shadow), var(--color-mix-light) 20%);
+    --color-surface: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 80%);
+
+      // CMYK process colors
+      --cmyk-cyan:    hsla(196, 100%, 47%, .8);
+      --cmyk-magenta: hsla(321, 100%, 46%, .8);
+      --cmyk-yellow:  hsla(56, 100%, 50%, .8);
+      --cmyk-black:   hsla(0, 0%, 0%, 0.5);
+    // increase the cmyk pattern in dark mode
+    // --dot-size: .5cqw;
+    --dot-start: 35%;
+    --dot-end: 40%;
+
+
+  }
+  // Dim images
+  img {
+    opacity: 0.8;
+  }
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+header {
+  background-color: var(--color-background);
+}
+

@@ -1,0 +1,83 @@
+@use "../_includes/modularscale" as ms;
+@use "../_includes/breakpoints" as bp;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+h1 {
+    @include ms.modscale(3, $responsive: true);
+}
+h2 {
+    @include ms.modscale(2, $responsive: true);
+}
+h3 {
+    @include ms.modscale(1, $responsive: true);
+}
+@for $i from 1 through 6 {
+    .display-size-#{$i} {
+        @include ms.modscale($i, $responsive: true);
+    }
+}
+
+.p-2-col {
+    column-gap: 2rem;
+    @include bp.media-breakpoint-up(md) {
+        column-count: 2;
+    }
+    @include bp.media-breakpoint-up(xl) {
+        column-count: 3;
+    }
+}
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: 700;
+}
+.justify {
+    text-align: justify;
+}
+.ligature {
+    font-variant-ligatures: common-ligatures;
+    font-feature-settings: "liga" 1,  "clig" 1, "dlig" 1;
+    // font-feature-settings:
+    //     "ss01" 1,
+    //     "ss02" 1,
+    //     "onum" 1;
+}
+.upper {
+    text-transform: uppercase;
+}
+.small {
+    @include ms.modscale(-1, $responsive: true);
+}
+.smaller {
+    @include ms.modscale(-2, $responsive: true);
+}
+.small-caps {
+    text-transform: lowercase;
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp" on;
+}
+.old-nums {
+    font-variant-numeric: oldstyle-nums;
+}
+.text-align-right {
+    text-align: right;
+}
+.initials {
+    &::first-letter {
+        // font-style: italic;
+        font-size: 3lh;
+        color: #888;
+        float: left;
+        margin: 0.125em 0.125em 0 0;
+        // padding: 0 0 0.125em 0.012612em;
+        font-weight: 500;
+    }
+}

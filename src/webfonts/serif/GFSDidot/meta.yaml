@@ -1,0 +1,21 @@
+title: GFS Didot
+url: https://greekfontsociety-gfs.gr/typefaces/19th_century
+tags: Didone, Display
+
+fontauthor: Greek Font Society
+fontyear:
+
+heroletter: Gt
+heroword: Florist
+herostyle:
+color: burlywood
+
+gallery:
+  - url: "/img/landschaft.jpg"
+    alt: "Eine weite Landschaft bei Sonnenuntergang"
+    source: "Max Mustermann"
+
+eleventyNavigation:
+  parent: Serif
+  key: GFSDidot
+  family: Serif
