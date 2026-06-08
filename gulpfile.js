@@ -10,6 +10,10 @@ const prettier = require("gulp-prettier").default;
 const sourcemaps = require("gulp-sourcemaps");
 const sharpOptimizeImages = require("gulp-sharp-optimize-images").default;
 const newer = require("gulp-newer");
+const fs = require("fs");
+const path = require("path");
+const https = require("https");
+const http = require("http");
 
 // ---------------------------------------------------------------------------
 // Konfiguration
@@ -58,6 +62,151 @@ function makeEleventyTask(pathprefix = null) {
     if (pathprefix) args.push(`--pathprefix=${pathprefix}`);
     return cp.spawn("npx", args, { stdio: "inherit", shell: true });
   };
+}
+
+// ---------------------------------------------------------------------------
+// Hintergrundbild-Download aus urls.txt
+// ---------------------------------------------------------------------------
+
+/**
+ * Liest eine urls.txt und gibt {filename, url}[]-Einträge zurück.
+ * Formate (eine Zeile pro Eintrag, # = Kommentar):
+ *   https://example.com/foto.jpg          → Dateiname aus URL ableiten
+ *   mein-foto=https://example.com/...     → expliziter Dateiname (Endung auto-erkannt)
+ *   mein-foto.jpg=https://example.com/... → wie oben, .jpg wird ignoriert (Endung auto-erkannt)
+ */
+function parseUrlFile(filePath) {
+  const entries = [];
+  for (const rawLine of fs.readFileSync(filePath, "utf8").split("\n")) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const eqIdx = line.indexOf("=");
+    if (eqIdx > 0 && !/^https?:\/\//.test(line)) {
+      const filename = line.slice(0, eqIdx).trim();
+      const url = line.slice(eqIdx + 1).trim();
+      if (/^https?:\/\//.test(url)) entries.push({ filename, url });
+    } else if (/^https?:\/\//.test(line)) {
+      entries.push({ filename: null, url: line });
+    }
+  }
+  return entries;
+}
+
+/** Leitet den Dateinamen (ohne Erweiterung) aus dem URL-Pfad ab. */
+function stemFromUrl(urlStr) {
+  try {
+    const lastSegment = new URL(urlStr).pathname.split("/").filter(Boolean).pop() || "";
+    const dotIdx = lastSegment.lastIndexOf(".");
+    const stem = dotIdx > 0 ? lastSegment.slice(0, dotIdx) : lastSegment;
+    return stem || `img-${Date.now()}`;
+  } catch {
+    return `img-${Date.now()}`;
+  }
+}
+
+/** Gibt die Dateiendung basierend auf dem Content-Type-Header zurück. */
+function extFromContentType(ct = "") {
+  if (ct.includes("image/webp")) return ".webp";
+  if (ct.includes("image/png")) return ".png";
+  if (ct.includes("image/avif")) return ".avif";
+  return ".jpg";
+}
+
+/** Prüft, ob ein Bild mit dem gegebenen Stammnamen (ohne Erweiterung) bereits existiert. */
+function imageAlreadyExists(dir, stem) {
+  return [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"].some(
+    (ext) => fs.existsSync(path.join(dir, stem + ext))
+  );
+}
+
+/**
+ * Lädt ein Bild herunter. Dateiendung wird aus Content-Type erkannt.
+ * Folgt HTTP-Weiterleitungen (max. 10). Gibt den tatsächlichen Zielpfad zurück.
+ */
+function downloadImage(fileUrl, destDir, stem, redirectCount = 0) {
+  return new Promise((resolve, reject) => {
+    if (redirectCount > 10) { reject(new Error(`Zu viele Weiterleitungen: ${fileUrl}`)); return; }
+    let urlObj;
+    try { urlObj = new URL(fileUrl); } catch (e) { reject(new Error(`Ungültige URL: ${fileUrl}`)); return; }
+    const protocol = urlObj.protocol === "https:" ? https : http;
+    const req = protocol.get(fileUrl, { headers: { "User-Agent": "Mozilla/5.0 (compatible; font-collection-build/1.0)" } }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        res.resume();
+        downloadImage(new URL(res.headers.location, fileUrl).href, destDir, stem, redirectCount + 1)
+          .then(resolve).catch(reject);
+        return;
+      }
+      if (res.statusCode !== 200) {
+        res.resume();
+        reject(new Error(`HTTP ${res.statusCode}: ${fileUrl}`));
+        return;
+      }
+      const destPath = path.join(destDir, stem + extFromContentType(res.headers["content-type"]));
+      const ws = fs.createWriteStream(destPath);
+      res.pipe(ws);
+      ws.on("finish", () => resolve(destPath));
+      ws.on("error", (err) => { try { fs.unlinkSync(destPath); } catch (_) {} reject(err); });
+      res.on("error", (err) => { try { fs.unlinkSync(destPath); } catch (_) {} reject(err); });
+    });
+    req.on("error", reject);
+  });
+}
+
+/** Findet urls.txt-Dateien direkt in background/-Unterordnern unter baseDir. */
+function findFontBackgroundUrlFiles(baseDir) {
+  const results = [];
+  if (!fs.existsSync(baseDir)) return results;
+  function scan(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const subDir = path.join(dir, entry.name);
+      if (entry.name === "background") {
+        const urlFile = path.join(subDir, "urls.txt");
+        if (fs.existsSync(urlFile)) results.push(urlFile);
+      } else {
+        scan(subDir);
+      }
+    }
+  }
+  scan(baseDir);
+  return results;
+}
+
+/** Gulp-Task: Lädt Hintergrundbilder aus allen urls.txt-Dateien herunter. */
+async function downloadBackgroundImages() {
+  const urlFiles = [];
+
+  // Globale Hintergrundbilder
+  const globalUrlFile = path.join(__dirname, "src", "img", "background", "urls.txt");
+  if (fs.existsSync(globalUrlFile)) urlFiles.push(globalUrlFile);
+
+  // Pro-Font-Hintergrundbilder
+  urlFiles.push(...findFontBackgroundUrlFiles(path.join(__dirname, "src", "webfonts")));
+
+  const pending = [];
+  for (const urlFile of urlFiles) {
+    const dir = path.dirname(urlFile);
+    for (const { filename, url } of parseUrlFile(urlFile)) {
+      const stem = filename ? path.parse(filename).name : stemFromUrl(url);
+      if (!imageAlreadyExists(dir, stem)) pending.push({ url, dir, stem });
+    }
+  }
+
+  if (pending.length === 0) {
+    console.log("  Hintergrundbilder: Keine neuen Downloads erforderlich.");
+    return;
+  }
+
+  console.log(`  Lade ${pending.length} Hintergrundbild(er) herunter…`);
+  for (const { url, dir, stem } of pending) {
+    fs.mkdirSync(dir, { recursive: true });
+    try {
+      const dest = await downloadImage(url, dir, stem);
+      console.log(`    ✓ ${path.relative(__dirname, dest)}`);
+    } catch (err) {
+      console.error(`    ✗ ${stem}: ${err.message}`);
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -170,6 +319,7 @@ const copyStatic = parallel(copyFonts, copyImages, copyJS, copyFavicon);
 
 exports.default = series(
   clean,
+  downloadBackgroundImages,
   buildEleventy,
   parallel(copyStatic, compileMainSass, compileFontsScss),
   serve,
@@ -178,6 +328,7 @@ exports.default = series(
 
 exports.build = series(
   clean,
+  downloadBackgroundImages,
   buildEleventy,
   parallel(copyStatic, compileMainSassMinified, compileFontsScssMinified),
   beautifyHTML,
@@ -185,9 +336,11 @@ exports.build = series(
 
 exports.ghpages = series(
   clean,
+  downloadBackgroundImages,
   buildEleventyGhPages,
   parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
   beautifyHTML,
 );
 
 exports.clean = series(clean);
+exports.download = downloadBackgroundImages;

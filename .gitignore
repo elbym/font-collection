@@ -11,4 +11,6 @@ src/scss/_includes/_html_colornames.scss
 
 src/img/background/*
 !src/img/background/sample.webp
+!src/img/background/urls.txt
 src/webfonts/**/background/*
+!src/webfonts/**/background/urls.txt

@@ -1,0 +1,16 @@
+# Globale Hintergrundbilder für Font Cards
+# ==========================================
+# Bilder werden beim Build heruntergeladen und in diesem Ordner gespeichert.
+# Die heruntergeladenen Dateien sind gitignored – nur diese urls.txt wird committed.
+#
+# Format: eine URL pro Zeile
+#   https://images.unsplash.com/photo-xxxxx?w=1200
+#
+# Optional: eigener Dateiname vor dem =-Zeichen (Endung wird automatisch erkannt)
+#   abstrakt=https://images.unsplash.com/photo-xxxxx?w=1200
+#
+# Zeilen mit # werden ignoriert.
+# Bereits vorhandene Dateien werden nicht erneut heruntergeladen.
+# Zum Erzwingen: Datei löschen und neu bauen.
+#
+# Tipp: npx gulp download  → nur Bilder herunterladen, ohne vollständigen Build
