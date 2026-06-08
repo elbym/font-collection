@@ -20,5 +20,5 @@ module.exports = function () {
     }
   });
 
-  return Object.values(bestVersions).map((file) => `/img/background/${file}`);
+  return Object.values(bestVersions).map((file) => `/img/background/${file.replace(/\.(jpe?g|png)$/i, ".webp")}`);
 };

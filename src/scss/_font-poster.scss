@@ -106,11 +106,11 @@
             margin-bottom: 1rem;
         }
         @include bp.media-breakpoint-up(md) {
-            
+
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-gap: 1rem;
-            
+
             p {
                 max-height: unset;
                 overflow: unset;
@@ -206,13 +206,16 @@
         }
         p {
             @include ms.modscale(2, $responsive: true);
-            padding: 0 0 0.5rem 0;
-            margin: 0 0 0.5rem 0;
-            border-bottom: 0.025rem solid #ccc;
+            // padding: 0 0 0.5rem 0;
+            // margin: 0 0 0.5rem 0;
+            line-height: 1.25;
+            height: 1lh;
+            margin: 0;
+            padding: 0;
+            // border-bottom: 0.025rem solid #ccc;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis ellipsis;
-            height: 1em;
         }
 
         small {

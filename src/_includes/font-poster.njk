@@ -5,10 +5,12 @@
 
   <header class="header">
     {% if folder.tags.length %}
-      <ul class="keywords small ligatures">
+      <ul class="keywords ligatures">
         {% for tag in folder.tags %}
-          <li>{{ tag }}</li>
+          {# <li>{{ tag }}</li> #}
+          <li><a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a></li>
         {% endfor %}
+
       </ul>
     {% endif %}
     <p class="author">{{ folder.fontauthor }}</p>
@@ -148,14 +150,14 @@
 
         {% for font in displayFonts %}
           {% if font.isVariable %}
-            <small>
+            {# <small>
               {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
                     <span class="badge--variable" title="variable font">VAR</span>
-            </small>
+            </small> #}
           {% else %}
-            <small>
+            {# <small>
               {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
-                </small>
+            </small> #}
           {% endif %}
           <p
                     {% if font.optical %} class="{{ font.optical | slugify }}"{% endif %}

@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ folder.title or site.title }}</title>
   <link rel="stylesheet" href="/css/styles.css">
-  
+
   {% if folder.key is defined %}
   <link rel="stylesheet" href="/css/webfonts/all-fonts.css">
   {% endif %}
-  
-  {% if color %}
+
+  {% if folder.color %}
   <style>
     :root {
-        --color-base-primary: {{ color }};
+        --color-base-primary: {{ folder.color }};
     }
   </style>
   {% endif %}
@@ -37,7 +37,7 @@
   </main>
 
   {% include "footer.njk" %}
-  
+
   </div>
 </body>
 </html>

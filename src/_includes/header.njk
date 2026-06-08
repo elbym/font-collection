@@ -15,7 +15,7 @@
         <a href="/{{ node.url }}.html"
           {%- if isActive %} aria-current="page"{% endif %}
           {%- if children.length %} aria-expanded="{{ 'true' if isOpen else 'false' }}"{% endif %}
-          {%- if node.color %} style="--nav-accent: {{ node.color }}"{% endif %}>
+          {%- if node.color %} style="color: {{ node.color }}"{% endif %}>
           {{ node.title }}
         </a>
         {%- if children.length and isOpen -%}
@@ -46,7 +46,7 @@
       {%- if fontRoots.length %}
         <li class="nav-group
           {%- if folder %} is-open{%- endif %}">
-          <span class="nav-group-label" id="nav-group-fonts">Fonts</span>
+          {# <span class="nav-group-label" id="nav-group-fonts">Fonts</span> #}
           <ul aria-labelledby="nav-group-fonts">
             {%- for node in fontRoots -%}
               {{ renderFontNode(node, fontFolders, folder) }}
