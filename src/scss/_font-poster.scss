@@ -311,6 +311,12 @@
       text-align: center;
     }
 
+    .char--missing {
+      color: var(--color-text-muted);
+      border-color: transparent;
+      opacity: 0.35;
+    }
+
     // @include bp.media-breakpoint-up(lg) {
     //     .l {
     //         flex: 0 0 3ch;
