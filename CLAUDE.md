@@ -92,8 +92,8 @@ npx gulp ghpages
 # Clean dist/
 npx gulp clean
 
-# Deploy to gh-pages branch
-git subtree push --prefix dist origin gh-pages
+# Deploy to gh-pages branch (dist/ is gitignored, so subtree push doesn't work)
+cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
 ```
 
 Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. The watch task re-runs Eleventy on any `.njk`, `.md`, `.html`, or `_data/**/*.js` change, then reloads BrowserSync.
@@ -174,7 +174,9 @@ Edit `src/_data/site.json`. The `panagram` value is the sentence shown in the wa
 
 ```bash
 npx gulp ghpages          # builds with --pathprefix=font-collection
-git subtree push --prefix dist origin gh-pages
+cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
 ```
+
+Hinweis: `git subtree push` funktioniert nicht, weil `dist/` gitignored ist.
 
 The `ghpages` gulp task uses `HtmlBasePlugin` via the Eleventy `--pathprefix` flag to rewrite all asset URLs for the subdirectory path.

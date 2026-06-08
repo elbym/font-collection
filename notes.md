@@ -4,13 +4,13 @@
 # git
 
 ## Image Rezise
-for i in *.jpg; do magick $i -resize 720x min/$i; done
+for i in *.jpg; do magick $i -resize 1280x min/$i; done
 
 ## Webp
 for file in *.jpg; do cwebp -q 50 "$file" -o "${file%.*}.webp"; done
 
 ## Github Pages deploy
-git subtree push --prefix dist origin gh-pages
+cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
 
 
 # Font Poster
