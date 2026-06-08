@@ -169,36 +169,55 @@
   {% endif %}
 
   {%- set cpMap = fontCodepoints[folder.key] if fontCodepoints else null -%}
+  {%- macro pct(range) %}{% if cpMap %} <span class="coverage">({{ range | coveragePercent(cpMap) }}%)</span>{% endif %}{% endmacro -%}
+  {%- macro chars(range) %}
+    {% for char in range | unicodeChars %}<span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>{% endfor %}
+  {%- endmacro -%}
+
   <section class="ascii">
-    <h2>Basic ASCII{% if cpMap %} <span class="coverage">({{ "ascii" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "ascii" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
 
-    <h2>Ligatures{% if cpMap %} <span class="coverage">({{ "ligatures" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "ligatures" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
+    <h2>Basic ASCII{{ pct("ascii") }}</h2>
+    {{ chars("ascii") }}
 
-    <h2>Fractions{% if cpMap %} <span class="coverage">({{ "fractions" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "fractions" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
+    <h2>Ligaturen{{ pct("ligatures") }}</h2>
+    {{ chars("ligatures") }}
 
-    <h2>Latin-1{% if cpMap %} <span class="coverage">({{ "latin1" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "latin1" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
+    <h2>Brüche{{ pct("fractions") }}</h2>
+    {{ chars("fractions") }}
 
-    <h2>Latein Erweitert-A{% if cpMap %} <span class="coverage">({{ "latinExtA" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "latinExtA" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
+    <h2>Typografische Satzzeichen{{ pct("punctuationTypo") }}</h2>
+    {{ chars("punctuationTypo") }}
 
-    <h2>Latein Erweitert-B{% if cpMap %} <span class="coverage">({{ "latinExtB" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-    {% for char in "latinExtB" | unicodeChars %}
-      <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
-    {% endfor %}
+    <h2>Hoch- / Tiefgestellt{{ pct("superSub") }}</h2>
+    {{ chars("superSub") }}
+
+    <h2>Buchstabenartige Symbole{{ pct("letterlike") }}</h2>
+    {{ chars("letterlike") }}
+
+    <h2>Währungssymbole{{ pct("currency") }}</h2>
+    {{ chars("currency") }}
+
+    <h2>Latin-1{{ pct("latin1") }}</h2>
+    {{ chars("latin1") }}
+
+    <h2>Latein Erweitert-A{{ pct("latinExtA") }}</h2>
+    {{ chars("latinExtA") }}
+
+    <h2>Latein Erweitert-B{{ pct("latinExtB") }}</h2>
+    {{ chars("latinExtB") }}
+
+    <h2>Latein Erweitert Zusatz{{ pct("latinExtAdd") }}</h2>
+    {{ chars("latinExtAdd") }}
+
+    <h2>Griechisch{{ pct("greek") }}</h2>
+    {{ chars("greek") }}
+
+    <h2>Pfeile{{ pct("arrows") }}</h2>
+    {{ chars("arrows") }}
+
+    <h2>Boxzeichnen{{ pct("boxDrawing") }}</h2>
+    {{ chars("boxDrawing") }}
+
   </section>
 
 </div>

@@ -7,16 +7,33 @@ const fonts = require("./src/_data/fonts.js");
 const md = markdownIt({ html: false, breaks: true, linkify: true });
 
 const UNICODE_RANGES = {
-  ascii: [33, 126],
-  abc_upper: [65, 91],
-  abc_lower: [97, 122],
-  digits: [48, 58],
-  punctuation: [33, 48],
-  fractions: [8528, 8544],   // U+2150–U+215F: vulgar fractions only (⅐ … ⅟)
-  ligatures: [64256, 64263], // U+FB00–U+FB06: Latin ligatures only (ﬀ ﬁ ﬂ ﬃ ﬄ ﬅ ﬆ)
-  latin1: [160, 255],
-  latinExtA: [256, 383],
-  latinExtB: [384, 591],
+  // Basic ranges (used in alphabet / hero sections too)
+  ascii:      [33, 126],
+  abc_upper:  [65, 91],
+  abc_lower:  [97, 122],
+  digits:     [48, 58],
+  punctuation:[33, 48],
+
+  // --- Typographic symbols ---
+  ligatures:        [64256, 64263], // U+FB00–U+FB06: ﬀ ﬁ ﬂ ﬃ ﬄ ﬅ ﬆ
+  fractions:        [8528,  8544],  // U+2150–U+215F: ⅐ … ⅟
+  punctuationTypo:  [8208,  8287],  // U+2010–U+205E: dashes, quotes, bullet, ellipsis …
+  superSub:         [8304,  8352],  // U+2070–U+209F: ⁰¹² … ₀₁₂ …
+  letterlike:       [8448,  8528],  // U+2100–U+214F: ™ © ® ℃ № ℓ …
+  currency:         [8352,  8400],  // U+20A0–U+20CF: € £ ¥ ₿ ₽ ₹ …
+
+  // --- Latin scripts ---
+  latin1:           [160,   255],   // U+00A0–U+00FE
+  latinExtA:        [256,   384],   // U+0100–U+017F
+  latinExtB:        [384,   592],   // U+0180–U+024F
+  latinExtAdd:      [7680,  7936],  // U+1E00–U+1EFF: precomposed forms (ẞ ặ ộ …)
+
+  // --- Other scripts ---
+  greek:            [880,   1024],  // U+0370–U+03FF: Greek and Coptic
+
+  // --- Symbols & technical ---
+  arrows:           [8592,  8704],  // U+2190–U+21FF: ← → ↑ ↓ ⇒ …
+  boxDrawing:       [9472,  9600],  // U+2500–U+257F: ─ │ ┌ ┐ └ ┘ …
 };
 
 module.exports = function (eleventyConfig) {
