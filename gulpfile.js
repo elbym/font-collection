@@ -22,7 +22,6 @@ const yaml = require("js-yaml");
 
 const IMAGE_MAX_WIDTH = 1920;
 const UNSPLASH_BASE = "https://unsplash.com/photos/";
-const PEXELS_BASE = "https://images.pexels.com/photos/";
 
 const PATHS = {
   mainScss: "src/scss/**/*.scss",
@@ -110,11 +109,9 @@ function parseUrlFile(filePath) {
     const eqIdx = line.indexOf("=");
     if (eqIdx > 0 && !/^https?:\/\//.test(line)) {
       const filename = line.slice(0, eqIdx).trim();
-      const rawValue = line.slice(eqIdx + 1).trim();
-      const url = /^https?:\/\//.test(rawValue)
-        ? rawValue
-        : resolveShortId(rawValue);
-      if (url) entries.push({ filename, url });
+      const rawUrl = line.slice(eqIdx + 1).trim();
+      const url = /^https?:\/\//.test(rawUrl) ? rawUrl : UNSPLASH_BASE + rawUrl;
+      entries.push({ filename, url });
     } else if (/^https?:\/\//.test(line)) {
       entries.push({ filename: null, url: line });
     }
@@ -143,26 +140,7 @@ function extFromContentType(ct = "") {
   return ".jpg";
 }
 
-/**
- * Sets the ?w= parameter to IMAGE_MAX_WIDTH for known image CDNs,
- * avoiding unnecessarily large originals being downloaded.
- * Other URLs are returned unchanged.
- */
-function limitImageUrl(urlStr) {
-  let u;
-  try {
-    u = new URL(urlStr);
-  } catch {
-    return urlStr;
-  }
-  // Unsplash URLs already include /download?w= (see parseUrlFile)
-  const limitedHosts = ["images.pexels.com"];
-  if (!limitedHosts.includes(u.hostname)) return urlStr;
-  u.searchParams.set("w", String(IMAGE_MAX_WIDTH));
-  return u.toString();
-}
-
-/** Returns true if an image with the given stem (without extension) already exists in dir. */
+/** Prüft, ob ein Bild mit dem gegebenen Stammnamen (ohne Erweiterung) bereits existiert. */
 function imageAlreadyExists(dir, stem) {
   return [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"].some((ext) =>
     fs.existsSync(path.join(dir, stem + ext)),
@@ -285,8 +263,7 @@ async function downloadBackgroundImages() {
     const dir = path.dirname(urlFile);
     for (const { filename, url } of parseUrlFile(urlFile)) {
       const stem = filename ? path.parse(filename).name : stemFromUrl(url);
-      if (!imageAlreadyExists(dir, stem))
-        pending.push({ url: limitImageUrl(url), dir, stem });
+      if (!imageAlreadyExists(dir, stem)) pending.push({ url: `${url}/download?force=true&w=${IMAGE_MAX_WIDTH}`, dir, stem });
     }
   }
 
@@ -502,15 +479,28 @@ function watchFiles() {
 }
 
 // ---------------------------------------------------------------------------
-// Deploy to gh-pages branch
+// Deploy
 // ---------------------------------------------------------------------------
 
-function deployGhPages(done) {
-  cp.execSync(
-    'git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force',
-    { cwd: path.join(__dirname, "dist"), stdio: "inherit", shell: true },
-  );
-  done();
+function deployToGhPages(done) {
+  const distDir = path.join(__dirname, "dist");
+  const remote = "git@github.com:elbym/font-collection.git";
+  const commands = [
+    `git -C "${distDir}" init`,
+    `git -C "${distDir}" add -A`,
+    `git -C "${distDir}" commit -m "deploy"`,
+    `git -C "${distDir}" push "${remote}" HEAD:gh-pages --force`,
+  ];
+  function run(index) {
+    if (index >= commands.length) { done(); return; }
+    cp.exec(commands[index], { cwd: distDir }, (err, stdout, stderr) => {
+      if (stdout) process.stdout.write(stdout);
+      if (stderr) process.stderr.write(stderr);
+      if (err) { done(err); return; }
+      run(index + 1);
+    });
+  }
+  run(0);
 }
 
 // ---------------------------------------------------------------------------
@@ -551,3 +541,12 @@ exports.deploy = series(exports.ghpages, deployGhPages);
 
 exports.clean = series(clean);
 exports.download = downloadBackgroundImages;
+
+exports.deploy = series(
+  clean,
+  downloadBackgroundImages,
+  buildEleventyGhPages,
+  parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
+  beautifyHTML,
+  deployToGhPages,
+);
