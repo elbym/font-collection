@@ -16,8 +16,8 @@ header {
         background: var(--color-surface);
         border-right: .1rem solid var(--color-border);
 
-        &.is-ancestorhas-children,
-        &.active {
+        &.is-ancestor,
+        &.is-active {
           background: var(--color-highlight);
         }
       }

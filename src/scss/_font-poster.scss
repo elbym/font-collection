@@ -318,8 +318,6 @@
     line-height: 2rem;
     max-height: 2rem;
     letter-spacing: 0.66ch;
-
-    display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
     overflow: hidden;
@@ -398,7 +396,7 @@
 
   .metropolis {
     .specimen-poster {
-      border-image-source: repeating-linear-gradient(-45deg, transparent, transparent 1rem, #ccc 1rem, P #ccc 2rem);
+      border-image-source: repeating-linear-gradient(-45deg, transparent, transparent 1rem, #ccc 1rem, #ccc 2rem);
       border-image-slice: 40;
       border-image-repeat: round;
       border-image-width: 1rem;
