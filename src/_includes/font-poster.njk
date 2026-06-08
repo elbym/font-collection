@@ -8,10 +8,12 @@
       <ul class="keywords ligatures">
         {% for tag in folder.tags %}
           {# <li>{{ tag }}</li> #}
-          <li><a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a></li>
+          <li>
+            <a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a>
+          </li>
         {% endfor %}
-
       </ul>
+
     {% endif %}
     <p class="author">{{ folder.fontauthor }}</p>
     <h1 class="ligatures display-size-5">
@@ -90,6 +92,23 @@
     </article>
   </section>
 
+  {% if activeFonts %}
+    {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+    {% set waterfallGroups = ["Regular", "Italic"] %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else
+      activeFonts %}
+
+    <section class="waterfall waterfall--styles">
+      {% include "seperator.njk" %}
+      {# <h2>{{ folder.title }} — Styles</h2> #}
+      {% set waterfallText = "" %}
+      {% include "waterfall-groups.njk" %}
+    </section>
+
+  {% else %}
+    <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
+  {% endif %}
+
   <section class="font-gallery">
     {% include "font-image-list.njk" %}
   </section>
@@ -137,39 +156,21 @@
     {% endfor %}
   </section>
 
-  <section class="waterfall">
-    {% include "seperator.njk" %}
+  {% if activeFonts %}
+    {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else
+      activeFonts %}
 
-    {% if activeFonts %}
-      {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-      {% set displayFonts = varFonts if varFonts | length > 0 else
-        activeFonts %}
+    <section class="waterfall waterfall--panagram">
+      {% include "seperator.njk" %}
+      <h2>{{ folder.title }} Family</h2>
+      {% set waterfallText = site.panagram %}
+      {% include "waterfall-groups.njk" %}
+    </section>
 
-      <article>
-        <h2>{{ folder.title }} Family</h2>
-
-        {% for font in displayFonts %}
-          {% if font.isVariable %}
-            {# <small>
-              {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
-                    <span class="badge--variable" title="variable font">VAR</span>
-            </small> #}
-          {% else %}
-            {# <small>
-              {{ font.displayName }} ({{ font.weight }}, {{ font.style }})
-            </small> #}
-          {% endif %}
-          <p
-                    {% if font.optical %} class="{{ font.optical | slugify }}"{% endif %}
-                    style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
-            {{ site.panagram }}
-          </p>
-        {% endfor %}
-      </article>
-    {% else %}
-      <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
-    {% endif %}
-  </section>
+  {% else %}
+    <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
+  {% endif %}
 
   <section class="ascii">
     <h2>Basic ASCII</h2>

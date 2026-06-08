@@ -1,0 +1,16 @@
+{% if waterfallFonts %}
+  {% for groupName, groupFonts in waterfallFonts | groupby("variantGroup") %}
+    {% if not waterfallGroups or groupName in waterfallGroups %}
+    <article class="waterfall-group waterfall-group--{{ groupName | slugify }}">
+      {% for font in groupFonts %}
+        <p
+          {% if font.optical %} class="{{ font.optical | slugify }}"{% endif %}
+          style="font-family: '{{ font.family }}{% if font.optical %} {{ font.optical }}{% endif %}'; font-weight: {{ font.weight }}; font-style: {{ font.style }};">
+          {# {{ waterfallText or (font.family ~ " " ~ font.displayName) }} #}
+          {{ waterfallText or font.displayName }}
+        </p>
+      {% endfor %}
+    </article>
+    {% endif %}
+  {% endfor %}
+{% endif %}

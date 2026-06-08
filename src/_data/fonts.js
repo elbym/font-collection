@@ -108,7 +108,7 @@ module.exports = function () {
     const fontFiles = files.filter((file) => /\.(woff2|woff)$/i.test(file));
 
     const hasVariableItalic = fontFiles.some((f) => {
-      const l = f.toLowerCase();
+      const l = path.parse(f).name.toLowerCase();
       return l.includes("italic") && detectVariableFont(l);
     });
 
@@ -149,6 +149,7 @@ module.exports = function () {
               weight,
               style: s,
               isVariable: true,
+              variantGroup: optical ?? (s === "normal" ? "Regular" : "Italic"),
             }))
           );
         }
@@ -175,23 +176,33 @@ module.exports = function () {
 
         const style = lowerName.includes("italic") ? "italic" : "normal";
 
+        const variantLabel =
+          variableWeights.find((w) => w.weight === weight)?.label ?? "Regular";
+
         return [
           {
             fileName: file,
             filePath: `${relativePath}/${file}`,
-            displayName: nameStr.replace(/[-_]/g, " "),
+            displayName: `${variantLabel}${style === "italic" ? " Italic" : ""}`,
             family: sanitizeFamily(folderName),
             optical,
             opticalOrder,
             weight,
             style,
             isVariable: false,
+            variantGroup: optical ?? (style === "normal" ? "Regular" : "Italic"),
           },
         ];
       })
       .sort((a, b) => {
-        if (a.opticalOrder !== b.opticalOrder)
-          return a.opticalOrder - b.opticalOrder;
+        // Group: upright (0), italic (1), optical variants (2+)
+        const groupOf = (f) => {
+          if (f.optical === null) return f.style === "normal" ? 0 : 1;
+          return 2 + f.opticalOrder;
+        };
+        const ga = groupOf(a);
+        const gb = groupOf(b);
+        if (ga !== gb) return ga - gb;
         if (a.weight !== b.weight) return a.weight - b.weight;
         if (a.style !== b.style) return a.style === "normal" ? -1 : 1;
         return 0;

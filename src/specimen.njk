@@ -109,11 +109,11 @@ permalink: "{{ folder.url }}.html"
   </article>
   {% endif %}
 
-  {% for variant in fontVariants %}
+  {# {% for variant in fontVariants %}
     <p style="font-weight: {{ variant.weight }}; font-style: {{ variant.style }};">
       {{ variant.displayName }}
     </p>
-  {% endfor %}
+  {% endfor %} #}
 
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}

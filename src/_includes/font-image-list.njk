@@ -1,4 +1,5 @@
 {% if fontImages[folder.key] %}
+  {% include "seperator.njk" %}
   <ul class="gallery">
     {% for image in fontImages[folder.key] %}
       {# Prüfe, ob es ein Override für diesen Dateinamen gibt #}
