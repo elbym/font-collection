@@ -92,14 +92,14 @@
     </article>
   </section>
 
+  {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+  {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
+
   {% if activeFonts %}
-    {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
     {% set waterfallGroups = ["Regular", "Italic"] %}
 
     <section class="waterfall waterfall--styles">
       {% include "seperator.njk" %}
-      {# <h2>{{ folder.title }} — Styles</h2> #}
       {% set waterfallText = "" %}
       {% include "waterfall-groups.njk" %}
     </section>
@@ -156,8 +156,6 @@
   </section>
 
   {% if activeFonts %}
-    {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
     {% set waterfallGroups = null %}
 
     <section class="waterfall waterfall--panagram">
