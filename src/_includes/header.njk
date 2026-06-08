@@ -46,7 +46,6 @@
       {%- if fontRoots.length %}
         <li class="nav-group
           {%- if folder %} is-open{%- endif %}">
-          {# <span class="nav-group-label" id="nav-group-fonts">Fonts</span> #}
           <ul aria-labelledby="nav-group-fonts">
             {%- for node in fontRoots -%}
               {{ renderFontNode(node, fontFolders, folder) }}
