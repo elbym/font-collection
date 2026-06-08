@@ -154,7 +154,7 @@ function watchFiles() {
   watch(PATHS.js, copyJS);
 
   watch(
-    ["src/**/*.njk", "src/**/*.md", "src/**/*.html", "src/_data/**/*.js"],
+    ["src/**/*.njk", "src/**/*.md", "src/**/*.html", "src/_data/**/*.js", "src/webfonts/**/*.jpg"],
     series(buildEleventy, parallel(compileMainSass, compileFontsScss), (done) => {
       browserSync.reload();
       done();
