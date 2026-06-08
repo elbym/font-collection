@@ -6,9 +6,23 @@
 
 This is just a personal and opinionated collection of fonts that stuck with me and an excuse to show off the [font_specimen_generator.py](./font_specimen_generator.py) (I asked Claude to cobble together). This list is also influenced by [Teuderun](https://www.teuderun.de/schriftarten/top-10/).
 
-List of Font. In no specific order.
 
-## Table of Contents
+## Basic usage
+
+* place your fonts in src/webfonts/[font-style]/[font]
+* place some backgrounds in src/img/background
+  * optinal place per font backgrounds in src/webfonts/[font-style]/[font]/background
+
+### Run local server
+    git clone
+    npm install
+    gulp            # run local dev server
+    gulp ghpages    # build site with path prefix for github pages
+
+## Below: old specimen with python as images
+
+### Table of Fonts
+> List of Font. In no specific order.
 
 * Serif fonts
   - [Literata](#literata)
