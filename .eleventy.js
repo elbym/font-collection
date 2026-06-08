@@ -43,6 +43,8 @@ module.exports = function (eleventyConfig) {
     return childUrl.startsWith(parentUrl) && childUrl !== parentUrl;
   });
 
+  eleventyConfig.addFilter("charCodeAt", (str) => str.codePointAt(0));
+
   eleventyConfig.addFilter("unicodeChars", (rangeName) => {
     const [start, end] = UNICODE_RANGES[rangeName];
     const chars = [];
