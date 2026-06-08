@@ -103,14 +103,34 @@ module.exports = function () {
     return {};
   }
 
-  function parseFontFiles(folderName, folderPath, relativePath) {
+  function parseFontFiles(folderName, folderPath, relativePath, meta = {}) {
     const files = fs.readdirSync(folderPath);
     const fontFiles = files.filter((file) => /\.(woff2|woff)$/i.test(file));
+    const familyName = meta.title ?? sanitizeFamily(folderName);
+
+    // Keys already present in the folder name are part of the font's identity,
+    // not optical variant discriminators (e.g. "Headline" in "Mozilla Headline").
+    const folderLower = folderName.toLowerCase();
+    const opticalKeysInFolder = new Set(
+      Object.keys(opticalMap)
+        .filter((k) => k !== "regular" && folderLower.includes(k))
+    );
 
     const hasVariableItalic = fontFiles.some((f) => {
       const l = path.parse(f).name.toLowerCase();
       return l.includes("italic") && detectVariableFont(l);
     });
+
+    const findOptical = (lowerName) => {
+      const key = Object.keys(opticalMap)
+        .filter((k) => k !== "regular" && !opticalKeysInFolder.has(k))
+        .find((k) => lowerName.includes(k));
+      if (!key) return { optical: null, opticalOrder: 3 };
+      return {
+        optical: key.charAt(0).toUpperCase() + key.slice(1),
+        opticalOrder: opticalMap[key],
+      };
+    };
 
     return fontFiles
       .flatMap((file) => {
@@ -126,26 +146,16 @@ module.exports = function () {
             stylesToGenerate = ["normal", "italic"];
           }
 
-          let optical = null;
-          let opticalOrder = 4;
-          const specialOpticalKey = Object.keys(opticalMap)
-            .filter((key) => key !== "regular")
-            .find((key) => lowerName.includes(key));
-          if (specialOpticalKey) {
-            optical =
-              specialOpticalKey.charAt(0).toUpperCase() +
-              specialOpticalKey.slice(1);
-            opticalOrder = opticalMap[specialOpticalKey];
-          }
+          const { optical, opticalOrder } = findOptical(lowerName);
 
           return variableWeights.flatMap(({ weight, label }) =>
             stylesToGenerate.map((s) => ({
               fileName: file,
               filePath: `${relativePath}/${file}`,
               displayName: `${label}${s === "italic" ? " Italic" : ""}`,
-              family: sanitizeFamily(folderName),
+              family: familyName,
               optical,
-              opticalOrder,
+              opticalOrder: optical ? opticalOrder : 4,
               weight,
               style: s,
               isVariable: true,
@@ -155,24 +165,18 @@ module.exports = function () {
         }
 
         let weight = 400;
-        const foundWeightKey = Object.keys(weightMap).find((key) =>
-          lowerName.includes(key)
-        );
-        if (foundWeightKey) weight = weightMap[foundWeightKey];
-
-        let optical = null;
-        let opticalOrder = 3;
-        const specialOpticalKey = Object.keys(opticalMap)
-          .filter((key) => key !== "regular")
-          .find((key) => lowerName.includes(key));
-        if (specialOpticalKey) {
-          optical =
-            specialOpticalKey.charAt(0).toUpperCase() +
-            specialOpticalKey.slice(1);
-          opticalOrder = opticalMap[specialOpticalKey];
-        } else if (lowerName.includes("regular")) {
-          opticalOrder = 3;
+        const numericWeight = lowerName.match(/(?:^|[-_])(\d{3})(?:[-_]|$)/);
+        if (numericWeight) {
+          const w = parseInt(numericWeight[1], 10);
+          if (w >= 100 && w <= 900 && w % 100 === 0) weight = w;
+        } else {
+          const foundWeightKey = Object.keys(weightMap).find((key) =>
+            lowerName.includes(key)
+          );
+          if (foundWeightKey) weight = weightMap[foundWeightKey];
         }
+
+        const { optical, opticalOrder } = findOptical(lowerName);
 
         const style = lowerName.includes("italic") ? "italic" : "normal";
 
@@ -184,7 +188,7 @@ module.exports = function () {
             fileName: file,
             filePath: `${relativePath}/${file}`,
             displayName: `${variantLabel}${style === "italic" ? " Italic" : ""}`,
-            family: sanitizeFamily(folderName),
+            family: familyName,
             optical,
             opticalOrder,
             weight,
@@ -223,7 +227,7 @@ module.exports = function () {
     const node = {
       _path: relativePath,
       _fonts: fontFiles.length
-        ? parseFontFiles(folderName, dirPath, relativePath)
+        ? parseFontFiles(folderName, dirPath, relativePath, meta)
         : [],
       _isLeaf: fontFiles.length > 0,
 

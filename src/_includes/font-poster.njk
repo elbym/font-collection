@@ -21,7 +21,7 @@
     <p class="year">{{ folder.fontyear }}</p>
     {% if folder.sourceUrl %}
       <p>
-        <a href="{{ folder.sourceurl }}" class="small" target="_blank" rel="noopener">{{ folder.sourceUrl }}</a>
+        <a href="{{ folder.sourceUrl }}" class="small" target="_blank" rel="noopener">{{ folder.sourceUrl }}</a>
       </p>
     {% endif %}
     {% if folder.comment %}
@@ -94,9 +94,8 @@
 
   {% if activeFonts %}
     {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
     {% set waterfallGroups = ["Regular", "Italic"] %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else
-      activeFonts %}
 
     <section class="waterfall waterfall--styles">
       {% include "seperator.njk" %}
@@ -158,8 +157,8 @@
 
   {% if activeFonts %}
     {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else
-      activeFonts %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
+    {% set waterfallGroups = null %}
 
     <section class="waterfall waterfall--panagram">
       {% include "seperator.njk" %}
