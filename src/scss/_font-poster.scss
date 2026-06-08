@@ -294,6 +294,12 @@
 
     h2 {
       flex: 0 0 100%;
+
+      .coverage {
+        font-weight: normal;
+        font-size: 0.6em;
+        color: var(--color-text-muted);
+      }
     }
 
     .l {

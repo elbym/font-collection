@@ -170,32 +170,32 @@
 
   {%- set cpMap = fontCodepoints[folder.key] if fontCodepoints else null -%}
   <section class="ascii">
-    <h2>Basic ASCII</h2>
+    <h2>Basic ASCII{% if cpMap %} <span class="coverage">({{ "ascii" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "ascii" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}
 
-    <h2>Ligatures</h2>
+    <h2>Ligatures{% if cpMap %} <span class="coverage">({{ "ligatures" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "ligatures" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}
 
-    <h2>Fractions</h2>
+    <h2>Fractions{% if cpMap %} <span class="coverage">({{ "fractions" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "fractions" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}
 
-    <h2>Latin-1</h2>
+    <h2>Latin-1{% if cpMap %} <span class="coverage">({{ "latin1" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "latin1" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}
 
-    <h2>Latein Erweitert-A</h2>
+    <h2>Latein Erweitert-A{% if cpMap %} <span class="coverage">({{ "latinExtA" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "latinExtA" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}
 
-    <h2>Latein Erweitert-B</h2>
+    <h2>Latein Erweitert-B{% if cpMap %} <span class="coverage">({{ "latinExtB" | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
     {% for char in "latinExtB" | unicodeChars %}
       <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
     {% endfor %}

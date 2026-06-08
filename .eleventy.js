@@ -45,6 +45,16 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("charCodeAt", (str) => str.codePointAt(0));
 
+  eleventyConfig.addFilter("coveragePercent", (rangeName, cpMap) => {
+    if (!cpMap) return null;
+    const [start, end] = UNICODE_RANGES[rangeName];
+    let covered = 0;
+    for (let i = start; i < end; i++) {
+      if (cpMap[i]) covered++;
+    }
+    return Math.round((covered / (end - start)) * 100);
+  });
+
   eleventyConfig.addFilter("unicodeChars", (rangeName) => {
     const [start, end] = UNICODE_RANGES[rangeName];
     const chars = [];
