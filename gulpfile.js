@@ -537,8 +537,6 @@ exports.ghpages = series(
   beautifyHTML,
 );
 
-exports.deploy = series(exports.ghpages, deployGhPages);
-
 exports.clean = series(clean);
 exports.download = downloadBackgroundImages;
 
@@ -547,6 +545,7 @@ exports.deploy = series(
   downloadBackgroundImages,
   buildEleventyGhPages,
   parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
+  generateColoredBorders,
   beautifyHTML,
   deployToGhPages,
 );
