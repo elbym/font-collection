@@ -175,6 +175,7 @@ Kannte sie nicht vor Teuderun und mag sie sehr.
 
 ## Libre Caslon Text
 https://github.com/impallari/Libre-Caslon-Text/
+
 Caslon-Klon, speziell optimiert für Fließtext im Web. Auch verfügbar als [Libre Caslon Display](https://github.com/impallari/Libre-Caslon-Display/)
 
 ![Vorschau des Libre Caslon Text Schriftmusters](./previews/cream/Libre_Caslon_Text_Regular.png)
