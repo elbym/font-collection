@@ -10,6 +10,5 @@ fontyear:
 
 heroletter: Aa
 heroword: Computer
-color: darkslateblue
-herostyle: italic
+color: Fuchsia
 border: hash.svg

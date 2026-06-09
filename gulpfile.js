@@ -485,6 +485,9 @@ function watchFiles() {
       "src/**/*.md",
       "src/**/*.html",
       "src/_data/**/*.js",
+      "src/webfonts/**/*.js",
+      "src/webfonts/**/*.yaml",
+      "src/webfonts/**/*.yml",
       "src/webfonts/**/*.jpg",
     ],
     series(
