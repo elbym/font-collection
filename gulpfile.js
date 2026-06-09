@@ -16,10 +16,12 @@ const https = require("https");
 const http = require("http");
 
 // ---------------------------------------------------------------------------
-// Konfiguration
+// Configuration
 // ---------------------------------------------------------------------------
 
-const IMAGE_MAX_WIDTH = 960;
+const IMAGE_MAX_WIDTH = 1920;
+const UNSPLASH_BASE = "https://unsplash.com/photos/";
+const PEXELS_BASE = "https://images.pexels.com/photos/";
 
 const PATHS = {
   mainScss: "src/scss/**/*.scss",
@@ -31,13 +33,22 @@ const PATHS = {
 };
 
 const SHARP_OPTS = {
-  jpg_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
-  jpeg_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
-  png_to_webp: { quality: 75, resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true } },
+  jpg_to_webp: {
+    quality: 75,
+    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
+  },
+  jpeg_to_webp: {
+    quality: 75,
+    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
+  },
+  png_to_webp: {
+    quality: 75,
+    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
+  },
 };
 
 // ---------------------------------------------------------------------------
-// Hilfsfunktionen
+// Helpers
 // ---------------------------------------------------------------------------
 
 function clean(done) {
@@ -45,7 +56,7 @@ function clean(done) {
   done();
 }
 
-/** Erstellt eine SCSS-Kompilier-Funktion. Mit `withSourcemaps` für den Dev-Modus. */
+/** Returns a Gulp task that compiles SCSS. Pass `withSourcemaps: true` for dev mode. */
 function makeSassTask(glob, outFile, { withSourcemaps = false } = {}) {
   return function compileSass() {
     let stream = src(glob);
@@ -57,7 +68,7 @@ function makeSassTask(glob, outFile, { withSourcemaps = false } = {}) {
   };
 }
 
-/** Startet Eleventy, optional mit einem Pfad-Präfix für GitHub Pages. */
+/** Returns a Gulp task that runs Eleventy, optionally with a path prefix for GitHub Pages. */
 function makeEleventyTask(pathprefix = null) {
   return function buildEleventy() {
     const args = ["@11ty/eleventy", "--quiet"];
@@ -67,16 +78,29 @@ function makeEleventyTask(pathprefix = null) {
 }
 
 // ---------------------------------------------------------------------------
-// Hintergrundbild-Download aus urls.txt
+// Background image download from urls.txt
 // ---------------------------------------------------------------------------
 
 /**
- * Liest eine urls.txt und gibt {filename, url}[]-Einträge zurück.
- * Formate (eine Zeile pro Eintrag, # = Kommentar):
- *   https://example.com/foto.jpg          → Dateiname aus URL ableiten
- *   mein-foto=https://example.com/...     → expliziter Dateiname (Endung auto-erkannt)
- *   mein-foto.jpg=https://example.com/... → wie oben, .jpg wird ignoriert (Endung auto-erkannt)
+ * Reads a urls.txt and returns {filename, url}[] entries.
+ * Formats (one entry per line, # = comment):
+ *   name=unsplash:ID   → https://unsplash.com/photos/ID/download?force=true&w=…
+ *   name=pexels:ID     → https://images.pexels.com/photos/ID/pexels-photo-ID.jpeg
+ *   name=https://…     → URL used directly
+ *   https://…          → URL used directly, filename derived from path
  */
+function resolveShortId(value) {
+  if (value.startsWith("unsplash:")) {
+    const id = value.slice("unsplash:".length);
+    return `${UNSPLASH_BASE}${id}/download?force=true&w=${IMAGE_MAX_WIDTH}`;
+  }
+  if (value.startsWith("pexels:")) {
+    const id = value.slice("pexels:".length);
+    return `${PEXELS_BASE}${id}/pexels-photo-${id}.jpeg`;
+  }
+  return null;
+}
+
 function parseUrlFile(filePath) {
   const entries = [];
   for (const rawLine of fs.readFileSync(filePath, "utf8").split("\n")) {
@@ -85,8 +109,11 @@ function parseUrlFile(filePath) {
     const eqIdx = line.indexOf("=");
     if (eqIdx > 0 && !/^https?:\/\//.test(line)) {
       const filename = line.slice(0, eqIdx).trim();
-      const url = line.slice(eqIdx + 1).trim();
-      if (/^https?:\/\//.test(url)) entries.push({ filename, url });
+      const rawValue = line.slice(eqIdx + 1).trim();
+      const url = /^https?:\/\//.test(rawValue)
+        ? rawValue
+        : resolveShortId(rawValue);
+      if (url) entries.push({ filename, url });
     } else if (/^https?:\/\//.test(line)) {
       entries.push({ filename: null, url: line });
     }
@@ -94,19 +121,20 @@ function parseUrlFile(filePath) {
   return entries;
 }
 
-/** Leitet den Dateinamen (ohne Erweiterung) aus dem URL-Pfad ab. */
+/** Derives the filename stem (without extension) from a URL path. */
 function stemFromUrl(urlStr) {
   try {
-    const lastSegment = new URL(urlStr).pathname.split("/").filter(Boolean).pop() || "";
+    const lastSegment =
+      new URL(urlStr).pathname.split("/").filter(Boolean).pop() || "";
     const dotIdx = lastSegment.lastIndexOf(".");
     const stem = dotIdx > 0 ? lastSegment.slice(0, dotIdx) : lastSegment;
     return stem || `img-${Date.now()}`;
   } catch {
-    return `img-${Date.now()}`;
+    return `img-${Date.now()}`; // fallback for unparseable URLs
   }
 }
 
-/** Gibt die Dateiendung basierend auf dem Content-Type-Header zurück. */
+/** Returns the file extension based on the Content-Type response header. */
 function extFromContentType(ct = "") {
   if (ct.includes("image/webp")) return ".webp";
   if (ct.includes("image/png")) return ".png";
@@ -115,60 +143,104 @@ function extFromContentType(ct = "") {
 }
 
 /**
- * Setzt den ?w=-Parameter für bekannte Bild-CDNs auf IMAGE_MAX_WIDTH,
- * damit nicht unnötig große Originale heruntergeladen werden.
- * Andere URLs werden unverändert zurückgegeben.
+ * Sets the ?w= parameter to IMAGE_MAX_WIDTH for known image CDNs,
+ * avoiding unnecessarily large originals being downloaded.
+ * Other URLs are returned unchanged.
  */
 function limitImageUrl(urlStr) {
   let u;
-  try { u = new URL(urlStr); } catch { return urlStr; }
-  const limitedHosts = ["images.unsplash.com", "images.pexels.com"];
+  try {
+    u = new URL(urlStr);
+  } catch {
+    return urlStr;
+  }
+  // Unsplash URLs already include /download?w= (see parseUrlFile)
+  const limitedHosts = ["images.pexels.com"];
   if (!limitedHosts.includes(u.hostname)) return urlStr;
   u.searchParams.set("w", String(IMAGE_MAX_WIDTH));
   return u.toString();
 }
 
-/** Prüft, ob ein Bild mit dem gegebenen Stammnamen (ohne Erweiterung) bereits existiert. */
+/** Returns true if an image with the given stem (without extension) already exists in dir. */
 function imageAlreadyExists(dir, stem) {
-  return [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"].some(
-    (ext) => fs.existsSync(path.join(dir, stem + ext))
+  return [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"].some((ext) =>
+    fs.existsSync(path.join(dir, stem + ext)),
   );
 }
 
 /**
- * Lädt ein Bild herunter. Dateiendung wird aus Content-Type erkannt.
- * Folgt HTTP-Weiterleitungen (max. 10). Gibt den tatsächlichen Zielpfad zurück.
+ * Downloads an image. File extension is detected from the Content-Type header.
+ * Follows HTTP redirects (max. 10). Returns the actual destination path.
  */
 function downloadImage(fileUrl, destDir, stem, redirectCount = 0) {
   return new Promise((resolve, reject) => {
-    if (redirectCount > 10) { reject(new Error(`Zu viele Weiterleitungen: ${fileUrl}`)); return; }
+    if (redirectCount > 10) {
+      reject(new Error(`Too many redirects: ${fileUrl}`));
+      return;
+    }
     let urlObj;
-    try { urlObj = new URL(fileUrl); } catch (e) { reject(new Error(`Ungültige URL: ${fileUrl}`)); return; }
+    try {
+      urlObj = new URL(fileUrl);
+    } catch (e) {
+      reject(new Error(`Invalid URL: ${fileUrl}`));
+      return;
+    }
     const protocol = urlObj.protocol === "https:" ? https : http;
-    const req = protocol.get(fileUrl, { headers: { "User-Agent": "Mozilla/5.0 (compatible; font-collection-build/1.0)" } }, (res) => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        res.resume();
-        downloadImage(new URL(res.headers.location, fileUrl).href, destDir, stem, redirectCount + 1)
-          .then(resolve).catch(reject);
-        return;
-      }
-      if (res.statusCode !== 200) {
-        res.resume();
-        reject(new Error(`HTTP ${res.statusCode}: ${fileUrl}`));
-        return;
-      }
-      const destPath = path.join(destDir, stem + extFromContentType(res.headers["content-type"]));
-      const ws = fs.createWriteStream(destPath);
-      res.pipe(ws);
-      ws.on("finish", () => resolve(destPath));
-      ws.on("error", (err) => { try { fs.unlinkSync(destPath); } catch (_) {} reject(err); });
-      res.on("error", (err) => { try { fs.unlinkSync(destPath); } catch (_) {} reject(err); });
-    });
+    const req = protocol.get(
+      fileUrl,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; font-collection-build/1.0)",
+        },
+      },
+      (res) => {
+        if (
+          res.statusCode >= 300 &&
+          res.statusCode < 400 &&
+          res.headers.location
+        ) {
+          res.resume();
+          downloadImage(
+            new URL(res.headers.location, fileUrl).href,
+            destDir,
+            stem,
+            redirectCount + 1,
+          )
+            .then(resolve)
+            .catch(reject);
+          return;
+        }
+        if (res.statusCode !== 200) {
+          res.resume();
+          reject(new Error(`HTTP ${res.statusCode}: ${fileUrl}`));
+          return;
+        }
+        const destPath = path.join(
+          destDir,
+          stem + extFromContentType(res.headers["content-type"]),
+        );
+        const ws = fs.createWriteStream(destPath);
+        res.pipe(ws);
+        ws.on("finish", () => resolve(destPath));
+        ws.on("error", (err) => {
+          try {
+            fs.unlinkSync(destPath);
+          } catch (_) {}
+          reject(err);
+        });
+        res.on("error", (err) => {
+          try {
+            fs.unlinkSync(destPath);
+          } catch (_) {}
+          reject(err);
+        });
+      },
+    );
     req.on("error", reject);
   });
 }
 
-/** Findet urls.txt-Dateien direkt in background/-Unterordnern unter baseDir. */
+/** Finds urls.txt files inside background/ subdirectories under baseDir. */
 function findFontBackgroundUrlFiles(baseDir) {
   const results = [];
   if (!fs.existsSync(baseDir)) return results;
@@ -188,32 +260,41 @@ function findFontBackgroundUrlFiles(baseDir) {
   return results;
 }
 
-/** Gulp-Task: Lädt Hintergrundbilder aus allen urls.txt-Dateien herunter. */
+/** Gulp task: downloads background images from all urls.txt files. */
 async function downloadBackgroundImages() {
   const urlFiles = [];
 
-  // Globale Hintergrundbilder
-  const globalUrlFile = path.join(__dirname, "src", "img", "background", "urls.txt");
+  // Global background images
+  const globalUrlFile = path.join(
+    __dirname,
+    "src",
+    "img",
+    "background",
+    "urls.txt",
+  );
   if (fs.existsSync(globalUrlFile)) urlFiles.push(globalUrlFile);
 
-  // Pro-Font-Hintergrundbilder
-  urlFiles.push(...findFontBackgroundUrlFiles(path.join(__dirname, "src", "webfonts")));
+  // Per-font background images
+  urlFiles.push(
+    ...findFontBackgroundUrlFiles(path.join(__dirname, "src", "webfonts")),
+  );
 
   const pending = [];
   for (const urlFile of urlFiles) {
     const dir = path.dirname(urlFile);
     for (const { filename, url } of parseUrlFile(urlFile)) {
       const stem = filename ? path.parse(filename).name : stemFromUrl(url);
-      if (!imageAlreadyExists(dir, stem)) pending.push({ url: limitImageUrl(url), dir, stem });
+      if (!imageAlreadyExists(dir, stem))
+        pending.push({ url: limitImageUrl(url), dir, stem });
     }
   }
 
   if (pending.length === 0) {
-    console.log("  Hintergrundbilder: Keine neuen Downloads erforderlich.");
+    console.log("  Background images: nothing to download.");
     return;
   }
 
-  console.log(`  Lade ${pending.length} Hintergrundbild(er) herunter…`);
+  console.log(`  Downloading ${pending.length} background image(s)…`);
   for (const { url, dir, stem } of pending) {
     fs.mkdirSync(dir, { recursive: true });
     try {
@@ -226,47 +307,65 @@ async function downloadBackgroundImages() {
 }
 
 // ---------------------------------------------------------------------------
-// SCSS-Tasks
+// SCSS tasks
 // ---------------------------------------------------------------------------
 
-const compileMainSass = makeSassTask(PATHS.mainScss, null, { withSourcemaps: true });
-const compileFontsScss = makeSassTask(PATHS.fontsScss, "webfonts/all-fonts.css", { withSourcemaps: true });
+const compileMainSass = makeSassTask(PATHS.mainScss, null, {
+  withSourcemaps: true,
+});
+const compileFontsScss = makeSassTask(
+  PATHS.fontsScss,
+  "webfonts/all-fonts.css",
+  { withSourcemaps: true },
+);
 const compileMainSassMinified = makeSassTask(PATHS.mainScss, null);
-const compileFontsScssMinified = makeSassTask(PATHS.fontsScss, "webfonts/all-fonts.css");
-// GhPages verwendet dieselbe Logik wie der normale Build (kein Sourcemap, kein Minify)
+const compileFontsScssMinified = makeSassTask(
+  PATHS.fontsScss,
+  "webfonts/all-fonts.css",
+);
+// GhPages uses the same logic as the regular build (no sourcemaps, no minification)
 const compileMainSassGhPages = compileMainSassMinified;
 const compileFontsScssGhPages = compileFontsScssMinified;
 
 // ---------------------------------------------------------------------------
-// Eleventy-Tasks
+// Eleventy tasks
 // ---------------------------------------------------------------------------
 
 const buildEleventy = makeEleventyTask();
 const buildEleventyGhPages = makeEleventyTask("font-collection");
 
 // ---------------------------------------------------------------------------
-// HTML-Tasks
+// HTML tasks
 // ---------------------------------------------------------------------------
 
 function minifyHTML() {
   return src("dist/**/*.html")
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true, minifyCSS: true, minifyJS: true }))
+    .pipe(
+      htmlmin({
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true,
+      }),
+    )
     .pipe(dest("dist"));
 }
 
 function beautifyHTML() {
   return src("dist/**/*.html")
-    .pipe(prettier({
-      tabWidth: 2,
-      parser: "html",
-      printWidth: 120,
-      htmlWhitespaceSensitivity: "ignore",
-    }))
+    .pipe(
+      prettier({
+        tabWidth: 2,
+        parser: "html",
+        printWidth: 120,
+        htmlWhitespaceSensitivity: "ignore",
+      }),
+    )
     .pipe(dest("dist"));
 }
 
 // ---------------------------------------------------------------------------
-// Statische Dateien kopieren / optimieren
+// Static file copy / optimise
 // ---------------------------------------------------------------------------
 
 function copyFonts() {
@@ -276,12 +375,12 @@ function copyFonts() {
 }
 
 function copyImages() {
-  // SVGs und sonstige Nicht-Bitmap-Dateien direkt kopieren
+  // Copy SVGs and other non-bitmap files directly
   src(["src/img/**/*", "!src/img/**/*.{jpg,jpeg,png}"], { encoding: false })
     .pipe(newer("dist/img"))
     .pipe(dest("dist/img"));
 
-  // Bitmaps optimieren und als WebP ausgeben
+  // Optimise bitmaps and convert to WebP
   return src("src/img/**/*.{jpg,jpeg,png}")
     .pipe(newer({ dest: "dist/img", ext: ".webp" }))
     .pipe(sharpOptimizeImages(SHARP_OPTS))
@@ -289,9 +388,7 @@ function copyImages() {
 }
 
 function copyJS() {
-  return src(PATHS.js)
-    .pipe(newer("dist/js"))
-    .pipe(dest("dist/js"));
+  return src(PATHS.js).pipe(newer("dist/js")).pipe(dest("dist/js"));
 }
 
 function copyFavicon() {
@@ -299,14 +396,17 @@ function copyFavicon() {
 }
 
 // ---------------------------------------------------------------------------
-// Dev-Server & Watcher
+// Dev server & watcher
 // ---------------------------------------------------------------------------
 
 function serve(done) {
   browserSync.init({
     server: { baseDir: "./dist" },
     port: 3000,
-    middleware: (req, res, next) => { res.setHeader("Access-Control-Allow-Origin", "*"); next(); },
+    middleware: (req, res, next) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      next();
+    },
   });
   done();
 }
@@ -319,11 +419,21 @@ function watchFiles() {
   watch(PATHS.js, copyJS);
 
   watch(
-    ["src/**/*.njk", "src/**/*.md", "src/**/*.html", "src/_data/**/*.js", "src/webfonts/**/*.jpg"],
-    series(buildEleventy, parallel(compileMainSass, compileFontsScss), (done) => {
-      browserSync.reload();
-      done();
-    }),
+    [
+      "src/**/*.njk",
+      "src/**/*.md",
+      "src/**/*.html",
+      "src/_data/**/*.js",
+      "src/webfonts/**/*.jpg",
+    ],
+    series(
+      buildEleventy,
+      parallel(compileMainSass, compileFontsScss),
+      (done) => {
+        browserSync.reload();
+        done();
+      },
+    ),
   );
 }
 
