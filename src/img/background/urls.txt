@@ -1,17 +1,24 @@
 # Globale Hintergrundbilder für Font Cards
 # ==========================================
 # Bilder werden beim Build heruntergeladen und in diesem Ordner gespeichert.
-# Die heruntergeladenen Dateien sind gitignored – nur diese urls.txt wird committed.
+# Die heruntergeladenen Dateien sind gitignored.
+# Nur diese urls.txt wird committed.
 # Bereits vorhandene Dateien werden nicht erneut heruntergeladen.
 # Zum Erzwingen: Datei löschen, dann npx gulp download (oder npx gulp).
 #
+# Lokale Hintergrundbilder für einzelne Schriften können in
+# `scr/webfonts/[sorting-folder-name]/[font-name]/backgrounds` hinterlegt werden.
+#
 # Format: eigener-name=<Quelle:ID>  oder  eigener-name=https://...
 #
-# ── UNSPLASH ──────────────────────────────────────────────────────────────────
+# ── UNSPLASH ────────────────────────────────────────────────────────────────
 # Photo-ID steht am Ende der URL: unsplash.com/photos/<ID>
 # Beispiel:  foto=unsplash:4VDrSK0ixA4
 #
-# =============================================================================
+# ── Pexels ──────────────────────────────────────────────────────────────────
+# @todo: Pexels ingegrieren
+#
+# ============================================================================
 
 # --- Trees and Forests --------------------------------------------------------
 trees=unsplash:50bzI1F6urA
