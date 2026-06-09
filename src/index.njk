@@ -1,25 +1,21 @@
 ---
 layout: layouts/base.njk
-title: Index
+title: Freie Open-Source Schriften
 extra_css: "/css/webfonts/all-fonts.css"
 
 eleventyNavigation:
   key: Index
   order: 0
 ---
-<h1>Personal collection of (mostly free) fonts</h1>
-<blockquote>Everyone has a favorite font, right? RIGHT!?</blockquote>
+<h1>Persönliche Sammlung von (größtenteils kostenlosen) Schriftarten</h1>
+<blockquote>Jeder hat doch eine Lieblingsschriftart, oder? ODER!?</blockquote>
+<p>Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer <a href="https://elbym.github.io/font-collection/">HTML-Vorschau</a> gewechselt.</p>
+<p>Diese Liste ist auch beeinflusst von <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> und <a href="https://typotheque.luuse.io/">Free Font Library</a> sowie <a href="https://typotheque.luuse.io/">der Free Font Library. </a></p>
 
-<p>This is just a personal and opinionated collection of fonts that stuck with me and started as an excuse to show off the <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (I asked Claude to cobble together). I switched to a <a href="https://elbym.github.io/font-collection/">HTML preview</a> instead.</p>
-<p>This list is also influenced by <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> and <a href="https://typotheque.luuse.io/">Free Font Library</a> and <a href="https://typotheque.luuse.io/">the free fontlibrary.</a></p>
+<p>Das Schriftmusterplakat ist stark inspiriert von (kopiert von) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> an der Universität Frankfurt.</p>
 
-
-<p>The specimen poster is heavily inspired by (copied from) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> at the University of Frankfurt.</p>
-
-
-<p>Why did I stumble across this so late? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> has wonderful specimen layouts for his <a href="https://www.forthehearts.net/playfair">Playfair</a> font <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html">word tower Specimen Demo</a></p>
-
-<h2>List of Font. In no specific order.</h2>
+<p>Warum bin ich erst so spät darauf gestoßen? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> hat wunderbare Musterlayouts für seine <a href="https://www.forthehearts.net/playfair">Playfair</a>-Schrift <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html ">Word Tower Specimen Demo</a></p>
+<h2>Liste der Schriftarten. In keiner bestimmten Reihenfolge.</h2>
 
 <section class="font-family-card-list">
   {% for node in fontFolders %}
@@ -31,14 +27,14 @@ eleventyNavigation:
 
 <h2>python font_specimen_generator.py</h2>
 <p>
-  Asked Claude to cobble together a python script to generate the font specimen preview inspired by the ones on <a href="https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics">Wikipedia</a>
+  Ich habe Claude gebeten, ein Python-Skript zusammenzubasteln, um eine Vorschau der Schriftmuster zu generieren, inspiriert von denen auf <a href="https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics">Wikipedia</a>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png" alt="Preview of the Sample Wikipedia font specimen">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png" alt="Vorschau des Wikipedia-Schriftart-Musters">
 </p>
 
-<p>Currently supports 3 different themes: cream, dark, white</p>
+<p>Derzeit werden 3 verschiedene Designs unterstützt: cremefarben, dunkel, weiß</p>
 
-<h4>Examples:</h4>
+<h4>Beispiele:</h4>
 <code>
 python font_specimen_generator.py --input ./fonts --output ./previews
 python font_specimen_generator.py --input ./fonts --output ./previews --theme white

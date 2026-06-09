@@ -14,9 +14,4 @@ eleventyExcludeFromCollections: true
     <loc>https://elbym.github.io/font-collection/{{ node.url }}.html</loc>
   </url>
   {%- endfor %}
-  {%- for tag in fontTags %}
-  <url>
-    <loc>https://elbym.github.io/font-collection/tag/{{ tag | slugify }}.html</loc>
-  </url>
-  {%- endfor %}
 </urlset>

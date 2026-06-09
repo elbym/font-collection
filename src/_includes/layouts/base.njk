@@ -58,7 +58,7 @@
   <meta name="twitter:description" content="{{ pageDesc }}">
 
   {# ── Theme color ───────────────────────────────────────────── #}
-  <meta name="theme-color" content="{{ pageColor or 'indigo' }}">
+  <meta name="theme-color" content="{{ folder.colorHex or site.colorHex }}">
 
   {# ── Stylesheets ───────────────────────────────────────────── #}
   <link rel="stylesheet" href="/css/styles.css">
@@ -82,6 +82,43 @@
   {# ── Icons ─────────────────────────────────────────────────── #}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico" sizes="any">
+
+  {# ── BreadcrumbList Structured Data ───────────────────────── #}
+  {% if folder %}
+  {%- set _bcAncestors = folder | getAncestors(fontFolders) -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ site.title | replace('"', '\\"') }}",
+        "item": "{{ site.url }}/font-collection/"
+      }{% if _bcAncestors.length %},
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ _bcAncestors[0].title | replace('"', '\\"') }}",
+        "item": "{{ site.url }}/font-collection/{{ _bcAncestors[0].url }}.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ folder.title | replace('"', '\\"') }}",
+        "item": "{{ pageUrl }}"
+      }{% else %},
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ folder.title | replace('"', '\\"') }}",
+        "item": "{{ pageUrl }}"
+      }{% endif %}
+    ]
+  }
+  </script>
+  {% endif %}
 
   {# ── JSON-LD Structured Data ───────────────────────────────── #}
   {% if folder and folder.isLeaf %}
