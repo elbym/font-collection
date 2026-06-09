@@ -27,6 +27,18 @@
     <p class="display-size-2 heroword ligature {{ _color | slugify }}">{{ _heroText }}</p>
     <p class="display-size-2 numbers text-align-right old-nums">0123456789</p>
   </main>
+  {% set _cpMap = fontCodepoints[node.key] if fontCodepoints else null %}
+  {% if _cpMap %}
+  <div class="card-coverage">
+    {% for section in unicodeRanges %}
+      {% set pct = section.key | coveragePercent(_cpMap) %}
+      <span class="cov-item{% if pct == 0 %} cov-zero{% endif %}" title="{{ section.label }}: {{ pct }}%">
+        <span class="cov-label">{{ section.short }}</span>
+        <span class="cov-pct">{{ pct }}%</span>
+      </span>
+    {% endfor %}
+  </div>
+  {% endif %}
   {% if _tags.length %}
   <footer style="background: color-mix(in oklab, {{ _color }}, transparent 50%);">
     <ul class="keywords small ligatures">
