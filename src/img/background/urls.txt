@@ -21,10 +21,10 @@ trees-fog2=unsplash:SrASYZZpyjw
 little-tree=unsplash:Rfflri94rs8
 
 # --- Wood ---------------------------------------------------------------------
-wood=unsplash:QcAP95Ok
+wood=unsplash:J2gEgTPM_OA
 trees-wood=unsplash:fllDyJtRKAU
 wood2=unsplash:Pw3BEzm58rM
-bark=unsplash:sc5Zp3cYW
+bark=unsplash:BxIxt5s57FA
 old-wood=unsplash:Ra8xSzVHv90
 
 # --- Scenery ---------------------------------------------------------------
