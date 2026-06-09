@@ -243,8 +243,10 @@ module.exports = function () {
       _herostyle: meta.herostyle ?? "regular",
       _color: meta.color ?? null,
       _border: meta.border ?? null,
+      _comment: meta.comment ?? null,
       _content: meta.content ?? null,
       _imageOverrides: meta.imageOverrides ?? null,
+      _wikipedia: meta.wikipedia ?? null,
     };
 
     subDirs.forEach((sub) => {
@@ -301,8 +303,10 @@ module.exports = function () {
         herostyle:  node._herostyle,
         color:      node._color,
         border:     node._border,
+        comment:    node._comment,
         content:    node._content,
         imageOverrides: node._imageOverrides,
+        wikipedia:  node._wikipedia,
       });
     }
 

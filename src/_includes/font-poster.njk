@@ -23,6 +23,11 @@
         <a href="{{ folder.sourceUrl }}" class="small" target="_blank" rel="noopener">{{ folder.sourceUrl }}</a>
       </p>
     {% endif %}
+    {% if folder.wikipedia %}
+      <p>
+        <a href="{{ folder.wikipedia }}" class="small" target="_blank" rel="noopener">Wikipedia</a>
+      </p>
+    {% endif %}
     {% if folder.comment %}
       <article class="comment">
         <p>{{ folder.comment }}</p>

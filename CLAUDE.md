@@ -130,6 +130,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 | `border` | Border SVG filename override (e.g. `border_historical.svg`); defaults to `border_lines.svg` |
 | `content` | Markdown string rendered below the specimen |
 | `imageOverrides` | Override gallery image list |
+| `wikipedia` | Wikipedia article URL (shown as link on specimen page; use the original typeface's article for revivals/clones) |
 
 **Unicode coverage**
 - `unicodeRanges.js` defines the named Unicode blocks shown on specimen pages (ASCII, Latin-1, Latin Extended A/B, Ligatures, Fractions). Add or uncomment entries there to display additional blocks.
