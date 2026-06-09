@@ -502,6 +502,18 @@ function watchFiles() {
 }
 
 // ---------------------------------------------------------------------------
+// Deploy to gh-pages branch
+// ---------------------------------------------------------------------------
+
+function deployGhPages(done) {
+  cp.execSync(
+    'git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force',
+    { cwd: path.join(__dirname, "dist"), stdio: "inherit", shell: true },
+  );
+  done();
+}
+
+// ---------------------------------------------------------------------------
 // Exports
 // ---------------------------------------------------------------------------
 
@@ -534,6 +546,8 @@ exports.ghpages = series(
   generateColoredBorders,
   beautifyHTML,
 );
+
+exports.deploy = series(exports.ghpages, deployGhPages);
 
 exports.clean = series(clean);
 exports.download = downloadBackgroundImages;
