@@ -1,71 +1,71 @@
 ![](preview.png)
 
-# Personal collection of (mostly free) fonts
+# Persönliche Sammlung von (größtenteils kostenlosen) Schriftarten
 
-> Everyone has a favorite font, right? RIGHT!?
+> Jeder hat eine Lieblingsschrift, oder? ODER!?
 
-This is just a personal and opinionated collection of fonts that stuck with me and an excuse to show off the [font_specimen_generator.py](./font_specimen_generator.py) (I asked Claude to cobble together). This list is also influenced by [Teuderun](https://www.teuderun.de/schriftarten/top-10/).
+Das ist eine persönliche und eigenwillige Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind und vor allem und ein Vorwand, den [font_specimen_generator.py](./font_specimen_generator.py) vorzuführen (den ich Claude zusammen schustern ließ). Diese Liste ist außerdem von [Teuderun](https://www.teuderun.de/schriftarten/top-10/) beeinflusst.
 
 
-## Basic usage
+## Grundlegende Nutzung
 
-* place your fonts in src/webfonts/[font-style]/[font]
-* place some backgrounds in src/img/background
-  * optinal place per font backgrounds in src/webfonts/[font-style]/[font]/background
+* Schriftarten in src/webfonts/[schriftstil]/[schrift] ablegen
+* Hintergrundbilder in src/img/background/urls.txt einfügen
+  * optional pro Schrift Hintergrundbilder in src/webfonts/[schriftstil]/[schrift]/background/urls.txt hinterlegen
 
-### Run local server
+### Lokalen Server starten
     git clone
     npm install
-    gulp            # run local dev server
-    gulp ghpages    # build site with path prefix for github pages
+    gulp            # lokalen Entwicklungsserver starten
+    gulp ghpages    # Seite mit Pfadpräfix für GitHub Pages bauen
 
-## Below: old specimen with python as images
+## Unten: Altes Specimen mit Python als Bilder
 
-### Table of Fonts
-> List of Font. In no specific order.
+### Schriftartentabelle
+> Liste der Schriftarten. In keiner bestimmten Reihenfolge.
 
-* Serif fonts
+* Serifenschriften
   - [Literata](#literata)
   - [IBM Plex Serif](#ibm-plex-serif)
   - [Libertinus](#libertinus)
-* Sans Serif font
+* Serifenlose Schriften
   - [Atkinson Hyperlegible](#atkinson-hyperlegible)
   - [Inter](#inter)
   - [Metropolis](#metropolis)
   - [IBM Plex Sans](#ibm-plex-sans)
   - [Fira Sans](#fira-sans)
-* The classic must haves
+* Die klassischen Pflichtschriften
   - [Tex Gyre Collection](#tex-gyre)
   - [Cormorant Garamond](#cormorant-garamond)
   - [Libre Caslon](#libre-caslon-text)
-* Very nice to have
+* Sehr schön zu haben
   - [Titillium](#titillium)
   - [Jost](#jost)
   - [Overpass](#overpass)
-* Mono spaced fonts
+* Nichtproportionale Schriften
   - [JetBrains Mono](#jetbrains-mono)
   - [Maple Mono](#maple-mono)
   - [Fira Code](#fira-code)
   - [Cascadia Code](#cascadia-code)
-* Not Comic Sans
+* Nicht Comic Sans
   - [Krikikrak](#krikikrak)
   - [Hand of Sean](#hand-of-sean)
   - [Komike Hand](#komika-hand)
   - [Kalam](#kalam)
 
-# Tools
+# Werkzeuge
 ## Font Freeze
-[FontFreeze](https://github.com/MuTsunTsai/fontfreeze): When you need a font feature be enabled by default or completely removed from a font. I used it to generate a version of "Cascadia Code" with the [SS01](https://learn.microsoft.com/en-us/typography/opentype/spec/features_pt#ssxx) "baked in".
+[FontFreeze](https://github.com/MuTsunTsai/fontfreeze): Wenn eine Schriftfunktion standardmäßig aktiviert oder vollständig aus einer Schrift entfernt werden soll. Ich habe es verwendet, um eine Version von „Cascadia Code" mit eingebautem [SS01](https://learn.microsoft.com/en-us/typography/opentype/spec/features_pt#ssxx) zu erstellen.
 
 ## python font_specimen_generator.py
 
-Asked Claude to cobble together a python script to generate the font specimen preview inspired by the ones on [Wikipedia](https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics)
+Claude gebeten, ein Python-Skript zusammenzubasteln, das Schriftmuster-Vorschauen generiert – inspiriert von den Vorlagen auf [Wikipedia](https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics)
 
-![Preview of the Sample Wikipedia font specimen](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png)
+![Vorschau des Wikipedia-Schriftmusters](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png)
 
-Currently supports 3 different themes: cream, dark, white
+Unterstützt derzeit 3 verschiedene Themes: cream, dark, white
 
-Examples:
+Beispiele:
 
     python font_specimen_generator.py --input ./fonts --output ./previews
     python font_specimen_generator.py --input ./fonts --output ./previews --theme white
@@ -73,82 +73,82 @@ Examples:
     python font_specimen_generator.py --input ./fonts --output ./previews --overwrite
 
 
-# Serif Fonts
+# Serifenschriften
 
 ## Literata
 https://www.type-together.com/literata-font
 
-I didn't know of it before I stumbled across Teuderun and I like it a lot.The famlily consists of:
-- Literata Display
-- Literata Subhead
-- Literata Text
+Kannte sie nicht, bevor ich bei Teuderun darauf gestoßen bin – und ich mag sie sehr. Die Familie besteht aus:
+* Literata Display
+* Literata Subhead
+* Literata Text
 
-![Preview of the Literata TT font specimen font specimen](./previews/cream/Literata_TT_Text_Regular.png)
+![Vorschau des Literata TT Text Regular Schriftmusters](./previews/cream/Literata_TT_Text_Regular.png)
 
 ## IBM Plex Serif
 https://github.com/IBM/plex
 
-I like the IBM Plex fonts a lot. They nail the classic look and are easy to read. Sprinkled with a bit of "tech feel".
+Ich mag die IBM-Plex-Schriften sehr. Sie treffen den klassischen Look und sind gut lesbar. Mit einem Hauch „Tech-Feeling".
 
-![Preview of the IBM Plex Serif font specimen](./previews/light/IBM_Plex_Serif_Regular.png)
+![Vorschau des IBM Plex Serif Schriftmusters](./previews/light/IBM_Plex_Serif_Regular.png)
 
 ## Libertinus
 https://github.com/alerque/libertinus
 
-Libertinus is the succesor to Linux Liberine from the TeX Gyre collection. The famlily consists of:
-- Libertinus Serif
-- Libertinus Serif Display
-- Libertinus Sans
+Libertinus ist der Nachfolger von Linux Libertine aus der TeX-Gyre-Sammlung. Die Familie besteht aus:
+* Libertinus Serif
+* Libertinus Serif Display
+* Libertinus Sans
 
-![Preview of the Libertinus Serif font specimen](./previews/cream/Libertinus_Serif_Regular.png)
+![Vorschau des Libertinus Serif Schriftmusters](./previews/cream/Libertinus_Serif_Regular.png)
 
-# Sans Serif Fonts
+# Serifenlose Schriften
 
 ## Atkinson Hyperlegible
 https://www.brailleinstitute.org/freefont/
 
-Nomen et omen. Very readable. I like it and its growing on me.
+Nomen est omen. Sehr gut lesbar. Ich mag sie und sie wächst mir immer mehr ans Herz.
 
-Developed by the Braille Institute of America this font is intended to be easily readable for readers who are partially blind, with all characters being as different from each other as possible.
+Entwickelt vom Braille Institute of America ist diese Schrift darauf ausgelegt, für sehbehinderte Leser besonders gut lesbar zu sein – alle Zeichen sind so unterschiedlich wie möglich gestaltet.
 
-![Preview of the Atkinso Hyperlegible font specimen](./previews/light/Atkinson_Hyperlegible_Next_Regular.png)
+![Vorschau des Atkinson Hyperlegible Schriftmusters](./previews/light/Atkinson_Hyperlegible_Next_Regular.png)
 
 ## Inter
 https://rsms.me/inter/
 
-As the website puts it: "The 21st century standard". It even has a nice URL. Also available as a variable font.
+Wie die Website es beschreibt: „Der Standard des 21. Jahrhunderts". Hat sogar eine schöne URL. Auch als Variable Font verfügbar.
 
-![Preview of the Inter font specimen](./previews/light/Inter_Regular.png)
+![Vorschau des Inter Schriftmusters](./previews/light/Inter_Regular.png)
 
 ## Metropolis
 https://github.com/dw5/Metropolis
 
-I like this one for headers and larger text.
+Diese mag ich für Überschriften und größeren Text.
 
-![Preview of the Metropolis font specimen](./previews/light/Metropolis_Regular.png)
+![Vorschau des Metropolis Schriftmusters](./previews/light/Metropolis_Regular.png)
 
 ## IBM Plex Sans
 https://github.com/IBM/plex
 
-The IBM Plex font family is just a nice and very readable font.
+Die IBM-Plex-Schriftfamilie ist einfach eine schöne und sehr gut lesbare Schrift.
 
-![Preview of the IBM Plex Sans font specimen](./previews/light/IBM_Plex_Sans_Regular.png)
+![Vorschau des IBM Plex Sans Schriftmusters](./previews/light/IBM_Plex_Sans_Regular.png)
 
 ## Fira Sans
 https://mozilla.github.io/Fira/
 
-Comissioned by The Mozilla Foundation and Telefonica S.A for their mobile OS. Very similar to Erik Spiekermanns "FF Meta".
+Im Auftrag der Mozilla Foundation und Telefonica S.A. für deren mobiles Betriebssystem entwickelt. Erinnert sehr an Erik Spiekermanns „FF Meta".
 
-![Preview of the Fira Sans font specimen](./previews/light/Fira_Sans_Regular.png)
+![Vorschau des Fira Sans Schriftmusters](./previews/light/Fira_Sans_Regular.png)
 
-# The classics
-These are just the classics.
+# Die Klassiker
+Das sind einfach die Klassiker.
 
 ## Tex Gyre
 
 https://www.gust.org.pl/projects/e-foundry/tex-gyre/
 
-Free alternatives for:
+Freie Alternativen für:
 * Times (New) Roman → TeX Gyre Termes
 * ITC Avantgarde → TeX Gyre Adventor
 * Century Schoolbook → TeX Gyre Schola
@@ -158,115 +158,108 @@ Free alternatives for:
 * Courier → TeX Gyre Cursor
 * Helvetica → TeX Gyre Heros
 
-![Preview of the Tex Gyre Adventor font specimen](./previews/light/TeX_Gyre_Termes_Regular.png)
-![Preview of the Tex Gyre Bonum font specimen](./previews/light/TeX_Gyre_Schola_Regular.png)
-![Preview of the Tex Gyre Cursor font specimen](./previews/light/TeX_Gyre_Pagella_Regular.png)
-![Preview of the Tex Gyre Heros font specimen](./previews/light/TeX_Gyre_Heros_Regular.png)
-![Preview of the Tex Gyre Pagella font specimen](./previews/light/TeX_Gyre_Cursor_Regular.png)
-![Preview of the Tex Gyre Schola font specimen](./previews/light/TeX_Gyre_Adventor_Regular.png)
-![Preview of the Tex Gyre Termes font specimen](./previews/light/TeX_Gyre_Bonum_Regular.png)
+![Vorschau des Tex Gyre Adventor Schriftmusters](./previews/light/TeX_Gyre_Termes_Regular.png)
+![Vorschau des Tex Gyre Bonum Schriftmusters](./previews/light/TeX_Gyre_Schola_Regular.png)
+![Vorschau des Tex Gyre Cursor Schriftmusters](./previews/light/TeX_Gyre_Pagella_Regular.png)
+![Vorschau des Tex Gyre Heros Schriftmusters](./previews/light/TeX_Gyre_Heros_Regular.png)
+![Vorschau des Tex Gyre Pagella Schriftmusters](./previews/light/TeX_Gyre_Cursor_Regular.png)
+![Vorschau des Tex Gyre Schola Schriftmusters](./previews/light/TeX_Gyre_Adventor_Regular.png)
+![Vorschau des Tex Gyre Termes Schriftmusters](./previews/light/TeX_Gyre_Bonum_Regular.png)
 
 ## Cormorant Garamond
 https://github.com/CatharsisFonts/Cormorant
 
-Didn't knew of before Teuderun and I like it a lot.
+Kannte sie nicht vor Teuderun und mag sie sehr.
 
-![Preview of the Cormorant Garamond font specimen](./previews/light/Cormorant_Garamond_Regular.png)
+![Vorschau des Cormorant Garamond Schriftmusters](./previews/light/Cormorant_Garamond_Regular.png)
 
 ## Libre Caslon Text
 https://github.com/impallari/Libre-Caslon-Text/
-Caslon clone specifically optimized for web body text. Also available as [Libre Caslon Display](https://github.com/impallari/Libre-Caslon-Display/)
+Caslon-Klon, speziell optimiert für Fließtext im Web. Auch verfügbar als [Libre Caslon Display](https://github.com/impallari/Libre-Caslon-Display/)
 
-![Preview of the Libre Caslon Text font specimen](./previews/cream/Libre_Caslon_Text_Regular.png)
+![Vorschau des Libre Caslon Text Schriftmusters](./previews/cream/Libre_Caslon_Text_Regular.png)
 
-# Very nice to have
+# Sehr schön zu haben
 
 ## Titillium
 http://nta.accademiadiurbino.it/titillium/
 
-For when you need a slightly different look.
+Für wenn man einen etwas anderen Look braucht.
 
-![Preview of the Titillium font specimen](./previews/cream/Titillium_Web_Regular.png)
+![Vorschau des Titillium Schriftmusters](./previews/cream/Titillium_Web_Regular.png)
 
 ## Jost
 https://github.com/indestructible-type/Jost
 
-A little more fancy Futura
+Ein etwas eleganteres Futura
 
-![Preview of the Jost* font specimen](./previews/cream/Jost__Book.png)
+![Vorschau des Jost* Schriftmusters](./previews/cream/Jost__Book.png)
 
 ## Overpass
 https://overpassfont.org/
 
-Open-source font inspired by Highway Gothic on american road signs.
+Open-Source-Schrift, inspiriert von Highway Gothic auf amerikanischen Straßenschildern.
 
-![Preview of the Overpass font specimen](./previews/cream/Overpass_Regular.png)
+![Vorschau des Overpass Schriftmusters](./previews/cream/Overpass_Regular.png)
 
-# Monospaced
+# Nichtproportional
 
 ## JetBrains Mono
 https://github.com/jetbrains/jetbrainsmono
 
-It's just pleasant to my eyes.
+Sie ist einfach angenehm für meine Augen.
 
-![Preview of the JetBrains Mono font specimen](./previews/dark/JetBrains_Mono_Regular.png)
+![Vorschau des JetBrains Mono Schriftmusters](./previews/dark/JetBrains_Mono_Regular.png)
 
 ## Maple Mono
 https://font.subf.dev/en/download/
 
-I'm tying to befriend it.
+Ich versuche, mich mit ihr anzufreunden.
 
-![Preview of the Maple Mono Regular font specimen](./previews/dark/Maple_Mono_Regular.png)
+![Vorschau des Maple Mono Regular Schriftmusters](./previews/dark/Maple_Mono_Regular.png)
 
 ## Fira Code
 https://github.com/tonsky/FiraCode
 
-My former monotype font. I sadly leave it behind, but JetBrains Mono is just nicer to stare at.
+Meine frühere Monospace-Schrift. Ich lasse sie schweren Herzens hinter mir, aber JetBrains Mono ist einfach angenehmer anzuschauen.
 
-![Preview of the Fira Code Regular font specimen](./previews/dark/Fira_Code_Regular.png)
+![Vorschau des Fira Code Regular Schriftmusters](./previews/dark/Fira_Code_Regular.png)
 
 ## Cascadia Code
 https://github.com/microsoft/cascadia-code
 
-Basically just for its cursive variant for the comments.
+Eigentlich nur wegen der kursiven Variante für Kommentare.
 
-![Preview of the Code comment in Cascadia Code cursive](./screenshots/Cascadia_Code_Cursive.png)
+![Vorschau des Cascadia Code Kursiv-Kommentars](./screenshots/Cascadia_Code_Cursive.png)
 
 
-# Not Comic Sans
+# Nicht Comic Sans
 
-The _only_ appropriate use of "Comic Sans" according to [Comic Sans Criminal](https://comicsanscriminal.com/):
+Die _einzige_ angemessene Verwendung von „Comic Sans" laut [Comic Sans Criminal](https://comicsanscriminal.com/):
 
-> * Your audience is under 11 years old
-> * You're designing a comic
-> * Your audience is dyslexic and has stated that they prefer comic sans
+> * Das Publikum ist unter 11 Jahre alt
+> * Man gestaltet einen Comic
+> * Das Publikum ist legasthenisch und hat angegeben, Comic Sans zu bevorzugen
 
-Jokes aside: Comic Sasn doesn't hurt people, people hurt people.
+Spaß beiseite: Comic Sans verletzt keine Menschen, Menschen verletzen Menschen.
 
 ## Krikikrak
 https://www.carrois.com/typefaces/retail/Krikikrak/
 
-If you are thinking _Comic Sans_ why not fully embrace the inner child and use Krikikraki?
+Wenn man schon an _Comic Sans_ denkt – warum nicht gleich das innere Kind voll ausleben und Krikikrak verwenden?
 
-![Preview of the Krikikrak font specimen](./previews/cream/Krikikrak_Tape_Regular.png)
+![Vorschau des Krikikrak Schriftmusters](./previews/cream/Krikikrak_Tape_Regular.png)
 
 ## Komika Hand
 https://www.1001fonts.com/komika-font.html
 
-Nobody has to use comic sans, but you could go full comic mode.
+Niemand muss Comic Sans benutzen, aber man könnte auch einfach voll auf Comic-Modus gehen.
 
-![Preview of the Komika font specimen](./previews/cream/Komika_Hand_Regular.png)
+![Vorschau des Komika Schriftmusters](./previews/cream/Komika_Hand_Regular.png)
 
 ## Kalam
 https://fonts.google.com/specimen/Kalam
 
-Don' use it. It might become the new Comic Sans ;-)
+Lieber nicht benutzen. Sie könnte das neue Comic Sans werden ;-)
 
-![Preview of the Kalam font specimen](./previews/light/Kalam_Regular.png)
-
-
-
-
-
-
-
+![Vorschau des Kalam Schriftmusters](./previews/light/Kalam_Regular.png)
