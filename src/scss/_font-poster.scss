@@ -1,6 +1,8 @@
+@use "sass:list";
 @use "_base/grid";
 @use "_includes/breakpoints" as bp;
 @use "_includes/modularscale" as ms;
+@use "_includes/font-borders" as fb;
 
 .keywords {
   margin: 0;
@@ -18,16 +20,6 @@
   line-height: 125%;
   padding: 1rem;
   overflow-x: hidden;
-
-  @include bp.media-breakpoint-up(lg) {
-    margin: 0.5rem;
-    padding: 3rem 4rem;
-    border-image-source: url("../img/borders/tan/border_line_1.svg");
-    border-image-slice: 40%;
-    border-image-width: 3rem;
-    border-image-outset: 1rem;
-    border-image-repeat: round round;
-  }
 
   .header {
     padding-bottom: 1rem;
@@ -357,7 +349,41 @@
   The specimen page uses the foldername as a baseclass
 */
 
+
+// Auto-generated border-image per font.
+// color und border-SVG kommen aus meta.yaml; Gulp generiert die farbigen SVG-Varianten.
+// Standard-SVG ist border_lines.svg; überschreibbar per `border:` in meta.yaml.
 @include bp.media-breakpoint-up(lg) {
+  .specimen-poster {
+    margin: 0.5rem;
+    padding: 3rem 4rem;
+    border-image-source: url("../img/borders/line2.svg");
+    border-image-slice: 40%;
+    border-image-width: 3rem;
+    border-image-outset: 1rem;
+    border-image-repeat: round round;
+  }
+  @each $slug, $data in fb.$font-border-colors {
+    .font-#{$slug} .specimen-poster {
+      border-image-source: url("../img/borders/#{list.nth($data, 1)}/#{list.nth($data, 2)}");
+    }
+  }
+  // General Borders
+  .border-hash-svg {
+    border-image-slice: 40;
+    border-image-repeat: round;
+    border-image-width: 2rem;
+  }
+  .border-floral-svg {
+      border-image-slice: 41.5%;
+  }
+  .border-doodle-svg {
+      border-image-slice: 40;
+      border-image-repeat: round;
+      border-image-width: 4rem;
+  }
+
+  // Font secific overrides
   .font-playwritedela {
     p {
       font-weight: 200;
@@ -370,76 +396,25 @@
     }
   }
 
-  .font-junction,
-  .font-firasans {
-    .specimen-poster {
-      border-image-source: url("../img/borders/lightblue/border_lines.svg");
-    }
-  }
-
-  .font-bodoni,
-  .font-cormorant,
-  .font-librebaskerville,
-  .font-librecaslon,
-  .font-texgyrepagella {
-    .specimen-poster {
-      border-image-source: url("../img/borders/tan/border_historical.svg");
-      border-image-slice: 41.5%;
-    }
-  }
-
-  .font-metropolis {
-    .specimen-poster {
-      border-image-source: repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 1rem,
-        #ccc 1rem,
-        #ccc 2rem
-      );
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 1rem;
-    }
-  }
-
-  .font-overpass {
-    .specimen-poster {
-      border-image-source: url("../img/borders/darkseagreen/border_lines.svg");
-    }
-  }
-
-  .font-dinish {
-    .specimen-poster {
-      border-image-source: url("../img/borders/lightblue/border_lines.svg");
-    }
-  }
-
-  .font-jetbrainsmono,
-  .font-maplemono {
-    .specimen-poster {
-      border-image-source: url("../img/borders/border-hash.svg");
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 2rem;
-    }
-  }
-
-  .font-kalam,
-  .font-krikikrak,
-  .font-playwritedela,
-  .font-texgyreschola {
-    .specimen-poster {
-      border-image-source: url("../img/borders/border-doodle.svg");
-      border-image-slice: 40;
-      border-image-repeat: round;
-      border-image-width: 4rem;
-    }
-  }
+  // .font-metropolis {
+  //   .specimen-poster {
+  //     border-image-source: repeating-linear-gradient(
+  //       -45deg,
+  //       transparent,
+  //       transparent 1rem,
+  //       #ccc 1rem,
+  //       #ccc 2rem
+  //     );
+  //     border-image-slice: 40;
+  //     border-image-repeat: round;
+  //     border-image-width: 1rem;
+  //   }
+  // }
 
   .font-atkinsonhyperlegiblenext {
     .specimen-poster {
-      border: 1rem dotted slategray;
+      border-image: unset;
+      border: 1rem dotted var(--color-accent);
     }
   }
 
@@ -449,7 +424,8 @@
   .font-texgyreadventor,
   .font-inter {
     .specimen-poster {
-      border: 1rem double slategray;
+      border-image: unset;
+      border: 1rem double var(--color-accent);
     }
   }
 }

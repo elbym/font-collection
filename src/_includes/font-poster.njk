@@ -1,5 +1,5 @@
 <a id="poster"></a>
-<div class="specimen-poster">
+<div class="specimen-poster border-{{ folder.border | slugify }}">
   {# Fonts für den aktuellen Ordner — kommt jetzt aus dem folder-Objekt der Pagination #}
   {% set activeFonts = folder.ownFonts %}
 

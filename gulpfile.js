@@ -14,6 +14,7 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 const http = require("http");
+const yaml = require("js-yaml");
 
 // ---------------------------------------------------------------------------
 // Configuration
@@ -307,6 +308,62 @@ async function downloadBackgroundImages() {
 }
 
 // ---------------------------------------------------------------------------
+// Colored SVG border generation
+// ---------------------------------------------------------------------------
+
+// The "accent" color baked into each master SVG — this value is replaced
+// with each font's accent color when generating per-color variants.
+const BORDER_SOURCE_COLOR = "#cccccc";
+
+function generateColoredBorders(done) {
+  const srcDir = path.join(__dirname, "src", "img", "borders");
+  const distDir = path.join(__dirname, "dist", "img", "borders");
+  const webfontsDir = path.join(__dirname, "src", "webfonts");
+
+  // Collect unique accent colors from all meta.yaml files
+  const colors = new Set();
+  function scanForColors(dir) {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        scanForColors(path.join(dir, entry.name));
+      } else if (entry.name === "meta.yaml" || entry.name === "meta.yml") {
+        try {
+          const raw = yaml.load(fs.readFileSync(path.join(dir, entry.name), "utf-8")) || {};
+          if (raw.color) colors.add(String(raw.color).trim().toLowerCase());
+        } catch (_) {
+          // ignore parse errors
+        }
+      }
+    }
+  }
+  scanForColors(webfontsDir);
+
+  if (colors.size === 0) {
+    done();
+    return;
+  }
+
+  const sourceRegex = new RegExp(BORDER_SOURCE_COLOR, "gi"); // g=alle Vorkommen, i=Groß-/Kleinschreibung egal
+  const masterSvgs = fs.readdirSync(srcDir).filter((f) => f.endsWith(".svg"));
+  let generated = 0;
+
+  for (const color of colors) {
+    const colorDir = path.join(distDir, color);
+    fs.mkdirSync(colorDir, { recursive: true });
+
+    for (const svgFile of masterSvgs) {
+      const content = fs.readFileSync(path.join(srcDir, svgFile), "utf-8");
+      fs.writeFileSync(path.join(colorDir, svgFile), content.replace(sourceRegex, color), "utf-8");
+      generated++;
+    }
+  }
+
+  console.log(`  Colored borders: ${generated} SVG variant(s) for ${colors.size} color(s).`);
+  done();
+}
+
+// ---------------------------------------------------------------------------
 // SCSS tasks
 // ---------------------------------------------------------------------------
 
@@ -417,6 +474,10 @@ function watchFiles() {
   watch(PATHS.webfonts, copyFonts);
   watch(PATHS.images, copyImages);
   watch(PATHS.js, copyJS);
+  watch(
+    ["src/img/borders/*.svg", "src/webfonts/**/*.yaml", "src/webfonts/**/*.yml"],
+    generateColoredBorders,
+  );
 
   watch(
     [
@@ -448,6 +509,7 @@ exports.default = series(
   downloadBackgroundImages,
   buildEleventy,
   parallel(copyStatic, compileMainSass, compileFontsScss),
+  generateColoredBorders,
   serve,
   watchFiles,
 );
@@ -457,6 +519,7 @@ exports.build = series(
   downloadBackgroundImages,
   buildEleventy,
   parallel(copyStatic, compileMainSassMinified, compileFontsScssMinified),
+  generateColoredBorders,
   beautifyHTML,
 );
 
@@ -465,6 +528,7 @@ exports.ghpages = series(
   downloadBackgroundImages,
   buildEleventyGhPages,
   parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
+  generateColoredBorders,
   beautifyHTML,
 );
 

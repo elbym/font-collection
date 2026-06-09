@@ -14,3 +14,4 @@ src/img/background/*
 !src/img/background/urls.txt
 src/webfonts/**/background/*
 !src/webfonts/**/background/urls.txt
+src/scss/_includes/_font-borders.scss

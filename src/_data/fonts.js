@@ -242,6 +242,7 @@ module.exports = function () {
       _heroword: meta.heroword ?? null,
       _herostyle: meta.herostyle ?? "regular",
       _color: meta.color ?? null,
+      _border: meta.border ?? null,
       _content: meta.content ?? null,
       _imageOverrides: meta.imageOverrides ?? null,
     };
@@ -299,6 +300,7 @@ module.exports = function () {
         heroword:   node._heroword,
         herostyle:  node._herostyle,
         color:      node._color,
+        border:     node._border,
         content:    node._content,
         imageOverrides: node._imageOverrides,
       });
