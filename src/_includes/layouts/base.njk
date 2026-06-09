@@ -26,7 +26,7 @@
     {%- set robotsContent = "noindex, follow" -%}
   {%- else -%}
     {%- set pageTitle = (title + " | " + site.title) if title else site.title -%}
-    {%- set pageDesc = site.description -%}
+    {%- set pageDesc = description or site.description -%}
     {%- set ogType = "website" -%}
     {%- set robotsContent = "index, follow" -%}
   {%- endif -%}
@@ -41,8 +41,12 @@
   <meta name="robots" content="{{ robotsContent }}">
   <link rel="canonical" href="{{ pageUrl }}">
 
+  {# ── Language ──────────────────────────────────────────────── #}
+  <meta http-equiv="Content-Language" content="de">
+
   {# ── Open Graph ────────────────────────────────────────────── #}
   <meta property="og:type" content="{{ ogType }}">
+  <meta property="og:locale" content="de_DE">
   <meta property="og:url" content="{{ pageUrl }}">
   <meta property="og:title" content="{{ pageTitle }}">
   <meta property="og:description" content="{{ pageDesc }}">
