@@ -219,8 +219,8 @@
 
     p {
       @include ms.modscale(2, $responsive: true);
-      height: 2em;
-      line-height: 1.5;
+      height: 1.25em;
+      line-height: 1.25;
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -361,7 +361,7 @@
     border-image-slice: 40%;
     border-image-width: 3rem;
     border-image-outset: 1rem;
-    border-image-repeat: round round;
+    // border-image-repeat: round round;
   }
   @each $slug, $data in fb.$font-border-colors {
     .font-#{$slug} .specimen-poster {
