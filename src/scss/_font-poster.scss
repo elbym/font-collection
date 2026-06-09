@@ -2,7 +2,6 @@
 @use "_includes/breakpoints" as bp;
 @use "_includes/modularscale" as ms;
 
-
 .keywords {
   margin: 0;
   padding: 0;
@@ -11,10 +10,9 @@
 
   li {
     display: block;
-    padding: .5em;
+    padding: 0.5em;
   }
 }
-
 
 .specimen-poster {
   line-height: 125%;
@@ -92,12 +90,11 @@
 
   .hero-word {
     p {
-      margin: .5rem 0;
+      margin: 0.5rem 0;
     }
   }
 
   .letters {
-
     line-height: 350%;
 
     p {
@@ -114,7 +111,6 @@
     }
 
     @include bp.media-breakpoint-up(md) {
-
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-gap: 1rem;
@@ -125,7 +121,6 @@
       }
 
       article {
-
         // 28
         &:nth-of-type(1) {
           grid-column: 1 / span 3;
@@ -253,7 +248,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 0 2rem;
+    gap: 0 0.25rem;
 
     > svg {
       flex: 0 0 100%;
@@ -284,7 +279,8 @@
     }
   }
 
-  @include bp.media-breakpoint-up(md) {}
+  @include bp.media-breakpoint-up(md) {
+  }
 
   .ascii {
     display: flex;
@@ -303,19 +299,19 @@
     }
 
     .l {
+      border-radius: 0.25rem;
       flex: 0 0 2ch;
       height: 2ch;
-      padding: .25rem;
-      border: 0.025rem solid var(--color-border);
+      padding: 0.25rem;
+      border: 0.025rem solid var(--color-base-shadow);
       text-align: center;
     }
 
     .char--missing {
       color: var(--color-text-muted);
       border-color: transparent;
-      opacity: 0.35;
+      opacity: 0.1;
     }
-
   }
 
   .alphabet_letters {
@@ -394,7 +390,13 @@
 
   .metropolis {
     .specimen-poster {
-      border-image-source: repeating-linear-gradient(-45deg, transparent, transparent 1rem, #ccc 1rem, #ccc 2rem);
+      border-image-source: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 1rem,
+        #ccc 1rem,
+        #ccc 2rem
+      );
       border-image-slice: 40;
       border-image-repeat: round;
       border-image-width: 1rem;

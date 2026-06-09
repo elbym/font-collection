@@ -11,150 +11,147 @@
 @use "_includes/html_colornames";
 
 header {
-    nav {
-        ul {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            align-items: center;
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
 
-            li {
-                display: flex;
-            }
+      li {
+        display: flex;
+      }
 
-            .nav-category {
-                padding: 0.5rem;
-                font-weight: 600;
-            }
-        }
-
-        a {
-            padding: 0.5rem;
-            text-decoration: none;
-        }
+      .nav-category {
+        padding: 0.5rem;
+        font-weight: 600;
+      }
     }
-}
 
+    a {
+      padding: 0.5rem;
+      text-decoration: none;
+    }
+  }
+}
 
 .svg_seperator {
-    width: 100%;
-    height: auto;
-    margin: 1rem 0;
-    .line {
-        fill: none;
-        stroke: var(--color-border);
-        stroke-width: .15;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-dasharray: none;
-    }
+  width: 100%;
+  height: auto;
+  margin: 1rem 0;
+
+  .line {
+    fill: none;
+    stroke: var(--color-highlight);
+    stroke-width: 0.15;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: none;
+  }
 }
 .cmyk-mask {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 .hero-letters,
 .cmyk,
 .cmyk-mask {
-    min-height: 10rem;
+  min-height: 10rem;
 }
 // Müssen gleiche Größe haben
 .cmyk,
 .cmyk-mask {
-    width: 100%;
-    clip-path: url("#text-clip");
-    position: absolute;
-    left: 0;
-    top: 50%
+  width: 100%;
+  clip-path: url("#text-clip");
+  position: absolute;
+  left: 0;
+  top: 50%;
 }
 
 /* Basis-Styling für alle Farbebenen */
 .cmyk-layer {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    background-size: var(--dot-size) var(--dot-size);
-    /* Größer als Container wegen der Rotation */
-    width: 40rem;
-    height: 40rem;
-    transform-origin: 50% 50%;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background-size: var(--dot-size) var(--dot-size);
+  /* Größer als Container wegen der Rotation */
+  width: 40rem;
+  height: 40rem;
+  transform-origin: 50% 50%;
 
-    mix-blend-mode: multiply;
-    @media (prefers-color-scheme: dark) {
-        mix-blend-mode: screen;
-    }
+  mix-blend-mode: multiply;
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: screen;
+  }
 }
 
 .cmyk_cyan {
-    transform: rotate(15deg) translate(0%, -50%);
-    background-image: radial-gradient(
-        var(--cmyk-cyan) var(--dot-start),
-        transparent var(--dot-end)
-    );
+  transform: rotate(15deg) translate(0%, -50%);
+  background-image: radial-gradient(
+    var(--cmyk-cyan) var(--dot-start),
+    transparent var(--dot-end)
+  );
 }
 
 .cmyk_magenta {
-    transform: rotate(75deg) translate(-25%, -25%);
-    background-image: radial-gradient(
-        var(--cmyk-magenta) var(--dot-start),
-        transparent var(--dot-end)
-    );
+  transform: rotate(75deg) translate(-25%, -25%);
+  background-image: radial-gradient(
+    var(--cmyk-magenta) var(--dot-start),
+    transparent var(--dot-end)
+  );
 }
 
 .cmyk_yellow {
-    transform: rotate(0deg) translate(0%, -50%);
-    background-image: radial-gradient(
-        var(--cmyk-yellow) calc(var(--dot-start) * 1.2),
-        transparent calc(var(--dot-end) * 1.2)
-    );
+  transform: rotate(0deg) translate(0%, -50%);
+  background-image: radial-gradient(
+    var(--cmyk-yellow) calc(var(--dot-start) * 1.2),
+    transparent calc(var(--dot-end) * 1.2)
+  );
 }
 
 .cmyk_black {
-    transform: rotate(45deg) translate(-25%, -25%);
-    background-image: radial-gradient(
-        var(--cmyk-black) var(--dot-start),
-        transparent var(--dot-end)
-    );
+  transform: rotate(45deg) translate(-25%, -25%);
+  background-image: radial-gradient(
+    var(--cmyk-black) var(--dot-start),
+    transparent var(--dot-end)
+  );
 }
-
 
 @media (prefers-cmyk-scheme: dark) {
-    .cmyk_cyan {
-        background-image: radial-gradient(
-            var(--cmyk-cyan) var(--dot-start),
-            transparent var(--dot-end)
-        );
-    }
+  .cmyk_cyan {
+    background-image: radial-gradient(
+      var(--cmyk-cyan) var(--dot-start),
+      transparent var(--dot-end)
+    );
+  }
 
-    .cmyk_magenta {
-        background-image: radial-gradient(
-            var(--cmyk-magenta) var(--dot-start),
-            transparent var(--dot-end)
-        );
-    }
+  .cmyk_magenta {
+    background-image: radial-gradient(
+      var(--cmyk-magenta) var(--dot-start),
+      transparent var(--dot-end)
+    );
+  }
 
-    .cmyk_yellow {
-        background-image: radial-gradient(
-            var(--cmyk-yellow) calc(var(--dot-start) * 1.2),
-            transparent calc(var(--dot-end) * 1.2)
-        );
-    }
+  .cmyk_yellow {
+    background-image: radial-gradient(
+      var(--cmyk-yellow) calc(var(--dot-start) * 1.2),
+      transparent calc(var(--dot-end) * 1.2)
+    );
+  }
 
-    .cmyk_black {
-        background-image: radial-gradient(
-            var(--cmyk-black) var(--dot-start),
-            transparent var(--dot-end)
-        );
-    }
+  .cmyk_black {
+    background-image: radial-gradient(
+      var(--cmyk-black) var(--dot-start),
+      transparent var(--dot-end)
+    );
+  }
 }
-
 
 .fitty {
-    display: inline-block;
-    white-space: nowrap;
+  display: inline-block;
+  white-space: nowrap;
 }
-
