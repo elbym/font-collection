@@ -358,7 +358,7 @@
 */
 
 @include bp.media-breakpoint-up(lg) {
-  .playwritedela {
+  .font-playwritedela {
     p {
       font-weight: 200;
     }
@@ -370,25 +370,25 @@
     }
   }
 
-  .junction,
-  .firasans {
+  .font-junction,
+  .font-firasans {
     .specimen-poster {
       border-image-source: url("../img/borders/lightblue/border_lines.svg");
     }
   }
 
-  .bodoni,
-  .cormorant,
-  .librebaskerville,
-  .librecaslon,
-  .texgyrepagella {
+  .font-bodoni,
+  .font-cormorant,
+  .font-librebaskerville,
+  .font-librecaslon,
+  .font-texgyrepagella {
     .specimen-poster {
       border-image-source: url("../img/borders/tan/border_historical.svg");
       border-image-slice: 41.5%;
     }
   }
 
-  .metropolis {
+  .font-metropolis {
     .specimen-poster {
       border-image-source: repeating-linear-gradient(
         -45deg,
@@ -403,20 +403,20 @@
     }
   }
 
-  .overpass {
+  .font-overpass {
     .specimen-poster {
       border-image-source: url("../img/borders/darkseagreen/border_lines.svg");
     }
   }
 
-  .dinish {
+  .font-dinish {
     .specimen-poster {
       border-image-source: url("../img/borders/lightblue/border_lines.svg");
     }
   }
 
-  .jetbrainsmono,
-  .maplemono {
+  .font-jetbrainsmono,
+  .font-maplemono {
     .specimen-poster {
       border-image-source: url("../img/borders/border-hash.svg");
       border-image-slice: 40;
@@ -425,10 +425,10 @@
     }
   }
 
-  .kalam,
-  .krikikrak,
-  .playwritedela,
-  .texgyreschola {
+  .font-kalam,
+  .font-krikikrak,
+  .font-playwritedela,
+  .font-texgyreschola {
     .specimen-poster {
       border-image-source: url("../img/borders/border-doodle.svg");
       border-image-slice: 40;
@@ -437,17 +437,17 @@
     }
   }
 
-  .atkinsonhyperlegiblenext {
+  .font-atkinsonhyperlegiblenext {
     .specimen-poster {
       border: 1rem dotted slategray;
     }
   }
 
-  .metropolis,
-  .jost,
-  .titillumweb,
-  .texgyreadventor,
-  .inter {
+  .font-metropolis,
+  .font-jost,
+  .font-titillumweb,
+  .font-texgyreadventor,
+  .font-inter {
     .specimen-poster {
       border: 1rem double slategray;
     }
