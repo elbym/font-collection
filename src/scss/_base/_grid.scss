@@ -5,15 +5,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 1rem 3rem;
-    }
-    .specimen-poster {
+      }
+      .specimen-poster {
         .font-gallery {
-            grid-column: 1 / span 2;
+          grid-column: 1 / span 2;
         }
         .hero {
-            display: grid;
-            grid-template-columns: 5fr 4fr;
-            align-items: center;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          gap: 1rem 4rem;
         }
         .hero-word,
         .alphabet {

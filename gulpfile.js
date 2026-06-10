@@ -15,6 +15,7 @@ const path = require("path");
 const https = require("https");
 const http = require("http");
 const yaml = require("js-yaml");
+const chroma = require("chroma-js");
 
 // ---------------------------------------------------------------------------
 // Configuration
@@ -292,6 +293,25 @@ async function downloadBackgroundImages() {
 // with each font's accent color when generating per-color variants.
 const BORDER_SOURCE_COLOR = "#cccccc";
 
+// Minimum saturation (0–1) and maximum lightness (0–1) for generated border colors.
+// Increase BORDER_MIN_SATURATION to make pale colors more vivid.
+// Decrease BORDER_MAX_LIGHTNESS to darken light colors.
+const BORDER_MIN_SATURATION = 0.3;
+const BORDER_MIN_LIGHTNESS = 0.8;
+
+function boostBorderColor(cssColor) {
+  try {
+    const c = chroma(cssColor);
+    let [h, s, l] = c.hsl();
+    if (isNaN(h)) h = 0; // achromatic colors (white/black/grey) get hue 0
+    s = Math.min(s, BORDER_MIN_SATURATION);
+    l = Math.max(l, BORDER_MIN_LIGHTNESS);
+    return chroma.hsl(h, s, l).hex();
+  } catch (_) {
+    return cssColor; // unknown color keyword — use as-is
+  }
+}
+
 function generateColoredBorders(done) {
   const srcDir = path.join(__dirname, "src", "img", "borders");
   const distDir = path.join(__dirname, "dist", "img", "borders");
@@ -328,10 +348,11 @@ function generateColoredBorders(done) {
   for (const color of colors) {
     const colorDir = path.join(distDir, color);
     fs.mkdirSync(colorDir, { recursive: true });
+    const boostedColor = boostBorderColor(color);
 
     for (const svgFile of masterSvgs) {
       const content = fs.readFileSync(path.join(srcDir, svgFile), "utf-8");
-      fs.writeFileSync(path.join(colorDir, svgFile), content.replace(sourceRegex, color), "utf-8");
+      fs.writeFileSync(path.join(colorDir, svgFile), content.replace(sourceRegex, boostedColor), "utf-8");
       generated++;
     }
   }

@@ -66,7 +66,7 @@ header {
   width: 100%;
   clip-path: url("#text-clip");
   position: absolute;
-  left: 0;
+  right: 0;
   top: 50%;
 }
 
@@ -98,7 +98,7 @@ header {
 }
 
 .cmyk_magenta {
-  transform: rotate(75deg) translate(-25%, -25%);
+  transform: rotate(75deg) translate(-25%, 0%);
   background-image: radial-gradient(
     var(--cmyk-magenta) var(--dot-start),
     transparent var(--dot-end)

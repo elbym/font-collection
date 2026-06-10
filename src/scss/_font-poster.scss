@@ -5,7 +5,7 @@
 @use "_includes/font-borders" as fb;
 
 .keywords {
-  margin: 0;
+  margin: 0 0 1rem 0;
   padding: 0;
   display: flex;
   justify-content: space-around;
@@ -62,9 +62,9 @@
   }
 
   .hero-letters {
-    padding: 1rem;
+    // padding: 1rem;
     position: relative;
-    isolation: isolate;
+    // isolation: isolate;
 
     #text-clip text {
       margin: 0;
@@ -75,18 +75,19 @@
   }
 
   .hero-word {
-    padding: 1rem 0;
+    padding: 0;
     text-align: right;
     line-height: 100%;
   }
 
   .hero-word {
     p {
-      margin: 0.5rem 0;
+      margin: 0;
     }
   }
 
   .letters {
+    // padding-right: 4rem;
     line-height: 350%;
 
     p {
@@ -117,12 +118,18 @@
         &:nth-of-type(1) {
           grid-column: 1 / span 3;
           grid-row: 1;
+
+          padding-right: 1rem;
+          border-right: .05rem solid var(--color-border);
         }
 
         // 24
         &:nth-of-type(2) {
           grid-column: 1 / span 2;
           grid-row: 2 / span 2;
+
+          padding-right: 1rem;
+          border-right: .05rem solid var(--color-border);
         }
 
         // 20
@@ -141,12 +148,18 @@
         &:nth-of-type(5) {
           grid-column: 3 / span 3;
           grid-row: 2;
+
+          padding-right: 1rem;
+          border-bottom: .05rem solid var(--color-border);
         }
 
         // 8
         &:nth-of-type(6) {
           grid-column: 3;
           grid-row: 3;
+
+          padding-right: 1rem;
+          border-right: .05rem solid var(--color-border);
         }
       }
     }
@@ -197,7 +210,7 @@
 
   .latin {
     text-align: center;
-
+    margin-bottom: 1rem;
     p {
       margin: 0;
       line-height: 150%;
@@ -356,12 +369,12 @@
 @include bp.media-breakpoint-up(lg) {
   .specimen-poster {
     margin: 0.5rem;
-    padding: 3rem 4rem;
+    padding: 3rem 3.5rem;
     border-image-source: url("../img/borders/line2.svg");
-    border-image-slice: 40%;
+    border-image-slice: 42%;
     border-image-width: 3rem;
     border-image-outset: 1rem;
-    // border-image-repeat: round round;
+    border-image-repeat: round round;
   }
   @each $slug, $data in fb.$font-border-colors {
     .font-#{$slug} .specimen-poster {

@@ -5,7 +5,7 @@
 
   <header class="header">
     {% if folder.tags.length %}
-      <ul class="keywords ligatures">
+      <ul class="keywords ligatures small">
         {% for tag in folder.tags %}
           <li>
             <a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a>
@@ -68,8 +68,7 @@
     </article>
 
     <article class="hero-word">
-      <p contenteditable="true"
-               class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
+      <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
         {{ folder.heroword or site.heroword }}
       </p>
     </article>
