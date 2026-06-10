@@ -62,10 +62,8 @@
   }
 
   .hero-letters {
-    // padding: 1rem;
     position: relative;
     margin-top: 2rem;
-    // isolation: isolate;
 
     #text-clip text {
       font-size: clamp(8rem, 30cqw + 1rem, 18rem);
@@ -89,7 +87,6 @@
   }
 
   .letters {
-    // padding-right: 4rem;
     line-height: 350%;
 
     p {
@@ -373,7 +370,7 @@
     margin: 0.5rem;
     padding: 3rem 3.5rem;
     border-image-source: url("../img/borders/line2.svg");
-    border-image-slice: 42%;
+    border-image-slice: 45%;
     border-image-width: 3rem;
     border-image-outset: 1rem;
     border-image-repeat: round round;
