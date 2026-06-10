@@ -58,7 +58,7 @@ header {
 .hero-letters,
 .cmyk,
 .cmyk-mask {
-  min-height: 10rem;
+  // min-height: 10rem;
 }
 // Müssen gleiche Größe haben
 .cmyk,
@@ -66,7 +66,7 @@ header {
   width: 100%;
   clip-path: url("#text-clip");
   position: absolute;
-  right: 0;
+  right: 1rem;
   top: 50%;
 }
 
@@ -82,12 +82,17 @@ header {
   width: 40rem;
   height: 40rem;
   transform-origin: 50% 50%;
+  transition: background-size .5s ease-out;
 
   mix-blend-mode: multiply;
   @media (prefers-color-scheme: dark) {
     mix-blend-mode: screen;
   }
 }
+
+// .cmyk:hover .cmyk-layer {
+//   background-size: var(--dot-size-large) var(--dot-size-large);
+// }
 
 .cmyk_cyan {
   transform: rotate(15deg) translate(0%, -50%);

@@ -27,7 +27,8 @@
   --cmyk-black:   hsla(0, 0%, 0%, 0.6);
 
   // CMYK Pattern
-  --dot-size: .4cqw;
+  --dot-size: 4px;
+  // --dot-size-large: 7px;
   --dot-start: 30%;
   --dot-end: 35%;
 }
@@ -47,11 +48,14 @@
     --color-text-shadow: color-mix(in oklab, var(--color-base-shadow), var(--color-mix-light) 20%);
     --color-surface: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 80%);
 
-      // CMYK process colors
-      --cmyk-cyan:    hsla(196, 100%, 47%, .8);
-      --cmyk-magenta: hsla(321, 100%, 46%, .8);
-      --cmyk-yellow:  hsla(56, 100%, 50%, .5);
-      --cmyk-black:   hsla(0, 0%, 0%, 0.5);
+    //
+    --dot-size: 7px;
+    // --dot-size-large: 10px;
+    // CMYK process colors
+    --cmyk-cyan:    hsla(196, 100%, 47%, .8);
+    --cmyk-magenta: hsla(321, 100%, 46%, .8);
+    --cmyk-yellow:  hsla(56, 100%, 50%, .7);
+    --cmyk-black:   hsla(0, 0%, 0%, 0.5);
     --dot-start: 35%;
     --dot-end: 40%;
 

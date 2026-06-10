@@ -64,17 +64,19 @@
   .hero-letters {
     // padding: 1rem;
     position: relative;
+    margin-top: 2rem;
     // isolation: isolate;
 
     #text-clip text {
+      font-size: clamp(8rem, 40cqw + 1rem, 18rem);
       margin: 0;
       line-height: 100%;
-      font-size: clamp(8rem, 40cqw + 1rem, 12rem);
       font-weight: 700;
     }
   }
 
   .hero-word {
+    margin-top:2rem;
     padding: 0;
     text-align: right;
     line-height: 100%;
