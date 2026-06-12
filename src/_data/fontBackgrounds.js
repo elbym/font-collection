@@ -31,7 +31,7 @@ module.exports = function () {
 
         // Store by folder's basename
         const folderKey = path.basename(dirPath);
-        map[folderKey] = Object.values(bestVersions).map((file) => `/webfonts/${relativePath}/background/${file}`);
+        map[folderKey] = Object.values(bestVersions).map((file) => `/webfonts/${relativePath}/background/${file.replace(/\.(jpe?g|png)$/i, ".webp")}`);
       }
     }
 
