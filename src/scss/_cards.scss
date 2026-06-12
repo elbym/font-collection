@@ -129,15 +129,26 @@ html {
     padding: 3rem 1rem;
     height: 100%;
     font-weight: 600;
-    opacity: .8;
-    mix-blend-mode: screen;
+    opacity: 1;
+    color: white;
+    mix-blend-mode: screen;         // weißer Text + screen auf dunklem BG = immer hell
     will-change: filter;
-    transition: opacity .3s ease, mix-blend-mode .3s ease;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    transition: opacity .3s ease, text-shadow .3s ease;
 
     &:hover {
-      backdrop-filter: brightness(50%);
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
       opacity: 1;
-      mix-blend-mode: plus-lighter;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-mix-dark);     // dunkler Text im Dark Mode
+      mix-blend-mode: multiply;         // multiply auf medium-dunklem BG = gut lesbar
+      text-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+
+      &:hover {
+        text-shadow: 0 2px 12px rgba(255, 255, 255, 0.5);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
