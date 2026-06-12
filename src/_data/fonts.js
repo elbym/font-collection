@@ -60,7 +60,10 @@ function resolveColorHex(color) {
   return CSS_COLOR_HEX[color.toLowerCase()] ?? null;
 }
 
+let _cache = null;
+
 module.exports = function () {
+  if (_cache) return _cache;
   const baseDir = path.join(__dirname, "../webfonts");
   if (!fs.existsSync(baseDir)) return {};
 
@@ -406,5 +409,6 @@ module.exports = function () {
     enumerable: false,
   });
 
-  return fontsByPath;
+  _cache = fontsByPath;
+  return _cache;
 };

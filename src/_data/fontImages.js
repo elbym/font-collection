@@ -20,12 +20,14 @@ module.exports = function () {
     const dirToRead = fs.existsSync(galleryDir) ? galleryDir : dirPath;
     const files = fs.readdirSync(dirToRead);
     
+    const folderTitle = path.basename(dirPath);
     const images = files
       .filter((file) => /\.(jpe?g|png|webp|svg|avif)$/i.test(file))
       .map((file) => ({
         filename: file,
-        src: dirToRead === galleryDir 
-          ? `/webfonts/${relativePath}/gallery/${file}` 
+        alt: `${folderTitle} – ${path.parse(file).name}`,
+        src: dirToRead === galleryDir
+          ? `/webfonts/${relativePath}/gallery/${file}`
           : `/webfonts/${relativePath}/${file}`,
       }));
 
