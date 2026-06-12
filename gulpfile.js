@@ -5,7 +5,6 @@ const cp = require("child_process");
 const concat = require("gulp-concat");
 const { rimrafSync } = require("rimraf");
 const cleanCSS = require("gulp-clean-css");
-const htmlmin = require("gulp-html-minifier-terser");
 const prettier = require("gulp-prettier").default;
 const sourcemaps = require("gulp-sourcemaps");
 const through2 = require("through2");
@@ -23,6 +22,7 @@ const chroma = require("chroma-js");
 // ---------------------------------------------------------------------------
 
 const UNSPLASH_BASE = "https://unsplash.com/photos/";
+const PEXELS_BASE = "https://images.pexels.com/photos/";
 const UNSPLASH_DLSIZE = 1920;
 const IMAGE_MAX_WIDTH = 1080;
 const IMAGE_QUALITY = 60;
@@ -310,9 +310,9 @@ async function downloadBackgroundImages() {
 const BORDER_SOURCE_COLOR = "#cccccc";
 
 // Minimum saturation (0–1) and maximum lightness (0–1) for generated border colors.
-// Increase BORDER_MIN_SATURATION to make pale colors more vivid.
+// Increase BORDER_MAX_SATURATION to make pale colors more vivid.
 // Decrease BORDER_MAX_LIGHTNESS to darken light colors.
-const BORDER_MIN_SATURATION = 0.3;
+const BORDER_MAX_SATURATION = 0.3;
 const BORDER_MIN_LIGHTNESS = 0.8;
 
 function boostBorderColor(cssColor) {
@@ -320,7 +320,7 @@ function boostBorderColor(cssColor) {
     const c = chroma(cssColor);
     let [h, s, l] = c.hsl();
     if (isNaN(h)) h = 0; // achromatic colors (white/black/grey) get hue 0
-    s = Math.min(s, BORDER_MIN_SATURATION);
+    s = Math.min(s, BORDER_MAX_SATURATION);
     l = Math.max(l, BORDER_MIN_LIGHTNESS);
     return chroma.hsl(h, s, l).hex();
   } catch (_) {
@@ -402,19 +402,6 @@ const buildEleventyGhPages = makeEleventyTask("font-collection");
 // HTML tasks
 // ---------------------------------------------------------------------------
 
-function minifyHTML() {
-  return src("dist/**/*.html")
-    .pipe(
-      htmlmin({
-        collapseWhitespace: true,
-        removeComments: true,
-        minifyCSS: true,
-        minifyJS: true,
-      }),
-    )
-    .pipe(dest("dist"));
-}
-
 function beautifyHTML() {
   return src("dist/**/*.html")
     .pipe(
@@ -432,30 +419,40 @@ function beautifyHTML() {
 // Static file copy / optimise
 // ---------------------------------------------------------------------------
 
-function copyFonts() {
-  // Copy fonts, metadata, and other non-bitmap files directly
-  src(["src/webfonts/**/*", "!src/webfonts/**/*.{jpg,jpeg,png}"], { encoding: false })
-    .pipe(newer("dist/webfonts"))
-    .pipe(dest("dist/webfonts"));
+function streamDone(stream) {
+  return new Promise((resolve, reject) => stream.on("end", resolve).on("error", reject));
+}
 
-  // Optimise bitmap images and convert to WebP
-  return src("src/webfonts/**/*.{jpg,jpeg,png}")
-    .pipe(newer({ dest: "dist/webfonts", ext: ".webp" }))
-    .pipe(bitmapToWebP())
-    .pipe(dest("dist/webfonts"));
+function copyFonts() {
+  return Promise.all([
+    streamDone(
+      src(["src/webfonts/**/*", "!src/webfonts/**/*.{jpg,jpeg,png}"], { encoding: false })
+        .pipe(newer("dist/webfonts"))
+        .pipe(dest("dist/webfonts"))
+    ),
+    streamDone(
+      src("src/webfonts/**/*.{jpg,jpeg,png}")
+        .pipe(newer({ dest: "dist/webfonts", ext: ".webp" }))
+        .pipe(bitmapToWebP())
+        .pipe(dest("dist/webfonts"))
+    ),
+  ]);
 }
 
 function copyImages() {
-  // Copy SVGs and other non-bitmap files directly
-  src(["src/img/**/*", "!src/img/**/*.{jpg,jpeg,png}"], { encoding: false })
-    .pipe(newer("dist/img"))
-    .pipe(dest("dist/img"));
-
-  // Optimise bitmaps and convert to WebP
-  return src("src/img/**/*.{jpg,jpeg,png}")
-    .pipe(newer({ dest: "dist/img", ext: ".webp" }))
-    .pipe(bitmapToWebP())
-    .pipe(dest("dist/img"));
+  return Promise.all([
+    streamDone(
+      src(["src/img/**/*", "!src/img/**/*.{jpg,jpeg,png}"], { encoding: false })
+        .pipe(newer("dist/img"))
+        .pipe(dest("dist/img"))
+    ),
+    streamDone(
+      src("src/img/**/*.{jpg,jpeg,png}")
+        .pipe(newer({ dest: "dist/img", ext: ".webp" }))
+        .pipe(bitmapToWebP())
+        .pipe(dest("dist/img"))
+    ),
+  ]);
 }
 
 function copyJS() {

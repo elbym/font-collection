@@ -6,17 +6,19 @@ eleventyNavigation:
   key: Index
   order: 0
 ---
-<h1>Persönliche Sammlung von freien Schriftarten</h1>
-<blockquote>Jeder hat doch eine Lieblingsschriftart, oder? ODER!?</blockquote>
-<p>Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer <a href="https://elbym.github.io/font-collection/">HTML-Vorschau</a> gewechselt.</p>
-<p>Diese Liste ist auch beeinflusst von <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> und <a href="https://typotheque.luuse.io/">Free Font Library</a></p>
+<article class="content">
+  <h1>Persönliche Sammlung von freien Schriftarten</h1>
+  <blockquote>Jeder hat doch eine Lieblingsschriftart, oder? ODER!?</blockquote>
+  <p>Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer <a href="https://elbym.github.io/font-collection/">HTML-Vorschau</a> gewechselt.</p>
+  <p>Diese Liste ist auch beeinflusst von <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> und <a href="https://typotheque.luuse.io/">Free Font Library</a></p>
 
-<p>Das Schriftmusterplakat ist stark inspiriert von (kopiert von) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> an der Universität Frankfurt.</p>
+  <p>Das Schriftmusterplakat ist stark inspiriert von (kopiert von) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> an der Universität Frankfurt.</p>
 
-<p>Warum bin ich erst so spät darauf gestoßen? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> hat wunderbare Musterlayouts für seine <a href="https://www.forthehearts.net/playfair">Playfair</a>-Schrift <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html ">Word Tower Specimen Demo</a></p>
-<h2>Liste der Schriftarten. In keiner bestimmten Reihenfolge.</h2>
+  <p>Warum bin ich erst so spät darauf gestoßen? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> hat wunderbare Musterlayouts für seine <a href="https://www.forthehearts.net/playfair">Playfair</a>-Schrift <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html ">Word Tower Specimen Demo</a></p>
+</article>
 
 <section class="font-family-card-list">
+  <h2>Liste der Schriftarten. In keiner bestimmten Reihenfolge.</h2>
   {% for node in fontFolders %}
     {% if node.isLeaf %}
       {% include "font-card.njk" %}

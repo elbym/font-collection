@@ -139,10 +139,6 @@ module.exports = function (eleventyConfig) {
     })
   );
 
-  /**
-   * Rendert einen Markdown-String zu HTML.
-   * Nutzung: folder.content | markdownify | safe
-   */
   eleventyConfig.addFilter("hueShift", (cssColor, degrees = 60) => {
     try {
       let [h, s, l] = chroma(cssColor).hsl();
