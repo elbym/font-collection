@@ -18,9 +18,9 @@ Output: `dist/` — a fully static site with one HTML specimen page per font fam
 | Build | Gulp 5 |
 | Dev server | BrowserSync, port 3000 |
 | Images | `gulp-sharp-optimize-images` — JPG/PNG → WebP, max 1920px |
-| HTML (prod) | `gulp-html-minifier-terser` / `gulp-prettier` |
+| HTML (prod) | `gulp-prettier` (beautify) |
 | Font metadata | `meta.yaml` (parsed with `js-yaml`) |
-| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only) |
+| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver) |
 | Python tool | `font_specimen_generator.py` — standalone, not part of the build |
 
 ---
@@ -62,6 +62,7 @@ src/
     webfonts/              # AUTO-GENERATED — never edit (gitignored)
   js/
     fitty.min.js
+    font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
   webfonts/                # Font files, organised by category
     sans/ serif/ mono/ blackletter/ comicsans/ fancy/
     meta.yaml              # group-level metadata (optional)
