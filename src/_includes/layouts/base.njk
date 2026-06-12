@@ -178,7 +178,7 @@
   {% endif %}
 </head>
 
-<body class="specimen font-{{ folder.key | slugify }}">
+<body class="{% if folder %}specimen font-{{ folder.key | slugify }}{% endif %}">
 
   {# <div class="container"> #}
 

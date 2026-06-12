@@ -4,12 +4,12 @@
   --color-mix-dark: hsl(0, 0%, 10%);
   --color-base-shadow: hsla(0, 0%, 20%, .8);
 
-  --color-base-text: color-mix(var(--color-mix-dark), var(--color-mix-dark));
-  --color-base-background: color-mix(var(--color-mix-light), var(--color-mix-light));
-  
+  --color-base-text: var(--color-mix-dark);
+  --color-base-background: var(--color-mix-light);
+
   --color-base-primary:   RoyalBlue;
-  --color-base-secondary: hsl(from var(--color-base-primary) calc(h + 60) s l);
-  --color-base-tertiary:  hsl(from var(--color-base-primary) calc(h + 120) s l);
+  --color-base-secondary: hsl(from var(--color-base-primary) calc(h + 120) s l);
+  --color-base-tertiary:  hsl(from var(--color-base-primary) calc(h + 180) s l);
 
   // Mix colors
 

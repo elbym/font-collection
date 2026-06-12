@@ -42,7 +42,8 @@ h3 {
 .justify {
     text-align: justify;
 }
-.ligature {
+.ligature,
+.ligatures {
     font-variant-ligatures: common-ligatures;
     font-feature-settings: "liga" 1,  "clig" 1, "dlig" 1;
 }
