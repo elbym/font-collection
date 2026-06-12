@@ -17,7 +17,8 @@
 
         <li class="gallery-item">
           <figure>
-            <img src="{{ image.src }}" alt="{{ displayAlt }}" loading="lazy">
+            <img src="{{ image.src }}" alt="{{ displayAlt }}" loading="lazy"
+              {% if image.width and image.height %}width="{{ image.width }}" height="{{ image.height }}"{% endif %}>
             <figcaption>
               {% if override.alt %}
                 {{ displayAlt }}            {% endif %}

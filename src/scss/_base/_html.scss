@@ -3,6 +3,10 @@
 
 html {
     scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
     font-size: clamp(1rem, 5cqi + 1rem, 1.25rem);
     @include bp.media-breakpoint-up(md) {
         font-size: 1.25rem;

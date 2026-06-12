@@ -13,10 +13,12 @@
   // First segment of a hyphenated slug that indicates a CSS utility class, not a font name.
   var cssUtilWords = { size: 1, family: 1, weight: 1, style: 1, color: 1, display: 1, variant: 1, card: 1, poster: 1, image: 1 };
 
+  var _assetBase = null;
   function getAssetBase() {
+    if (_assetBase !== null) return _assetBase;
     var link = document.querySelector('link[rel="stylesheet"][href*="/css/styles"]');
-    if (!link) return '';
-    return link.href.replace(/\/css\/styles\.css.*$/, '');
+    _assetBase = link ? link.href.replace(/\/css\/styles\.css.*$/, '') : '';
+    return _assetBase;
   }
 
   function loadFont(slug) {
@@ -25,6 +27,11 @@
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = getAssetBase() + '/css/webfonts/' + slug + '.css';
+    if (window.fitty) {
+      link.addEventListener('load', function () {
+        requestAnimationFrame(function () { fitty.fitAll(); });
+      });
+    }
     document.head.appendChild(link);
   }
 
