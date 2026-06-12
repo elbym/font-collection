@@ -80,20 +80,6 @@
 
   {% if folder.isLeaf %}
   <link rel="stylesheet" href="/css/webfonts/{{ folder.key | slugify }}.css">
-  <script>
-    // Safari/WebKit doesn't re-evaluate SVG clip-path when a web font swaps in.
-    // Force a repaint of .cmyk after all fonts are ready so the text clip-path
-    // uses the correct specimen font metrics.
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () {
-        var cmyk = document.querySelector('.cmyk');
-        if (!cmyk) return;
-        cmyk.style.display = 'none';
-        cmyk.offsetHeight;
-        cmyk.style.display = '';
-      });
-    }
-  </script>
   {% endif %}
 
   <script src="/js/font-lazy-loader.js" defer></script>
