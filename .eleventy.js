@@ -1,6 +1,7 @@
 const { HtmlBasePlugin } = require("@11ty/eleventy");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
+const chroma = require("chroma-js");
 
 const fonts = require("./src/_data/fonts.js");
 
@@ -142,6 +143,16 @@ module.exports = function (eleventyConfig) {
    * Rendert einen Markdown-String zu HTML.
    * Nutzung: folder.content | markdownify | safe
    */
+  eleventyConfig.addFilter("hueShift", (cssColor, degrees = 60) => {
+    try {
+      let [h, s, l] = chroma(cssColor).hsl();
+      if (isNaN(h)) h = 0;
+      return chroma.hsl((h + degrees) % 360, s, l).hex();
+    } catch (_) {
+      return cssColor;
+    }
+  });
+
   eleventyConfig.addFilter("markdownify", (str) => {
     if (!str) return "";
     return md.render(String(str));

@@ -1,5 +1,5 @@
-<a id="poster"></a>
-<div class="specimen-poster border-{{ folder.border | slugify }}">
+<main class="specimen-poster border-{{ folder.border | slugify }}">
+  <a id="poster"></a>
   {# Fonts für den aktuellen Ordner — kommt jetzt aus dem folder-Objekt der Pagination #}
   {% set activeFonts = folder.ownFonts %}
 
@@ -40,85 +40,77 @@
       </article>
     {% endif %}
 
-    {% include "seperator.njk" %}
   </header>
 
   <section class="hero">
-    <article class="letters">
-      <p class="fitty">Aa Rr Ee</p>
-      <p class="fitty italic">Aa Rr Ee</p>
+    <article class="hero_grid">
+      <article class="letters">
+        <p class="fitty">Aa Rr Ee</p>
+        <p class="fitty italic">Aa Rr Ee</p>
+      </article>
+
+      <article class="hero-letters">
+        <div class="cmyk">
+          <div class="cmyk-layer cmyk_cyan"></div>
+          <div class="cmyk-layer cmyk_magenta"></div>
+          <div class="cmyk-layer cmyk_yellow"></div>
+          <div class="cmyk-layer cmyk_black"></div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
+          <defs>
+            <clippath id="text-clip">
+              <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
+                {{ folder.heroletter or site.heroletter }}
+              </text>
+            </clippath>
+          </defs>
+        </svg>
+      </article>
+
+      <article class="hero-word">
+        <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
+          {{ folder.heroword or site.heroword }}
+        </p>
+      </article>
+
+      <article class="alphabet">
+        <div class="alphabet_letters upper">
+          {% for char in "abc_upper" | unicodeChars %}
+            <span>{{ char }}</span>
+          {% endfor %}
+        </div>
+        <div class="alphabet_letters">
+          {% for char in "abc_lower" | unicodeChars %}
+            <span>{{ char }}</span>
+          {% endfor %}
+        </div>
+        <div class="alphabet_letters numbers old-nums">
+          {% for char in "digits" | unicodeChars %}
+            <span>{{ char }}</span>
+          {% endfor %}
+          {% for char in "punctuation" | unicodeChars %}
+            <span>{{ char }}</span>
+          {% endfor %}
+        </div>
+      </article>
     </article>
 
-    <article class="hero-letters">
-      <div class="cmyk">
-        <div class="cmyk-layer cmyk_cyan"></div>
-        <div class="cmyk-layer cmyk_magenta"></div>
-        <div class="cmyk-layer cmyk_yellow"></div>
-        <div class="cmyk-layer cmyk_black"></div>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" class="cmyk-mask">
-        <defs>
-          <clippath id="text-clip">
-            <text class="big" x="50%" y="0" text-anchor="middle" dominant-baseline="central">
-              {{ folder.heroletter or site.heroletter }}
-            </text>
-          </clippath>
-        </defs>
-      </svg>
-    </article>
+    {% set varFonts = activeFonts | selectattr("isVariable") | list %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
 
-    <article class="hero-word">
-      <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
-        {{ folder.heroword or site.heroword }}
-      </p>
-    </article>
+    {% if activeFonts %}
+      {% set waterfallGroups = ["Regular", "Italic"] %}
 
-    <article class="alphabet">
-      <div class="alphabet_letters upper">
-        {% for char in "abc_upper" | unicodeChars %}
-          <span>{{ char }}</span>
-        {% endfor %}
-      </div>
-      <div class="alphabet_letters">
-        {% for char in "abc_lower" | unicodeChars %}
-          <span>{{ char }}</span>
-        {% endfor %}
-      </div>
-      <div class="alphabet_letters numbers old-nums">
-        {% for char in "digits" | unicodeChars %}
-          <span>{{ char }}</span>
-        {% endfor %}
-        {% for char in "punctuation" | unicodeChars %}
-          <span>{{ char }}</span>
-        {% endfor %}
-      </div>
-    </article>
-  </section>
+        <article class="waterfall--styles">
+          {% set waterfallText = "" %}
+          {% include "waterfall-groups.njk" %}
+        </article>
 
-  {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-  {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
+    {% endif %}
 
-  {% if activeFonts %}
-    {% set waterfallGroups = ["Regular", "Italic"] %}
+    {% if fontImages[folder.key] %}{% include "font-image-list.njk" %}{% endif %}
 
-    <section class="waterfall waterfall--styles">
-      {% include "seperator.njk" %}
-      {% set waterfallText = "" %}
-      {% include "waterfall-groups.njk" %}
-    </section>
-
-  {% else %}
-    <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
-  {% endif %}
-
-  <section class="font-gallery">
-    {% include "font-image-list.njk" %}
-  </section>
-
-  <section class="latin">
-    {% include "seperator.njk" %}
-
-    <article id="fitty">
+    <article class="latin">
       {% set displayFont = null %}
       {% for f in activeFonts %}
         {% if f.optical == 'Display' and not displayFont %}
@@ -130,32 +122,35 @@
       <p class="upper fitty">Character <span class="small-caps">VM</span> sev</p>
       {% if displayFont %}
         <p class="display-size-5 small-caps fitty"
-                   style="font-family: '{{ displayFont.family }} {{ displayFont.optical }}';">
-                   Also in Display weight
+                  style="font-family: '{{ displayFont.family }} {{ displayFont.optical }}';">
+                  Also in Display weight
                 </p>
       {% endif %}
       <p class="upper italic fitty">Typorum probatissimorum,</p>
       <p class="fitty bold">Incondite qvidem, <spon class="italic">sed secundum,</span></p>
       <p class="upper fitty">svas tamen differentias propositum</p>
     </article>
+
   </section>
 
   <section class="paragraph-blocks">
-    {% for size in[
-      28,
-      24,
-      20,
-      16,
-      12,
-      8
-    ] %}
-      <article class="font-size-{{ size }}">
-        <small>Size: {{ size }}px</small>
-        <p class="justify initials">
-          {{ paragraph[size] or site["paragraph" + size] }}
-        </p>
-      </article>
-    {% endfor %}
+    <article>
+      {% for size in[
+        28,
+        24,
+        20,
+        16,
+        12,
+        8
+      ] %}
+      <p class="font-size-{{ size }} justify initials">
+        {# <span>Size: {{ size }}px</span> #}
+        {{ paragraph[size] or site["paragraph" + size] }}
+      </p>
+      {% endfor %}
+      
+    </article>
+
   </section>
 
   {% if activeFonts %}
@@ -163,9 +158,12 @@
 
     <section class="waterfall waterfall--panagram">
       {% include "seperator.njk" %}
-      <h2>{{ folder.title }} Family</h2>
-      {% set waterfallText = site.panagram %}
-      {% include "waterfall-groups.njk" %}
+      {# -------------------------------------------------------------------------------- #}
+      <article>
+        <h2>{{ folder.title }} Family</h2>
+        {% set waterfallText = site.panagram %}
+        {% include "waterfall-groups.njk" %}
+      <article>
     </section>
 
   {% else %}
@@ -174,12 +172,14 @@
 
   {%- set cpMap = fontCodepoints[folder.key] if fontCodepoints else null -%}
   <section class="ascii">
-    {% for section in unicodeRanges %}
-      <h2>{{ section.label }}{% if cpMap %} <span class="coverage">({{ section.key | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
-      {% for char in section.key | unicodeChars %}
-        <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
+    <article>
+      {% for section in unicodeRanges %}
+        <h2>{{ section.label }}{% if cpMap %} <span class="coverage">({{ section.key | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
+        {% for char in section.key | unicodeChars %}
+          <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
+    </article>
   </section>
 
 </div>
