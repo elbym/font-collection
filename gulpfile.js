@@ -8,7 +8,8 @@ const cleanCSS = require("gulp-clean-css");
 const htmlmin = require("gulp-html-minifier-terser");
 const prettier = require("gulp-prettier").default;
 const sourcemaps = require("gulp-sourcemaps");
-const sharpOptimizeImages = require("gulp-sharp-optimize-images").default;
+const through2 = require("through2");
+const sharp = require("sharp");
 const newer = require("gulp-newer");
 const fs = require("fs");
 const path = require("path");
@@ -21,8 +22,10 @@ const chroma = require("chroma-js");
 // Configuration
 // ---------------------------------------------------------------------------
 
-const IMAGE_MAX_WIDTH = 1920;
 const UNSPLASH_BASE = "https://unsplash.com/photos/";
+const UNSPLASH_DLSIZE = 1920;
+const IMAGE_MAX_WIDTH = 1080;
+const IMAGE_QUALITY = 60;
 
 const PATHS = {
   mainScss: "src/scss/**/*.scss",
@@ -33,20 +36,22 @@ const PATHS = {
   favicon: ["src/favicon.ico", "src/favicon.svg"],
 };
 
-const SHARP_OPTS = {
-  jpg_to_webp: {
-    quality: 75,
-    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
-  },
-  jpeg_to_webp: {
-    quality: 75,
-    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
-  },
-  png_to_webp: {
-    quality: 75,
-    resize: { width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true },
-  },
-};
+/** Resizes a bitmap to IMAGE_MAX_WIDTH and converts it to WebP. */
+function bitmapToWebP() {
+  return through2.obj(async function (file, _enc, cb) {
+    try {
+      const buf = await sharp(file.path)
+        .resize({ width: IMAGE_MAX_WIDTH, fit: "inside", withoutEnlargement: true })
+        .webp({ quality: IMAGE_QUALITY })
+        .toBuffer();
+      file.contents = buf;
+      file.path = file.path.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+      cb(null, file);
+    } catch (err) {
+      cb(err);
+    }
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -104,7 +109,7 @@ function makeEleventyTask(pathprefix = null) {
 function resolveShortId(value) {
   if (value.startsWith("unsplash:")) {
     const id = value.slice("unsplash:".length);
-    return `${UNSPLASH_BASE}${id}/download?force=true&w=${IMAGE_MAX_WIDTH}`;
+    return `${UNSPLASH_BASE}${id}/download?force=true&w=${UNSPLASH_DLSIZE}`;
   }
   if (value.startsWith("pexels:")) {
     const id = value.slice("pexels:".length);
@@ -122,7 +127,7 @@ function parseUrlFile(filePath) {
     if (eqIdx > 0 && !/^https?:\/\//.test(line)) {
       const filename = line.slice(0, eqIdx).trim();
       const rawUrl = line.slice(eqIdx + 1).trim();
-      const url = /^https?:\/\//.test(rawUrl) ? rawUrl : UNSPLASH_BASE + rawUrl;
+      const url = /^https?:\/\//.test(rawUrl) ? rawUrl : (resolveShortId(rawUrl) ?? UNSPLASH_BASE + rawUrl);
       entries.push({ filename, url });
     } else if (/^https?:\/\//.test(line)) {
       entries.push({ filename: null, url: line });
@@ -275,7 +280,7 @@ async function downloadBackgroundImages() {
     const dir = path.dirname(urlFile);
     for (const { filename, url } of parseUrlFile(urlFile)) {
       const stem = filename ? path.parse(filename).name : stemFromUrl(url);
-      if (!imageAlreadyExists(dir, stem)) pending.push({ url: `${url}/download?force=true&w=${IMAGE_MAX_WIDTH}`, dir, stem });
+      if (!imageAlreadyExists(dir, stem)) pending.push({ url, dir, stem });
     }
   }
 
@@ -428,8 +433,15 @@ function beautifyHTML() {
 // ---------------------------------------------------------------------------
 
 function copyFonts() {
-  return src(PATHS.webfonts, { encoding: false })
+  // Copy fonts, metadata, and other non-bitmap files directly
+  src(["src/webfonts/**/*", "!src/webfonts/**/*.{jpg,jpeg,png}"], { encoding: false })
     .pipe(newer("dist/webfonts"))
+    .pipe(dest("dist/webfonts"));
+
+  // Optimise bitmap images and convert to WebP
+  return src("src/webfonts/**/*.{jpg,jpeg,png}")
+    .pipe(newer({ dest: "dist/webfonts", ext: ".webp" }))
+    .pipe(bitmapToWebP())
     .pipe(dest("dist/webfonts"));
 }
 
@@ -442,7 +454,7 @@ function copyImages() {
   // Optimise bitmaps and convert to WebP
   return src("src/img/**/*.{jpg,jpeg,png}")
     .pipe(newer({ dest: "dist/img", ext: ".webp" }))
-    .pipe(sharpOptimizeImages(SHARP_OPTS))
+    .pipe(bitmapToWebP())
     .pipe(dest("dist/img"));
 }
 

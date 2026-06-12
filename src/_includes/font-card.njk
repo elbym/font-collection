@@ -12,10 +12,10 @@
   {% set fontBg = fontBackgrounds[node.key] if (fontBackgrounds and fontBackgrounds[node.key]) else [] %}
   {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}
   <header 
-    class="{{ _color | slugify }} bg-{{ _color | slugify }}" 
+    class="bg-{{ _color | slugify }}" 
     {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
     >
-    <a href="{{ _url }}">
+    <a href="{{ _url }}" class="{{ _color | slugify }}">
       <h3>{{ _title }}</h3>
     </a>
   </header>
