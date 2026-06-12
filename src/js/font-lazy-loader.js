@@ -52,4 +52,25 @@
   targets.forEach(function (el) {
     observer.observe(el);
   });
+
+  // After page load: prefetch remaining font CSS files during browser idle time
+  // so the CSS is already cached when the IntersectionObserver triggers loadFont().
+  window.addEventListener('load', function () {
+    var idle = window.requestIdleCallback
+      ? function (fn) { requestIdleCallback(fn, { timeout: 3000 }); }
+      : function (fn) { setTimeout(fn, 1000); };
+
+    idle(function () {
+      var base = getAssetBase();
+      targets.forEach(function (el) {
+        var slug = el.getAttribute('data-font-slug');
+        if (!slug || loaded[slug]) return;
+        var link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'style';
+        link.href = base + '/css/webfonts/' + slug + '.css';
+        document.head.appendChild(link);
+      });
+    });
+  });
 })();
