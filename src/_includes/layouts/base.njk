@@ -44,6 +44,17 @@
   {# ── Language ──────────────────────────────────────────────── #}
   <meta http-equiv="Content-Language" content="de">
 
+  {# ── OG image: per-font background for leaf pages, static fallback otherwise ── #}
+  {%- set _ogImagePath = "/img/og_preview.png" -%}
+  {%- set _ogImageIsStatic = true -%}
+  {%- if folder and folder.isLeaf -%}
+    {%- set _fontBgs = fontBackgrounds[folder.key] if fontBackgrounds else [] -%}
+    {%- if _fontBgs and (_fontBgs | length) > 0 -%}
+      {%- set _ogImagePath = _fontBgs[0] -%}
+      {%- set _ogImageIsStatic = false -%}
+    {%- endif -%}
+  {%- endif -%}
+
   {# ── Open Graph ────────────────────────────────────────────── #}
   <meta property="og:type" content="{{ ogType }}">
   <meta property="og:locale" content="de_DE">
@@ -51,15 +62,15 @@
   <meta property="og:title" content="{{ pageTitle }}">
   <meta property="og:description" content="{{ pageDesc }}">
   <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:image" content="{{ site.url }}/img/og_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="{{ site.url }}{{ _ogImagePath | url }}">
+  {% if _ogImageIsStatic %}<meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">{% endif %}
 
   {# ── Twitter Card ──────────────────────────────────────────── #}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ pageTitle }}">
   <meta name="twitter:description" content="{{ pageDesc }}">
-  <meta name="twitter:image" content="{{ site.url }}/img/og_preview.png">
+  <meta name="twitter:image" content="{{ site.url }}{{ _ogImagePath | url }}">
 
   {# ── Theme color ───────────────────────────────────────────── #}
   <meta name="theme-color" content="{{ folder.colorHex or site.colorHex }}">
