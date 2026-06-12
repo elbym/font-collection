@@ -43,16 +43,18 @@ html {
       &::before {
         content: '';
         position: absolute;
-        inset: 0;
+        inset: -4px; // leicht größer als der Container, damit der blur-Rand nicht sichtbar ist
         background-image: inherit;
         background-size: cover;
         background-position: 50% 50%;
         background-blend-mode: color-burn;
+        filter: blur(3px) brightness(0.45);
         will-change: transform;
         transition: transform .5s ease-out;
 
         @media (prefers-color-scheme: dark) {
           background-blend-mode: multiply;
+          filter: blur(3px) brightness(0.65);
         }
 
         @media (prefers-reduced-motion: reduce) {
