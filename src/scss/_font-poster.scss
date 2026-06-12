@@ -396,27 +396,6 @@
     }
   }
 
-  .numbers {
-    justify-content: flex-end;
-  }
-
-  .type-families {
-    border-top: 0.025rem solid #000;
-    margin-top: 20px;
-    padding-top: 10px;
-  }
-
-  .family-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 10px;
-    border-bottom: 0.5px solid #eee;
-  }
-
-  .family-row span {
-    font-size: 1.5rem;
-  }
 }
 
 /*
