@@ -69,6 +69,7 @@ function makeSassTask(glob, outFile, { withSourcemaps = false } = {}) {
     if (withSourcemaps) stream = stream.pipe(sourcemaps.init());
     stream = stream.pipe(sass().on("error", sass.logError));
     if (outFile) stream = stream.pipe(concat(outFile));
+    if (!withSourcemaps) stream = stream.pipe(cleanCSS());
     if (withSourcemaps) stream = stream.pipe(sourcemaps.write("."));
     return stream.pipe(dest("dist/css")).pipe(browserSync.stream());
   };
@@ -80,6 +81,7 @@ function makeFontsSassTask({ withSourcemaps = false } = {}) {
     let stream = src(PATHS.fontsScss, { base: "src/scss" });
     if (withSourcemaps) stream = stream.pipe(sourcemaps.init());
     stream = stream.pipe(sass().on("error", sass.logError));
+    if (!withSourcemaps) stream = stream.pipe(cleanCSS());
     if (withSourcemaps) stream = stream.pipe(sourcemaps.write("."));
     return stream.pipe(dest("dist/css")).pipe(browserSync.stream());
   };

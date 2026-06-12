@@ -145,7 +145,7 @@
       ] %}
       <p class="font-size-{{ size }} justify initials">
         {# <span>Size: {{ size }}px</span> #}
-        {{ paragraph[size] or site["paragraph" + size] }}
+        {{ site["paragraph" + size] }}
       </p>
       {% endfor %}
       
@@ -163,7 +163,7 @@
         <h2>{{ folder.title }} Family</h2>
         {% set waterfallText = site.panagram %}
         {% include "waterfall-groups.njk" %}
-      <article>
+      </article>
     </section>
 
   {% else %}

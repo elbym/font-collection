@@ -126,7 +126,7 @@ header {
   );
 }
 
-@media (prefers-cmyk-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   .cmyk_cyan {
     background-image: radial-gradient(
       var(--cmyk-cyan) var(--dot-start),
