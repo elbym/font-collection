@@ -67,9 +67,11 @@
   {# ── Stylesheets ───────────────────────────────────────────── #}
   <link rel="stylesheet" href="/css/styles.css">
 
-  {% if folder.key is defined %}
-  <link rel="stylesheet" href="/css/webfonts/all-fonts.css">
+  {% if folder.isLeaf %}
+  <link rel="stylesheet" href="/css/webfonts/{{ folder.key | slugify }}.css">
   {% endif %}
+
+  <script src="/js/font-lazy-loader.js" defer></script>
 
   {% if folder and folder.color %}
   <style>

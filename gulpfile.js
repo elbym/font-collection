@@ -69,6 +69,17 @@ function makeSassTask(glob, outFile, { withSourcemaps = false } = {}) {
   };
 }
 
+/** Compiles each font SCSS file to its own CSS file in dist/css/webfonts/. */
+function makeFontsSassTask({ withSourcemaps = false } = {}) {
+  return function compileFontsCss() {
+    let stream = src(PATHS.fontsScss, { base: "src/scss" });
+    if (withSourcemaps) stream = stream.pipe(sourcemaps.init());
+    stream = stream.pipe(sass().on("error", sass.logError));
+    if (withSourcemaps) stream = stream.pipe(sourcemaps.write("."));
+    return stream.pipe(dest("dist/css")).pipe(browserSync.stream());
+  };
+}
+
 /** Returns a Gulp task that runs Eleventy, optionally with a path prefix for GitHub Pages. */
 function makeEleventyTask(pathprefix = null) {
   return function buildEleventy() {
@@ -368,19 +379,12 @@ function generateColoredBorders(done) {
 const compileMainSass = makeSassTask(PATHS.mainScss, null, {
   withSourcemaps: true,
 });
-const compileFontsScss = makeSassTask(
-  PATHS.fontsScss,
-  "webfonts/all-fonts.css",
-  { withSourcemaps: true },
-);
+const compileFontsScss = makeFontsSassTask({ withSourcemaps: true });
 const compileMainSassMinified = makeSassTask(PATHS.mainScss, null);
-const compileFontsScssMinified = makeSassTask(
-  PATHS.fontsScss,
-  "webfonts/all-fonts.css",
-);
+const compileFontsScssMinified = makeFontsSassTask();
 // GhPages uses the same logic as the regular build (no sourcemaps, no minification)
 const compileMainSassGhPages = compileMainSassMinified;
-const compileFontsScssGhPages = compileFontsScssMinified;
+const compileFontsScssGhPages = makeFontsSassTask();
 
 // ---------------------------------------------------------------------------
 // Eleventy tasks
