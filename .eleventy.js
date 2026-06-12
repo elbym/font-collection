@@ -3,8 +3,6 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const chroma = require("chroma-js");
 
-const fonts = require("./src/_data/fonts.js");
-
 const md = markdownIt({ html: false, breaks: true, linkify: true });
 
 // Build the filter lookup from the shared data file.
@@ -20,25 +18,8 @@ UNICODE_RANGES.punctuation = [33, 48];
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
-  // familyName: Ordnernamen oder Node-Objekt → lesbarer Familienname
-  eleventyConfig.addFilter("familyName", (folderOrNode) => {
-    const name =
-      typeof folderOrNode === "object" && folderOrNode !== null
-        ? folderOrNode.key
-        : folderOrNode;
-    return fonts().getFamily(name);
-  });
-
   eleventyConfig.addNunjucksFilter("chr", function (code) {
     return String.fromCharCode(code);
-  });
-
-  eleventyConfig.addFilter("getNavDepth", (url) => {
-    return url.split("/").filter(Boolean).length;
-  });
-
-  eleventyConfig.addFilter("isChildOf", (childUrl, parentUrl) => {
-    return childUrl.startsWith(parentUrl) && childUrl !== parentUrl;
   });
 
   eleventyConfig.addFilter("charCodeAt", (str) => str.codePointAt(0));
@@ -60,15 +41,6 @@ module.exports = function (eleventyConfig) {
       chars.push(String.fromCharCode(i));
     }
     return chars;
-  });
-
-  /**
-   * Gibt die direkte Eltern-Node aus fontFolders zurück.
-   * Nutzung: folderNode | getParentNode(fontFolders)
-   */
-  eleventyConfig.addFilter("getParentNode", (node, fontFolders) => {
-    if (!node.parentPath) return null;
-    return fontFolders.find((n) => n.path === node.parentPath) || null;
   });
 
   /**
@@ -104,23 +76,6 @@ module.exports = function (eleventyConfig) {
   });
 
   /**
-   * Gibt alle Nachkommen einer Node zurück (rekursiv, alle Ebenen).
-   * Nutzung: folderNode | getDescendants(fontFolders)
-   */
-  eleventyConfig.addFilter("getDescendants", (node, fontFolders) => {
-    const result = [];
-    function collect(path) {
-      const children = fontFolders.filter((n) => n.parentPath === path);
-      children.forEach((child) => {
-        result.push(child);
-        collect(child.path);
-      });
-    }
-    collect(node.path);
-    return result;
-  });
-
-  /**
    * Prüft ob nodeA ein Vorfahre von nodeB ist.
    * Nutzung: nodeA | isAncestorOf(nodeB)
    */
@@ -131,13 +86,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("permalink", () => {
     return (data) => `${data.page.filePathStem}.html`;
   });
-
-  eleventyConfig.addFilter("find", (arr, key, value) =>
-    arr.find((item) => {
-      const val = key.split(".").reduce((o, k) => o?.[k], item);
-      return val === value;
-    })
-  );
 
   eleventyConfig.addFilter("hueShift", (cssColor, degrees = 60) => {
     try {
