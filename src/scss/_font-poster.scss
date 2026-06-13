@@ -29,34 +29,35 @@ article.content {
   // display: flex;
   // flex-direction: column;
 
-  > header,
-  > section {
-    padding-left: 3rem;
-    padding-right: 3rem;
+  >header,
+  >section {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+
   .svg-seperator,
-  > section > article {
+  >section>article {
     // width: clamp(90%, 10rem, 980px);
     margin: 0 auto;
     max-width: 1080px;
     padding: 1rem 0;
   }
+
   section.hero {
-    background: linear-gradient(
-      in lch,
-      transparent,
-      var(--color-secondary-bg),
-      var(--color-tertiary-bg),
+    background: linear-gradient(in lch,
+        transparent,
+        var(--color-secondary-bg),
+        var(--color-tertiary-bg),
       );
   }
+
   section.paragraph-blocks {
-    background: linear-gradient(
-      in lch,
-      var(--color-tertiary-bg),
-      var(--color-secondary-bg),
-      transparent
-    );
+    background: linear-gradient(in lch,
+        var(--color-tertiary-bg),
+        var(--color-secondary-bg),
+        transparent);
   }
+
   // section.waterfall--panagram {
   //   background: linear-gradient(
   //     in lch,
@@ -67,22 +68,23 @@ article.content {
   // }
   section.waterfall--panagram {
 
+
     .waterfall-group {
       position: relative;
     }
+
     .overflow-fadeout {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       width: 10rem;
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--color-background)
-      );
+      background: linear-gradient(to right,
+          transparent,
+          var(--color-background));
     }
   }
+
   .header {
     padding-bottom: 1rem;
     text-align: center;
@@ -149,13 +151,13 @@ article.content {
     }
   }
 
-  .hero_grid {
-  }
+  .hero_grid {}
+
   .letters {
-    line-height: 350%;
+    line-height: 300%;
 
     p {
-      margin: 1rem;
+      margin: 1rem 0;
     }
   }
 
@@ -168,6 +170,13 @@ article.content {
     }
 
     @include bp.media-breakpoint-up(md) {
+
+      >header,
+      >section {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+
       article {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -180,6 +189,7 @@ article.content {
       }
 
       p {
+
         // 28
         &:nth-of-type(1) {
           grid-column: 1 / span 3;
@@ -284,6 +294,7 @@ article.content {
 
   .latin {
     text-align: center;
+
     p {
       margin: 0;
       line-height: 150%;
@@ -292,6 +303,7 @@ article.content {
 
   .waterfall {
     article {
+      width: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -329,13 +341,15 @@ article.content {
     gap: 0 0.25rem;
     line-height: 1.25;
 
-    > svg {
+    >svg {
       flex: 0 0 100%;
     }
 
     p {
       font-size: 1.33rem;
       margin: 0;
+      height: 1.75rem;
+      overflow: hidden;
     }
 
     h2 {
@@ -358,8 +372,7 @@ article.content {
     }
   }
 
-  @include bp.media-breakpoint-up(md) {
-  }
+  @include bp.media-breakpoint-up(md) {}
 
   .ascii {
     article {

@@ -36,11 +36,11 @@ permalink: "{{ folder.url }}.html"
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}
 
-  {% if folder.content %}
+  {# {% if folder.content %}
   <article class="font-content">
     {{ folder.content | markdownify | safe }}
   </article>
-  {% endif %}
+  {% endif %} #}
 
   <div class="font-family-card-list">
     {% for node in children %}

@@ -25,6 +25,7 @@ html {
     justify-content: space-between;
     border-radius: .5rem;
     letter-spacing: 0.05ch;
+    width: 100%;
 
     a {
       text-decoration: underline;
@@ -129,14 +130,14 @@ html {
     padding: 3rem 1rem;
     height: 100%;
     font-weight: 600;
-    opacity: 1;
-    color: white;
-    mix-blend-mode: screen;         // weißer Text + screen auf dunklem BG = immer hell
+    opacity: .8;
+    mix-blend-mode: plus-lighter;
     will-change: filter;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-    transition: opacity .3s ease, text-shadow .3s ease;
+    transition: opacity .3s ease, text-shadow .3s ease, mix-blend-mode .5 ease;
 
     &:hover {
+      mix-blend-mode: normal;
       text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
       opacity: 1;
     }
@@ -182,16 +183,17 @@ html {
   }
 }
 
-@include bp.media-breakpoint-up(md) {
+@include bp.media-breakpoint-up(sm) {
   .font-family-card-list {
     flex-direction: row;
     justify-content: flex-start;
 
-    >h2 {
+    > h2 {
       flex: 1 1 25%
     }
 
     .card {
+      width: auto;
       flex: 1 25%;
 
       .letters,
