@@ -99,7 +99,8 @@
     {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
 
     {% if activeFonts %}
-      {% set waterfallGroups = ["Regular", "Italic"] %}
+      {% set hasItalic = waterfallFonts | selectattr("variantGroup", "equalto", "Italic") | list | length > 0 %}
+      {% set waterfallGroups = ["Regular", "Italic"] if hasItalic else ["Regular"] %}
 
         <article class="waterfall--styles">
           {% set waterfallText = "" %}

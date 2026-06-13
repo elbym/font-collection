@@ -202,10 +202,11 @@ module.exports = function () {
 
         if (detectVariableFont(lowerName)) {
           const style = lowerName.includes("italic") ? "italic" : "normal";
+          const hasItalAxis = /\[[^\]]*(?:ital|slnt)/.test(lowerName);
           let stylesToGenerate = ["normal"];
           if (style === "italic") {
             stylesToGenerate = ["italic"];
-          } else if (!hasVariableItalic) {
+          } else if (!hasVariableItalic && hasItalAxis) {
             stylesToGenerate = ["normal", "italic"];
           }
 

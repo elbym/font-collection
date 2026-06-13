@@ -34,7 +34,7 @@ Output: `dist/` — a fully static site with one HTML specimen page per font fam
 src/
   _data/               # Eleventy data layer (all JS unless noted)
     fonts.js           # MASTER: recursively scans webfonts/, parses filenames + meta.yaml
-    fontFolders.js     # fonts().list — all folder nodes (groups + leaves)
+    fontFolders.js     # fonts().list — all nodes (virtual tag-based groups + leaf nodes)
     fontLeaves.js      # leaf nodes only (folders that contain .woff2 files)
     fontTags.js        # unique tags across all leaf nodes
     fontImages.js      # gallery images per font folder (from gallery/ subfolders)
@@ -127,7 +127,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 **Font file naming**
 - Files must be `.woff2` (or `.woff`).
 - `fonts.js` parses weight (`Regular`, `Bold`, `SemiBold`, …) and style (`italic`) from the filename.
-- Variable fonts are detected by `variable` in the name, `[wght]` notation, or a `_vf` suffix.
+- Variable fonts are detected by `variable` in the name, any axis bracket notation (`[wght]`, `[wdth]`, `[ital]`, `[slnt]`, `[opsz]`), or a `_vf` suffix.
 
 **`meta.yaml` fields** (all optional)
 
