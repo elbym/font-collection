@@ -52,21 +52,23 @@ header {
   }
 }
 .cmyk-mask {
-  width: 0;
+  // Defines #text-clip only — must NOT have clip-path applied (circular reference
+  // causes Safari/WebKit to reject the clip-path entirely).
+  // width: 100% establishes the SVG viewport so x="50%" in the <text> resolves
+  // correctly against the container width rather than collapsing to 0.
+  position: absolute;
+  width: 100%;
   height: 0;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
-// .hero-letters,
-// .cmyk,
-// .cmyk-mask {
-//   // min-height: 10rem;
-// }
-// Müssen gleiche Größe haben
-.cmyk,
-.cmyk-mask {
+
+.cmyk {
   width: 100%;
   clip-path: url("#text-clip");
   position: absolute;
-  right: 1rem;
+  left: 0;    // was: right: 1rem — caused left edge to sit at -1rem
   top: 50%;
 }
 
