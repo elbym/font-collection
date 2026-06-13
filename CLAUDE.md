@@ -121,7 +121,8 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 
 **Font folder naming**
 - One folder per font family inside a category folder: `src/webfonts/<category>/<FamilyName>/`
-- Category folders (`sans`, `serif`, `mono`, etc.) can have their own `meta.yaml` for group metadata.
+- The folder is a **filesystem container only** — it has no effect on URLs, navigation, or category. All three are derived from `tags[0]`.
+- Category folders (`sans`, `serif`, `mono`, etc.) may have a `meta.yaml`, but it is no longer used to generate group pages. Group pages are virtual nodes built from unique `tags[0]` values at build time.
 
 **Font file naming**
 - Files must be `.woff2` (or `.woff`).
@@ -179,11 +180,12 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 - `hueShift` rotates a CSS color's hue by degrees via chroma-js. `markdownify` renders a markdown string to HTML via markdown-it.
 - Dead filters were removed (`familyName`, `getNavDepth`, `isChildOf`, `getParentNode`, `getDescendants`, `find`) — do not re-add unless a template actually uses them.
 
-**URL slugs**
-- Leaf node URLs are derived from `tags[0]` and `node.key`: `/<tags[0]-slug>/<family-slug>.html` (e.g. `garalde/cormorant.html`, `monospace/jetbrainsmono.html`).
-- The `category` field on every leaf node equals `tags[0]` (the first tag). If `tags` is empty the build emits a warning and `category` is `null`.
-- Group node URLs (e.g. `sans.html`, `serif.html`) still use the folder name — only leaf nodes use the tag-based URL.
-- The physical folder structure (`node.path`, `node.parentPath`) is **independent of the URL**. Fonts can be moved between category folders without changing their URL — only the first tag controls the URL segment. Navigation filters (`getChildNodes`, `getAncestors`, `getRootNodes`) operate on `path`/`parentPath`, not on `url`.
+**URL slugs and navigation**
+- Leaf node URLs: `/<tags[0]-slug>/<family-slug>.html` (e.g. `serif/cormorant.html`, `monospace/jetbrainsmono.html`).
+- Group node URLs: one virtual group per unique `tags[0]` value, URL = `/<tags[0]-slug>.html`. Current groups: `blackletter`, `display`, `monospace`, `sans`, `script`, `serif`. Generated in `fonts.js` post-processing — there are no folder-based group nodes.
+- The `category` field on every leaf node equals `tags[0]`. If `tags` is empty the build emits a warning and `category` is `null`.
+- **Navigation (menu, breadcrumb) and URLs both follow `tags[0]`**, not the folder structure. Moving a font between folders has no effect on its URL, category, or navigation position — only changing `tags[0]` does.
+- `node.parentPath` is set to `slugify(tags[0])`. Navigation filters `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf` all operate on `parentPath`/`path`.
 
 **Background image downloads**
 - `src/img/background/` and per-font `background/` folders support a `urls.txt` file listing image sources to download.

@@ -12,7 +12,7 @@ Das ist eine persönliche und eigenwillige Sammlung von Schriftarten, die mir im
 ### Notwendige Schritte
 
 1. **Ordner anlegen** — `src/webfonts/<Kategorie>/<SchriftName>/`  
-   Kategorie frei wählbar, z. B. `sans`, `serif`, `mono`, `script`, `blackletter`.
+   Der Ordner ist reiner Dateisystem-Container — er hat keinen Einfluss auf URL oder Navigation.
 
 2. **`.woff2`-Dateien ablegen** — Namensschema: `SchriftName_Gewicht.woff2`  
    Beispiele: `Jost_Regular.woff2`, `Jost_Bold.woff2`, `Jost_BoldItalic.woff2`  

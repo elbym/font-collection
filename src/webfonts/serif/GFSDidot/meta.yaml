@@ -15,8 +15,3 @@ gallery:
   - url: "/img/landschaft.jpg"
     alt: "Eine weite Landschaft bei Sonnenuntergang"
     source: "Max Mustermann"
-
-eleventyNavigation:
-  parent: Serif
-  key: GFSDidot
-  family: Serif

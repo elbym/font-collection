@@ -80,7 +80,7 @@ module.exports = function (eleventyConfig) {
    * Nutzung: nodeA | isAncestorOf(nodeB)
    */
   eleventyConfig.addFilter("isAncestorOf", (ancestor, node) => {
-    return node.path.startsWith(ancestor.path + "/");
+    return node.parentPath === ancestor.path;
   });
 
   eleventyConfig.addGlobalData("permalink", () => {

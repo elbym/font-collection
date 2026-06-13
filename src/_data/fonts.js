@@ -330,6 +330,8 @@ module.exports = function () {
     return node;
   }
 
+  const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
   function flattenNodes(node, name = "") {
     const result = [];
 
@@ -339,19 +341,15 @@ module.exports = function () {
         console.warn(`[fonts.js] Warnung: Keine Tags für "${node._title || name}" — category ist null`);
       }
 
-      const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
       result.push({
         key: name,
         path: node._path,
         isLeaf: node._isLeaf,
-        allFonts: node._allFonts,
         ownFonts: node._fonts,
         url: node._isLeaf && categoryTag
           ? `${slugify(categoryTag)}/${slugify(name)}`
           : node._path.split("/").map(slugify).join("/"),
-        parentPath: node._path.includes("/")
-          ? node._path.split("/").slice(0, -1).join("/")
-          : null,
+        parentPath: null,
 
         // Meta-Felder direkt im flachen Node
         title:      node._title,
@@ -383,26 +381,54 @@ module.exports = function () {
   }
 
   const tree = readDirRecursive(baseDir);
-  const fontFoldersList = flattenNodes(tree);
+  let fontFoldersList = flattenNodes(tree);
+
+  // Virtuelle Tag-Gruppen-Nodes aus tags[0] erzeugen, Ordner-Gruppen ersetzen
+  const tagGroupMap = new Map();
+  fontFoldersList.filter((n) => n.isLeaf && n.category).forEach((n) => {
+    const tagSlug = slugify(n.category);
+    if (!tagGroupMap.has(tagSlug)) {
+      tagGroupMap.set(tagSlug, {
+        key: n.category,
+        path: tagSlug,
+        isLeaf: false,
+        ownFonts: [],
+        url: tagSlug,
+        parentPath: null,
+        title: n.category,
+        sourceUrl: null,
+        tags: [],
+        category: null,
+        fontauthor: null,
+        fontyear: null,
+        heroletter: null,
+        heroword: null,
+        herostyle: "regular",
+        color: null,
+        colorHex: null,
+        border: null,
+        comment: null,
+        content: null,
+        imageOverrides: null,
+        wikipedia: null,
+      });
+    }
+  });
+
+  // parentPath der Blatt-Nodes auf den Tag-Gruppen-Pfad umbiegen
+  fontFoldersList.forEach((n) => {
+    if (n.isLeaf && n.category) {
+      n.parentPath = slugify(n.category);
+    }
+  });
+
+  // Liste: Tag-Gruppen (alphabetisch) + Blatt-Nodes
+  const tagGroups = [...tagGroupMap.values()].sort((a, b) => a.title.localeCompare(b.title));
+  fontFoldersList = [...tagGroups, ...fontFoldersList.filter((n) => n.isLeaf)];
 
   const fontsByPath = {};
   fontFoldersList.forEach((n) => {
     fontsByPath[n.path] = n.ownFonts;
-  });
-
-  Object.defineProperty(fontsByPath, "getFamily", {
-    value: (nameOrNode) => {
-      if (typeof nameOrNode === "object" && nameOrNode !== null) {
-        return nameOrNode.title ?? sanitizeFamily(nameOrNode.key);
-      }
-      return sanitizeFamily(nameOrNode);
-    },
-    enumerable: false,
-  });
-
-  Object.defineProperty(fontsByPath, "tree", {
-    value: tree,
-    enumerable: false,
   });
 
   Object.defineProperty(fontsByPath, "list", {
