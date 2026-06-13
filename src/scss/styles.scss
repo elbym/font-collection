@@ -73,9 +73,13 @@ header {
   // White background gives multiply blend its paper-white base (CMYK analogy).
   // Without it, layers blend against transparent → washed-out/dark on Safari.
   background-color: white;
+  // isolation: isolate ensures the cmyk-layer blend modes only composite against
+  // .cmyk's own background-color, not the page content behind it.
+  isolation: isolate;
 
   @media (prefers-color-scheme: dark) {
     background-color: black; // screen blend needs black base in dark mode
+    isolation: isolate;
   }
 }
 
