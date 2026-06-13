@@ -134,7 +134,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 |---|---|
 | `title` | Display name (overrides sanitized folder name) |
 | `url` | Source/project link |
-| `tags` | Comma-separated string or YAML array |
+| `tags` | Comma-separated string or YAML array. **The first tag is the font class** (`category` field) and determines the first URL segment — see URL slugs below. |
 | `fontauthor` | Designer name |
 | `fontyear` | Year (original or digitisation) |
 | `heroletter` | Single character(s) for the large CMYK hero display |
@@ -180,7 +180,10 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 - Dead filters were removed (`familyName`, `getNavDepth`, `isChildOf`, `getParentNode`, `getDescendants`, `find`) — do not re-add unless a template actually uses them.
 
 **URL slugs**
-- Font pages are served at `/<category>/<family-slug>.html` (derived from `node.url` in the data layer).
+- Leaf node URLs are derived from `tags[0]` and `node.key`: `/<tags[0]-slug>/<family-slug>.html` (e.g. `garalde/cormorant.html`, `monospace/jetbrainsmono.html`).
+- The `category` field on every leaf node equals `tags[0]` (the first tag). If `tags` is empty the build emits a warning and `category` is `null`.
+- Group node URLs (e.g. `sans.html`, `serif.html`) still use the folder name — only leaf nodes use the tag-based URL.
+- The physical folder structure (`node.path`, `node.parentPath`) is **independent of the URL**. Fonts can be moved between category folders without changing their URL — only the first tag controls the URL segment. Navigation filters (`getChildNodes`, `getAncestors`, `getRootNodes`) operate on `path`/`parentPath`, not on `url`.
 
 **Background image downloads**
 - `src/img/background/` and per-font `background/` folders support a `urls.txt` file listing image sources to download.
@@ -213,8 +216,8 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 
 1. Create `src/webfonts/<category>/<FamilyName>/`.
 2. Drop `.woff2` files in. Name them `FamilyName_Weight.woff2` (e.g. `Jost_Regular.woff2`, `Jost_Bold.woff2`).
-3. Optionally add `meta.yaml` with `title`, `tags`, `color`, `heroword`, etc.
-4. Run `npx gulp` — Eleventy generates the SCSS partial, Gulp compiles it, a specimen page appears at `/<category>/<familyname>.html`.
+3. Add `meta.yaml` — the **first tag determines the URL** and `category` field (e.g. `tags: Garalde, Serif` → page at `/garalde/<familyname>.html`). A missing or empty `tags` field emits a build warning.
+4. Run `npx gulp` — Eleventy generates the SCSS partial, Gulp compiles it, the specimen page appears.
 
 ### 2. Edit font metadata
 

@@ -7,17 +7,60 @@
 Das ist eine persönliche und eigenwillige Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind und vor allem und ein Vorwand, den [font_specimen_generator.py](./font_specimen_generator.py) vorzuführen (den ich Claude zusammen schustern ließ). Diese Liste ist außerdem von [Teuderun](https://www.teuderun.de/schriftarten/top-10/) beeinflusst.
 
 
-## Grundlegende Nutzung
+## Neue Schrift hinzufügen
 
-* Schriftarten in src/webfonts/[schriftstil]/[schrift] ablegen
-* Hintergrundbilder in src/img/background/urls.txt einfügen
-  * optional pro Schrift Hintergrundbilder in src/webfonts/[schriftstil]/[schrift]/background/urls.txt hinterlegen
+### Notwendige Schritte
+
+1. **Ordner anlegen** — `src/webfonts/<Kategorie>/<SchriftName>/`  
+   Kategorie frei wählbar, z. B. `sans`, `serif`, `mono`, `script`, `blackletter`.
+
+2. **`.woff2`-Dateien ablegen** — Namensschema: `SchriftName_Gewicht.woff2`  
+   Beispiele: `Jost_Regular.woff2`, `Jost_Bold.woff2`, `Jost_BoldItalic.woff2`  
+   Variable Fonts: Dateiname muss `Variable` oder `[wght]` enthalten.
+
+3. **`meta.yaml` erstellen** — Pflicht: `tags` (erster Tag bestimmt URL-Segment und Kategorie)
+   ```yaml
+   title: Meine Schrift
+   tags: Sans, Humanist Sans      # erster Tag → URL /sans/meineschrift.html
+   ```
+
+4. **Build starten** — `npx gulp`  
+   Die Specimen-Seite erscheint automatisch unter `/<erster-tag>/<schriftname>.html`.
+
+---
+
+### Optionale meta.yaml-Felder
+
+| Feld | Beispiel | Wirkung |
+|---|---|---|
+| `color` | `steelblue` | Akzentfarbe (CSS-Farbname) |
+| `heroword` | `Airport` | Großes Wort im Hero-Bereich |
+| `heroletter` | `Aa` | Zeichen im CMYK-Hero |
+| `herostyle` | `bold` | CSS font-weight für heroword |
+| `border` | `floral.svg` | Rahmen-SVG (aus `src/img/borders/`) |
+| `fontauthor` | `Rasmus Andersson` | Gestalter-Name |
+| `fontyear` | `2017` | Erscheinungsjahr |
+| `wikipedia` | `https://…` | Link zur Wikipedia-Seite |
+| `content` | `Markdown-Text` | Freitext unter dem Specimen |
+| `comment` | `interner Hinweis` | Interne Notiz, nicht angezeigt |
+
+### Optionale Bilder
+
+- **Kartenhintegrund** — Bilder in `src/webfonts/<Kat>/<Schrift>/background/` ablegen (WebP bevorzugt)  
+  Oder URLs in `background/urls.txt` eintragen (`unsplash:ID`, `pexels:ID`, direkte HTTPS-URL) → `npx gulp download`
+- **Galerie** — Bilder in `src/webfonts/<Kat>/<Schrift>/gallery/` ablegen
+
+---
 
 ### Lokalen Server starten
-    git clone
-    npm install
-    gulp            # lokalen Entwicklungsserver starten
-    gulp ghpages    # Seite mit Pfadpräfix für GitHub Pages bauen
+
+```bash
+git clone https://github.com/elbym/font-collection
+npm install
+npx gulp            # Entwicklungsserver auf Port 3000
+npx gulp build      # Produktions-Build
+npx gulp deploy     # Deploy auf GitHub Pages
+```
 
 ## Unten: Altes Specimen mit Python als Bilder
 

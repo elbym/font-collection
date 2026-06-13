@@ -334,21 +334,21 @@ module.exports = function () {
     const result = [];
 
     if (node._allFonts.length > 0 && name !== "") {
+      const categoryTag = (node._tags && node._tags.length > 0) ? node._tags[0] : null;
+      if (node._isLeaf && !categoryTag) {
+        console.warn(`[fonts.js] Warnung: Keine Tags für "${node._title || name}" — category ist null`);
+      }
+
+      const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
       result.push({
         key: name,
         path: node._path,
         isLeaf: node._isLeaf,
         allFonts: node._allFonts,
         ownFonts: node._fonts,
-        url: node._path
-          .split("/")
-          .map((s) =>
-            s
-              .toLowerCase()
-              .replace(/\s+/g, "-")
-              .replace(/[^a-z0-9-]/g, "")
-          )
-          .join("/"),
+        url: node._isLeaf && categoryTag
+          ? `${slugify(categoryTag)}/${slugify(name)}`
+          : node._path.split("/").map(slugify).join("/"),
         parentPath: node._path.includes("/")
           ? node._path.split("/").slice(0, -1).join("/")
           : null,
@@ -357,6 +357,7 @@ module.exports = function () {
         title:      node._title,
         sourceUrl:  node._url,
         tags:       node._tags,
+        category:   categoryTag,
         fontauthor: node._fontauthor,
         fontyear:   node._fontyear,
         heroletter: node._heroletter,
