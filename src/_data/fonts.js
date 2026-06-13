@@ -120,10 +120,12 @@ module.exports = function () {
     return cleanName.trim();
   };
 
+  const VARIABLE_AXES = ["wght", "wdth", "ital", "slnt", "opsz"];
+
   function detectVariableFont(lowerName) {
     return (
       lowerName.includes("variable") ||
-      /\[.*wght.*\]/.test(lowerName) ||
+      VARIABLE_AXES.some((axis) => new RegExp(`\\[[^\\]]*${axis}`).test(lowerName)) ||
       /[-_]vf$/.test(lowerName)
     );
   }
