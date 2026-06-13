@@ -20,6 +20,9 @@ Output: `dist/` — a fully static site with one HTML specimen page per font fam
 | Images | `gulp-sharp-optimize-images` — JPG/PNG → WebP, max 1920px |
 | HTML (prod) | `gulp-prettier` (beautify) |
 | Font metadata | `meta.yaml` (parsed with `js-yaml`) |
+| Color manipulation | `chroma-js` 3.2.0 — used by `hueShift` filter and `generateColoredBorders` Gulp task |
+| Markdown rendering | `markdown-it` — used by `markdownify` Eleventy filter |
+| Font reading | `fontkit` 2.0.4 — reads `.woff2` files to extract codepoint maps |
 | JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver) |
 | Python tool | `font_specimen_generator.py` — standalone, not part of the build |
 
@@ -41,11 +44,12 @@ src/
     backgrounds.js     # global background images from src/img/background/
     site.json          # global defaults: title, panagram, default heroword/heroletter, paragraph text per size
   _includes/
-    layouts/base.njk   # HTML shell — the only layout
-    font-card.njk      # card used on index and group pages
-    font-poster.njk    # full specimen poster used on leaf pages
-    font-image-list.njk
-    header.njk / footer.njk / seperator.njk / letters.njk
+    layouts/base.njk      # HTML shell — the only layout
+    font-card.njk         # card used on index and group pages
+    font-poster.njk       # full specimen poster used on leaf pages
+    font-image-list.njk   # gallery grid on specimen pages
+    waterfall-groups.njk  # waterfall display grouped by Unicode range
+    header.njk / footer.njk / seperator.njk
   css/
     _dynamic-colors.njk    # Eleventy template → generates src/scss/_includes/_html_colornames.scss
     _generated-fonts.njk   # Eleventy template → generates src/scss/webfonts/<slug>.scss per font
@@ -64,15 +68,18 @@ src/
     fitty.min.js
     font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
   webfonts/                # Font files, organised by category
-    sans/ serif/ mono/ blackletter/ comicsans/ fancy/
+    sans/ serif/ mono/ blackletter/ comicsans/ script/
     meta.yaml              # group-level metadata (optional)
   img/
-    background/            # global card backgrounds (gitignored except sample.webp)
+    background/            # global card backgrounds (gitignored except sample.webp + urls.txt)
     borders/               # master border SVGs (root level only); color variants generated to dist/ by Gulp
+    alt/                   # category alt text references
   index.njk                # homepage — lists all leaf nodes as cards
   specimen.njk             # paginated over fontFolders; one page per node
   tag.njk                  # paginated over fontTags; one page per tag
-  alternatives.njk
+  alternatives.njk         # curated list of commercial/free font pairs
+  llms.njk                 # permalink: /llms.txt — machine-readable catalog metadata for LLM tools
+  sitemap.njk              # sitemap.xml
 dist/                      # BUILD OUTPUT — never edit (gitignored)
 ```
 
@@ -98,6 +105,9 @@ npx gulp clean
 
 # Deploy to gh-pages branch (ghpages build + force-push to gh-pages)
 npx gulp deploy
+
+# Download background images listed in urls.txt files
+npx gulp download
 
 # Manual deploy fallback (dist/ is gitignored, so subtree push doesn't work)
 cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
@@ -133,6 +143,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 | `color` | CSS color name for accent (must be a valid CSS color keyword/value) |
 | `border` | Border SVG filename override (e.g. `border_historical.svg`); defaults to `border_lines.svg` |
 | `content` | Markdown string rendered below the specimen |
+| `comment` | Internal note — not displayed on page, for author reference only |
 | `imageOverrides` | Override gallery image list |
 | `wikipedia` | Wikipedia article URL (shown as link on specimen page; use the original typeface's article for revivals/clones) |
 
@@ -156,7 +167,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 **Font lazy loading**
 - `font-lazy-loader.js` auto-detects `font-<slug>` CSS classes and lazy-loads the matching `/css/webfonts/<slug>.css` via IntersectionObserver (300px rootMargin).
 - Fonts already loaded via `<link rel="stylesheet">` (i.e. the current specimen's font) are marked as `loaded` on init and skipped by the idle prefetch.
-- Slugs whose first hyphen-segment is a known CSS utility word (`size`, `family`, `weight`, etc.) are excluded from auto-detection. Font slugs with hyphens (e.g. future `pt-sans`) are handled correctly.
+- Slugs whose first hyphen-segment is a known CSS utility word (`size`, `family`, `weight`, etc.) are excluded from auto-detection. Font slugs with hyphens (e.g. `pt-sans`) are handled correctly.
 - Elements can also set `data-font-slug` explicitly to opt in without a `font-*` CSS class.
 
 **Open Graph images**
@@ -165,10 +176,23 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 
 **Eleventy filters (`.eleventy.js`)**
 - Active filters: `chr`, `charCodeAt`, `coveragePercent`, `unicodeChars`, `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf`, `getManualNav`, `hueShift`, `markdownify`.
+- `hueShift` rotates a CSS color's hue by degrees via chroma-js. `markdownify` renders a markdown string to HTML via markdown-it.
 - Dead filters were removed (`familyName`, `getNavDepth`, `isChildOf`, `getParentNode`, `getDescendants`, `find`) — do not re-add unless a template actually uses them.
 
 **URL slugs**
 - Font pages are served at `/<category>/<family-slug>.html` (derived from `node.url` in the data layer).
+
+**Background image downloads**
+- `src/img/background/` and per-font `background/` folders support a `urls.txt` file listing image sources to download.
+- Supported URL formats: `unsplash:PHOTO_ID`, `pexels:PHOTO_ID`, or a direct HTTPS URL.
+- Run `npx gulp download` to fetch images listed in any `urls.txt` in the repo. The Gulp `default` and `build` tasks also run this automatically.
+- The directory is gitignored (except `sample.webp` and `urls.txt`), so images must be re-downloaded in fresh checkouts.
+
+**Python specimen generator**
+- `font_specimen_generator.py` is a standalone tool — not part of the Gulp/Eleventy build pipeline.
+- Generates Wikipedia-style font specimen PNG previews from a font file.
+- CLI: `python font_specimen_generator.py --input <font.woff2> --output <out.png> [--width 1200] [--theme dark|white|cream] [--overwrite]`
+- Three themes: `dark` (dark background), `white` (white background), `cream` (warm off-white).
 
 ---
 
@@ -179,7 +203,7 @@ Eleventy outputs to `dist/`, then Gulp compiles SCSS and copies assets on top. T
 - `fonts.js` is the single source of truth for font data. All other `_data` files call `fonts()` and filter/reshape its output. Don't duplicate logic elsewhere. The result is memoized — `fonts()` only scans the filesystem once per build process.
 - `src/_data/site.json` sets global fallback values (heroword, heroletter, panagram, paragraph text). Specimen pages fall back to these when a font's `meta.yaml` omits them.
 - The build is a two-phase pipeline: **Eleventy first** (generates HTML + SCSS partials), **Gulp after** (compiles SCSS, copies/optimises assets). Running just `npx @11ty/eleventy` without Gulp leaves CSS missing.
-- Background images in `src/img/background/` are gitignored (except `sample.webp`). The data file prefers `.webp` when both formats exist for the same stem.
+- Background images in `src/img/background/` are gitignored (except `sample.webp` and `urls.txt`). The data file prefers `.webp` when both formats exist for the same stem.
 
 ---
 
@@ -200,6 +224,7 @@ Edit `src/webfonts/<category>/<FamilyName>/meta.yaml`. The data layer re-reads i
 
 - **Card background**: place images in `src/webfonts/<category>/<FamilyName>/background/`. WebP is preferred (picked over JPEG/PNG with the same stem). Referenced automatically via `fontBackgrounds.js`.
 - **Gallery images**: place images in `src/webfonts/<category>/<FamilyName>/gallery/`. Shown on the specimen page via `font-image-list.njk`. Falls back to images directly in the folder if no `gallery/` subfolder exists.
+- **Download from URL**: add a `urls.txt` to the `background/` folder and run `npx gulp download`. Supports `unsplash:ID`, `pexels:ID`, or direct HTTPS URLs.
 
 ### 4. Change global defaults (panagram, paragraphs, heroword)
 
@@ -211,6 +236,6 @@ Edit `src/_data/site.json`. The `panagram` value is the sentence shown in the wa
 npx gulp deploy
 ```
 
-Dies führt automatisch aus: ghpages-Build → force-push nach `gh-pages`. `git subtree push` funktioniert nicht, weil `dist/` gitignored ist.
+This automatically runs: ghpages build → force-push to `gh-pages`. `git subtree push` does not work because `dist/` is gitignored.
 
 The `ghpages` gulp task uses `HtmlBasePlugin` via the Eleventy `--pathprefix` flag to rewrite all asset URLs for the subdirectory path.
