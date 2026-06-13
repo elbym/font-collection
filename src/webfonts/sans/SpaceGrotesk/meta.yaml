@@ -1,0 +1,13 @@
+title: Space Grotesk
+url: https://github.com/floriankarsten/space-grotesk
+tags: Geometric, Sans-Serif, Coding
+fontauthor: Florian Karsten
+fontyear: 2020
+heroletter: Sg
+heroword: Space
+color: darkorange
+border: dots_small.svg
+content: |
+  Variable Grotesk, entwickelt als Sans-Pendant zu Space Mono.
+  Behält den technischen Charakter bei, ist aber gut als Fließtext
+  verwendbar. Ungewöhnliche Details in Ziffern und Großbuchstaben.
