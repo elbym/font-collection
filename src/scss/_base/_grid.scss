@@ -1,6 +1,6 @@
 @use "../_includes/breakpoints" as bp;
 
-@include bp.media-breakpoint-up(md) {
+@include bp.media-breakpoint-up(sm) {
     main.grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
