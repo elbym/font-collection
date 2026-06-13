@@ -84,12 +84,19 @@
 
   <script src="/js/font-lazy-loader.js" defer></script>
 
-  {% if folder and folder.color %}
+  {% if folder %}
   <style>
     :root {
-        --color-base-primary: {{ folder.color }};
+        {% if folder.color %}--color-base-primary: {{ folder.color }};{% endif %}
     }
   </style>
+  <script>
+    (function(){
+      var r = function(){ return Math.floor(Math.random() * 121) + 60; };
+      document.documentElement.style.setProperty('--hue-offset-2', r());
+      document.documentElement.style.setProperty('--hue-offset-3', r());
+    })();
+  </script>
   {% endif %}
 
   {% if extra_css %}

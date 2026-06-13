@@ -8,8 +8,8 @@
   --color-base-background: var(--color-mix-light);
 
   --color-base-primary:   RoyalBlue;
-  --color-base-secondary: hsl(from var(--color-base-primary) calc(h + 120) s l);
-  --color-base-tertiary:  hsl(from var(--color-base-primary) calc(h + 180) s l);
+  --color-base-secondary: hsl(from var(--color-base-primary) calc(h + var(--hue-offset-2, 120)) s l);
+  --color-base-tertiary:  hsl(from var(--color-base-primary) calc(h + var(--hue-offset-3, 180)) s l);
 
   // Mix colors
 
