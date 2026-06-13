@@ -102,6 +102,19 @@ module.exports = function (eleventyConfig) {
     return md.render(String(str));
   });
 
+  eleventyConfig.addFilter("jsonEscape", (str) =>
+    String(str ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+  );
+
+  eleventyConfig.addFilter("toDomain", (url) => {
+    try { return new URL(url).hostname; }
+    catch { return url; }
+  });
+
   /**
    * Gibt alle manuellen Navigationsseiten zurück,
    * die eleventyNavigation im Frontmatter gesetzt haben.

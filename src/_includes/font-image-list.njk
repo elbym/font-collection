@@ -24,19 +24,8 @@
                 {{ displayAlt }}            {% endif %}
 
               {% if override.source %}
-                {% set displaySource = override.source %}
-
-                {# Entferne das Protokoll (http://, https://) #}
-                {% if displaySource.indexOf('://') > -1 %}
-                  {% set displaySource = displaySource.split('://')[1] %}
-                {% endif %}
-
-                {# Extrahiere den Teil vor dem ersten Schrägstrich (Pfad) #}
-                {% if displaySource.indexOf('/') > -1 %}
-                  {% set displaySource = displaySource.split('/')[0] %}
-                {% endif %}
                 <span class="image-source">
-                Source:  <a href="{{ override.source }}" target="_blank" rel="noopener">{{ displaySource }}</a></span>
+                Source: <a href="{{ override.source }}" target="_blank" rel="noopener">{{ override.source | toDomain }}</a></span>
               {% else %}
                 {{ image.filename }}
               {% endif %}
