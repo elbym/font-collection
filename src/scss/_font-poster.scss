@@ -166,7 +166,9 @@ article.content {
       line-height: 1.25;
       max-height: 4lh;
       overflow: hidden;
+      margin-top: 0;
       margin-bottom: 1rem;
+      padding-bottom: 1rem;
     }
 
     @include bp.media-breakpoint-up(md) {
