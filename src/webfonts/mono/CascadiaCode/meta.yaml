@@ -7,7 +7,3 @@ heroletter: Cc
 heroword: Code
 color: royalblue
 border: hash.svg
-content: |
-  Standard-Coding-Font von Microsoft, entwickelt für Windows Terminal
-  und VS Code. Programmierligaturen, kursive Variante (CascadiaMono
-  ohne Ligaturen im selben Paket). Regelmäßige Updates.

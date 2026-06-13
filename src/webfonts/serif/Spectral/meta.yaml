@@ -7,7 +7,4 @@ heroletter: Sp
 heroword: Lesen
 color: firebrick
 border: line1.svg
-content: |
-  Serifenschrift für lange Lesetexte auf Bildschirmen optimiert.
-  Scharfe Kontraste zwischen Haar- und Grundstrichen, dabei digital
-  sehr gut gerendert. Von Production Type für Google Fonts entwickelt.
+
