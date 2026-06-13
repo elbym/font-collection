@@ -68,8 +68,15 @@ header {
   width: 100%;
   clip-path: url("#text-clip");
   position: absolute;
-  left: 0;    // was: right: 1rem — caused left edge to sit at -1rem
+  left: 0;
   top: 50%;
+  // White background gives multiply blend its paper-white base (CMYK analogy).
+  // Without it, layers blend against transparent → washed-out/dark on Safari.
+  background-color: white;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: black; // screen blend needs black base in dark mode
+  }
 }
 
 /* Basis-Styling für alle Farbebenen */

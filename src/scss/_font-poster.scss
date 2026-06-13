@@ -127,6 +127,7 @@ article.content {
     margin-top: 1rem;
     margin-bottom: 1rem;
     min-height: 8rem;
+    container-type: inline-size; // enables cqw unit in #text-clip text font-size
 
 
     #text-clip text {
