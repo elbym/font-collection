@@ -191,7 +191,13 @@
 
   {% include "header.njk" %}
 
+  {% if not folder and not tag %}
+  <article class="content">
+    {{ content | safe }}
+  </article>
+  {% else %}
   {{ content | safe }}
+  {% endif %}
 
   {% include "footer.njk" %}
 

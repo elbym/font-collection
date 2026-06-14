@@ -115,6 +115,15 @@ module.exports = function (eleventyConfig) {
     catch { return url; }
   });
 
+  eleventyConfig.addFilter("findPrevNext", function(key, list) {
+    const idx = list.findIndex(n => n.key === key);
+    if (idx === -1) return { prev: null, next: null };
+    return {
+      prev: idx > 0 ? list[idx - 1] : null,
+      next: idx < list.length - 1 ? list[idx + 1] : null,
+    };
+  });
+
   /**
    * Gibt alle manuellen Navigationsseiten zurück,
    * die eleventyNavigation im Frontmatter gesetzt haben.
