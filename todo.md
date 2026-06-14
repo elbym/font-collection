@@ -49,7 +49,7 @@
 - [x] **16 – Print-Stylesheet**
   Optimiertes Layout für den Druck / PDF-Export.
 
-- [ ] **17 – Wikipedia-Beschreibungen**
+- [x] **17 – Wikipedia-Beschreibungen**
   Lies zuerst die CLAUDE.md vollständig. Dann führe folgende Aufgabe vollständig und systematisch durch.
 
   ## Ziel
