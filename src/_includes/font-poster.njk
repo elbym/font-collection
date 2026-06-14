@@ -229,6 +229,35 @@
     <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>
   {% endif %}
 
+  {# ── Verwandte Schriften ─────────────────────────────────────────── #}
+  {% set relatedFonts = folder | findRelated(fontLeaves, 12) %}
+  {% if relatedFonts.length > 0 %}
+    <section class="related-fonts">
+      <h2 class="related-fonts__heading">Verwandte Schriften</h2>
+      <ul class="related-fonts__list">
+        {% for leaf in relatedFonts %}
+          <li>
+            <a class="related-fonts__link font-{{ leaf.key | slugify }}"
+               href="/{{ leaf.url }}.html"
+               style="--related-color: {{ leaf.color or 'currentColor' }};">
+              <span class="related-fonts__name">{{ leaf.title }}</span>
+              <span class="related-fonts__tags">
+                {%- for tag in leaf.tags -%}
+                  {%- if tag in folder.tags -%}
+                    <em>{{ tag }}</em>
+                  {%- else -%}
+                    {{ tag }}
+                  {%- endif -%}
+                  {%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
   {%- set cpMap = fontCodepoints[folder.key] if fontCodepoints else null -%}
   <section class="ascii">
     <article>

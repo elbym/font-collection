@@ -115,6 +115,15 @@ module.exports = function (eleventyConfig) {
     catch { return url; }
   });
 
+  eleventyConfig.addFilter("findRelated", function(folder, fontLeaves, limit) {
+    if (!folder.tags || folder.tags.length === 0) return [];
+    const tags = new Set(folder.tags);
+    const related = fontLeaves.filter(
+      (n) => n.key !== folder.key && n.tags && n.tags.some((t) => tags.has(t))
+    );
+    return limit ? related.slice(0, limit) : related;
+  });
+
   eleventyConfig.addFilter("findPrevNext", function(key, list) {
     const idx = list.findIndex(n => n.key === key);
     if (idx === -1) return { prev: null, next: null };
