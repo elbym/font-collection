@@ -324,6 +324,12 @@ module.exports = function () {
 
     // meta.yaml einlesen
     const meta = readMeta(dirPath);
+    if (fontFiles.length > 0 && Object.keys(meta).length === 0) {
+      console.warn(
+        `[fonts.js] Kein meta.yaml gefunden für: src/webfonts/${relativePath}\n` +
+        `  → Bitte meta.yaml mit mindestens "tags:" anlegen.`
+      );
+    }
 
     const node = {
       _path: relativePath,
@@ -379,7 +385,11 @@ module.exports = function () {
     if (node._allFonts.length > 0 && name !== "") {
       const categoryTag = (node._tags && node._tags.length > 0) ? node._tags[0] : null;
       if (node._isLeaf && !categoryTag) {
-        console.warn(`[fonts.js] Warnung: Keine Tags für "${node._title || name}" — category ist null`);
+        console.warn(
+          `[fonts.js] Keine Tags für: src/webfonts/${node._path}\n` +
+          `  Schrift: "${node._title || name}"\n` +
+          `  → tags: <Kategorie> in meta.yaml ergänzen (z. B. tags: Sans, Grotesque).`
+        );
       }
 
       // Collect unique variable axes across all variable fonts in this folder

@@ -16,7 +16,7 @@
 
 ## Klein (S)
 
-- [ ] **12 – Build-Warnung bei fehlendem `tags[0]`**  
+- [x] **12 – Build-Warnung bei fehlendem `tags[0]`**  
   Sauberere Fehlerbehandlung wenn eine Schrift kein `tags`-Feld hat.
 
 ## Groß (L)
