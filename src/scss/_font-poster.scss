@@ -670,9 +670,12 @@ article.content {
   }
 }
 
-.filter-btn--variable {
+.filter-btn--special {
   border-style: dashed;
-  margin-left: 0.5rem;
+
+  &:first-of-type {
+    margin-left: 0.5rem;
+  }
 }
 
 .related-fonts {

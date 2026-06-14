@@ -11,7 +11,7 @@
 - [x] **10 – Sort/Filter auf Kategorie-Seiten**  
   Gleiche Sort/Filter-UI wie auf der Homepage auch auf den Kategorie-Seiten (`/sans`, `/serif` etc.).
 
-- [ ] **18 – Erweiterte Sort/Filter-Optionen**  
+- [x] **18 – Erweiterte Sort/Filter-Optionen**  
   Neue `data-*`-Attribute auf den Karten + JS-Logik für folgende Optionen:
 
   **Neue Sortierungen** (auf Homepage + Kategorie-Seiten):

@@ -49,10 +49,14 @@ permalink: "{{ folder.url }}.html"
       <div class="sort-buttons" role="group" aria-label="Sortierung">
         <button class="sort-btn is-active" data-sort="default">Standard</button>
         <button class="sort-btn" data-sort="alpha">A–Z</button>
+        <button class="sort-btn" data-sort="year-desc">Neueste</button>
+        <button class="sort-btn" data-sort="styles-desc">Schnitte</button>
       </div>
       <div class="filter-buttons" role="group" aria-label="Filter">
         <button class="filter-btn is-active" data-filter="">Alle</button>
-        <button class="filter-btn filter-btn--variable" data-filter="--variable">Variable</button>
+        <button class="filter-btn filter-btn--special" data-filter="--variable">Variable</button>
+        <button class="filter-btn filter-btn--special" data-filter="--italic">Hat Kursiv</button>
+        <button class="filter-btn filter-btn--special" data-filter="--family">Große Familie</button>
       </div>
     </div>
   </section>
@@ -73,13 +77,28 @@ permalink: "{{ folder.url }}.html"
     var activeFilter = '';
 
     function apply() {
-      var sorted = activeSort === 'alpha'
-        ? cards.slice().sort(function (a, b) { return a.dataset.name.localeCompare(b.dataset.name, 'de'); })
-        : originalOrder;
+      var sorted;
+      if (activeSort === 'alpha') {
+        sorted = cards.slice().sort(function (a, b) { return a.dataset.name.localeCompare(b.dataset.name, 'de'); });
+      } else if (activeSort === 'year-desc') {
+        sorted = cards.slice().sort(function (a, b) {
+          return (parseInt(b.dataset.year) || 0) - (parseInt(a.dataset.year) || 0);
+        });
+      } else if (activeSort === 'styles-desc') {
+        sorted = cards.slice().sort(function (a, b) {
+          return (parseInt(b.dataset.styles) || 0) - (parseInt(a.dataset.styles) || 0);
+        });
+      } else {
+        sorted = originalOrder;
+      }
 
       sorted.forEach(function (card) {
-        var visible = !activeFilter ||
-          (activeFilter === '--variable' ? card.dataset.variable === 'true' : false);
+        var visible;
+        if (!activeFilter)                       visible = true;
+        else if (activeFilter === '--variable')  visible = card.dataset.variable === 'true';
+        else if (activeFilter === '--italic')    visible = card.dataset.italic === 'true';
+        else if (activeFilter === '--family')    visible = (parseInt(card.dataset.styles) || 0) >= 8;
+        else                                     visible = false;
         card.style.display = visible ? '' : 'none';
         list.appendChild(card);
       });

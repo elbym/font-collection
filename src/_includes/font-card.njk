@@ -7,7 +7,15 @@
 {% set _color    = node.color or site.color %}
 {% set _tags     = node.tags if node.tags.length else [] %}
 
-<article class="card font-{{ node.key | slugify }}" data-font-slug="{{ node.key | slugify }}" data-name="{{ node.title | lower }}" data-category="{{ node.category | slugify }}" data-variable="{{ 'true' if (node.varAxes and node.varAxes.length > 0) else '' }}">
+{% set _hasItalic = node.ownFonts | selectattr("style", "equalto", "italic") | list | length > 0 %}
+<article class="card font-{{ node.key | slugify }}"
+  data-font-slug="{{ node.key | slugify }}"
+  data-name="{{ node.title | lower }}"
+  data-category="{{ node.category | slugify }}"
+  data-variable="{{ 'true' if (node.varAxes and node.varAxes.length > 0) else '' }}"
+  data-italic="{{ 'true' if _hasItalic else '' }}"
+  data-styles="{{ node.ownFonts | length }}"
+  data-year="{{ node.fontyear or '' }}">
   {# Prefer per-font backgrounds from `fontBackgrounds`, fallback to global `backgrounds` #}
   {% set fontBg = fontBackgrounds[node.key] if (fontBackgrounds and fontBackgrounds[node.key]) else [] %}
   {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}
