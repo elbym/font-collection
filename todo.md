@@ -50,4 +50,52 @@
   Optimiertes Layout für den Druck / PDF-Export.
 
 - [ ] **17 – Wikipedia-Beschreibungen**
-  Automatisches Nachladen von Beschreibungstexten via Wikipedia API mit Quellenangabe für den Text.
+  Lies zuerst die CLAUDE.md vollständig. Dann führe folgende Aufgabe vollständig und systematisch durch.
+
+  ## Ziel
+  Für jede Schrift im Projekt: prüfe ob ein Wikipedia-Artikel existiert
+  (Deutsch bevorzugt, Englisch als Fallback) und trage die URL in die
+  zugehörige meta.yaml unter dem Key `wikipedia` ein.
+
+  ## Phase 1 – Schriften inventarisieren
+  - Finde alle Schriften im Projekt (Verzeichnisstruktur, meta.yaml-
+    Dateien, oder wie im Projekt üblich)
+  - Erstelle eine vollständige Liste: Schriftname → Pfad zur meta.yaml
+  - Gib die Liste aus, bevor du weitermachst
+
+  ## Phase 2 – Wikipedia prüfen
+  Für jede Schrift in der Liste:
+
+  1. Prüfe zuerst die deutsche Wikipedia:
+    https://de.wikipedia.org/wiki/SCHRIFTNAME
+    (ersetze Leerzeichen durch Unterstriche)
+
+  2. Falls kein deutscher Artikel existiert, prüfe die englische:
+    https://en.wikipedia.org/wiki/SCHRIFTNAME
+
+  3. Halte fest:
+    - ✅ DE gefunden
+    - ✅ EN gefunden (kein DE)
+    - ❌ Kein Artikel gefunden
+
+  Beachte Weiterleitungen – wenn eine URL auf einen anderen Artikel
+  weiterleitet, ist das trotzdem ein gültiger Treffer. Trage dann die
+  finale URL ein, nicht die Redirect-URL.
+
+  ## Phase 3 – meta.yaml aktualisieren
+  Für alle Schriften mit einem gefundenen Artikel:
+  - Öffne die zugehörige meta.yaml
+  - Setze oder aktualisiere den Key `wikipedia` mit der vollständigen URL
+  - Beispiel:
+    wikipedia: "https://de.wikipedia.org/wiki/Helvetica"
+
+  Überschreibe einen bestehenden Wert nur, wenn du einen besseren
+  (deutschen statt englischen) Artikel gefunden hast.
+
+  ## Phase 4 – Abschlussbericht
+  Gib eine Zusammenfassung aus:
+  - Wie viele Schriften geprüft?
+  - Wie viele DE-Artikel gefunden?
+  - Wie viele EN-Artikel gefunden?
+  - Wie viele ohne Artikel?
+  - Liste der Schriften ohne Wikipedia-Eintrag
