@@ -678,6 +678,197 @@ article.content {
   }
 }
 
+// ── Compare toggle button on cards ───────────────────────────────────
+.compare-toggle {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 0.08rem solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+  z-index: 2;
+
+  .card:hover & {
+    opacity: 1;
+  }
+
+  &.is-selected {
+    opacity: 1;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}
+
+.card header {
+  position: relative;
+}
+
+// ── Compare tray (sticky bottom bar) ─────────────────────────────────
+.compare-tray {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border-top: 0.1rem solid var(--color-border);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+
+  &__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__items {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    border: 0.025rem solid var(--color-border);
+    border-radius: 1rem;
+    font-size: 0.8rem;
+  }
+
+  &__item-name {
+    font-size: 0.85rem;
+  }
+
+  &__remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0 0.1rem;
+
+    &:hover { color: var(--color-text); }
+  }
+
+  &__go {
+    padding: 0.35rem 0.9rem;
+    background: var(--color-accent);
+    color: var(--color-mix-light);
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    white-space: nowrap;
+
+    &:hover { opacity: 0.85; }
+  }
+
+  &__clear {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    padding: 0.25rem;
+
+    &:hover { color: var(--color-text); }
+  }
+}
+
+// ── Compare page ──────────────────────────────────────────────────────
+.compare-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 0.05rem solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.compare-input {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.4rem 0.7rem;
+  font-size: 1rem;
+  border: 0.05rem solid var(--color-border);
+  border-radius: 0.4rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.compare-size-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.compare-size-range {
+  width: 8rem;
+}
+
+.compare-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: center;
+  border-bottom: 0.05rem solid var(--color-border);
+
+  &:last-child { border-bottom: none; }
+
+  &__meta {
+    padding: 1rem;
+    border-right: 0.05rem solid var(--color-border);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    text-decoration: none;
+    word-break: break-word;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__preview {
+    padding: 1.5rem;
+    line-height: 1.1;
+    word-break: break-all;
+    overflow: hidden;
+  }
+}
+
+.compare-empty {
+  padding: 2rem 1rem;
+  color: var(--color-text-muted);
+}
+
 .related-fonts {
   padding: 2rem 1rem 1rem;
 

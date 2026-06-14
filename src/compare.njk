@@ -1,0 +1,117 @@
+---
+layout: layouts/base.njk
+title: Schriften vergleichen
+permalink: compare.html
+
+eleventyNavigation:
+  key: Vergleich
+  order: 0
+---
+
+<div id="compare-app">
+  <p class="compare-empty">Keine Schriften ausgewählt. <a href="/">Zurück zur Übersicht</a></p>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = 'font-compare';
+  var list = [];
+  try { list = JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || []; } catch (e) {}
+
+  var app = document.getElementById('compare-app');
+  if (!app) return;
+  if (!list.length) return;
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // Load all font CSS files, then render
+  var pending = list.length;
+  list.forEach(function (f) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/css/webfonts/' + f.slug + '.css';
+    link.addEventListener('load', onReady);
+    link.addEventListener('error', onReady);
+    document.head.appendChild(link);
+  });
+
+  function onReady() {
+    pending--;
+    if (pending === 0) render();
+  }
+
+  function render() {
+    var sampleText = document.getElementById('compare-input')
+      ? document.getElementById('compare-input').value
+      : 'Hamburgefonstiv';
+
+    app.innerHTML = '';
+
+    var controls = document.createElement('div');
+    controls.className = 'compare-controls';
+    var input = document.createElement('input');
+    input.id = 'compare-input';
+    input.type = 'text';
+    input.value = sampleText;
+    input.placeholder = 'Beispieltext eingeben…';
+    input.className = 'compare-input';
+    var sizeLabel = document.createElement('label');
+    sizeLabel.className = 'compare-size-label';
+    sizeLabel.textContent = 'Größe';
+    var sizeInput = document.createElement('input');
+    sizeInput.id = 'compare-size';
+    sizeInput.type = 'range';
+    sizeInput.min = '24';
+    sizeInput.max = '200';
+    sizeInput.value = '80';
+    sizeInput.className = 'compare-size-range';
+    sizeLabel.appendChild(sizeInput);
+    controls.appendChild(input);
+    controls.appendChild(sizeLabel);
+    app.appendChild(controls);
+
+    var table = document.createElement('div');
+    table.className = 'compare-table';
+
+    list.forEach(function (f) {
+      var row = document.createElement('div');
+      row.className = 'compare-row';
+
+      var meta = document.createElement('div');
+      meta.className = 'compare-row__meta';
+      meta.innerHTML =
+        '<a class="compare-row__name" href="/' + esc(f.url) + '.html">' + esc(f.title) + '</a>';
+
+      var preview = document.createElement('div');
+      preview.className = 'compare-row__preview';
+      preview.style.fontFamily = "'" + f.family + "', serif";
+      preview.style.fontSize = sizeInput.value + 'px';
+      preview.textContent = sampleText;
+
+      row.appendChild(meta);
+      row.appendChild(preview);
+      table.appendChild(row);
+    });
+
+    app.appendChild(table);
+
+    // Live updates
+    input.addEventListener('input', function () {
+      document.querySelectorAll('.compare-row__preview').forEach(function (el) {
+        el.textContent = input.value;
+      });
+    });
+    sizeInput.addEventListener('input', function () {
+      document.querySelectorAll('.compare-row__preview').forEach(function (el) {
+        el.style.fontSize = sizeInput.value + 'px';
+      });
+    });
+  }
+})();
+</script>

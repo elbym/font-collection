@@ -26,6 +26,14 @@
     <a href="{{ _url }}" class="{{ _color | slugify }}">
       <h3>{{ _title }}</h3>
     </a>
+    {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
+    <button class="compare-toggle"
+      aria-pressed="false"
+      title="Zum Vergleich hinzufügen"
+      data-slug="{{ node.key | slugify }}"
+      data-title="{{ node.title }}"
+      data-family="{{ _family }}"
+      data-url="{{ node.url }}">+</button>
   </header>
 
   <main>
