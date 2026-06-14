@@ -143,6 +143,25 @@ module.exports = function () {
    *   herostyle  – CSS font-weight-Keyword für den Hero (z. B. "bold")
    *   color      – CSS-Farbwert oder -name für Akzentfarbe
    */
+  function detectLicense(dirPath, meta) {
+    if (meta.license) return meta.license;
+    const oflFiles = ["OFL.txt", "OFL-1.1.txt", "OFL11.txt", "OFL-1.1-no-RFN.txt", "OFL-1.1-RFN.txt"];
+    if (oflFiles.some((f) => fs.existsSync(path.join(dirPath, f)))) return "SIL Open Font License 1.1";
+    const licenseFiles = ["license.txt", "LICENSE.txt", "LICENSE", "license"];
+    for (const f of licenseFiles) {
+      const lPath = path.join(dirPath, f);
+      if (fs.existsSync(lPath)) {
+        try {
+          const c = fs.readFileSync(lPath, "utf-8").slice(0, 600);
+          if (/Open Font License/i.test(c)) return "SIL Open Font License 1.1";
+          if (/MIT License/i.test(c)) return "MIT";
+          if (/Apache License/i.test(c)) return "Apache 2.0";
+        } catch (_) {}
+      }
+    }
+    return null;
+  }
+
   function readMeta(dirPath) {
     const candidates = ["meta.yaml", "meta.yml"];
     for (const filename of candidates) {

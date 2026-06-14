@@ -18,6 +18,18 @@
     <h1 class="ligatures display-size-5">
       <span id="fonttitle">{{ folder.title }}</span></h1>
     <p class="year">{{ folder.fontyear }}</p>
+
+    {% if folder.license %}
+      <section class="font-meta-footer">
+        <article class="font-meta-footer__inner">
+          <dl class="font-meta-dl">
+            <dt>Lizenz</dt>
+            <dd>{{ folder.license }}</dd>
+          </dl>
+        </article>
+      </section>
+    {% endif %}
+
     {% if folder.sourceUrl %}
       <p>
         <a href="{{ folder.sourceUrl }}" class="small" target="_blank" rel="noopener noreferrer">{{ folder.sourceUrl }}</a>
