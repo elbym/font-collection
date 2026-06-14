@@ -46,8 +46,8 @@
 - [ ] **15 – Volltext-Suche**
   Client-side Suche über alle Schriften (z. B. Pagefind oder Fuse.js).
 
-- [ ] **16 – Print-Stylesheet**
+- [x] **16 – Print-Stylesheet**
   Optimiertes Layout für den Druck / PDF-Export.
 
 - [ ] **17 – Wikipedia-Beschreibungen**
-  Automatisches Nachladen von Beschreibungstexten via Wikipedia API.
+  Automatisches Nachladen von Beschreibungstexten via Wikipedia API mit Quellenangabe für den Text.

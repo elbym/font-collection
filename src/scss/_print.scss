@@ -1,0 +1,152 @@
+@media print {
+
+  // ── Globale Reset ────────────────────────────────────────────────────
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-color: #ccc !important;
+  }
+
+  body {
+    color: #000 !important;
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  // ── Chrome ausblenden ────────────────────────────────────────────────
+  header,
+  .site-footer,
+  .breadcrumb,
+  .font-nav,
+  .font-list-controls,
+  .var-font-controls,
+  .related-fonts,
+  .compare-tray,
+  .compare-toggle,
+  .font-image-list { display: none !important; }
+
+  // ── Karten-Übersichtsseite (Homepage / Kategorie) ────────────────────
+  .font-family-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5cm;
+  }
+
+  .card {
+    width: 4cm;
+    border: 0.5pt solid #ccc;
+    padding: 0.3cm;
+    break-inside: avoid;
+    font-size: 9pt;
+
+    header {
+      background-image: none !important;
+      padding: 0;
+      min-height: 0;
+
+      a { color: #000 !important; text-decoration: none; }
+      h3 { font-size: 10pt; margin: 0 0 0.2em; }
+    }
+
+    main { display: none; }
+    footer { display: none; }
+    .card-coverage { display: none; }
+  }
+
+  // ── Specimen-Poster ──────────────────────────────────────────────────
+  .specimen-poster {
+    border-image: none !important;
+    padding: 0;
+
+    .header {
+      border-bottom: 1pt solid #000;
+      padding-bottom: 0.5cm;
+      margin-bottom: 0.5cm;
+
+      h1 { font-size: 28pt; margin: 0.2em 0; }
+
+      .keywords { list-style: none; padding: 0; display: flex; gap: 0.3em; flex-wrap: wrap; }
+      .keywords li::after { content: ","; }
+      .keywords li:last-child::after { content: ""; }
+
+      .author,
+      .year { font-size: 9pt; color: #555 !important; }
+
+      .comment,
+      .font-content { font-size: 9pt; }
+
+      .font-meta-footer { border: none; padding: 0; }
+      .font-meta-dl { font-size: 8pt; }
+    }
+
+    // CMYK-Hero: Farbeffekte weglassen, nur Buchstabe als Outline zeigen
+    .hero-letters {
+      .cmyk,
+      .cmyk-layer { display: none !important; }
+
+      .cmyk-mask text {
+        fill: none;
+        stroke: #000;
+        stroke-width: 1;
+      }
+    }
+
+    .hero-word p {
+      color: #000 !important;
+      font-size: 36pt;
+    }
+
+    .letters p { font-size: 14pt; }
+
+    .alphabet_letters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.1em;
+      font-size: 12pt;
+    }
+
+    // Wasserfall
+    .waterfall--styles,
+    .waterfall--panagram {
+      break-inside: avoid;
+      margin: 0.5cm 0;
+
+      h2 { font-size: 10pt; border-bottom: 0.5pt solid #ccc; padding-bottom: 0.1cm; }
+    }
+
+    // Paragraphenblöcke
+    .paragraph-blocks {
+      break-inside: avoid;
+      margin: 0.5cm 0;
+
+      p { color: #000 !important; }
+    }
+
+    // Unicode-Tabelle: kompakt
+    .ascii {
+      break-inside: avoid;
+      margin-top: 0.5cm;
+      font-size: 7pt;
+
+      h2 { font-size: 9pt; break-after: avoid; }
+
+      .l { display: inline-block; width: 1.2em; text-align: center; }
+      .char--missing { opacity: 0.25; }
+    }
+  }
+
+  // ── Seitenumbrüche ───────────────────────────────────────────────────
+  .hero          { break-inside: avoid; }
+  .paragraph-blocks { break-before: page; }
+  .ascii         { break-before: avoid; }
+
+  // ── Links ─────────────────────────────────────────────────────────────
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 7pt;
+    color: #555 !important;
+  }
+}
