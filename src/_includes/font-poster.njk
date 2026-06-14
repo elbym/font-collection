@@ -309,7 +309,7 @@
         var amp = (max - min) / 2;
         // Each axis gets a distinct phase and a gentle speed
         var phase = i * (Math.PI * 2 / 3);
-        var speed = 0.18 + i * 0.04;
+        var speed = 0.08 + i * 0.04;
         var val = mid + amp * Math.sin(t * speed * Math.PI * 2 + phase);
         var step = parseFloat(input.step) || 1;
         val = Math.round(val / step) * step;

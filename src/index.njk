@@ -38,6 +38,7 @@ eleventyNavigation:
       {% for cat in allCategories | sort %}
         <button class="filter-btn" data-filter="{{ cat | slugify }}">{{ cat }}</button>
       {% endfor %}
+      <button class="filter-btn filter-btn--variable" data-filter="--variable">Variable</button>
     </div>
   </div>
 </section>
@@ -70,7 +71,9 @@ eleventyNavigation:
       : originalOrder;
 
     sorted.forEach(function (card) {
-      card.style.display = (!activeFilter || card.dataset.category === activeFilter) ? '' : 'none';
+      var visible = !activeFilter
+        || (activeFilter === '--variable' ? card.dataset.variable === 'true' : card.dataset.category === activeFilter);
+      card.style.display = visible ? '' : 'none';
       list.appendChild(card);
     });
   }
