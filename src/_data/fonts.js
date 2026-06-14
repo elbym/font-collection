@@ -130,6 +130,22 @@ module.exports = function () {
     );
   }
 
+  function extractAxes(lowerName) {
+    // Format 1: Filename[wght,opsz,wdth]
+    const bracketMatch = lowerName.match(/\[([^\]]+)\]/);
+    if (bracketMatch) {
+      return bracketMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => VARIABLE_AXES.includes(a));
+    }
+    // Format 2: _opsz,wght or _variablefont_opsz,wght
+    const underscoreMatch = lowerName.match(/[_-](?:variablefont[_-])?([a-z]{4}(?:,[a-z]{4})+)/);
+    if (underscoreMatch) {
+      const candidates = underscoreMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => VARIABLE_AXES.includes(a));
+      if (candidates.length > 0) return candidates;
+    }
+    // Fallback: wght is always present in variable fonts
+    return ["wght"];
+  }
+
   /**
    * Liest meta.yaml (oder meta.yml) aus einem Ordner.
    * Unterstützte Felder:
@@ -230,6 +246,7 @@ module.exports = function () {
           }
 
           const { optical, opticalOrder } = findOptical(lowerName);
+          const axes = extractAxes(lowerName);
 
           return variableWeights.flatMap(({ weight, label }) =>
             stylesToGenerate.map((s) => ({
@@ -242,6 +259,7 @@ module.exports = function () {
               weight,
               style: s,
               isVariable: true,
+              axes,
               variantGroup: optical ?? (s === "normal" ? "Regular" : "Italic"),
             }))
           );
@@ -330,6 +348,7 @@ module.exports = function () {
       _content: meta.content ?? null,
       _imageOverrides: meta.imageOverrides ?? null,
       _wikipedia: meta.wikipedia ?? null,
+      _license: detectLicense(dirPath, meta),
     };
 
     subDirs.forEach((sub) => {
@@ -363,6 +382,13 @@ module.exports = function () {
         console.warn(`[fonts.js] Warnung: Keine Tags für "${node._title || name}" — category ist null`);
       }
 
+      // Collect unique variable axes across all variable fonts in this folder
+      const varAxes = [...new Set(
+        node._fonts
+          .filter((f) => f.isVariable && f.axes)
+          .flatMap((f) => f.axes)
+      )];
+
       result.push({
         key: name,
         path: node._path,
@@ -390,6 +416,8 @@ module.exports = function () {
         content:    node._content,
         imageOverrides: node._imageOverrides,
         wikipedia:  node._wikipedia,
+        license:    node._license,
+        varAxes,
       });
     }
 

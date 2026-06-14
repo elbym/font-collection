@@ -24,7 +24,22 @@ permalink: "{{ folder.url }}.html"
 
 {% if folder.isLeaf %}
   {# Blattknoten: Specimen der eigenen Fonts #}
+  {% set prevNext = folder.key | findPrevNext(fontLeaves) %}
   {% include "font-poster.njk" %}
+
+  <nav class="font-nav" aria-label="Schriften-Navigation">
+    {% if prevNext.prev %}
+      <a href="/{{ prevNext.prev.url }}.html" class="font-nav-prev">← {{ prevNext.prev.title }}</a>
+    {% else %}
+      <span class="font-nav-prev font-nav--empty"></span>
+    {% endif %}
+    <a href="/" class="font-nav-home">Übersicht</a>
+    {% if prevNext.next %}
+      <a href="/{{ prevNext.next.url }}.html" class="font-nav-next">{{ prevNext.next.title }} →</a>
+    {% else %}
+      <span class="font-nav-next font-nav--empty"></span>
+    {% endif %}
+  </nav>
 
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}

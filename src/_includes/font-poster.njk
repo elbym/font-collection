@@ -1,5 +1,5 @@
 <main class="specimen-poster border-{{ folder.border | slugify }}">
-<a id="poster"></a>
+  <a id="poster"></a>
   {# Fonts für den aktuellen Ordner — kommt jetzt aus dem folder-Objekt der Pagination #}
   {% set activeFonts = folder.ownFonts %}
 
@@ -32,7 +32,7 @@
 
     {% if folder.sourceUrl %}
       <p>
-        <a href="{{ folder.sourceUrl }}" class="small" target="_blank" rel="noopener noreferrer">{{ folder.sourceUrl }}</a>
+        <a href="{{ folder.sourceurl }}" class="small" target="_blank" rel="noopener noreferrer">{{ folder.sourceUrl }}</a>
       </p>
     {% endif %}
     {% if folder.wikipedia %}
@@ -108,20 +108,23 @@
     </article>
 
     {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else activeFonts %}
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else
+      activeFonts %}
 
     {% if activeFonts %}
       {% set hasItalic = waterfallFonts | selectattr("variantGroup", "equalto", "Italic") | list | length > 0 %}
-      {% set waterfallGroups = ["Regular", "Italic"] if hasItalic else ["Regular"] %}
+      {% set waterfallGroups = ["Regular", "Italic"] if hasItalic else
+        ["Regular"] %}
 
-        <article class="waterfall--styles">
-          {% set waterfallText = "" %}
-          {% include "waterfall-groups.njk" %}
-        </article>
+      <article class="waterfall--styles">
+        {% set waterfallText = "" %}
+        {% include "waterfall-groups.njk" %}
+      </article>
 
     {% endif %}
 
-    {% if fontImages[folder.key] %}{% include "font-image-list.njk" %}{% endif %}
+    {% if fontImages[folder.key] %}{% include "font-image-list.njk" %}
+    {% endif %}
 
     <article class="latin">
       {% set displayFont = null %}
@@ -146,6 +149,49 @@
 
   </section>
 
+  {# ── Variable Font Achsen-Slider ──────────────────────────────── #}
+  {% if folder.varAxes and folder.varAxes.length > 0 %}
+    {% set _vfFamily = activeFonts[0].family if activeFonts.length else
+      folder.title %}
+    <section class="var-font-controls" id="var-font-controls-{{ folder.key | slugify }}">
+      <article class="var-font-controls__inner">
+        <div class="var-font-preview-wrap">
+          <p class="var-font-preview"
+           contenteditable="true"
+           spellcheck="false"
+           style="font-family: '{{ _vffamily }}', serif;"
+           data-var-preview>{{ folder.heroword or site.heroword }}</p>
+        </div>
+        <div class="var-font-sliders">
+          {% set _axisConfig = {
+          "wght": { label: "Weight",   min: 100, max: 900, step: 1,   default: 400, css: "font-weight" },
+          "wdth": { label: "Width",    min: 50,  max: 200, step: 1,   default: 100, css: "font-stretch" },
+          "opsz": { label: "Opt. Size",min: 8,   max: 144, step: 1,   default: 12,  css: "opsz" },
+          "slnt": { label: "Slant",    min: -15, max: 0,   step: 0.5, default: 0,   css: "slnt" }
+        } %}
+          {% for axis in folder.varAxes %}
+            {% if _axisConfig[axis] %}
+              {% set cfg = _axisConfig[axis] %}
+              <div class="var-axis-row">
+                <span class="var-axis-label">{{ cfg.label }}</span>
+                <input class="var-axis-range"
+                   type="range"
+                   min="{{ cfg.min }}"
+                   max="{{ cfg.max }}"
+                   step="{{ cfg.step }}"
+                   value="{{ cfg.default }}"
+                   data-axis="{{ axis }}"
+                   data-css="{{ cfg.css }}"
+                   aria-label="{{ cfg.label }}">
+                <output class="var-axis-output">{{ cfg.default }}</output>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </article>
+    </section>
+  {% endif %}
+
   <section class="paragraph-blocks">
     <article>
       {% for size in[
@@ -156,10 +202,10 @@
         12,
         8
       ] %}
-      <p class="font-size-{{ size }} justify initials">
-        {# <span>Size: {{ size }}px</span> #}
-        {{ site["paragraph" + size] }}
-      </p>
+        <p class="font-size-{{ size }} justify initials">
+          {# <span>Size: {{ size }}px</span> #}
+          {{ site["paragraph" + size] }}
+        </p>
       {% endfor %}
 
     </article>
@@ -187,7 +233,10 @@
   <section class="ascii">
     <article>
       {% for section in unicodeRanges %}
-        <h2>{{ section.label }}{% if cpMap %} <span class="coverage">({{ section.key | coveragePercent(cpMap) }}%)</span>{% endif %}</h2>
+        <h2>{{ section.label }}
+          {% if cpMap %}
+            <span class="coverage">({{ section.key | coveragePercent(cpMap) }}%)</span>{% endif %}
+        </h2>
         {% for char in section.key | unicodeChars %}
           <span class="l{% if cpMap and not cpMap[char | charCodeAt] %} char--missing{% endif %}">{{ char }}</span>
         {% endfor %}
@@ -196,3 +245,99 @@
   </section>
 
 </main>
+
+<script>
+  (function () {
+    // Variable Font Sliders
+    var preview = document.querySelector('[data-var-preview]');
+    if (!preview)
+      return;
+
+    var axisValues = {};
+
+    function applyAxes() {
+      var fvs = Object
+        .entries(axisValues)
+        .filter(function (e) {
+          return e[0] !== 'font-weight' && e[0] !== 'font-stretch';
+        })
+        .map(function (e) {
+          return "'" + e[0] + "' " + e[1];
+        });
+
+      if (fvs.length > 0) {
+        preview.style.fontVariationSettings = fvs.join(', ');
+      }
+      if (axisValues['wght'] !== undefined) {
+        preview.style.fontWeight = axisValues['wght'];
+      }
+      if (axisValues['wdth'] !== undefined) {
+        preview.style.fontStretch = axisValues['wdth'] + '%';
+      }
+    }
+
+    var inputs = Array.from(document.querySelectorAll('.var-axis-range'));
+    var animFrame = null;
+    var startTime = null;
+
+    inputs.forEach(function (input) {
+      axisValues[input.dataset.axis] = parseFloat(input.value);
+    });
+
+    // Manual input handler (active after user takes over)
+    inputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+        var val = parseFloat(input.value);
+        axisValues[input.dataset.axis] = val;
+        var output = input.nextElementSibling;
+        if (output)
+          output.value = Math.round(val * 10) / 10;
+        applyAxes();
+      });
+    });
+
+    // Auto-animation
+    function animate(timestamp) {
+      if (!startTime)
+        startTime = timestamp;
+      var t = (timestamp - startTime) / 1000;
+
+      inputs.forEach(function (input, i) {
+        var min = parseFloat(input.min);
+        var max = parseFloat(input.max);
+        var mid = (min + max) / 2;
+        var amp = (max - min) / 2;
+        // Each axis gets a distinct phase and a gentle speed
+        var phase = i * (Math.PI * 2 / 3);
+        var speed = 0.18 + i * 0.04;
+        var val = mid + amp * Math.sin(t * speed * Math.PI * 2 + phase);
+        var step = parseFloat(input.step) || 1;
+        val = Math.round(val / step) * step;
+        val = Math.max(min, Math.min(max, val));
+        input.value = val;
+        var output = input.nextElementSibling;
+        if (output)
+          output.value = Math.round(val * 10) / 10;
+        axisValues[input.dataset.axis] = val;
+      });
+
+      applyAxes();
+      animFrame = requestAnimationFrame(animate);
+    }
+
+    function stopAnimation() {
+      if (animFrame) {
+        cancelAnimationFrame(animFrame);
+        animFrame = null;
+      }
+    }
+
+    inputs.forEach(function (input) {
+      input.addEventListener('mousedown', stopAnimation);
+      input.addEventListener('touchstart', stopAnimation, {passive: true});
+      input.addEventListener('keydown', stopAnimation);
+    });
+
+    animFrame = requestAnimationFrame(animate);
+  })();
+</script>

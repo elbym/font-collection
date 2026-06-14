@@ -7,7 +7,7 @@
 {% set _color    = node.color or site.color %}
 {% set _tags     = node.tags if node.tags.length else [] %}
 
-<article class="card font-{{ node.key | slugify }}" data-font-slug="{{ node.key | slugify }}">
+<article class="card font-{{ node.key | slugify }}" data-font-slug="{{ node.key | slugify }}" data-name="{{ node.title | lower }}" data-category="{{ node.category | slugify }}">
   {# Prefer per-font backgrounds from `fontBackgrounds`, fallback to global `backgrounds` #}
   {% set fontBg = fontBackgrounds[node.key] if (fontBackgrounds and fontBackgrounds[node.key]) else [] %}
   {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}

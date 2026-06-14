@@ -50,33 +50,28 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-
+    // Swap light/dark bases — all semantic tokens recompute automatically
     --color-mix-light: hsl(0, 0%, 10%);
-    --color-mix-dark: hsl(0, 0%, 90%);
+    --color-mix-dark:  hsl(0, 0%, 90%);
 
-    // --color-text: color-mix(in oklab, var(--color-base-text), var(--color-mix-light) 90%);
-    // --color-text-muted: color-mix(in oklab, var(--color-base-text), var(--color-mix-light) 70%);
-    // --color-background: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 90%);
+    // Accents must be lightened on dark backgrounds:
+    // mix with --color-mix-dark (now near-white) instead of --color-mix-light (now near-black)
+    --color-accent:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 20%);
+    --color-accent-bg:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
+    --color-highlight:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 60%);
+    --color-border:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
 
-    // --color-accent:    color-mix(in oklab, var(--color-base-primary), var(--color-mix-dark) 40%);
-    // --color-highlight: color-mix(in oklab, var(--color-base-primary), var(--color-mix-dark)  50%);
-    // --color-border:    color-mix(in oklab, var(--color-base-primary), var(--color-mix-dark)  50%);
+    --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 20%);
+    --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 50%);
+    --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 60%);
+    --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 50%);
 
-    // --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 40%);
-    // --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark)  50%);
-    // --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark)  50%);
+    --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 20%);
+    --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 50%);
+    --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 60%);
+    --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 50%);
 
-    // --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 40%);
-    // --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark)  50%);
-    // --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark)  50%);
-
-    // --color-text-shadow: color-mix(in oklab, var(--color-base-shadow), var(--color-mix-light) 20%);
-    // --color-surface: color-mix(in oklab, var(--color-base-background), var(--color-mix-dark) 80%);
-
-    //
     --dot-size: 7px;
-    // --dot-size-large: 10px;
-    // CMYK process colors
     --cmyk-cyan:    hsla(196, 100%, 47%, .8);
     --cmyk-magenta: hsla(321, 100%, 46%, .8);
     --cmyk-yellow:  hsla(56, 100%, 50%, .7);
@@ -84,7 +79,7 @@
     --dot-start: 35%;
     --dot-end: 40%;
   }
-  // Dim images
+
   img {
     opacity: 0.8;
   }

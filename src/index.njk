@@ -6,19 +6,43 @@ eleventyNavigation:
   key: Index
   order: 0
 ---
-<article class="content">
-  <h1>Persönliche Sammlung von freien Schriftarten</h1>
-  <blockquote>Jeder hat doch eine Lieblingsschriftart, oder? ODER!?</blockquote>
-  <p>Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer <a href="https://elbym.github.io/font-collection/">HTML-Vorschau</a> gewechselt.</p>
-  <p>Diese Liste ist auch beeinflusst von <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> und <a href="https://typotheque.luuse.io/">Free Font Library</a></p>
 
-  <p>Das Schriftmusterplakat ist stark inspiriert von (kopiert von) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> an der Universität Frankfurt.</p>
+<h1>Persönliche Sammlung von freien Schriftarten</h1>
+<blockquote>Jeder hat doch eine Lieblingsschriftart, oder? ODER!?</blockquote>
+<p>Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den <a href="https://github.com/elbym/font-collection/blob/main/font_specimen_generator.py">font_specimen_generator.py</a> (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer <a href="https://elbym.github.io/font-collection/">HTML-Vorschau</a> gewechselt.</p>
+<p>Diese Liste ist auch beeinflusst von <a href="https://www.teuderun.de/schriftarten/top-10/">Teuderun</a> und <a href="https://typotheque.luuse.io/">Free Font Library</a>
+</p>
 
-  <p>Warum bin ich erst so spät darauf gestoßen? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> hat wunderbare Musterlayouts für seine <a href="https://www.forthehearts.net/playfair">Playfair</a>-Schrift <a href="https://www.forthehearts.net/demonstration/Playfair2_Words.html ">Word Tower Specimen Demo</a></p>
-</article>
+<p>Das Schriftmusterplakat ist stark inspiriert von (kopiert von) <a href="https://sammlungen.ub.uni-frankfurt.de/drucke/nav/classification/10736375">Schriftprobensammlung Gustav Mori</a> an der Universität Frankfurt.</p>
 
-<section class="font-family-card-list">
-  <h2>Liste der Schriftarten.<br>In keiner bestimmten Reihenfolge.</h2>
+<p>Warum bin ich erst so spät darauf gestoßen? <a href="https://www.forthehearts.net/about">Claus Eggers Sørensen</a> hat wunderbare Musterlayouts für seine <a href="https://www.forthehearts.net/playfair">Playfair</a>-Schrift <a href="https://www.forthehearts.net/demonstration/playfair2_words.html ">Word Tower Specimen Demo</a>
+</p>
+
+{% set allCategories = [] %}
+{% for node in fontFolders %}
+  {% if node.isLeaf and node.category and node.category not in allCategories %}
+    {% set allCategories = allCategories.concat([node.category]) %}
+  {% endif %}
+{% endfor %}
+
+<section class="font-list-controls">
+  <h2>{{ fontLeaves | length }} Schriften</h2>
+  <div class="sort-filter">
+    <div class="sort-buttons" role="group" aria-label="Sortierung">
+      <button class="sort-btn is-active" data-sort="default">Standard</button>
+      <button class="sort-btn" data-sort="alpha">A–Z</button>
+      <button class="sort-btn" data-sort="category">Kategorie</button>
+    </div>
+    <div class="filter-buttons" role="group" aria-label="Filter nach Kategorie">
+      <button class="filter-btn is-active" data-filter="">Alle</button>
+      {% for cat in allCategories | sort %}
+        <button class="filter-btn" data-filter="{{ cat | slugify }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="font-family-card-list" id="font-list">
   {% for node in fontFolders %}
     {% if node.isLeaf %}
       {% include "font-card.njk" %}
@@ -26,11 +50,56 @@ eleventyNavigation:
   {% endfor %}
 </section>
 
+<script>
+(function () {
+  var list = document.getElementById('font-list');
+  if (!list) return;
+  var cards = Array.from(list.querySelectorAll('.card'));
+  var originalOrder = cards.slice();
+  var activeSort = 'default';
+  var activeFilter = '';
+
+  function apply() {
+    var sorted = activeSort === 'alpha'
+      ? cards.slice().sort(function (a, b) { return a.dataset.name.localeCompare(b.dataset.name, 'de'); })
+      : activeSort === 'category'
+      ? cards.slice().sort(function (a, b) {
+          var c = (a.dataset.category || '').localeCompare(b.dataset.category || '', 'de');
+          return c !== 0 ? c : a.dataset.name.localeCompare(b.dataset.name, 'de');
+        })
+      : originalOrder;
+
+    sorted.forEach(function (card) {
+      card.style.display = (!activeFilter || card.dataset.category === activeFilter) ? '' : 'none';
+      list.appendChild(card);
+    });
+  }
+
+  document.querySelectorAll('.sort-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.sort-btn').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      activeSort = btn.dataset.sort;
+      apply();
+    });
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      activeFilter = btn.dataset.filter;
+      apply();
+    });
+  });
+})();
+</script>
+
 <h2>python font_specimen_generator.py</h2>
 <p>
-  Ich habe Claude gebeten, ein Python-Skript zusammenzubasteln, um eine Vorschau der Schriftmuster zu generieren, inspiriert von denen auf <a href="https://commons.wikimedia.org/wiki/Category:Typeface_samples_(Font_Specimen_Creator);_raster_graphics">Wikipedia</a>
+  Ich habe Claude gebeten, ein Python-Skript zusammenzubasteln, um eine Vorschau der Schriftmuster zu generieren, inspiriert von denen auf <a href="https://commons.wikimedia.org/wiki/category:typeface_samples_(font_specimen_creator);_raster_graphics">Wikipedia</a>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Adobe_Caslon.png/250px-Adobe_Caslon.png" alt="Vorschau des Wikipedia-Schriftart-Musters">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/adobe_caslon.png/250px-adobe_caslon.png" alt="vorschau des wikipedia-schriftart-musters">
 </p>
 
 <p>Derzeit werden 3 verschiedene Designs unterstützt: cremefarben, dunkel, weiß</p>
