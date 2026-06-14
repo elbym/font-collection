@@ -11,6 +11,22 @@
 - [x] **10 – Sort/Filter auf Kategorie-Seiten**  
   Gleiche Sort/Filter-UI wie auf der Homepage auch auf den Kategorie-Seiten (`/sans`, `/serif` etc.).
 
+- [ ] **18 – Erweiterte Sort/Filter-Optionen**  
+  Neue `data-*`-Attribute auf den Karten + JS-Logik für folgende Optionen:
+
+  **Neue Sortierungen** (auf Homepage + Kategorie-Seiten):
+  - Nach Jahr aufsteigend / absteigend (`data-year` aus `node.fontyear`)
+  - Nach Anzahl Schnitte absteigend — Großfamilien zuerst (`data-styles` aus `node.ownFonts | length`)
+
+  **Neue Filter** (auf Homepage + Kategorie-Seiten):
+  - Hat Kursiv — nur Schriften mit mindestens einem Italic-Schnitt (`data-italic` aus `ownFonts | selectattr("style", "equalto", "italic")`)
+  - Große Familie — nur Schriften mit ≥ 8 Schnitten (`data-styles` → JS-Vergleich `>= 8`)
+
+  **Implementierungsplan:**
+  1. `font-card.njk`: `data-year`, `data-styles`, `data-italic` ergänzen
+  2. `index.njk` + `specimen.njk`: neue Buttons in `.sort-buttons` / `.filter-buttons`
+  3. JS `apply()`-Funktion in beiden Seiten erweitern
+
 - [ ] **11 – `content`-Feld bei Leaf-Nodes befüllen** *(redaktionell)*  
   Informationstexte zu einzelnen Schriften in den jeweiligen `meta.yaml`-Dateien schreiben.
 
