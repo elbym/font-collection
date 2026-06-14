@@ -2,6 +2,7 @@
   <a id="poster"></a>
   {# Fonts für den aktuellen Ordner — kommt jetzt aus dem folder-Objekt der Pagination #}
   {% set activeFonts = folder.ownFonts %}
+  {% set _fvAxes = fontVariableAxes[folder.key] %}
 
   <header class="header">
     {% if folder.tags.length %}
@@ -80,9 +81,27 @@
       </article>
 
       <article class="hero-word">
-        <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}">
+        <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}" data-var-preview>
           {{ folder.heroword or site.heroword }}
         </p>
+        {% if _fvAxes %}
+          <div class="var-font-sliders">
+            {% for axisTag, axisData in _fvAxes %}
+              <div class="var-axis-row">
+                <span class="var-axis-label">{{ axisData.name }}</span>
+                <input class="var-axis-range"
+                   type="range"
+                   min="{{ axisData.min }}"
+                   max="{{ axisData.max }}"
+                   step="{{ axisData.step }}"
+                   value="{{ axisData.default }}"
+                   data-axis="{{ axisTag }}"
+                   aria-label="{{ axisData.name }}">
+                <output class="var-axis-output">{{ axisData.default }}</output>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
       </article>
 
       <article class="alphabet">
@@ -149,39 +168,6 @@
 
   </section>
 
-  {# ── Variable Font Achsen-Slider ──────────────────────────────── #}
-  {% set _fvAxes = fontVariableAxes[folder.key] %}
-  {% if _fvAxes %}
-    {% set _vfFamily = activeFonts[0].family if activeFonts.length else
-      folder.title %}
-    <section class="var-font-controls" id="var-font-controls-{{ folder.key | slugify }}">
-      <article class="var-font-controls__inner">
-        <div class="var-font-preview-wrap">
-          <p class="var-font-preview"
-           contenteditable="true"
-           spellcheck="false"
-           data-var-preview>{{ folder.heroword or site.heroword }}</p>
-        </div>
-        <div class="var-font-sliders">
-          {% for axisTag, axisData in _fvAxes %}
-            <div class="var-axis-row">
-              <span class="var-axis-label">{{ axisData.name }}</span>
-              <input class="var-axis-range"
-                 type="range"
-                 min="{{ axisData.min }}"
-                 max="{{ axisData.max }}"
-                 step="{{ axisData.step }}"
-                 value="{{ axisData.default }}"
-                 data-axis="{{ axisTag }}"
-                 aria-label="{{ axisData.name }}">
-              <output class="var-axis-output">{{ axisData.default }}</output>
-            </div>
-          {% endfor %}
-        </div>
-      </article>
-    </section>
-  {% endif %}
-
   <section class="paragraph-blocks">
     <article>
       {% for size in[
@@ -203,7 +189,6 @@
   </section>
 
   {% if activeFonts %}
-    {% set _fvAxes = fontVariableAxes[folder.key] %}
     {% set _wfFamily = activeFonts[0].family %}
 
     {% if _fvAxes %}
