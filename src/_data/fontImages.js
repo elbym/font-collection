@@ -37,8 +37,10 @@ module.exports = function () {
       structure[folderKey] = images;
     }
 
-    // Recursively scan subdirectories
+    // Recursively scan subdirectories, skipping known asset-only folders
+    const skipDirs = new Set(["background", "gallery"]);
     const dirs = entries.filter((e) => {
+      if (skipDirs.has(e)) return false;
       const fullPath = path.join(dirPath, e);
       return fs.statSync(fullPath).isDirectory();
     });
