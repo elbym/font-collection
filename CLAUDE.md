@@ -24,7 +24,7 @@ Output: `dist/` — fully static site with one HTML specimen page per font famil
 | Markdown rendering | `markdown-it` (transitive dep) — used by `markdownify` Eleventy filter |
 | Font reading | `fontkit` 2.0.4 — reads `.woff2` files to extract codepoint maps |
 | Navigation | `@11ty/eleventy-navigation` |
-| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver) |
+| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage) |
 | Python tool | `font_specimen_generator.py` — standalone, not part of the build |
 
 ---
@@ -70,10 +70,12 @@ src/
       _font-borders.scss     # AUTO-GENERATED — never edit
     _cards.scss
     _font-poster.scss
+    _print.scss            # print media styles — hides UI chrome, sets print-friendly layout
     webfonts/              # AUTO-GENERATED — never edit (gitignored)
   js/
     fitty.min.js
     font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
+    compare-manager.js     # font comparison tray (sessionStorage, max 4 fonts); injects #compare-tray into DOM
   webfonts/                # Font files, organised by category
     sans/ serif/ mono/ blackletter/ comicsans/ script/
     meta.yaml              # group-level metadata (optional)
@@ -84,7 +86,8 @@ src/
   index.njk                # homepage — lists all leaf nodes as cards
   specimen.njk             # paginated over fontFolders; one page per node
   tag.njk                  # paginated over fontTags; one page per tag
-  alternatives.njk         # curated list of commercial/free font pairs
+  alternatives.njk         # curated list of commercial/free font pairs; eleventyNavigation key "Alternatives"
+  compare.njk              # side-by-side font comparison (up to 4); reads sessionStorage, inline JS; eleventyNavigation key "Vergleich" order 0
   llms.njk                 # permalink: /llms.txt — machine-readable catalog metadata for LLM tools
   sitemap.njk              # sitemap.xml
 dist/                      # BUILD OUTPUT — never edit (gitignored)
@@ -190,16 +193,25 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 - Slugs whose first hyphen-segment is a known CSS utility word (`size`, `family`, `weight`, etc.) are excluded from auto-detection. Font slugs with hyphens (e.g. `pt-sans`) are handled correctly.
 - Elements can also set `data-font-slug` explicitly to opt in without a `font-*` CSS class.
 
+### Font comparison feature
+- `compare-manager.js` adds a comparison tray to every page. Font cards with a `.compare-toggle` button (carrying `data-slug`, `data-title`, `data-family`, `data-url`) participate automatically.
+- Selection is stored in `sessionStorage` under the key `font-compare` as a JSON array of `{ slug, title, family, url }` objects. Maximum 4 fonts.
+- The tray (`#compare-tray`) is injected into `<body>` by `compare-manager.js` at runtime and stays hidden until at least 2 fonts are selected.
+- `compare.njk` reads sessionStorage directly (inline script) and renders a live-editable comparison table — no server round-trip. The page is in German (`Schriften vergleichen`).
+- `.compare-toggle` buttons get `.is-selected` / `aria-pressed` state managed by `compare-manager.js`; do not manage this state in templates.
+
 ### Open Graph images
 - Specimen pages (leaf nodes) use the first background image from `fontBackgrounds[folder.key]` as `og:image` when one exists; all other pages fall back to the static `/img/og_preview.png`.
 - OG image URLs use Eleventy's `url` filter so the pathprefix is applied correctly in the `ghpages` build.
 
 ### Eleventy filters (`.eleventy.js`)
-- Active filters: `chr`, `charCodeAt`, `coveragePercent`, `unicodeChars`, `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf`, `getManualNav`, `hueShift`, `markdownify`, `jsonEscape`, `toDomain`.
+- Active filters: `chr`, `charCodeAt`, `coveragePercent`, `unicodeChars`, `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf`, `getManualNav`, `hueShift`, `markdownify`, `jsonEscape`, `toDomain`, `findRelated`, `findPrevNext`.
 - `hueShift(degrees)`: rotates a CSS color's hue via chroma-js.
 - `markdownify`: renders markdown string to HTML via markdown-it (`html: false`, `breaks: true`, `linkify: true`).
-- `jsonEscape`: escapes a string for safe embedding in JSON (backslash, quote, newline).
+- `jsonEscape`: escapes a string for safe embedding in JSON (backslash, quote, newline, carriage return).
 - `toDomain`: extracts hostname from a URL; returns the input string on parse failure.
+- `findRelated(folder, fontLeaves, limit?)`: returns leaf nodes sharing at least one tag with `folder`, excluding `folder` itself. Optional `limit` slices the result.
+- `findPrevNext(key, list)`: returns `{ prev, next }` neighbours of the node with `key` inside `list`. Returns `null` for missing neighbours.
 - Dead filters were removed (`familyName`, `getNavDepth`, `isChildOf`, `getParentNode`, `getDescendants`, `find`) — do not re-add unless a template actually uses them.
 
 ### URL slugs and navigation
@@ -208,6 +220,7 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 - The `category` field on every leaf node equals `tags[0]`. If `tags` is empty the build emits a warning and `category` is `null`.
 - **Navigation (menu, breadcrumb) and URLs both follow `tags[0]`**, not the folder structure. Moving a font between category folders has no effect on its URL — only changing `tags[0]` does.
 - `node.parentPath` is set to `slugify(tags[0])`. Navigation filters operate on `parentPath`/`path`.
+- **Manual nav pages** (`alternatives.njk`, `compare.njk`) use `eleventyNavigation` frontmatter and are surfaced by the `getManualNav` filter — they are independent of the font data tree and do not appear in group/leaf navigation.
 
 ### Background image downloads
 - `src/img/background/` and per-font `background/` folders support a `urls.txt` file listing image sources to download.
@@ -220,8 +233,10 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 
 ### Python specimen generator
 - `font_specimen_generator.py` is a standalone tool — not part of the Gulp/Eleventy build pipeline.
-- Generates Wikipedia-style font specimen PNG previews from a font file.
-- CLI: `python font_specimen_generator.py --input <font.woff2> --output <out.png> [--width 1200] [--theme dark|white|cream] [--overwrite]`
+- Generates Wikipedia-style font specimen PNG previews. Requires `pip install Pillow fonttools`.
+- Operates on **folders**, not individual files — scans `--input` recursively for `.ttf`, `.otf`, `.woff`, `.woff2`.
+- CLI: `python font_specimen_generator.py --input <fonts-dir> --output <output-dir> [--width 1000] [--theme dark|white|cream] [--overwrite]`
+- Short flags: `-i`, `-o`, `-w`, `-t`. Default width: 1000px. Default theme: `dark`.
 
 ---
 

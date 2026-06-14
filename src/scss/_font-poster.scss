@@ -432,49 +432,12 @@ article.content {
 
 // ── Variable Font Achsen-Slider ───────────────────────────────────────────
 
-.var-font-controls {
-  padding: 1.5rem 1rem;
-  border-top: 0.025rem solid var(--color-border);
-  background: linear-gradient(in lch, var(--color-surface), transparent);
-
-  &__inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: flex-start;
-  }
-}
-
-.var-font-preview-wrap {
-  flex: 1 1 20rem;
-  min-height: 5rem;
-  display: flex;
-  align-items: center;
-}
-
-.var-font-preview {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  line-height: 1.1;
-  margin: 0;
-  padding: 0.25rem 0.5rem;
-  border-bottom: 0.025rem dashed var(--color-border);
-  outline: none;
-  color: var(--color-text);
-  width: 100%;
-
-  &:focus {
-    border-bottom-color: var(--color-accent);
-    border-bottom-style: solid;
-  }
-}
-
 .var-font-sliders {
-  flex: 0 1 18rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  margin-top: 0.75rem;
+  text-align: left;
 }
 
 .var-axis-row {
