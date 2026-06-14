@@ -43,16 +43,65 @@ permalink: "{{ folder.url }}.html"
 
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}
+  <section class="font-list-controls">
+    <h2>{{ children | length }} Schriften</h2>
+    <div class="sort-filter">
+      <div class="sort-buttons" role="group" aria-label="Sortierung">
+        <button class="sort-btn is-active" data-sort="default">Standard</button>
+        <button class="sort-btn" data-sort="alpha">A–Z</button>
+      </div>
+      <div class="filter-buttons" role="group" aria-label="Filter">
+        <button class="filter-btn is-active" data-filter="">Alle</button>
+        <button class="filter-btn filter-btn--variable" data-filter="--variable">Variable</button>
+      </div>
+    </div>
+  </section>
 
-  {# {% if folder.content %}
-  <article class="font-content">
-    {{ folder.content | markdownify | safe }}
-  </article>
-  {% endif %} #}
-
-  <div class="font-family-card-list">
+  <div class="font-family-card-list" id="font-list">
     {% for node in children %}
       {% include "font-card.njk" %}
     {% endfor %}
   </div>
+
+  <script>
+  (function () {
+    var list = document.getElementById('font-list');
+    if (!list) return;
+    var cards = Array.from(list.querySelectorAll('.card'));
+    var originalOrder = cards.slice();
+    var activeSort = 'default';
+    var activeFilter = '';
+
+    function apply() {
+      var sorted = activeSort === 'alpha'
+        ? cards.slice().sort(function (a, b) { return a.dataset.name.localeCompare(b.dataset.name, 'de'); })
+        : originalOrder;
+
+      sorted.forEach(function (card) {
+        var visible = !activeFilter ||
+          (activeFilter === '--variable' ? card.dataset.variable === 'true' : false);
+        card.style.display = visible ? '' : 'none';
+        list.appendChild(card);
+      });
+    }
+
+    document.querySelectorAll('.sort-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.sort-btn').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        activeSort = btn.dataset.sort;
+        apply();
+      });
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        activeFilter = btn.dataset.filter;
+        apply();
+      });
+    });
+  })();
+  </script>
 {% endif %}

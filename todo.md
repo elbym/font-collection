@@ -8,7 +8,7 @@
 - [ ] **9 – Achsen-Tabelle auf Specimen-Seiten**  
   Variable-Font-Achsen (wght, wdth, opsz, ital, slnt) als Tabelle ausgeben. Info steckt im Dateinamen (`Fraunces[wght,opsz,WONK].woff2`). Reine Build-Zeit-Arbeit in `fonts.js`.
 
-- [ ] **10 – Sort/Filter auf Kategorie-Seiten**  
+- [x] **10 – Sort/Filter auf Kategorie-Seiten**  
   Gleiche Sort/Filter-UI wie auf der Homepage auch auf den Kategorie-Seiten (`/sans`, `/serif` etc.).
 
 - [ ] **11 – `content`-Feld bei Leaf-Nodes befüllen** *(redaktionell)*  
