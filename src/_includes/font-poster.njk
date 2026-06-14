@@ -203,17 +203,37 @@
   </section>
 
   {% if activeFonts %}
-    {% set waterfallGroups = null %}
+    {% set _fvAxes = fontVariableAxes[folder.key] %}
+    {% set _wfFamily = activeFonts[0].family %}
 
-    <section class="waterfall waterfall--panagram">
-      {% include "seperator.njk" %}
-      {# -------------------------------------------------------------------------------- #}
-      <article>
-        <h2>{{ folder.title }} Family</h2>
-        {% set waterfallText = site.panagram %}
-        {% include "waterfall-groups.njk" %}
-      </article>
-    </section>
+    {% if _fvAxes %}
+      {# Variable Font: eine Wasserfall-Sektion pro Achse mit echten Werten aus fontkit #}
+      {% for axisTag, axisData in _fvAxes %}
+        <section class="waterfall waterfall--axis waterfall--axis-{{ axisTag }}">
+          {% include "seperator.njk" %}
+          <article>
+            <h2>{{ folder.title }} — {{ axisData.name }}</h2>
+            <article class="waterfall-group waterfall-group--{{ axisTag }}">
+              {% for step in axisData.steps %}
+                <p style="font-family: '{{ _wfFamily }}'; {{ step.style }};">{{ site.panagram }}</p>
+              {% endfor %}
+            </article>
+          </article>
+        </section>
+      {% endfor %}
+
+    {% else %}
+      {# Statische Schrift: gewohnter Gewichts-Wasserfall #}
+      {% set waterfallGroups = null %}
+      <section class="waterfall waterfall--panagram">
+        {% include "seperator.njk" %}
+        <article>
+          <h2>{{ folder.title }} Family</h2>
+          {% set waterfallText = site.panagram %}
+          {% include "waterfall-groups.njk" %}
+        </article>
+      </section>
+    {% endif %}
 
   {% else %}
     <p>Keine Schriften im Ordner „{{ folder.title }}" gefunden.</p>

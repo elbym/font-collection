@@ -3,6 +3,49 @@ const path = require("path");
 
 const WEBFONTS = path.join(__dirname, "../webfonts");
 
+// Generates evenly spaced waterfall steps for an axis, each with a ready-to-use CSS style string.
+function buildSteps(tag, min, max) {
+  // ital is binary (0/1) — show only the two extremes
+  if (tag === "ital") {
+    return [
+      { value: 0, style: "font-style: normal",  label: "Normal" },
+      { value: 1, style: "font-style: italic", label: "Italic" },
+    ];
+  }
+
+  const count = tag === "wght" ? 9 : 7;
+  const interval = (max - min) / (count - 1);
+  const raw = [];
+
+  for (let i = 0; i < count; i++) {
+    let val = min + i * interval;
+
+    // Round wght to nearest 100 for clean display
+    if (tag === "wght") {
+      val = Math.round(val / 100) * 100;
+    } else {
+      val = Math.round(val * 10) / 10;
+    }
+    val = Math.max(min, Math.min(max, val));
+
+    let style;
+    if (tag === "wght") {
+      style = `font-weight: ${val}`;
+    } else if (tag === "wdth") {
+      style = `font-stretch: ${val}%`;
+    } else if (tag === "slnt") {
+      style = `font-style: oblique ${Math.abs(val)}deg`;
+    } else {
+      style = `font-variation-settings: '${tag}' ${val}`;
+    }
+
+    raw.push({ value: val, style, label: String(val) });
+  }
+
+  // Remove duplicates that can arise after rounding
+  return raw.filter((s, i, arr) => arr.findIndex((x) => x.value === s.value) === i);
+}
+
 module.exports = async function () {
   // fontkit v2 is ESM-only; dynamic import works in CJS
   const fontkit = await import("fontkit");
@@ -38,11 +81,9 @@ module.exports = async function () {
       const raw = font.variationAxes;
       if (!raw || !Object.keys(raw).length) continue;
 
-      // Build { axisTag: { name, min, max, default, step } }
       const axes = {};
       for (const [tag, info] of Object.entries(raw)) {
         const range = info.max - info.min;
-        // Pick a sensible step: 1 for integer ranges, 0.1 for small float ranges
         const step = range > 0 && range <= 2 ? 0.01 : 1;
         axes[tag] = {
           name: info.name || tag.toUpperCase(),
@@ -50,6 +91,7 @@ module.exports = async function () {
           max: info.max,
           default: info.default,
           step,
+          steps: buildSteps(tag, info.min, info.max),
         };
       }
 

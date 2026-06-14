@@ -219,6 +219,13 @@ module.exports = function () {
       return l.includes("italic") && detectVariableFont(l);
     });
 
+    // True when a separate upright variable file exists (no ital/slnt axis, no "italic" in name).
+    // In that case a [ital]-only file should only generate italic variants, not both.
+    const hasUprightVariable = fontFiles.some((f) => {
+      const l = path.parse(f).name.toLowerCase();
+      return detectVariableFont(l) && !l.includes("italic") && !/\[[^\]]*(?:ital|slnt)/.test(l);
+    });
+
     const findOptical = (lowerName) => {
       const key = Object.keys(opticalMap)
         .filter((k) => k !== "regular" && !opticalKeysInFolder.has(k))
@@ -241,8 +248,14 @@ module.exports = function () {
           let stylesToGenerate = ["normal"];
           if (style === "italic") {
             stylesToGenerate = ["italic"];
-          } else if (!hasVariableItalic && hasItalAxis) {
-            stylesToGenerate = ["normal", "italic"];
+          } else if (hasItalAxis) {
+            if (!hasVariableItalic && !hasUprightVariable) {
+              // Single variable file with ital axis — covers both styles
+              stylesToGenerate = ["normal", "italic"];
+            } else {
+              // Separate upright or italic file exists — this file provides only italic
+              stylesToGenerate = ["italic"];
+            }
           }
 
           const { optical, opticalOrder } = findOptical(lowerName);
