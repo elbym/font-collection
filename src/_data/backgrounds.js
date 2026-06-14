@@ -11,7 +11,7 @@ module.exports = function () {
   const bestVersions = {};
 
   files.forEach((file) => {
-    if (/\.(jpe?g|png|webp|svg)$/i.test(file)) {
+    if (/\.(jpe?g|png|webp|avif|svg)$/i.test(file)) {
       const { name: stem, ext } = path.parse(file);
       // Falls noch kein Eintrag für den Namen existiert ODER die aktuelle Datei webp ist
       if (!bestVersions[stem] || ext.toLowerCase() === ".webp") {
