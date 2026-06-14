@@ -150,7 +150,8 @@
   </section>
 
   {# ── Variable Font Achsen-Slider ──────────────────────────────── #}
-  {% if folder.varAxes and folder.varAxes.length > 0 %}
+  {% set _fvAxes = fontVariableAxes[folder.key] %}
+  {% if _fvAxes %}
     {% set _vfFamily = activeFonts[0].family if activeFonts.length else
       folder.title %}
     <section class="var-font-controls" id="var-font-controls-{{ folder.key | slugify }}">
@@ -162,29 +163,19 @@
            data-var-preview>{{ folder.heroword or site.heroword }}</p>
         </div>
         <div class="var-font-sliders">
-          {% set _axisConfig = {
-          "wght": { label: "Weight",   min: 100, max: 900, step: 1,   default: 400, css: "font-weight" },
-          "wdth": { label: "Width",    min: 50,  max: 200, step: 1,   default: 100, css: "font-stretch" },
-          "opsz": { label: "Opt. Size",min: 8,   max: 144, step: 1,   default: 12,  css: "opsz" },
-          "slnt": { label: "Slant",    min: -15, max: 0,   step: 0.5, default: 0,   css: "slnt" }
-        } %}
-          {% for axis in folder.varAxes %}
-            {% if _axisConfig[axis] %}
-              {% set cfg = _axisConfig[axis] %}
-              <div class="var-axis-row">
-                <span class="var-axis-label">{{ cfg.label }}</span>
-                <input class="var-axis-range"
-                   type="range"
-                   min="{{ cfg.min }}"
-                   max="{{ cfg.max }}"
-                   step="{{ cfg.step }}"
-                   value="{{ cfg.default }}"
-                   data-axis="{{ axis }}"
-                   data-css="{{ cfg.css }}"
-                   aria-label="{{ cfg.label }}">
-                <output class="var-axis-output">{{ cfg.default }}</output>
-              </div>
-            {% endif %}
+          {% for axisTag, axisData in _fvAxes %}
+            <div class="var-axis-row">
+              <span class="var-axis-label">{{ axisData.name }}</span>
+              <input class="var-axis-range"
+                 type="range"
+                 min="{{ axisData.min }}"
+                 max="{{ axisData.max }}"
+                 step="{{ axisData.step }}"
+                 value="{{ axisData.default }}"
+                 data-axis="{{ axisTag }}"
+                 aria-label="{{ axisData.name }}">
+              <output class="var-axis-output">{{ axisData.default }}</output>
+            </div>
           {% endfor %}
         </div>
       </article>
@@ -287,7 +278,7 @@
       var fvs = Object
         .entries(axisValues)
         .filter(function (e) {
-          return e[0] !== 'font-weight' && e[0] !== 'font-stretch';
+          return e[0] !== 'wght' && e[0] !== 'wdth';
         })
         .map(function (e) {
           return "'" + e[0] + "' " + e[1];

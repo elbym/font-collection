@@ -40,7 +40,8 @@ src/
     fontTags.js        # unique tags across all leaf nodes
     fontImages.js      # gallery images per font folder (from gallery/ subfolders)
     fontBackgrounds.js # per-font card backgrounds (from background/ subfolders)
-    fontCodepoints.js  # per-font codepoint map {cp: 1} — reads actual .woff2 via fontkit
+    fontCodepoints.js    # per-font codepoint map {cp: 1} — reads actual .woff2 via fontkit
+    fontVariableAxes.js  # per-font variable axes {axisTag: {name,min,max,default,step}} — reads actual .woff2 via fontkit
     unicodeRanges.js   # static list of named Unicode blocks used for coverage display
     backgrounds.js     # global background images from src/img/background/
     site.json          # global defaults: title, panagram, default heroword/heroletter, paragraph text per size
@@ -169,6 +170,7 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 ### Unicode coverage
 - `unicodeRanges.js` defines the named Unicode blocks shown on specimen pages (ASCII, Latin-1, Latin Extended A/B, Ligatures, Fractions).
 - `fontCodepoints.js` reads each font's actual `.woff2` file via `fontkit` and builds a `{ codepoint: 1 }` lookup map keyed by `node.key`. It picks the Regular upright file, falling back to any upright then any file. Missing or unreadable fonts are silently skipped; templates treat a missing entry as "all glyphs present".
+- `fontVariableAxes.js` reads variable axes from each font's `.woff2` via `fontkit`. Returns `{ nodeKey: { axisTag: { name, min, max, default, step } } }`. Used by `font-poster.njk` to generate axis sliders with correct min/max/default values. Only covers axes fontkit exposes (`wght`, `wdth`, `opsz`, `ital`, `slnt`); custom private axes are not returned.
 
 ### Border images
 - Master SVGs live in `src/img/borders/` (root level only, no subdirectories). They use `#cccccc` as the placeholder accent color.
