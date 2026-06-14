@@ -90,9 +90,10 @@ function makeFontsSassTask({ withSourcemaps = false } = {}) {
 /** Returns a Gulp task that runs Eleventy, optionally with a path prefix for GitHub Pages. */
 function makeEleventyTask(pathprefix = null) {
   return function buildEleventy() {
-    const args = ["@11ty/eleventy", "--quiet"];
+    const bin = path.join(__dirname, "node_modules", ".bin", "eleventy");
+    const args = ["--quiet"];
     if (pathprefix) args.push(`--pathprefix=${pathprefix}`);
-    return cp.spawn("npx", args, { stdio: "inherit", shell: true });
+    return cp.spawn(bin, args, { stdio: "inherit" });
   };
 }
 

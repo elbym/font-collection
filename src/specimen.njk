@@ -24,14 +24,7 @@ permalink: "{{ folder.url }}.html"
 
 {% if folder.isLeaf %}
   {# Blattknoten: Specimen der eigenen Fonts #}
-  {% set fontVariants = folder.ownFonts %}
   {% include "font-poster.njk" %}
-
-  {% if folder.content %}
-  <article class="font-content">
-    {{ folder.content | markdownify | safe }}
-  </article>
-  {% endif %}
 
 {% else %}
   {# Gruppenknoten: Übersicht aller enthaltenen Schriften #}
