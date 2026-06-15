@@ -44,17 +44,17 @@ article.content {
   }
 
   section.hero {
-    background: linear-gradient(in lch,
+    background: linear-gradient(in oklch,
         transparent,
+        var(--color-accent-bg),
         var(--color-secondary-bg),
-        var(--color-tertiary-bg),
       );
   }
 
   section.paragraph-blocks {
-    background: linear-gradient(in lch,
-        var(--color-tertiary-bg),
-        var(--color-secondary-bg),
+    background: linear-gradient(in oklch,
+      var(--color-secondary-bg),
+      var(--color-tertiary-bg) 75%,
         transparent);
   }
 
@@ -148,6 +148,7 @@ article.content {
 
     p {
       margin: 0;
+      color: var(--color-accent);
     }
   }
 
@@ -498,43 +499,44 @@ article.content {
 
 // ── Font meta footer (CSS snippet + Lizenz) ──────────────────────────────
 
-.font-meta-footer {
-  padding: 2rem 1rem;
-  border-top: 0.025rem solid var(--color-border);
+// .font-meta-footer {
+  // padding: 1rem;
+  // text-align: center;
+  // border-top: 0.025rem solid var(--color-border);
 
-  &__inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-}
+  // &__inner {
+    // max-width: 1080px;
+    // margin: 0 auto;
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 2rem;
+    // align-items: flex-start;
+  // }
+// }
 
 
-.font-meta-dl {
-  flex: 1 1 14rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.2rem 1rem;
-  font-size: 0.8rem;
-  align-content: start;
+// .font-meta-dl {
+//   flex: 1 1 14rem;
+//   display: grid;
+//   grid-template-columns: auto 1fr;
+//   gap: 0.2rem 1rem;
+//   font-size: 0.8rem;
+//   align-content: start;
 
-  dt {
-    color: var(--color-text-muted);
-    white-space: nowrap;
-  }
+//   dt {
+//     color: var(--color-text-muted);
+//     white-space: nowrap;
+//   }
 
-  dd {
-    margin: 0;
-    color: var(--color-text);
+//   dd {
+//     margin: 0;
+//     color: var(--color-text);
 
-    a {
-      color: var(--color-accent);
-    }
-  }
-}
+//     a {
+//       color: var(--color-accent);
+//     }
+//   }
+// }
 
 // ── Prev/Next Font Navigation ─────────────────────────────────────────────
 

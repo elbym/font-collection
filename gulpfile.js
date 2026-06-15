@@ -93,7 +93,8 @@ function makeEleventyTask(pathprefix = null) {
     const bin = path.join(__dirname, "node_modules", ".bin", "eleventy");
     const args = ["--quiet"];
     if (pathprefix) args.push(`--pathprefix=${pathprefix}`);
-    return cp.spawn(bin, args, { stdio: "inherit" });
+    // return cp.spawn(bin, args, { stdio: "inherit" });
+    return cp.spawn(bin, args, { stdio: "inherit", shell: process.platform === "win32" });
   };
 }
 

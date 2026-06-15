@@ -8,8 +8,18 @@
   --color-base-background: var(--color-mix-light);
 
   --color-base-primary:   RoyalBlue;
-  --color-base-secondary: hsl(from var(--color-base-primary) calc(h + var(--hue-offset-2, 120)) s l);
-  --color-base-tertiary:  hsl(from var(--color-base-primary) calc(h + var(--hue-offset-3, 180)) s l);
+  --color-base-secondary: 
+    oklch(from var(--color-base-primary)
+    calc(l + .25) 
+    c
+    calc(h - 120)
+  );
+  --color-base-tertiary:
+    oklch(from var(--color-base-primary)
+    calc(l + .75)
+    c
+    calc(h + 90)
+  );
 
   // Mix colors
 
@@ -23,12 +33,12 @@
   --color-border:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 50%);
 
   --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 20%);
-  --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 50%);
+  --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) );
   --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 60%);
   --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 50%);
 
   --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 20%);
-  --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 50%);
+  --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) );
   --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 60%);
   --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 50%);
 
@@ -54,22 +64,35 @@
     --color-mix-light: hsl(0, 0%, 10%);
     --color-mix-dark:  hsl(0, 0%, 90%);
 
+    --color-base-secondary: 
+      oklch(from var(--color-base-primary)
+      calc(l - .5) 
+      c
+      calc(h - 120)
+    );
+    --color-base-tertiary:
+      oklch(from var(--color-base-primary)
+      calc(l - .5)
+      c
+      calc(h + 90)
+    );
+
     // Accents must be lightened on dark backgrounds:
     // mix with --color-mix-dark (now near-white) instead of --color-mix-light (now near-black)
-    --color-accent:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 20%);
-    --color-accent-bg:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
-    --color-highlight:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 60%);
-    --color-border:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
+    // --color-accent:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 20%);
+    // --color-accent-bg:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
+    // --color-highlight:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 60%);
+    // --color-border:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-dark) 50%);
 
-    --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 20%);
-    --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 50%);
-    --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 60%);
-    --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 50%);
+    // --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 20%);
+    // --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary) 90%, var(--color-mix-dark) );
+    // --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 60%);
+    // --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-dark) 50%);
 
-    --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 20%);
-    --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 50%);
-    --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 60%);
-    --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 50%);
+    // --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 20%);
+    // --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary) 90%,  var(--color-mix-dark) );
+    // --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 60%);
+    // --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-dark) 50%);
 
     --dot-size: 7px;
     --cmyk-cyan:    hsla(196, 100%, 47%, .8);

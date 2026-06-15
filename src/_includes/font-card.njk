@@ -23,7 +23,7 @@
     class="bg-{{ _color | slugify }}" 
     {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
     >
-    <a href="{{ _url }}" class="{{ _color | slugify }}">
+    <a href="{{ _url }}" class="color-{{ _color | slugify }}">
       <h3>{{ _title }}</h3>
     </a>
     {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
@@ -40,7 +40,7 @@
     <p class="letters">Aa Rr Ee</p>
     <p class="letters italic">Aa Rr Ee</p>
 
-    <p class="display-size-2 heroword ligature {{ _color | slugify }}">{{ _heroText }}</p>
+    <p class="display-size-2 heroword ligature color-{{ _color | slugify }}">{{ _heroText }}</p>
     <p class="display-size-2 numbers text-align-right old-nums">0123456789</p>
   </main>
   {% set _cpMap = fontCodepoints[node.key] if fontCodepoints else null %}

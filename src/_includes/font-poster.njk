@@ -18,16 +18,16 @@
     <p class="author">{{ folder.fontauthor }}</p>
     <h1 class="ligatures display-size-5">
       <span id="fonttitle">{{ folder.title }}</span></h1>
-    <p class="year">{{ folder.fontyear }}</p>
 
     {% if folder.license %}
       <section class="font-meta-footer">
         <article class="font-meta-footer__inner">
-          <dl class="font-meta-dl">
+          <p class="year smaller">{{ folder.fontyear }} {{ folder.license }}</p>
+        </article>
+          {# <dl class="font-meta-dl">
             <dt>Lizenz</dt>
             <dd>{{ folder.license }}</dd>
-          </dl>
-        </article>
+          </dl> #}
       </section>
     {% endif %}
 
@@ -81,7 +81,7 @@
       </article>
 
       <article class="hero-word">
-        <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures {% if folder.color %}{{ folder.color | slugify }}{% endif %}" data-var-preview>
+        <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures" data-var-preview>
           {{ folder.heroword or site.heroword }}
         </p>
         {% if _fvAxes %}
