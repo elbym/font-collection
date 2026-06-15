@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const yaml = require("js-yaml");
+const chroma = require("chroma-js");
+const siteConfig = require("./site.json");
 // Lookup Tabelle mit allen HTML Farben
 const CSS_COLOR_HEX = {
   aliceblue: "#f0f8ff", antiquewhite: "#faebd7", aqua: "#00ffff",
@@ -58,6 +60,23 @@ function resolveColorHex(color) {
   if (!color) return null;
   if (/^#[0-9a-f]{3,8}$/i.test(color)) return color;
   return CSS_COLOR_HEX[color.toLowerCase()] ?? null;
+}
+
+function hashKey(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
+function generateFallbackColor(key) {
+  const cfg = (siteConfig.randomColors) || {};
+  const hueFrom = cfg.hueFrom ?? 0;
+  const hueTo = cfg.hueTo ?? 360;
+  const saturation = cfg.saturation ?? 0.60;
+  const lightness = cfg.lightness ?? 0.45;
+  const hueRange = hueTo > hueFrom ? hueTo - hueFrom : 360;
+  const hue = hueFrom + (hashKey(key) % hueRange);
+  return chroma.hsl(hue, saturation, lightness).hex();
 }
 
 let _cache = null;
@@ -432,8 +451,9 @@ module.exports = function () {
         heroletter: node._heroletter,
         heroword:   node._heroword,
         herostyle:  node._herostyle,
-        color:      node._color,
-        colorHex:   resolveColorHex(node._color),
+        color:      node._color ?? generateFallbackColor(name),
+        colorHex:   resolveColorHex(node._color ?? generateFallbackColor(name)),
+        colorIsAuto: !node._color,
         border:     node._border,
         comment:    node._comment,
         content:    node._content,

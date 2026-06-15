@@ -5,6 +5,12 @@
   "author": "elbym",
   "color": "indigo",
   "colorHex": "#4b0082",
+  "randomColors": {
+    "hueFrom": 0,
+    "hueTo": 360,
+    "saturation": 0.60,
+    "lightness": 0.45
+  },
   "heroword": "Josélin",
   "heroletter": "Qi",
   "panagram": "Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.",
