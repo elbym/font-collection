@@ -381,6 +381,28 @@ function generateColoredBorders(done) {
 }
 
 // ---------------------------------------------------------------------------
+// Pagefind tasks
+// ---------------------------------------------------------------------------
+
+function makePagefindTask(args = []) {
+  return function runPagefind(done) {
+    const bin = path.join(__dirname, "node_modules", ".bin", "pagefind");
+    const proc = cp.spawn(bin, ["--site", "dist", ...args], { stdio: "inherit" });
+    proc.on("close", (code) => {
+      if (code !== 0) console.error(`Pagefind exited with code ${code}`);
+      done();
+    });
+    proc.on("error", (err) => {
+      console.error("Pagefind error:", err.message);
+      done();
+    });
+  };
+}
+
+const runPagefind = makePagefindTask();
+const runPagefindGhPages = makePagefindTask(["--base-url", "/font-collection"]);
+
+// ---------------------------------------------------------------------------
 // SCSS tasks
 // ---------------------------------------------------------------------------
 
@@ -552,6 +574,7 @@ exports.default = series(
   buildEleventy,
   parallel(copyStatic, compileMainSass, compileFontsScss),
   generateColoredBorders,
+  runPagefind,
   serve,
   watchFiles,
 );
@@ -562,6 +585,7 @@ exports.build = series(
   buildEleventy,
   parallel(copyStatic, compileMainSassMinified, compileFontsScssMinified),
   generateColoredBorders,
+  runPagefind,
   beautifyHTML,
 );
 
@@ -571,6 +595,7 @@ exports.ghpages = series(
   buildEleventyGhPages,
   parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
   generateColoredBorders,
+  runPagefindGhPages,
   beautifyHTML,
 );
 
@@ -583,6 +608,7 @@ exports.deploy = series(
   buildEleventyGhPages,
   parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
   generateColoredBorders,
+  runPagefindGhPages,
   beautifyHTML,
   deployToGhPages,
 );
