@@ -13,3 +13,6 @@ heroword: Hardware
 herostyle:
 color: PaleGreen
 border: hash.svg
+
+content: |
+  Maple Mono ist eine von subframe7536 entwickelte Programmierschrift mit abgerundeten Ecken und optionalen Ligatursets, die ihr einen freundlicheren Charakter als viele klassische Coding-Fonts geben. Entstanden im chinesischsprachigen Open-Source-Umfeld, bringt sie zudem umfangreiche Unterstützung für CJK-Zeichen mit.

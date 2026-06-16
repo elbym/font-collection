@@ -15,3 +15,6 @@ heroword: Codeword
 herostyle:
 color: limegreen
 border: hash.svg
+
+content: |
+  Fira Code entstand 2014 als Erweiterung der Fira Mono von Nikita Prokopov und ergänzte sie um Hunderte von Programmierligaturen. Die Schrift war eine der ersten, die Ligatur-Rendering für Code breit popularisierte, und hat seither eine große Community von Entwicklerinnen und Entwicklern gewonnen.

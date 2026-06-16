@@ -13,3 +13,6 @@ heroletter: Aa
 heroword: Computer
 color: LightPink
 border: hash.svg
+
+content: |
+  JetBrains Mono wurde von JetBrains intern für ihre IDE-Familie entwickelt und 2020 als Open Source veröffentlicht. Der erhöhte x-Grad, die vergrößerten Buchstabenbreiten und die bewusst reduzierte Ligatur-Philosophie sollen die kognitive Belastung beim Lesen langer Codezeilen senken.

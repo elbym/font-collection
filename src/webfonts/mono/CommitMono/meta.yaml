@@ -7,3 +7,6 @@ heroletter: Cc
 heroword: Commit
 color: olivedrab
 border: lines_thin.svg
+
+content: |
+  Commit Mono ist eine 2023 von Eigil Nikolajsen entworfene neutrale Monospace-Schrift, die Lesbarkeit über Persönlichkeit stellt. Sie wurde explizit als ruhiges, ablenkungsfreies Werkzeug für Entwickler konzipiert – gleichmäßige Strichstärken und ein klares Grauwertbild sollen lange Arbeitssessions erleichtern.

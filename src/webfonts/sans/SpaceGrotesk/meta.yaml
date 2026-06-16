@@ -7,3 +7,6 @@ heroletter: Sg
 heroword: Space
 color: darkorange
 border: dots_small.svg
+
+content: |
+  Space Grotesk von Florian Karsten ging aus dem vorhandenen monospaced Space Mono hervor, wurde jedoch zu einer proportionalen Schrift umgearbeitet. Das Ergebnis ist eine unverwechselbare geometrische Groteskschrift mit leicht technischem Retro-Charakter, die sich für UI-Design ebenso eignet wie für Überschriften.
