@@ -1,0 +1,83 @@
+header {
+  .font-search {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    margin-left: auto;
+
+    input[type="search"] {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--color-surface);
+      border: none;
+      border-left: 0.1rem solid var(--color-border);
+      border-right: 0.1rem solid var(--color-border);
+      color: var(--color-text);
+      padding: 0.5rem 0.75rem;
+      font: inherit;
+      font-weight: 600;
+      width: 14rem;
+      min-width: 8rem;
+
+      &::placeholder {
+        font-weight: 400;
+        opacity: 0.5;
+      }
+
+      &:focus {
+        outline: none;
+        background: var(--color-highlight);
+      }
+
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-decoration {
+        -webkit-appearance: none;
+        appearance: none;
+      }
+    }
+
+    #font-search-results {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 100%;
+      width: max-content;
+      max-width: 22rem;
+      background: var(--color-surface);
+      border: 0.1rem solid var(--color-border);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      z-index: 200;
+      box-shadow: 0 4px 16px color-mix(in oklab, var(--color-base-primary), transparent 80%);
+
+      li {
+        border-bottom: 0.1rem solid var(--color-border);
+        display: block;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        a {
+          display: block;
+          padding: 0.5rem 0.75rem;
+          text-decoration: none;
+          color: var(--color-text);
+          font-weight: 600;
+        }
+
+        &.is-active > a,
+        a:hover {
+          background: var(--color-highlight);
+        }
+
+        &.search-all-link a {
+          font-weight: 400;
+          font-size: 0.85em;
+          opacity: 0.65;
+        }
+      }
+    }
+  }
+}
