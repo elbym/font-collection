@@ -24,7 +24,9 @@ Output: `dist/` — fully static site with one HTML specimen page per font famil
 | Markdown rendering | `markdown-it` (transitive dep) — used by `markdownify` Eleventy filter |
 | Font reading | `fontkit` 2.0.4 — reads `.woff2` files to extract codepoint maps |
 | Navigation | `@11ty/eleventy-navigation` |
-| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage) |
+| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage); `font-search.js` (header autocomplete widget powered by Pagefind) |
+| Search | `pagefind` ^1.5.2 — static full-text index built after every Eleventy run; UI served from `dist/pagefind/` |
+| Clean utility | `rimraf` ^6.1.3 — cross-platform directory deletion used by the `clean` Gulp task |
 | Python tool | `font_specimen_generator.py` — standalone, not part of the build |
 
 ---
@@ -71,11 +73,13 @@ src/
     _cards.scss
     _font-poster.scss
     _print.scss            # print media styles — hides UI chrome, sets print-friendly layout
+    _search.scss           # .font-search form in header + #font-search-results autocomplete dropdown
     webfonts/              # AUTO-GENERATED — never edit (gitignored)
   js/
     fitty.min.js
     font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
     compare-manager.js     # font comparison tray (sessionStorage, max 4 fonts); injects #compare-tray into DOM
+    font-search.js         # header autocomplete: queries Pagefind JS API, renders dropdown (max 8 hits), keyboard nav
   webfonts/                # Font files, organised by category
     sans/ serif/ mono/ blackletter/ comicsans/ script/
     meta.yaml              # group-level metadata (optional)
@@ -88,6 +92,7 @@ src/
   tag.njk                  # paginated over fontTags; one page per tag
   alternatives.njk         # curated list of commercial/free font pairs; eleventyNavigation key "Alternatives"
   compare.njk              # side-by-side font comparison (up to 4); reads sessionStorage, inline JS; eleventyNavigation key "Vergleich" order 0
+  search.njk               # permalink: /search.html — full Pagefind UI widget; German translations; extra_css: /pagefind/pagefind-ui.css
   llms.njk                 # permalink: /llms.txt — machine-readable catalog metadata for LLM tools
   sitemap.njk              # sitemap.xml
 dist/                      # BUILD OUTPUT — never edit (gitignored)
@@ -123,7 +128,7 @@ npx gulp download
 cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
 ```
 
-**Build pipeline**: Eleventy runs first (generates HTML + SCSS partials into `dist/`), then Gulp compiles SCSS and copies/optimises assets on top. Running just `npx @11ty/eleventy` alone leaves CSS missing.
+**Build pipeline**: Eleventy runs first (generates HTML + SCSS partials into `dist/`), then Gulp compiles SCSS and copies/optimises assets on top, then Pagefind indexes `dist/` into `dist/pagefind/`. Running just `npx @11ty/eleventy` alone leaves CSS and the search index missing.
 
 **Dev vs prod SCSS**: Dev mode (`npx gulp`) compiles with sourcemaps, no minification. Prod/ghpages compiles minified with no sourcemaps.
 
@@ -199,6 +204,14 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 - The tray (`#compare-tray`) is injected into `<body>` by `compare-manager.js` at runtime and stays hidden until at least 2 fonts are selected.
 - `compare.njk` reads sessionStorage directly (inline script) and renders a live-editable comparison table — no server round-trip. The page is in German (`Schriften vergleichen`).
 - `.compare-toggle` buttons get `.is-selected` / `aria-pressed` state managed by `compare-manager.js`; do not manage this state in templates.
+
+### Search (Pagefind)
+- The site uses [Pagefind](https://pagefind.app) for static full-text search. The index is built by the `runPagefind` (local) and `runPagefindGhPages` (`--base-url /font-collection`) Gulp tasks, which run after every Eleventy + SCSS build — including `default`, `build`, `ghpages`, and `deploy`.
+- **What is indexed**: only leaf specimen pages. Group pages and tag pages set `data-pagefind-ignore="all"` on `<body>` to exclude themselves. `<header>` and `<footer>` carry `data-pagefind-ignore` so those fragments are stripped from excerpts.
+- **`search.njk`**: renders at `/search.html`. Mounts the `PagefindUI` widget from `/pagefind/pagefind-ui.js` with German translations (`Schriften suchen …`, `Keine Ergebnisse für …`, etc.) and accent-color tokens tied to `--color-accent`. No Eleventy navigation entry — linked from the header form's submit action.
+- **`font-search.js`**: the header autocomplete widget. Loaded as `defer` on every page (via `base.njk`). On focus / keystroke it lazy-imports `/pagefind/pagefind.js` (silently skips if not built — i.e. in dev without a prior production build), debounces queries 200 ms, fetches up to 8 results, and renders a `<ul role="listbox">` dropdown with keyboard navigation (ArrowUp/ArrowDown to move, Enter to navigate, Escape to close). The `.font-search` form in `header.njk` carries `data-pagefind-url` and `data-search-url` attributes so the script works with path-prefixed ghpages builds. A footer "Alle Ergebnisse →" item redirects to `/search.html`.
+- **In dev mode** (`npx gulp`): the Pagefind index IS built after every Eleventy run — search works in dev. However, hot-reload after `.njk`/`.js` changes triggers Eleventy only; re-run `npx gulp` to rebuild the Pagefind index after content-structure changes.
+- **`_search.scss`**: styles `.font-search` (positioned in the header flush-right), the `<input type="search">` (14 rem wide, `--color-surface` background), and `#font-search-results` (absolute dropdown, `z-index: 200`, accent shadow via `color-mix`).
 
 ### Open Graph images
 - Specimen pages (leaf nodes) use the first background image from `fontBackgrounds[folder.key]` as `og:image` when one exists; all other pages fall back to the static `/img/og_preview.png`.
