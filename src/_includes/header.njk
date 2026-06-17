@@ -55,5 +55,29 @@
       {%- endif %}
 
     </ul>
+
+    <form
+      role="search"
+      class="font-search"
+      aria-label="Schriften suchen"
+      data-pagefind-url="{{ '/pagefind/pagefind.js' | url }}"
+      data-search-url="{{ '/search.html' | url }}"
+    >
+      <input
+        type="search"
+        id="font-search-input"
+        name="q"
+        placeholder="Schrift suchen …"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Schrift suchen"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-controls="font-search-results"
+      >
+      <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden></ul>
+    </form>
+
   </nav>
 </header>
