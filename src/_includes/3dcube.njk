@@ -10,7 +10,8 @@
 </section>
 <script type="application/json" id="vf-cube-cfg">
     {
-        "word": "{{ ((folder.heroword or folder.title) | lower | truncate(5, true, '')) | jsonEscape }}",
+        "word": "{{ (folder.heroword or folder.title) | jsonEscape }}",
+        "grid": {{ (folder.heroword or folder.title) | length }},
         "axes": [
             {% for axisTag, axisData in _fvAxes %}{% if loop.index <= 3 %}{% if not loop.first %},
                     {% endif %}{
@@ -33,7 +34,7 @@
         if (!cfgEl || !stageEl || !cubeEl) return;
 
         var cfg = JSON.parse(cfgEl.textContent);
-        var GRID = 5, SPACING = 72;
+        var GRID = Math.max(3, Math.min(8, cfg.grid || 5)), SPACING = 72;
         var half = (GRID - 1) / 2;
         var AXIS_LEN = half * SPACING + 26;
 
@@ -71,14 +72,18 @@
         var hasX = cfg.axes.some(function (a) { return a.drivenBy === 'x'; });
         var hasY = cfg.axes.some(function (a) { return a.drivenBy === 'y'; });
         var word = cfg.word.split('');
+        var supportsOklchFrom = CSS.supports('color', 'oklch(from red l c h)');
+        var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var targetL = isDark ? '0.75' : '0.52';
         points.forEach(function (pt) {
             var el = document.createElement('span');
             el.className = 'vf-cube-letter';
             el.textContent = word[pt.li % word.length];
             var xRatio = Math.round((pt.gi / (GRID - 1)) * 100);
             var yRatio = Math.round((pt.gj / (GRID - 1)) * 100);
-            if (CSS.supports('color', 'color-mix(in oklab, red 50%, blue)')) {
-                el.style.color = 'color-mix(in oklab, var(--color-base-secondary) ' + xRatio + '%, color-mix(in oklab, var(--color-base-tertiary) ' + yRatio + '%, var(--color-accent)))';
+            if (supportsOklchFrom) {
+                var hShift = ((xRatio - 50) * 1.4 + (yRatio - 50) * 0.7).toFixed(0);
+                el.style.color = 'oklch(from var(--color-base-primary) ' + targetL + ' calc(c * 2.2) calc(h + ' + hShift + '))';
             } else {
                 el.style.color = 'var(--color-accent)';
             }

@@ -54,10 +54,16 @@ article.content {
   section.paragraph-blocks {
     background: linear-gradient(in oklch,
       var(--color-secondary-bg),
-      var(--color-tertiary-bg) 75%,
-        transparent);
+      var(--color-tertiary-bg)
+    );
   }
-
+  section.var-font-cube {
+    padding: 0;
+    background: linear-gradient(in oklch,
+      var(--color-tertiary-bg),
+      transparent
+    );
+  }
   // section.waterfall--panagram {
   //   background: linear-gradient(
   //     in lch,
@@ -538,8 +544,8 @@ article.content {
 // }
 
 // ── 3D Variable Font Würfel ───────────────────────────────────────────────
-
 .var-font-cube {
+  padding: 0;
   article {
     padding: 0;
   }
@@ -548,11 +554,11 @@ article.content {
 .vf-cube-stage {
   position: relative;
   height: clamp(500px, 45vw, 50vh);
-  overflow: hidden;
+  // overflow: hidden;
   cursor: grab;
   touch-action: none;
-  background: var(--color-surface);
-  border-radius: 0.5rem;
+  // background: var(--color-surface);
+  // border-radius: 0.5rem;
 
   &.dragging { cursor: grabbing; }
 }
