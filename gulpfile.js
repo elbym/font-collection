@@ -565,6 +565,55 @@ function deployToGhPages(done) {
 }
 
 // ---------------------------------------------------------------------------
+// Font conversion: TTF/OTF → WOFF2
+// ---------------------------------------------------------------------------
+
+function convertToWoff2(done) {
+  const webfontsDir = path.join(__dirname, "src", "webfonts");
+
+  function findFonts(dir, results = []) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) findFonts(full, results);
+      else if (/\.(ttf|otf)$/i.test(entry.name)) results.push(full);
+    }
+    return results;
+  }
+
+  const candidates = findFonts(webfontsDir);
+  const toConvert = candidates.filter((f) => {
+    const woff2 = f.replace(/\.(ttf|otf)$/i, ".woff2");
+    return !fs.existsSync(woff2);
+  });
+
+  console.log(`  convertToWoff2: ${candidates.length} TTF/OTF found, ${toConvert.length} to convert.`);
+
+  if (toConvert.length === 0) {
+    done();
+    return;
+  }
+
+  let remaining = toConvert.length;
+  let errors = 0;
+
+  for (const fontFile of toConvert) {
+    const rel = path.relative(__dirname, fontFile);
+    cp.execFile("woff2_compress", [fontFile], (err) => {
+      if (err) {
+        console.error(`  ✗ ${rel}: ${err.message}`);
+        errors++;
+      } else {
+        console.log(`  ✓ ${rel}`);
+      }
+      if (--remaining === 0) {
+        if (errors > 0) done(new Error(`${errors} file(s) failed — is woff2_compress installed?`));
+        else done();
+      }
+    });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Exports
 // ---------------------------------------------------------------------------
 
@@ -603,6 +652,7 @@ exports.ghpages = series(
 
 exports.clean = series(clean);
 exports.download = downloadBackgroundImages;
+exports.convertFonts = convertToWoff2;
 
 exports.deploy = series(
   clean,
