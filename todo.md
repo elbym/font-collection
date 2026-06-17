@@ -1,53 +1,30 @@
 # Offene Features
 
-## Mittel (M)
+## Schriften-Wunschliste
 
-- [x] **7 – „Verwandte Schriften" Block auf Specimen-Seiten**
-  Fonts mit gleichen Tags anzeigen: „Weitere Schriften in: Garalde, Elegant". Datenlage vollständig vorhanden, nur Template fehlt.
+| Schrift | Beschreibung | URL | Tags | Grund |
+|---------|--------------|-----|------|-------|
+| **Recursive** | Variable Schrift, die von Monospace über Sans bis Casual reicht — alles in einem File | https://www.recursive.design | `Monospace, Sans, Variable` | Einzige Schrift, die mehrere Kategorien gleichzeitig besetzt; zeigt das Potential variabler Schriften |
+| **0xProto** | Neues, technisch klares Coding-Mono mit optionalen Ligaturen | https://github.com/0xType/0xProto | `Monospace, Coding` | Junge, eigenständige Schrift — Kontrast zu den etablierten Coding-Monos im Projekt |
+| **Bricolage Grotesque** | Expressiver Display-Grotesk mit variable Achsen (wdth, wght); handgemachter Charakter | https://ateliertriay.github.io/bricolage/ | `Sans, Geometric, Grotesk, Display` | Schließt die Lücke bei ausdrucksstarken Display-Grotesken; aktuell, keine ähnliche im Bestand |
+| **Geist** | Vercels Hausschrift — neutral, technisch, gut lesbar in UI und Code | https://vercel.com/font | `Sans, Neo, Grotesk` | Modernes Äquivalent zu Inter, aber eigenwilliger; Geist + Geist Mono als Paar interessant |
+| **Figtree** | Geometrisch-gerundeter Sans, freundlicher Ton, variable Gewichte | https://www.erikdkennedy.com/projects/figtree.html  | `Sans, Geometric, Rounded` | Ergänzt Nunito um eine schlankere, modernere Rounded-Variante |
+| **Routed Gothic** | Nachzeichnung technischer Schablonenschrift aus US-Industriezeichnungen | https://webonastick.com/fonts/routed-gothic/ | `Sans, Grotesk, Display` | Einzigartiger historischer Charakter; kein anderes Pendant im Bestand |
+| **Gentium Plus** | Scholastisch-humanistischer Old Style mit außergewöhnlicher Unicode-Abdeckung | https://software.sil.org/gentium | `Serif, Garalde, Old Style` | Beste freie Schrift für linguistischen und akademischen Satz; ergänzt Junicode |
+| **Bitter** | Slab Serif explizit für Bildschirmlesbarkeit konzipiert, variable seit v2 | https://fonts.google.com/specimen/Bitter | `Serif, Slab Serif` | Fehlt als eigenständige Screen-Slab; Arvo und Compagnon sind gedruckter ausgerichtet |
+| **Bebas Neue** | Kondensierter Versalien-Display-Grotesk, Referenzschrift für Headlines | https://fonts.google.com/specimen/Bebas+Neue | `Display, Condensed, Grotesk` | Fehlt komplett als Kategorie: kondensierte Display-Grotesken haben keinen Vertreter |
+| **Caveat** | Lockere Alltagshandschrift, variable Gewichte, gut lesbar in klein | https://fonts.google.com/specimen/Caveat | `Script, Handwriting` | Handschrift-Kategorie fehlt; Kalam ist indisch beeinflusst, Caveat ist europäischer Standard |
+| **Pacifico** | Runder, fetter Brush-Script mit 1950er-Retro-Charakter | https://fonts.google.com/specimen/Pacifico | `Script, Display` | Andere Energie als Playwrite/Kalam; fett und dekorativ statt kalligrafisch |
+| **Satisfy** | Elegante fließende Kursivschrift, kalligrafischer Einschlag, klassisch | https://fonts.google.com/specimen/Satisfy | `Script, Kalligraphisch` | Verbindet Script und Kalligrafie — Lücke zwischen Sansita Swashed und den Handschriften |
+| **Fette Fraktur** | Klassische Zeitungs-Fraktur, historisches Referenzbeispiel des 19. Jahrhunderts | https://fonts.google.com/specimen/Fette+Fraktur | `Blackletter, Display` | Grenze und Unifraktur sind moderner; Fette Fraktur als historisches Original fehlt |
+
+---
 
 - [ ] **9 – Achsen-Tabelle auf Specimen-Seiten**
   Variable-Font-Achsen (wght, wdth, opsz, ital, slnt) als Tabelle ausgeben. Info steckt im Dateinamen (`Fraunces[wght,opsz,WONK].woff2`). Reine Build-Zeit-Arbeit in `fonts.js`.
 
-- [x] **10 – Sort/Filter auf Kategorie-Seiten**
-  Gleiche Sort/Filter-UI wie auf der Homepage auch auf den Kategorie-Seiten (`/sans`, `/serif` etc.).
-
-- [x] **18 – Erweiterte Sort/Filter-Optionen**
-  Neue `data-*`-Attribute auf den Karten + JS-Logik für folgende Optionen:
-
-  **Neue Sortierungen** (auf Homepage + Kategorie-Seiten):
-  - Nach Jahr aufsteigend / absteigend (`data-year` aus `node.fontyear`)
-  - Nach Anzahl Schnitte absteigend — Großfamilien zuerst (`data-styles` aus `node.ownFonts | length`)
-
-  **Neue Filter** (auf Homepage + Kategorie-Seiten):
-  - Hat Kursiv — nur Schriften mit mindestens einem Italic-Schnitt (`data-italic` aus `ownFonts | selectattr("style", "equalto", "italic")`)
-  - Große Familie — nur Schriften mit ≥ 8 Schnitten (`data-styles` → JS-Vergleich `>= 8`)
-
-  **Implementierungsplan:**
-  1. `font-card.njk`: `data-year`, `data-styles`, `data-italic` ergänzen
-  2. `index.njk` + `specimen.njk`: neue Buttons in `.sort-buttons` / `.filter-buttons`
-  3. JS `apply()`-Funktion in beiden Seiten erweitern
-
 - [ ] **11 – `content`-Feld bei Leaf-Nodes befüllen** *(redaktionell)*
   Informationstexte zu einzelnen Schriften in den jeweiligen `meta.yaml`-Dateien schreiben.
-
-## Klein (S)
-
-- [x] **12 – Build-Warnung bei fehlendem `tags[0]`**
-  Sauberere Fehlerbehandlung wenn eine Schrift kein `tags`-Feld hat.
-
-## Groß (L)
-
-- [ ] **13 – Interaktiver Specimen-Text-Editor**
-  Freier Text-Input der Specimen-Vorschau direkt auf der Seite.
-
-- [x] **14 – Font-Vergleich-Modus**
-  Zwei oder mehr Schriften nebeneinander vergleichen.
-
-- [ ] **15 – Volltext-Suche**
-  Client-side Suche über alle Schriften (z. B. Pagefind oder Fuse.js).
-
-- [x] **16 – Print-Stylesheet**
-  Optimiertes Layout für den Druck / PDF-Export.
 
 - [x] **17 – Wikipedia-Beschreibungen**
   Lies zuerst die CLAUDE.md vollständig. Dann führe folgende Aufgabe vollständig und systematisch durch.
