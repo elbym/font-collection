@@ -75,9 +75,19 @@
             var el = document.createElement('span');
             el.className = 'vf-cube-letter';
             el.textContent = word[pt.li % word.length];
+<<<<<<< HEAD
             var xRatio = hasX ? Math.round((pt.gi / (GRID - 1)) * 100) : 0;
             var yRatio = hasY ? Math.round((pt.gj / (GRID - 1)) * 100) : 0;
             el.style.color = 'color-mix(in oklab, var(--color-base-secondary) ' + xRatio + '%, color-mix(in oklab, var(--color-base-tertiary) ' + yRatio + '%, var(--color-accent)))';
+=======
+            var xRatio = Math.round((pt.gi / (GRID - 1)) * 100);
+            var yRatio = Math.round((pt.gj / (GRID - 1)) * 100);
+            if (CSS.supports('color', 'color-mix(in oklab, red 50%, blue)')) {
+                el.style.color = 'color-mix(in oklab, var(--color-base-secondary) ' + xRatio + '%, color-mix(in oklab, var(--color-base-tertiary) ' + yRatio + '%, var(--color-accent)))';
+            } else {
+                el.style.color = 'var(--color-accent)';
+            }
+>>>>>>> e89a1852149c6ef797d486003a963bdcb6faad7c
             var fvs = cfg.axes.map(function (axis) {
                 var gi = axis.drivenBy === 'x' ? pt.gi : axis.drivenBy === 'y' ? pt.gj : pt.gk;
                 var val = mapRange(gi, 0, GRID - 1, axis.min, axis.max);
@@ -179,6 +189,7 @@
         typeInput.className = 'vf-type-input';
         typeInput.type = 'text';
         typeInput.setAttribute('autocomplete', 'off');
+        typeInput.setAttribute('inputmode', 'none');
         document.body.appendChild(typeInput);
         typeInput.addEventListener('input', function () {
             var typed = (typeInput.value || ' ').toUpperCase().split('');
