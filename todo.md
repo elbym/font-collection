@@ -169,6 +169,7 @@
   - Grund: Sehr hohe Verbreitung und Erkennbarkeit; als Referenz-Schrift nicht ignorierbar
 
 ---
+## Features
 
 - [ ] **9 – Achsen-Tabelle auf Specimen-Seiten**
   Variable-Font-Achsen (wght, wdth, opsz, ital, slnt) als Tabelle ausgeben. Info steckt im Dateinamen (`Fraunces[wght,opsz,WONK].woff2`). Reine Build-Zeit-Arbeit in `fonts.js`.
