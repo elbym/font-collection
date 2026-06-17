@@ -10,7 +10,7 @@
 </section>
 <script type="application/json" id="vf-cube-cfg">
     {
-        "word": "{{ ((folder.heroword or folder.title) | upper | truncate(5, true, '')) | jsonEscape }}",
+        "word": "{{ ((folder.heroword or folder.title) | lower | truncate(5, true, '')) | jsonEscape }}",
         "axes": [
             {% for axisTag, axisData in _fvAxes %}{% if loop.index <= 3 %}{% if not loop.first %},
                     {% endif %}{
@@ -68,13 +68,15 @@
         }
 
         // Buchstaben-Elemente erstellen
+        var hasX = cfg.axes.some(function (a) { return a.drivenBy === 'x'; });
+        var hasY = cfg.axes.some(function (a) { return a.drivenBy === 'y'; });
         var word = cfg.word.split('');
         points.forEach(function (pt) {
             var el = document.createElement('span');
             el.className = 'vf-cube-letter';
             el.textContent = word[pt.li % word.length];
-            var xRatio = Math.round((pt.gi / (GRID - 1)) * 100);
-            var yRatio = Math.round((pt.gj / (GRID - 1)) * 100);
+            var xRatio = hasX ? Math.round((pt.gi / (GRID - 1)) * 100) : 0;
+            var yRatio = hasY ? Math.round((pt.gj / (GRID - 1)) * 100) : 0;
             el.style.color = 'color-mix(in oklab, var(--color-base-secondary) ' + xRatio + '%, color-mix(in oklab, var(--color-base-tertiary) ' + yRatio + '%, var(--color-accent)))';
             var fvs = cfg.axes.map(function (axis) {
                 var gi = axis.drivenBy === 'x' ? pt.gi : axis.drivenBy === 'y' ? pt.gj : pt.gk;
