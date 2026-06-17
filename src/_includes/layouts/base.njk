@@ -187,7 +187,7 @@
   {% endif %}
 </head>
 
-<body class="{% if folder %}specimen font-{{ folder.key | slugify }}{% endif %}">
+<body class="{% if folder %}specimen font-{{ folder.key | slugify }}{% endif %}"{% if (folder and not folder.isLeaf) or tag %} data-pagefind-ignore="all"{% endif %}>
 
   {# <div class="container"> #}
 
