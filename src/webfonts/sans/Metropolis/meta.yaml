@@ -23,3 +23,6 @@ imageOverrides:
   "article_1.png":
     alt: "Deepdive of the The History of the Gotham Typeface by Jonathan Hoefler"
     source: "https://jonathanhoefler.com/articles/history-of-the-gotham-font"
+
+content: |
+  Metropolis ist eine geometrische Groteskschrift, die sich stark am Gotham-Stil orientiert, der durch Barack Obamas Wahlkampf 2008 Weltruhm erlangte. Das Open-Source-Projekt von Chris Simpson stellt eine frei zugängliche Alternative dar, die denselben modernen, selbstbewussten Charakter vermittelt.

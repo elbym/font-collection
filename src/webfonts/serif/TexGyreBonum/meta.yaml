@@ -12,4 +12,7 @@ fontyear: 2006
 heroletter: Aa
 heroword: Book
 herostyle:
+color: tan
 
+content: |
+  Tex Gyre Bonum ist die freie Alternative zu ITC Bookman, der Schrift, die Alexander Phemister 1860 entwarf und Edward Benguiat 1975 für ITC überarbeitete. Die kräftigen Serifen und der niedrige Strichkontrast machen beide Schriften besonders lesbar in kleinen Graden und auf weniger hochwertigem Papier.

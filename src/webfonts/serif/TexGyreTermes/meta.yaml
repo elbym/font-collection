@@ -12,3 +12,6 @@ fontyear: 2006
 heroletter: Aa
 heroword: The Times
 herostyle:
+color: CadetBlue
+content: |
+  Tex Gyre Termes ist die freie Alternative zu Times New Roman, die 1932 von Stanley Morison zusammen mit Victor Lardent für die Londoner Zeitung The Times entwickelt wurde. Der Zeitungsdruck verlangte eine platzsparende, robuste Schrift mit hohem Weißanteil – Merkmale, die Times bis heute zur meistverwendeten Serifenschrift der Welt gemacht haben.

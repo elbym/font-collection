@@ -13,3 +13,6 @@ heroword: Hacker
 herostyle:
 
 border: hash.svg
+
+content: |
+  Hack ist eine leseoptimierte Monospace-Schrift, die auf Bitstream Vera und DejaVu Sans Mono aufbaut. Christopher Simpkins überarbeitete 2015 die Formen für maximale Klarheit im Quellcode: Die Zeichen sind sorgfältig angepasst, um Verwechslungen zwischen 0/O/o oder 1/l/I zu minimieren.

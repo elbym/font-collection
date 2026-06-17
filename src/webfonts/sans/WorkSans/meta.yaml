@@ -11,4 +11,7 @@ fontyear: 2015
 heroletter: Ra
 heroword: "Factory"
 herostyle:
+color: magenta
 
+content: |
+  Work Sans von Wei Huang ist auf die spezifischen Anforderungen des Bildschirmeinsatzes optimiert: Mittlere Gewichte sind für Fließtext abgestimmt, schwerere für Display-Nutzung. Die leichte Verdichtung der Buchstabenbreiten macht sie besonders platzsparend in Interface-Anwendungen, ohne die Lesbarkeit zu beeinträchtigen.

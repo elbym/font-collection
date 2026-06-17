@@ -8,3 +8,6 @@ heroword: Code
 
 border: hash.svg
 wikipedia: "https://en.wikipedia.org/wiki/Cascadia_Code"
+
+content: |
+  Cascadia Code wurde 2019 von Microsoft für den Windows Terminal und Visual Studio Code entwickelt. Sie unterstützt Programmierligaturen, mit denen häufige Token-Kombinationen wie != oder -> zu einheitlichen Symbolen verschmelzen, und ist auf optimale Lesbarkeit bei kleinen Schriftgrößen ausgelegt.

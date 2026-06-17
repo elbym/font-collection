@@ -12,4 +12,7 @@ fontyear: 2012
 heroletter: Aa
 heroword: Creek
 herostyle:
+color: firebrick
 
+content: |
+  Source Sans ist Adobes erste Open-Source-Schrift, entworfen 2012 von Paul D. Hunt. Als humanistische Groteskschrift speziell für User Interfaces und digitale Anwendungen konzipiert, überzeugt sie mit hoher Lesbarkeit auch bei kleinen Schriftgrößen und guter Unterscheidbarkeit der Zeichen.

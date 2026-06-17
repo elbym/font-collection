@@ -11,3 +11,6 @@ heroletter: Vv
 heroword: Victor
 
 border: lines.svg
+
+content: |
+  Victor Mono von Rune Bjørnerås ist eine klare, leichte Monospace-Schrift mit einem besonderen Merkmal: Das Kursiv-Set ist als echte fließende Kursivschrift gezeichnet, kein bloßes Schrägstellen der Regular. Das ermöglicht Editoren, Kommentare oder bestimmte Syntax-Token mit echtem Kursiv zu betonen.
