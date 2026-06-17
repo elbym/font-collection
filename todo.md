@@ -8,27 +8,27 @@
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
-| [ ] **Recursive** | `Monospace, Sans, Variable` | ausstehend | https://www.recursive.design |
-| [ ] **0xProto** | `Monospace, Coding` | ausstehend | https://github.com/0xType/0xProto |
-| [ ] **Monaspace** | `Monospace, Coding, Variable` | ausstehend | https://monaspace.githubnext.com |
-| [ ] **Departure Mono** | `Monospace, Display` | ausstehend | https://departuremono.com |
-| [ ] **Space Mono** | `Monospace, Geometric` | ausstehend | https://fonts.google.com/specimen/Space+Mono |
+| [x] **Recursive** | `Monospace, Sans, Variable` | ausstehend | https://www.recursive.design |
+| [x] **0xProto** | `Monospace, Coding` | ausstehend | https://github.com/0xType/0xProto |
+| [x] **Monaspace** | `Monospace, Coding, Variable` | ausstehend | https://monaspace.githubnext.com |
+| [x] **Departure Mono** | `Monospace, Display` | ausstehend | https://departuremono.com |
+| [x] **Space Mono** | `Monospace, Geometric` | ausstehend | https://github.com/googlefonts/spacemono |
 
 ### Sans
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
-| [ ] **Bricolage Grotesque** | `Sans, Geometric, Grotesk, Display` | ausstehend | https://ateliertriay.github.io/bricolage/ |
-| [ ] **Geist** | `Sans, Neo, Grotesk` | ausstehend | https://vercel.com/font |
-| [ ] **Figtree** | `Sans, Geometric, Rounded` | ausstehend | https://www.erikdkennedy.com/projects/figtree.html |
-| [ ] **Routed Gothic** | `Sans, Grotesk, Display` | ausstehend | https://webonastick.com/fonts/routed-gothic/ |
-| [ ] **Satoshi** | `Sans, Neo, Grotesk` | ausstehend | https://www.fontshare.com/fonts/satoshi |
-| [ ] **Manrope** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Manrope |
+| [x] **Bricolage Grotesque** | `Sans, Geometric, Grotesk, Display` | ausstehend | https://ateliertriay.github.io/bricolage/ |
+| [x] **Geist** | `Sans, Neo, Grotesk` | ausstehend | https://vercel.com/font |
+| [x] **Figtree** | `Sans, Geometric, Rounded` | ausstehend | https://www.erikdkennedy.com/projects/figtree.html |
+| [x] **Routed Gothic** | `Sans, Grotesk, Display` | ausstehend | https://webonastick.com/fonts/routed-gothic/ |
+| [X] **Satoshi** | `Sans, Neo, Grotesk` | ausstehend | https://www.fontshare.com/fonts/satoshi |
+| [x] **Manrope** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Manrope |
 | [ ] **Lexend** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Lexend |
-| [ ] **Cabinet Grotesk** | `Sans, Grotesk, Display` | ausstehend | https://www.fontshare.com/fonts/cabinet-grotesk |
+| [x] **Cabinet Grotesk** | `Sans, Grotesk, Display` | ausstehend | https://www.fontshare.com/fonts/cabinet-grotesk |
 | [ ] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
 | [ ] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
-| [ ] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://fonts.google.com/specimen/Oswald |
+| [ ] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
 
 ### Serif
 
