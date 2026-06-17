@@ -1,0 +1,186 @@
+{# ── 3D Variable Font Würfel ──────────────────────────────────────── #}
+<section class="var-font-cube">
+    <article>
+        <div class="vf-cube-stage" id="vf-cube-stage">
+            <div class="vf-cube-inner" id="vf-cube-inner"></div>
+            <svg class="vf-cube-axes" id="vf-cube-axes" aria-hidden="true"></svg>
+            <div class="vf-cube-hint" id="vf-cube-hint">Ziehen zum Drehen (offensichtlich inspiriert von <a href="https://www.recursive.design/">recursive.design</a>)</div>
+        </div>
+    </article>
+</section>
+<script type="application/json" id="vf-cube-cfg">
+    {
+        "word": "{{ ((folder.heroword or folder.title) | upper | truncate(5, true, '')) | jsonEscape }}",
+        "axes": [
+            {% for axisTag, axisData in _fvAxes %}{% if loop.index <= 3 %}{% if not loop.first %},
+                    {% endif %}{
+                        "tag": "{{ axisTag }}",
+                        "min": {{ axisData.min }},
+                        "max": {{ axisData.max }},
+                        "name": "{{ axisData.name | jsonEscape }}",
+                        "drivenBy": "{% if loop.index == 1 %}x{% elif loop.index == 2 %}y{% else %}z{% endif %}"
+                    }{% endif %}{% endfor %}
+        ]
+    }
+</script>
+<script>
+    (function () {
+        var cfgEl = document.getElementById('vf-cube-cfg');
+        var stageEl = document.getElementById('vf-cube-stage');
+        var cubeEl = document.getElementById('vf-cube-inner');
+        var hintEl = document.getElementById('vf-cube-hint');
+        var axesSvgEl = document.getElementById('vf-cube-axes');
+        if (!cfgEl || !stageEl || !cubeEl) return;
+
+        var cfg = JSON.parse(cfgEl.textContent);
+        var GRID = 5, SPACING = 72;
+        var half = (GRID - 1) / 2;
+        var AXIS_LEN = half * SPACING + 26;
+
+        function mapRange(v, a, b, c, d) {
+            return c + (d - c) * (v - a) / (b - a);
+        }
+
+        var yaw = 0.4, pitch = -0.3;
+
+        function project(x, y, z) {
+            var rx = x * Math.cos(yaw) + z * Math.sin(yaw);
+            var rz = -x * Math.sin(yaw) + z * Math.cos(yaw);
+            var ry = y * Math.cos(pitch) - rz * Math.sin(pitch);
+            var rz2 = y * Math.sin(pitch) + rz * Math.cos(pitch);
+            return { rx: rx, ry: ry, rz2: rz2 };
+        }
+
+        // Shell-Punkte aufbauen
+        var points = [];
+        var li = 0;
+        for (var i = 0; i < GRID; i++) {
+            for (var j = 0; j < GRID; j++) {
+                for (var k = 0; k < GRID; k++) {
+                    if (i > 0 && i < GRID - 1 && j > 0 && j < GRID - 1 && k > 0 && k < GRID - 1)
+                        continue;
+                    points.push({
+                        x: (i - half) * SPACING, y: (j - half) * SPACING, z: (k - half) * SPACING,
+                        gi: i, gj: j, gk: k, li: li++
+                    });
+                }
+            }
+        }
+
+        // Buchstaben-Elemente erstellen
+        var word = cfg.word.split('');
+        points.forEach(function (pt) {
+            var el = document.createElement('span');
+            el.className = 'vf-cube-letter';
+            el.textContent = word[pt.li % word.length];
+            var xRatio = Math.round((pt.gi / (GRID - 1)) * 100);
+            var yRatio = Math.round((pt.gj / (GRID - 1)) * 100);
+            el.style.color = 'color-mix(in oklab, var(--color-base-secondary) ' + xRatio + '%, color-mix(in oklab, var(--color-base-tertiary) ' + yRatio + '%, var(--color-accent)))';
+            var fvs = cfg.axes.map(function (axis) {
+                var gi = axis.drivenBy === 'x' ? pt.gi : axis.drivenBy === 'y' ? pt.gj : pt.gk;
+                var val = mapRange(gi, 0, GRID - 1, axis.min, axis.max);
+                return "'" + axis.tag + "' " + val.toFixed(axis.tag === 'wght' || axis.tag === 'wdth' ? 0 : 2);
+            });
+            if (fvs.length) el.style.fontVariationSettings = fvs.join(', ');
+            cubeEl.appendChild(el);
+            pt.el = el;
+        });
+
+        // SVG-Achsenlinien und -Labels erstellen
+        var svgNS = 'http://www.w3.org/2000/svg';
+        var axisColors = ['var(--color-base-primary)', 'var(--color-base-secondary)', 'var(--color-base-tertiary)'];
+        var axisDirMap = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
+
+        var axisEls = cfg.axes.slice(0, 3).map(function (axis, idx) {
+            var line = document.createElementNS(svgNS, 'line');
+            line.setAttribute('stroke', axisColors[idx]);
+            line.setAttribute('stroke-width', '1');
+            line.setAttribute('stroke-opacity', '0.6');
+            line.setAttribute('stroke-dasharray', '4 3');
+            axesSvgEl.appendChild(line);
+
+            var label = document.createElementNS(svgNS, 'text');
+            label.setAttribute('fill', axisColors[idx]);
+            label.setAttribute('font-size', '10');
+            label.setAttribute('font-family', 'system-ui, sans-serif');
+            label.setAttribute('text-anchor', 'middle');
+            label.setAttribute('dominant-baseline', 'auto');
+            label.textContent = axis.name;
+            axesSvgEl.appendChild(label);
+
+            return { line: line, label: label, dir: axisDirMap[axis.drivenBy] };
+        });
+
+        var velYaw = 0.15, velPitch = 0;
+        var dragging = false, lastX = 0, lastY = 0, moved = false, interacted = false;
+
+        function render() {
+            var rect = stageEl.getBoundingClientRect();
+            var cx = rect.width / 2, cy = rect.height / 2;
+
+            if (!interacted) {
+                yaw += velYaw * 0.016;
+            } else if (!dragging) {
+                yaw += velYaw; pitch += velPitch;
+                velYaw *= 0.94; velPitch *= 0.94;
+            }
+
+            var depthRange = SPACING * (GRID - 1);
+
+            points.forEach(function (pt) {
+                var p = project(pt.x, pt.y, pt.z);
+                pt.el.style.transform = 'translate(-50%,-50%) translate(' + (cx + p.rx).toFixed(1) + 'px,' + (cy - p.ry).toFixed(1) + 'px)';
+                var t = mapRange(p.rz2, -depthRange / 2, depthRange / 2, 0.2, 1);
+                pt.el.style.opacity = Math.max(0.1, Math.min(1, t));
+                pt.el.style.zIndex = Math.round(p.rz2 + 1000);
+            });
+
+            axisEls.forEach(function (ae) {
+                var d = ae.dir;
+                var neg = project(-d[0] * AXIS_LEN, -d[1] * AXIS_LEN, -d[2] * AXIS_LEN);
+                var pos = project(d[0] * AXIS_LEN, d[1] * AXIS_LEN, d[2] * AXIS_LEN);
+                ae.line.setAttribute('x1', (cx + neg.rx).toFixed(1));
+                ae.line.setAttribute('y1', (cy - neg.ry).toFixed(1));
+                ae.line.setAttribute('x2', (cx + pos.rx).toFixed(1));
+                ae.line.setAttribute('y2', (cy - pos.ry).toFixed(1));
+                ae.label.setAttribute('x', (cx + pos.rx).toFixed(1));
+                ae.label.setAttribute('y', (cy - pos.ry - 8).toFixed(1));
+            });
+
+            requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+
+        stageEl.addEventListener('pointerdown', function (e) {
+            dragging = true; moved = false; interacted = true;
+            velYaw = 0; velPitch = 0;
+            lastX = e.clientX; lastY = e.clientY;
+            stageEl.classList.add('dragging');
+            if (hintEl) hintEl.classList.add('hidden');
+        });
+        window.addEventListener('pointermove', function (e) {
+            if (!dragging) return;
+            var dx = e.clientX - lastX, dy = e.clientY - lastY;
+            if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+            yaw += dx * 0.005; pitch += dy * 0.005;
+            pitch = Math.max(-1.2, Math.min(1.2, pitch));
+            velYaw = dx * 0.0015; velPitch = dy * 0.0015;
+            lastX = e.clientX; lastY = e.clientY;
+        });
+        window.addEventListener('pointerup', function () {
+            dragging = false;
+            stageEl.classList.remove('dragging');
+            if (!moved) { typeInput.value = ''; typeInput.focus(); }
+        });
+
+        var typeInput = document.createElement('input');
+        typeInput.className = 'vf-type-input';
+        typeInput.type = 'text';
+        typeInput.setAttribute('autocomplete', 'off');
+        document.body.appendChild(typeInput);
+        typeInput.addEventListener('input', function () {
+            var typed = (typeInput.value || ' ').toUpperCase().split('');
+            points.forEach(function (pt) { pt.el.textContent = typed[pt.li % typed.length]; });
+        });
+    })();
+</script>

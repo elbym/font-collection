@@ -152,7 +152,6 @@ article.content {
     }
   }
 
-  .hero_grid {}
 
   .letters {
     line-height: 300%;
@@ -358,12 +357,12 @@ article.content {
     h2 {
       flex: 0 0 100%;
     }
-
     .waterfall-group--regular,
     .waterfall-group--italic {
       flex: 1 1 0;
       min-width: 0;
       align-content: flex-start;
+      max-width: 50%;
     }
 
     .waterfall-group--regular {
@@ -537,6 +536,99 @@ article.content {
 //     }
 //   }
 // }
+
+// ── 3D Variable Font Würfel ───────────────────────────────────────────────
+
+.var-font-cube {
+  article {
+    padding: 0;
+  }
+}
+
+.vf-cube-stage {
+  position: relative;
+  height: clamp(500px, 45vw, 50vh);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  background: var(--color-surface);
+  border-radius: 0.5rem;
+
+  &.dragging { cursor: grabbing; }
+}
+
+.vf-cube-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.vf-cube-letter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color-accent);
+  font-size: clamp(18px, 3.5vw, 44px);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%);
+}
+
+.vf-cube-legend {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-family: system-ui, sans-serif;
+  opacity: 1;
+  transition: opacity 600ms ease;
+
+  &.hidden { opacity: 0; }
+}
+
+.vf-cube-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+.vf-cube-axes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.vf-cube-hint {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  font-family: system-ui, sans-serif;
+  opacity: 1;
+  transition: opacity 600ms ease;
+
+  &.hidden { opacity: 0; }
+}
+
+.vf-type-input {
+  position: fixed;
+  left: -200vw;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
 
 // ── Prev/Next Font Navigation ─────────────────────────────────────────────
 

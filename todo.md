@@ -28,28 +28,28 @@
 | [x] **Cabinet Grotesk** | `Sans, Grotesk, Display` | ausstehend | https://www.fontshare.com/fonts/cabinet-grotesk |
 | [ ] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
 | [ ] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
-| [ ] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
+| [x] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
 
 ### Serif
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
 | [ ] **Gentium Plus** | `Serif, Garalde, Old Style` | ausstehend | https://software.sil.org/gentium |
-| [ ] **Bitter** | `Serif, Slab Serif` | ausstehend | https://fonts.google.com/specimen/Bitter |
+| [x] **Bitter** | `Serif, Slab Serif` | ausstehend | https://fonts.google.com/specimen/Bitter |
 | [ ] **Reforma** | `Serif, Humanist` | ausstehend | https://pampatype.com/reforma |
 | [ ] **Sorts Mill Goudy** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Sorts+Mill+Goudy |
 | [ ] **Cardo** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Cardo |
-| [ ] **STIX Two** | `Serif, Humanist` | ausstehend | https://www.stixfonts.org |
+| [x] **STIX Two** | `Serif, Humanist` | ausstehend | https://www.stixfonts.org |
 | [ ] **Quattrocento** | `Serif, Humanist, Garalde` | ausstehend | https://fonts.google.com/specimen/Quattrocento |
 
 ### Script
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
-| [ ] **Caveat** | `Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Caveat |
-| [ ] **Pacifico** | `Script, Display` | ausstehend | https://fonts.google.com/specimen/Pacifico |
-| [ ] **Satisfy** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Satisfy |
-| [ ] **Dancing Script** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Dancing+Script |
+| [x] **Caveat** | `Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Caveat |
+| [x] **Pacifico** | `Script, Display` | ausstehend | https://fonts.google.com/specimen/Pacifico |
+| [x] **Satisfy** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Satisfy |
+| [x] **Dancing Script** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Dancing+Script |
 | [ ] **Amatic SC** | `Script, Handwriting, Display` | ausstehend | https://fonts.google.com/specimen/Amatic+SC |
 
 ### Blackletter

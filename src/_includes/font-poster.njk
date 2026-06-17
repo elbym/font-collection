@@ -192,6 +192,7 @@
     {% set _wfFamily = activeFonts[0].family %}
 
     {% if _fvAxes %}
+      {% include "3dcube.njk" %}
       {# Variable Font: eine Wasserfall-Sektion pro Achse mit echten Werten aus fontkit #}
       {% for axisTag, axisData in _fvAxes %}
         <section class="waterfall waterfall--axis waterfall--axis-{{ axisTag }}">
