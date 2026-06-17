@@ -444,7 +444,9 @@ module.exports = function () {
         // Meta-Felder direkt im flachen Node
         title:      node._title,
         sourceUrl:  node._url,
-        tags:       node._tags,
+        tags:       varAxes.length > 0 && !node._tags.includes("Variable")
+          ? [...node._tags, "Variable"]
+          : node._tags,
         category:   categoryTag,
         fontauthor: node._fontauthor,
         fontyear:   node._fontyear,
