@@ -388,7 +388,8 @@ function generateColoredBorders(done) {
 function makePagefindTask(args = []) {
   return function runPagefind(done) {
     const bin = path.join(__dirname, "node_modules", ".bin", "pagefind");
-    const proc = cp.spawn(bin, ["--site", "dist", ...args], { stdio: "inherit" });
+    const isWin = process.platform === "win32";
+    const proc = cp.spawn(bin, ["--site", "dist", ...args], { stdio: "inherit", shell: isWin });
     proc.on("close", (code) => {
       if (code !== 0) console.error(`Pagefind exited with code ${code}`);
       done();
