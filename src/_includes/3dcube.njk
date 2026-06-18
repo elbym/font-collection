@@ -69,8 +69,6 @@
         }
 
         // Buchstaben-Elemente erstellen
-        var hasX = cfg.axes.some(function (a) { return a.drivenBy === 'x'; });
-        var hasY = cfg.axes.some(function (a) { return a.drivenBy === 'y'; });
         var word = cfg.word.split('');
         var supportsOklchFrom = CSS.supports('color', 'oklch(from red l c h)');
         var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -97,30 +95,34 @@
             pt.el = el;
         });
 
-        // SVG-Achsenlinien und -Labels erstellen
+        // SVG-Achsenlinien erstellen (CSS inline style statt setAttribute, damit custom properties aufgelöst werden)
         var svgNS = 'http://www.w3.org/2000/svg';
-        var axisColors = ['var(--color-base-primary)', 'var(--color-base-secondary)', 'var(--color-base-tertiary)'];
+        var axisColorVars = ['var(--color-base-primary)', 'var(--color-base-secondary)', 'var(--color-base-tertiary)'];
         var axisDirMap = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 
         var axisEls = cfg.axes.slice(0, 3).map(function (axis, idx) {
             var line = document.createElementNS(svgNS, 'line');
-            line.setAttribute('stroke', axisColors[idx]);
+            line.style.stroke = axisColorVars[idx];
             line.setAttribute('stroke-width', '1');
             line.setAttribute('stroke-opacity', '0.6');
             line.setAttribute('stroke-dasharray', '4 3');
             axesSvgEl.appendChild(line);
-
-            var label = document.createElementNS(svgNS, 'text');
-            label.setAttribute('fill', axisColors[idx]);
-            label.setAttribute('font-size', '10');
-            label.setAttribute('font-family', 'system-ui, sans-serif');
-            label.setAttribute('text-anchor', 'middle');
-            label.setAttribute('dominant-baseline', 'auto');
-            label.textContent = axis.name;
-            axesSvgEl.appendChild(label);
-
-            return { line: line, label: label, dir: axisDirMap[axis.drivenBy] };
+            return { line: line, dir: axisDirMap[axis.drivenBy] };
         });
+
+        // Legende: zeigt alle aktiven Achsen mit Farbe und Name
+        var legendEl = document.createElement('div');
+        legendEl.className = 'vf-cube-legend';
+        cfg.axes.slice(0, 3).forEach(function (axis, idx) {
+            var item = document.createElement('span');
+            var dot = document.createElement('span');
+            dot.className = 'vf-cube-dot';
+            dot.style.backgroundColor = axisColorVars[idx];
+            item.appendChild(dot);
+            item.appendChild(document.createTextNode(axis.name));
+            legendEl.appendChild(item);
+        });
+        stageEl.appendChild(legendEl);
 
         var velYaw = 0.15, velPitch = 0;
         var dragging = false, lastX = 0, lastY = 0, moved = false, interacted = false;
@@ -154,8 +156,6 @@
                 ae.line.setAttribute('y1', (cy - neg.ry).toFixed(1));
                 ae.line.setAttribute('x2', (cx + pos.rx).toFixed(1));
                 ae.line.setAttribute('y2', (cy - pos.ry).toFixed(1));
-                ae.label.setAttribute('x', (cx + pos.rx).toFixed(1));
-                ae.label.setAttribute('y', (cy - pos.ry - 8).toFixed(1));
             });
 
             requestAnimationFrame(render);
