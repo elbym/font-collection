@@ -8,10 +8,10 @@
   });
 
   // CSS class names starting with 'font-' that are NOT font-family slugs
-  var notFontSlugs = { content: 1 };
+  var notFontSlugs = { content: 1, search: 1 };
 
   // First segment of a hyphenated slug that indicates a CSS utility class, not a font name.
-  var cssUtilWords = { size: 1, family: 1, weight: 1, style: 1, color: 1, display: 1, variant: 1, card: 1, poster: 1, image: 1 };
+  var cssUtilWords = { size: 1, family: 1, weight: 1, style: 1, color: 1, display: 1, variant: 1, card: 1, poster: 1, image: 1, list: 1 };
 
   var _assetBase = null;
   function getAssetBase() {
