@@ -83,17 +83,16 @@ THEMES = {
 }
 
 
-def generate_random_theme() -> dict:
+def generate_random_theme(mode: str | None = None) -> dict:
     """Leitet harmonische Farben aus einem zufälligen Grundton ab.
 
-    Wählt zufällig einen von drei Helligkeitsmodi (dark / light / mid) und
-    leitet alle Farbwerte vom selben Grundton H ab. Akzentfarbe nutzt einen
-    triadischen oder split-komplementären Versatz für Farbharmonie.
-    Kontrast ist durch feste Helligkeitsstufen pro Modus strukturell gesichert.
+    mode: 'dark' | 'light' | 'mid' | None (zufällig aus allen dreien).
+    Akzentfarbe nutzt einen triadischen oder split-komplementären Versatz.
     """
     h = random.random()
     h_accent = (h + random.choice([0.33, 0.38, 0.42, 0.58, 0.62, 0.67])) % 1.0
-    mode = random.choice(["dark", "light", "mid"])
+    if mode not in ("dark", "light", "mid"):
+        mode = random.choice(["dark", "light", "mid"])
 
     def hls(hue: float, lightness: float, saturation: float) -> str:
         r, g, b = colorsys.hls_to_rgb(hue % 1.0, lightness, saturation)
@@ -282,7 +281,11 @@ def draw_specimen(regular_path: str, output_path: str,
                   canvas_width: int = 1000,
                   theme_name: str = "dark") -> None:
 
-    C = generate_random_theme() if theme_name == "random" else THEMES[theme_name]
+    if theme_name.startswith("random"):
+        mode_hint = theme_name.removeprefix("random").lstrip("-") or None
+        C = generate_random_theme(mode_hint)
+    else:
+        C = THEMES[theme_name]
     upper_bg   = hex_to_rgb(C["upper_bg"])
     lower_bg   = hex_to_rgb(C["lower_bg"])
     acc_color  = hex_to_rgb(C["accent"])
@@ -338,7 +341,6 @@ def draw_specimen(regular_path: str, output_path: str,
     font_demo_r   = F("demo")
     font_demo_i   = F("demo", italic_path) if italic_path else None
     font_hero     = F("hero", italic_path) if italic_path else F("hero")
-    font_ghost    = F("ghost")
 
     # Alphabet- und Ziffernstrings (mit Zwischenräumen)
     alpha1 = " ".join("abcdefghijklm")
@@ -365,6 +367,7 @@ def draw_specimen(regular_path: str, output_path: str,
     LINE_L = int(canvas_width * 0.052)   # großer Abstand (nach Fontname)
 
     name_h    = mh(family, font_name)
+    name_top  = tmp_draw.textbbox((0, 0), family, font=font_name)[1]
     demo_r_h  = mh("Aa Ee Rr", font_demo_r)
     demo_i_h  = mh("Aa Ee Rr", font_demo_i) if font_demo_i else 0
     hero_h    = mh(heroword, font_hero)
@@ -378,6 +381,25 @@ def draw_specimen(regular_path: str, output_path: str,
                + hero_h
                + PAD)
 
+    # Ghost-Buchstabe: Größe auf den verfügbaren Bereich begrenzen.
+    # Erlaubter Bereich: rechts vom Text, zwischen "Aa Ee Rr"-Oberkante und unterem Rand.
+    ghost_top_bound = PAD + name_h + LINE_L
+    ghost_bot_bound = upper_h - PAD
+    ghost_avail_h   = ghost_bot_bound - ghost_top_bound
+    ghost_sz = sz["ghost"]
+    try:
+        _ghost_test = load_pil_font(regular_path, ghost_sz)
+        _gb = tmp_draw.textbbox((0, 0), "a", font=_ghost_test)
+        _ghost_h = _gb[3] - _gb[1]
+        if _ghost_h > ghost_avail_h:
+            ghost_sz = max(50, int(ghost_sz * ghost_avail_h / _ghost_h))
+    except Exception:
+        pass
+    try:
+        font_ghost = load_pil_font(regular_path, ghost_sz)
+    except Exception:
+        font_ghost = ImageFont.load_default()
+
     lower_h = (PAD
                + alpha_h + int(LINE_S * 0.8)
                + alpha_h + LINE_M
@@ -389,25 +411,26 @@ def draw_specimen(regular_path: str, output_path: str,
     # ── Canvas + Hintergründe ──────────────────────────────────────────────────
     img  = Image.new("RGB", (canvas_width, canvas_height), upper_bg)
     draw = ImageDraw.Draw(img)
-    draw.rectangle([(0, upper_h), (canvas_width, canvas_height)], fill=lower_bg)
 
     # ── Ghost-Buchstabe (Hintergrund, rechts) ────────────────────────────────
-    # Ghost startet direkt nach dem Ende des Demo-Textes (inkl. Italic falls vorhanden).
-    # So gibt es keine Überschneidung mit dem Fließtext — egal wie breit die Schrift ist.
+    # Ghost vor dem unteren Rechteck zeichnen, damit lower_bg als Clip-Maske wirkt.
     demo_end = PAD + max(
         mw("Aa Ee Rr", font_demo_r),
         mw("Aa Ee Rr", font_demo_i) if font_demo_i else 0,
     )
     ghost_bbox = draw.textbbox((0, 0), "a", font=font_ghost)
     ghost_x = demo_end + int(canvas_width * 0.02) - ghost_bbox[0]
-    ghost_y = PAD + name_h
+    ghost_y = ghost_top_bound - ghost_bbox[1]
     draw.text((ghost_x, ghost_y), "a", font=font_ghost, fill=gst_color)
+
+    # Unterer Hintergrund nach Ghost zeichnen → schneidet Überlauf sauber ab
+    draw.rectangle([(0, upper_h), (canvas_width, canvas_height)], fill=lower_bg)
 
     # ── Oberer Bereich — Text ─────────────────────────────────────────────────
     y = PAD
 
-    # Fontname
-    draw.text((PAD, y), family, font=font_name, fill=name_color)
+    # Fontname — visuell bündig zum oberen Rand, unabhängig vom internen Glyph-Offset
+    draw.text((PAD, y - name_top), family, font=font_name, fill=name_color)
     y += name_h + LINE_L
 
     # "Aa Ee Rr" Regular
@@ -547,8 +570,8 @@ Beispiele:
     parser.add_argument("--width",    "-w", type=int, default=1000,
                         help="Breite der Vorschaubilder in Pixel (Standard: 1000)")
     parser.add_argument("--theme",    "-t", default="dark",
-                        choices=list(THEMES.keys()) + ["random"],
-                        help="Farbschema: dark | white | cream | random (Standard: dark)")
+                        choices=list(THEMES.keys()) + ["random", "random-dark", "random-light"],
+                        help="Farbschema: dark | white | cream | random | random-dark | random-light (Standard: dark)")
     parser.add_argument("--wordlist", default=None,
                         help="Pfad zur Wortliste (Standard: wordlist.txt neben dem Script)")
     parser.add_argument("--overwrite", action="store_true",

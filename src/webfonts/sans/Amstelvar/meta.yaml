@@ -3,7 +3,7 @@ url: https://github.com/googlefonts/amstelvar
 
 tags: Sans, Humanist, Neo, Grotesk
 
-comment: "@todo"
+comment:
 
 fontauthor: The Font Bureau
 fontyear: 2019
@@ -13,4 +13,5 @@ heroword: Amsterdam
 herostyle:
 color: MediumAquamarine
 
-content:
+content: |
+  Amstelvar entstand 2016 im Auftrag von Google Fonts als Demonstrationsprojekt für die damals neue OpenType-Variable-Fonts-Technologie. David Berlow (Font Bureau) entwarf die Serifenschrift in Anlehnung an niederländische und belgische Druckschriften vom 16. Jahrhundert bis zur Entstehung der Times Roman in den 1930er Jahren. Mit der Version 1.0 (2018) kamen ein überarbeiteter Roman, ein Kursivschnitt und rund 600 Glyphen hinzu. Neben den gängigen Achsen für Gewicht, Breite und optische Größe bietet Amstelvar ein breites Set parametrischer Achsen — darunter XTRA, XOPQ, YTLC und YTUC — mit denen einzelne formale Proportionen präzise und unabhängig voneinander gesteuert werden können.
