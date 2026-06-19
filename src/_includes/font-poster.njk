@@ -92,12 +92,12 @@
                 <span class="var-axis-label">{{ axisData.name }}</span>
                 <input class="var-axis-range"
                    type="range"
-                   min="{{ axisdata.min }}"
-                   max="{{ axisdata.max }}"
-                   step="{{ axisdata.step }}"
-                   value="{{ axisdata.default }}"
-                   data-axis="{{ axistag }}"
-                   aria-label="{{ axisdata.name }}">
+                   min="{{ axisData.min }}"
+                   max="{{ axisData.max }}"
+                   step="{{ axisData.step }}"
+                   value="{{ axisData.default }}"
+                   data-axis="{{ axisTag }}"
+                   aria-label="{{ axisData.name }}">
                 <output class="var-axis-output">{{ axisData.default }}</output>
               </div>
             {% endfor %}
@@ -128,12 +128,12 @@
     </article>
 
     {% set varFonts = activeFonts | selectattr("isVariable") | list %}
-    {% set waterfallFonts = varFonts if varFonts | length > 0 else 
+    {% set waterfallFonts = varFonts if varFonts | length > 0 else
       activeFonts %}
 
     {% if activeFonts %}
       {% set hasItalic = waterfallFonts | selectattr("variantGroup", "equalto", "Italic") | list | length > 0 %}
-      {% set waterfallGroups = ["Regular", "Italic"] if hasItalic else 
+      {% set waterfallGroups = ["Regular", "Italic"] if hasItalic else
         ["Regular"] %}
 
       <article class="waterfall--styles">
@@ -200,7 +200,7 @@
           {% include "seperator.njk" %}
           <article>
             <h2>{{ folder.title }} — {{ axisData.name }}</h2>
-            <article class="waterfall-group waterfall-group--{{ axistag }}">
+            <article class="waterfall-group waterfall-group--{{ axisTag }}">
               {% for step in axisData.steps %}
                 <p style="font-family: '{{ _wfFamily }}'; {{ step.style }};">{{ site.panagram }}</p>
               {% endfor %}
@@ -236,7 +236,7 @@
           <li>
             <a class="related-fonts__link font-{{ leaf.key | slugify }}"
                href="/{{ leaf.url }}.html"
-               style="--related-color: {{ leaf.color or 'currentcolor' }};">
+               style="--related-color: {{ leaf.color or 'currentColor' }};">
               <span class="related-fonts__name">{{ leaf.title }}</span>
               <span class="related-fonts__tags">
                 {%- for tag in leaf.tags -%}
@@ -276,9 +276,9 @@
   (function () {
     // Variable Font Sliders
     var preview = document.querySelector('[data-var-preview]');
-    if (!preview) 
+    if (!preview)
       return;
-    
+
     var axisValues = {};
 
     function applyAxes() {
@@ -316,7 +316,7 @@
         var val = parseFloat(input.value);
         axisValues[input.dataset.axis] = val;
         var output = input.nextElementSibling;
-        if (output) 
+        if (output)
           output.value = Math.round(val * 10) / 10;
         applyAxes();
       });
@@ -324,7 +324,7 @@
 
     // Auto-animation
     function animate(timestamp) {
-      if (!startTime) 
+      if (!startTime)
         startTime = timestamp;
       var t = (timestamp - startTime) / 1000;
 
@@ -342,7 +342,7 @@
         val = Math.max(min, Math.min(max, val));
         input.value = val;
         var output = input.nextElementSibling;
-        if (output) 
+        if (output)
           output.value = Math.round(val * 10) / 10;
         axisValues[input.dataset.axis] = val;
       });
