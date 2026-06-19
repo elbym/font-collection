@@ -73,14 +73,28 @@
         var supportsOklchFrom = CSS.supports('color', 'oklch(from red l c h)');
         var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var targetL = isDark ? '0.75' : '0.52';
+        // Jede aktive Achse bekommt ein eigenes Hue-Segment (gleichmäßig um den Farbkreis verteilt)
+        var numAxes = cfg.axes.length;
+        var axisHueCenters = cfg.axes.map(function (_, i) {
+            return i * (360 / Math.max(numAxes, 1));
+        });
         points.forEach(function (pt) {
             var el = document.createElement('span');
             el.className = 'vf-cube-letter';
             el.textContent = word[pt.li % word.length];
-            var xRatio = Math.round((pt.gi / (GRID - 1)) * 100);
-            var yRatio = Math.round((pt.gj / (GRID - 1)) * 100);
+            var hShift = 0;
+            if (numAxes > 0) {
+                var totalShift = 0;
+                cfg.axes.forEach(function (axis, idx) {
+                    var gi = axis.drivenBy === 'x' ? pt.gi
+                           : axis.drivenBy === 'y' ? pt.gj
+                           : pt.gk;
+                    var t = gi / (GRID - 1);
+                    totalShift += axisHueCenters[idx] + (t - 0.5) * 120;
+                });
+                hShift = (totalShift / numAxes).toFixed(0);
+            }
             if (supportsOklchFrom) {
-                var hShift = ((xRatio - 50) * 1.4 + (yRatio - 50) * 0.7).toFixed(0);
                 el.style.color = 'oklch(from var(--color-base-primary) ' + targetL + ' calc(c * 2.2) calc(h + ' + hShift + '))';
             } else {
                 el.style.color = 'var(--color-accent)';
