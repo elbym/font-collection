@@ -192,6 +192,11 @@ def get_font_name(font_path: str) -> tuple[str, str]:
             family = pf
         if ps:
             sub = ps
+        # Variable fonts report the default instance as subfamily (e.g. "Light").
+        # Normalise: keep only the italic/oblique signal, drop the weight part.
+        if "fvar" in tt:
+            s_lower = sub.lower()
+            sub = "Italic" if ("italic" in s_lower or "oblique" in s_lower) else ""
         return family.strip(), sub.strip()
     except Exception:
         return Path(font_path).stem, ""
@@ -421,7 +426,7 @@ def draw_specimen(regular_path: str, output_path: str,
     ghost_bbox = draw.textbbox((0, 0), "a", font=font_ghost)
     ghost_x = demo_end + int(canvas_width * 0.02) - ghost_bbox[0]
     ghost_y = ghost_top_bound - ghost_bbox[1]
-    draw.text((ghost_x, ghost_y), "a", font=font_ghost, fill=gst_color)
+    draw.text((ghost_x, ghost_y), "a", font=font_ghost, fill=acc_color)
 
     # Unterer Hintergrund nach Ghost zeichnen → schneidet Überlauf sauber ab
     draw.rectangle([(0, upper_h), (canvas_width, canvas_height)], fill=lower_bg)
