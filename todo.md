@@ -2,7 +2,8 @@
 
 ## Schriften-Wunschliste
 
-`meta.yaml` für alle Einträge erstellt — Ordner angelegt, Fonts ausstehend. Neue Kategorie `display/` eingeführt für Schriften mit `Display` als erstem Tag.
+`meta.yaml` für alle Einträge erstellt — Ordner angelegt, Fonts ausstehend. Neue Kategorie `display/` eingeführt für Schriften mit `Display` als erstem Tag. Alle `[x]`-Einträge haben fertige `meta.yaml`; Fonts selbst noch ausstehend.
+
 
 ### Monospace
 
@@ -13,7 +14,7 @@
 | [x] **Monaspace** | `Monospace, Coding, Variable` | ausstehend | https://monaspace.githubnext.com |
 | [x] **Departure Mono** | `Monospace, Display` | ausstehend | https://departuremono.com |
 | [x] **Space Mono** | `Monospace, Geometric` | ausstehend | https://github.com/googlefonts/spacemono |
-| [ ] **Geist Mono** | `Monospace, Coding` | ausstehend | https://github.com/vercel/geist-font |
+| [x] **Geist Mono** | `Monospace, Coding` | ausstehend | https://github.com/vercel/geist-font |
 
 ### Sans
 
@@ -25,19 +26,18 @@
 | [x] **Routed Gothic** | `Sans, Grotesk, Display` | ausstehend | https://webonastick.com/fonts/routed-gothic/ |
 | [X] **Satoshi** | `Sans, Neo, Grotesk` | ausstehend | https://www.fontshare.com/fonts/satoshi |
 | [x] **Manrope** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Manrope |
-| [ ] **Lexend** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Lexend |
+| [x] **Lexend** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Lexend |
 | [x] **Cabinet Grotesk** | `Sans, Grotesk, Display` | ausstehend | https://www.fontshare.com/fonts/cabinet-grotesk |
-| [ ] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
-| [ ] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
+| [x] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
+| [x] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
 | [x] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
-| [ ] **Roboto Flex** | `Sans, Neo-Grotesk, Variable` | ausstehend | https://fonts.google.com/specimen/Roboto+Flex |
-| [ ] **Plus Jakarta Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Plus+Jakarta+Sans |
-| [ ] **DM Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/DM+Sans |
-| [ ] **Outfit** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Outfit |
-| [ ] **Chivo** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Chivo |
-| [ ] **Barlow** | `Sans, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Barlow |
-| [ ] **Playpen Sans** | `Sans, Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Playpen+Sans |
-| [ ] **Encode Sans** | `Sans, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Encode+Sans |
+| [x] **Roboto Flex** | `Sans, Neo-Grotesk, Variable` | ausstehend | https://fonts.google.com/specimen/Roboto+Flex |
+| [x] **Plus Jakarta Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Plus+Jakarta+Sans |
+| [x] **Outfit** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Outfit |
+| [x] **Chivo** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Chivo |
+| [x] **Barlow** | `Sans, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Barlow |
+| [x] **Playpen Sans** | `Sans, Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Playpen+Sans |
+| [x] **Encode Sans** | `Sans, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Encode+Sans |
 
 ### Serif
 
@@ -50,22 +50,22 @@
 | [ ] **Cardo** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Cardo |
 | [x] **STIX Two** | `Serif, Humanist` | ausstehend | https://www.stixfonts.org |
 | [ ] **Quattrocento** | `Serif, Humanist, Garalde` | ausstehend | https://fonts.google.com/specimen/Quattrocento |
-| [ ] **Zodiak** | `Serif, Display` | ausstehend | https://www.fontshare.com/fonts/zodiak |
-| [ ] **Sentient** | `Serif, Humanist` | ausstehend | https://www.fontshare.com/fonts/sentient |
-| [ ] **Gambetta** | `Serif, Display` | ausstehend | https://www.fontshare.com/fonts/gambetta |
-| [ ] **Amstelvar** | `Serif, Variable, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Amstelvar |
-| [ ] **Instrument Serif** | `Serif, Transitional` | ausstehend | https://fonts.google.com/specimen/Instrument+Serif |
-| [ ] **Roslindale** | `Serif, Display, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Roslindale |
+| [x] **Zodiak** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/zodiak |
+| [x] **Sentient** | `Serif, Humanist` | ausstehend | https://www.fontshare.com/fonts/sentient |
+| [x] **Gambetta** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/gambetta |
+| [x] **Amstelvar** | `Serif, Variable, Optical Sizes` | erledigt | https://github.com/googlefonts/amstelvar |
+| [x] **Instrument Serif** | `Serif, Transitional` | ausstehend | https://fonts.google.com/specimen/Instrument+Serif |
+| [x] **Roslindale** | `Serif, Display, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Roslindale |
 
 ### Script
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
-| [x] **Caveat** | `Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Caveat |
-| [x] **Pacifico** | `Script, Display` | ausstehend | https://fonts.google.com/specimen/Pacifico |
-| [x] **Satisfy** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Satisfy |
-| [x] **Dancing Script** | `Script, Kalligraphisch` | ausstehend | https://fonts.google.com/specimen/Dancing+Script |
-| [ ] **Amatic SC** | `Script, Handwriting, Display` | ausstehend | https://fonts.google.com/specimen/Amatic+SC |
+| [x] **Caveat** | `Script, Handwriting` | erledigt | https://fonts.google.com/specimen/Caveat |
+| [x] **Pacifico** | `Script, Display` | erledigt | https://fonts.google.com/specimen/Pacifico |
+| [x] **Satisfy** | `Script, Kalligraphisch` | erledigt | https://fonts.google.com/specimen/Satisfy |
+| [x] **Dancing Script** | `Script, Kalligraphisch` | erledigt | https://fonts.google.com/specimen/Dancing+Script |
+| [x] **Amatic SC** | `Script, Handwriting, Display` | erledigt | https://fonts.google.com/specimen/Amatic+SC |
 
 ### Blackletter
 
@@ -77,12 +77,11 @@
 
 | Schrift | Tags | Fonts | Quelle |
 |---|---|---|---|
-| [ ] **Bebas Neue** | `Display, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Bebas+Neue |
-| [ ] **Anton** | `Display, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Anton |
-| [ ] **Dela Gothic One** | `Display, Geometric` | ausstehend | https://fonts.google.com/specimen/Dela+Gothic+One |
+| [x] **Anton** | `Display, Condensed, Grotesk` | erledigt | https://fonts.google.com/specimen/Anton |
+| [x] **Dela Gothic One** | `Display, Geometric` | erledigt | https://fonts.google.com/specimen/Dela+Gothic+One |
 | [ ] **Silkscreen** | `Display, Monospace` | ausstehend | https://fonts.google.com/specimen/Silkscreen |
-| [ ] **Big Shoulders Display** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Big+Shoulders+Display |
-| [ ] **Anybody** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Anybody |
+| [x] **Big Shoulders Display** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Big+Shoulders+Display |
+| [x] **Anybody** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Anybody |
 
 ---
 ## Features
