@@ -13,6 +13,7 @@
 | [x] **Monaspace** | `Monospace, Coding, Variable` | ausstehend | https://monaspace.githubnext.com |
 | [x] **Departure Mono** | `Monospace, Display` | ausstehend | https://departuremono.com |
 | [x] **Space Mono** | `Monospace, Geometric` | ausstehend | https://github.com/googlefonts/spacemono |
+| [ ] **Geist Mono** | `Monospace, Coding` | ausstehend | https://github.com/vercel/geist-font |
 
 ### Sans
 
@@ -29,6 +30,14 @@
 | [ ] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
 | [ ] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
 | [x] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
+| [ ] **Roboto Flex** | `Sans, Neo-Grotesk, Variable` | ausstehend | https://fonts.google.com/specimen/Roboto+Flex |
+| [ ] **Plus Jakarta Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Plus+Jakarta+Sans |
+| [ ] **DM Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/DM+Sans |
+| [ ] **Outfit** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Outfit |
+| [ ] **Chivo** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Chivo |
+| [ ] **Barlow** | `Sans, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Barlow |
+| [ ] **Playpen Sans** | `Sans, Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Playpen+Sans |
+| [ ] **Encode Sans** | `Sans, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Encode+Sans |
 
 ### Serif
 
@@ -41,6 +50,12 @@
 | [ ] **Cardo** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Cardo |
 | [x] **STIX Two** | `Serif, Humanist` | ausstehend | https://www.stixfonts.org |
 | [ ] **Quattrocento** | `Serif, Humanist, Garalde` | ausstehend | https://fonts.google.com/specimen/Quattrocento |
+| [ ] **Zodiak** | `Serif, Display` | ausstehend | https://www.fontshare.com/fonts/zodiak |
+| [ ] **Sentient** | `Serif, Humanist` | ausstehend | https://www.fontshare.com/fonts/sentient |
+| [ ] **Gambetta** | `Serif, Display` | ausstehend | https://www.fontshare.com/fonts/gambetta |
+| [ ] **Amstelvar** | `Serif, Variable, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Amstelvar |
+| [ ] **Instrument Serif** | `Serif, Transitional` | ausstehend | https://fonts.google.com/specimen/Instrument+Serif |
+| [ ] **Roslindale** | `Serif, Display, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Roslindale |
 
 ### Script
 
@@ -66,6 +81,8 @@
 | [ ] **Anton** | `Display, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Anton |
 | [ ] **Dela Gothic One** | `Display, Geometric` | ausstehend | https://fonts.google.com/specimen/Dela+Gothic+One |
 | [ ] **Silkscreen** | `Display, Monospace` | ausstehend | https://fonts.google.com/specimen/Silkscreen |
+| [ ] **Big Shoulders Display** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Big+Shoulders+Display |
+| [ ] **Anybody** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Anybody |
 
 ---
 ## Features
