@@ -81,19 +81,17 @@
             var el = document.createElement('span');
             el.className = 'vf-cube-letter';
             el.textContent = word[pt.li % word.length];
-            var r = 0, g = 0, b = 0, total = 0;
+            var nr = isDark ? 100 : 150, ng = isDark ? 100 : 150, nb = isDark ? 100 : 150;
+            var r = 0, g = 0, b = 0;
             cfg.axes.forEach(function (axis, idx) {
                 var gi = axis.drivenBy === 'x' ? pt.gi : axis.drivenBy === 'y' ? pt.gj : pt.gk;
                 var t = gi / (GRID - 1);
                 var rgb = axisRgbs[idx];
-                r += rgb[0] * t; g += rgb[1] * t; b += rgb[2] * t;
-                total += t;
+                r += nr + (rgb[0] - nr) * t;
+                g += ng + (rgb[1] - ng) * t;
+                b += nb + (rgb[2] - nb) * t;
             });
-            if (total > 0) {
-                el.style.color = 'rgb(' + Math.min(255,Math.round(r/total)) + ',' + Math.min(255,Math.round(g/total)) + ',' + Math.min(255,Math.round(b/total)) + ')';
-            } else {
-                el.style.color = isDark ? '#aaa' : '#555';
-            }
+            el.style.color = 'rgb(' + Math.min(255,Math.round(r/numAxes)) + ',' + Math.min(255,Math.round(g/numAxes)) + ',' + Math.min(255,Math.round(b/numAxes)) + ')';
             var fvs = cfg.axes.map(function (axis) {
                 var gi = axis.drivenBy === 'x' ? pt.gi : axis.drivenBy === 'y' ? pt.gj : pt.gk;
                 var val = mapRange(gi, 0, GRID - 1, axis.min, axis.max);
