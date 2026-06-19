@@ -21,28 +21,20 @@ permalink: search.html
 
 <script src=”/pagefind/pagefind-ui.js”></script>
 <script>
-  (function () {
-    var rawBase = '{{ “/” | url }}';
-    var pathPrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
-    window.addEventListener('DOMContentLoaded', function () {
-      new PagefindUI({
-        element: '#search',
-        showImages: false,
-        excerptLength: 15,
-        processResult: function (result) {
-          result.url = pathPrefix + result.url;
-          return result;
-        },
-        translations: {
-          placeholder: 'Schrift suchen …',
-          zero_results: 'Keine Ergebnisse für „[SEARCH_TERM]”',
-          many_results: '[COUNT] Ergebnisse für „[SEARCH_TERM]”',
-          one_result: '[COUNT] Ergebnis für „[SEARCH_TERM]”',
-          load_more: 'Mehr laden',
-          clear_search: 'Löschen',
-          searching: 'Suche nach „[SEARCH_TERM]” …',
-        }
-      });
+  window.addEventListener('DOMContentLoaded', function () {
+    new PagefindUI({
+      element: '#search',
+      showImages: false,
+      excerptLength: 15,
+      translations: {
+        placeholder: 'Schrift suchen …',
+        zero_results: 'Keine Ergebnisse für „[SEARCH_TERM]”',
+        many_results: '[COUNT] Ergebnisse für „[SEARCH_TERM]”',
+        one_result: '[COUNT] Ergebnis für „[SEARCH_TERM]”',
+        load_more: 'Mehr laden',
+        clear_search: 'Löschen',
+        searching: 'Suche nach „[SEARCH_TERM]” …',
+      }
     });
-  })();
+  });
 </script>
