@@ -8,6 +8,8 @@
 
   var pagefindUrl = form.dataset.pagefindUrl || '/pagefind/pagefind.js';
   var searchPageUrl = form.dataset.searchUrl || '/search.html';
+  var rawBase = form.dataset.pathPrefix || '/';
+  var pathPrefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 
   var pagefind = null;
   var activeIndex = -1;
@@ -53,12 +55,12 @@
       li.id = 'font-search-option-' + i;
       li.setAttribute('role', 'option');
       var a = document.createElement('a');
-      a.href = item.url;
+      a.href = pathPrefix + item.url;
       a.textContent = title;
       li.appendChild(a);
       li.addEventListener('mousedown', function (e) {
         e.preventDefault();
-        window.location.href = item.url;
+        window.location.href = pathPrefix + item.url;
       });
       dropdown.appendChild(li);
     });

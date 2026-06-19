@@ -402,7 +402,7 @@ function makePagefindTask(args = []) {
 }
 
 const runPagefind = makePagefindTask();
-const runPagefindGhPages = makePagefindTask(["--base-url", "/font-collection"]);
+const runPagefindGhPages = makePagefindTask();
 
 // ---------------------------------------------------------------------------
 // SCSS tasks
