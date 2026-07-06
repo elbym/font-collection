@@ -1,0 +1,18 @@
+title: IBM Plex Sans
+url: https://github.com/IBM/plex
+wikipedia: https://en.wikipedia.org/wiki/IBM_Plex
+
+tags: Sans, Humanist, Neo, Grotesk
+
+comment: "Die IBM-Plex-Schriftfamilie ist schlicht schön und sehr gut lesbar."
+
+fontauthor: 	Mike Abbink, Paul van der Laan, Pieter van Rosmalen
+fontyear: 2017
+
+heroletter: Aa
+heroword: Mainframe
+herostyle:
+color: midnightblue
+
+content: |
+  IBM Plex Sans ist Teil der unternehmensweiten Schriftfamilie, die IBM 2017 als Ersatz für Helvetica einführte. Die von Mike Abbink, Paul van der Laan und Pieter van Rosmalen entworfene Groteskschrift balanciert technische Neutralität mit humanistischen Details und eignet sich für UI-Text ebenso wie für Druckkommunikation.
