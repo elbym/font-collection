@@ -658,6 +658,7 @@ exports.ghpages = series(
 exports.clean = series(clean);
 exports.download = downloadBackgroundImages;
 exports.convertFonts = convertToWoff2;
+exports.createNojekyll = createNojekyll;
 
 exports.deploy = series(
   clean,
