@@ -543,6 +543,11 @@ function watchFiles() {
 // Deploy
 // ---------------------------------------------------------------------------
 
+function createNojekyll(done) {
+  fs.writeFileSync(path.join(__dirname, "dist", ".nojekyll"), "");
+  done();
+}
+
 function deployToGhPages(done) {
   const distDir = path.join(__dirname, "dist");
   const remote = "git@github.com:elbym/font-collection.git";
@@ -662,5 +667,6 @@ exports.deploy = series(
   generateColoredBorders,
   runPagefindGhPages,
   beautifyHTML,
+  createNojekyll,
   deployToGhPages,
 );
