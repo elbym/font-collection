@@ -19,14 +19,16 @@
   {# Prefer per-font backgrounds from `fontBackgrounds`, fallback to global `backgrounds` #}
   {% set fontBg = fontBackgrounds[node.key] if (fontBackgrounds and fontBackgrounds[node.key]) else [] %}
   {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}
-  <header 
-    class="bg-{{ _color | slugify }}" 
+  {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
+  <header
+    class="bg-{{ _color | slugify }}"
     {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
     >
     <a href="{{ _url }}" class="color-{{ _color | slugify }}">
-      <h3 data-hover-styles="{% for f in node.ownFonts %}{% if not loop.first %},{% endif %}{{ f.weight }}{{ 'i' if f.style == 'italic' else 'n' }}{% endfor %}">{{ _title }}</h3>
+      <h3
+        data-hover-styles="{% for f in node.ownFonts %}{% if not loop.first %},{% endif %}{{ f.weight }}{{ 'i' if f.style == 'italic' else 'n' }}{% endfor %}"
+        data-font-family="{{ _family }}">{{ _title }}</h3>
     </a>
-    {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
     <button class="compare-toggle"
       aria-pressed="false"
       title="Zum Vergleich hinzufügen"

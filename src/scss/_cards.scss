@@ -129,6 +129,13 @@ html {
     margin: 0;
     padding: 3rem 1rem;
     height: 100%;
+    // Reserve room for a second line so the hover-cycle through weights (see
+    // font-style-hover.js) doesn't resize the card when a bold/wide instance wraps.
+    line-height: 1.2;
+    min-height: 2.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 600;
     opacity: .5;
     mix-blend-mode: plus-lighter;
