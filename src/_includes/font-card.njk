@@ -24,7 +24,7 @@
     {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
     >
     <a href="{{ _url }}" class="color-{{ _color | slugify }}">
-      <h3>{{ _title }}</h3>
+      <h3 data-hover-styles="{% for f in node.ownFonts %}{% if not loop.first %},{% endif %}{{ f.weight }}{{ 'i' if f.style == 'italic' else 'n' }}{% endfor %}">{{ _title }}</h3>
     </a>
     {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
     <button class="compare-toggle"
