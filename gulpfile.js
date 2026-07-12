@@ -33,7 +33,7 @@ const PATHS = {
   webfonts: "src/webfonts/**/*",
   images: "src/img/**/*",
   js: "src/js/**/*",
-  favicon: ["src/favicon.ico", "src/favicon.svg"],
+  favicon: ["src/favicon.ico", "src/favicon.svg", "src/apple-icon-180x180.png"],
 };
 
 /** Resizes a bitmap to IMAGE_MAX_WIDTH and converts it to WebP. */
