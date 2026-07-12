@@ -19,9 +19,20 @@
     return variants;
   }
 
+  var cards = [];
   document.querySelectorAll('h3[data-hover-styles]').forEach(function (el) {
     var variants = parseVariants(el.getAttribute('data-hover-styles') || '');
     if (variants.length < 2) return;
+
+    var slugEl = el.closest('[data-font-slug]');
+    var card = {
+      el: el,
+      header: el.closest('header'),
+      slug: slugEl ? slugEl.getAttribute('data-font-slug') : null,
+      family: el.getAttribute('data-font-family'),
+      variants: variants,
+    };
+    cards.push(card);
 
     var originalWeight = el.style.fontWeight;
     var originalStyle = el.style.fontStyle;
@@ -47,5 +58,100 @@
       el.style.fontWeight = originalWeight;
       el.style.fontStyle = originalStyle;
     });
+  });
+
+  if (!cards.length) return;
+
+  // ── Background preload ────────────────────────────────────────────
+  // Once the page has settled, fetch every weight/style file the hover cycle
+  // needs so switching styles on mouseenter doesn't stall on the network,
+  // then measure the tallest instance so the card can reserve room for it
+  // up front instead of resizing when a bold/wide style wraps onto a new line.
+  var _assetBase = null;
+  function getAssetBase() {
+    if (_assetBase !== null) return _assetBase;
+    var link = document.querySelector('link[rel="stylesheet"][href*="/css/styles"]');
+    _assetBase = link ? link.href.replace(/\/css\/styles\.css.*$/, '') : '';
+    return _assetBase;
+  }
+
+  var cssReady = {};
+  function ensureFontCss(slug) {
+    if (cssReady[slug]) return cssReady[slug];
+    cssReady[slug] = new Promise(function (resolve) {
+      if (document.querySelector('link[rel="stylesheet"][href*="/css/webfonts/' + slug + '.css"]')) {
+        resolve();
+        return;
+      }
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = getAssetBase() + '/css/webfonts/' + slug + '.css';
+      link.addEventListener('load', resolve);
+      link.addEventListener('error', resolve);
+      document.head.appendChild(link);
+    });
+    return cssReady[slug];
+  }
+
+  // Reserve enough height for the heaviest normal/italic instance so cycling
+  // through weights during hover never grows the card.
+  function reserveHeight(card) {
+    if (!card.header) return;
+    var maxWeightNormal = 0;
+    var maxWeightItalic = 0;
+    card.variants.forEach(function (v) {
+      if (v.style === 'italic') maxWeightItalic = Math.max(maxWeightItalic, v.weight);
+      else maxWeightNormal = Math.max(maxWeightNormal, v.weight);
+    });
+    var candidates = [];
+    if (maxWeightNormal) candidates.push({ weight: maxWeightNormal, style: 'normal' });
+    if (maxWeightItalic) candidates.push({ weight: maxWeightItalic, style: 'italic' });
+
+    var prevWeight = card.el.style.fontWeight;
+    var prevStyle = card.el.style.fontStyle;
+    var maxHeight = card.header.getBoundingClientRect().height;
+
+    candidates.forEach(function (v) {
+      card.el.style.fontWeight = v.weight;
+      card.el.style.fontStyle = v.style;
+      maxHeight = Math.max(maxHeight, card.header.getBoundingClientRect().height);
+    });
+
+    card.el.style.fontWeight = prevWeight;
+    card.el.style.fontStyle = prevStyle;
+
+    if (maxHeight > card.header.getBoundingClientRect().height) {
+      card.header.style.minHeight = Math.ceil(maxHeight) + 'px';
+    }
+  }
+
+  function preloadCard(card) {
+    if (!card.slug || !card.family || !('fonts' in document)) return;
+    ensureFontCss(card.slug).then(function () {
+      var loads = card.variants.map(function (v) {
+        try {
+          return document.fonts.load((v.style === 'italic' ? 'italic ' : '') + v.weight + ' 16px "' + card.family + '"');
+        } catch (e) {
+          return Promise.resolve();
+        }
+      });
+      Promise.all(loads).then(function () {
+        reserveHeight(card);
+      });
+    });
+  }
+
+  window.addEventListener('load', function () {
+    var idle = window.requestIdleCallback
+      ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
+      : function (fn) { setTimeout(fn, 500); };
+
+    var i = 0;
+    function next() {
+      if (i >= cards.length) return;
+      preloadCard(cards[i++]);
+      idle(next);
+    }
+    idle(next);
   });
 })();
