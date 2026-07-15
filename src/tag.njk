@@ -9,7 +9,7 @@ permalink: "tag/{{ tag | slugify }}.html"
 
 <h1>{{ tag }}</h1>
 
-<section class="font-family-card-list">
+<section class="font-family-card-list px-4 flex flex-wrap flex-col gap-4 sm:flex-row sm:justify-start">
   {% for node in fontLeaves %}
     {% if tag in node.tags %}
       {% include "font-card.njk" %}

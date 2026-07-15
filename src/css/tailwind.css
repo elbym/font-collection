@@ -1,0 +1,16 @@
+/* Tailwind v4 entry — compiled by the Gulp `compileTailwind` task to dist/css/tailwind.css.
+   NO preflight import: the site keeps its own reset (_base/_html.scss).
+   Colors are NOT mapped into @theme — utilities reference the runtime tokens
+   directly via the var shorthand, e.g. `bg-(--color-surface)`, `text-(--color-accent)`,
+   because the color system is per-page CSS custom properties (see _base/_colors.scss). */
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@theme {
+  /* Bootstrap 5 breakpoints, identical to _includes/_breakpoints.scss */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+}

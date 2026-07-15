@@ -8,7 +8,7 @@
 {% set _tags     = node.tags if node.tags.length else [] %}
 
 {% set _hasItalic = node.ownFonts | selectattr("style", "equalto", "italic") | list | length > 0 %}
-<article class="card font-{{ node.key | slugify }}"
+<article class="card font-{{ node.key | slugify }} flex flex-col justify-between rounded-lg w-full"
   data-font-slug="{{ node.key | slugify }}"
   data-name="{{ node.title | lower }}"
   data-category="{{ node.category | slugify }}"
@@ -22,10 +22,10 @@
   {% set bgList = fontBg if (fontBg and (fontBg | length) > 0) else backgrounds %}
   {% set _family = node.ownFonts[0].family if node.ownFonts.length else node.title %}
   <header
-    {# class="bg-{{ _color | slugify }}" #}
+    class="rounded-t-lg grow flex relative overflow-hidden"
     {% if bgList and bgList.length > 0 %}style="background-image: url('{{ bgList | random | url }}');"{% endif %}
     >
-    <a href="{{ _url }}" class="color-{{ _color | slugify }}">
+    <a href="{{ _url }}" class="color-{{ _color | slugify }} flex flex-col justify-center w-full relative no-underline">
       <h3
         data-hover-styles="{% for f in node.ownFonts %}{% if not loop.first %},{% endif %}{{ f.weight }}{{ 'i' if f.style == 'italic' else 'n' }}{% endfor %}"
         data-font-family="{{ _family }}">{{ _title }}</h3>
@@ -42,12 +42,12 @@
       data-url="{{ node.url }}">+</button>
   </header>
 
-  <main>
+  <main class="bg-(--color-surface) p-4">
     <p class="letters">Aa Rr Ee</p>
     <p class="letters italic">Aa Rr Ee</p>
 
-    <p class="display-size-2 heroword ligature color-{{ _color | slugify }}">{{ _heroText }}</p>
-    <p class="display-size-2 numbers text-align-right old-nums">0123456789</p>
+    <p class="display-size-2 heroword ligature color-{{ _color | slugify }} py-4 font-semibold text-right">{{ _heroText }}</p>
+    <p class="display-size-2 numbers text-right old-nums">0123456789</p>
   </main>
   {% set _cpMap = fontCodepoints[node.key] if fontCodepoints else null %}
   {% if _cpMap %}
@@ -62,10 +62,10 @@
   </div>
   {% endif %}
   {% if _tags.length %}
-  <footer style="background: color-mix(in oklab, {{ _color }}, transparent 50%);">
+  <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, {{ _color }}, transparent 50%);">
     <ul class="keywords small ligatures">
       {% for tag in _tags %}
-        <li><a href="/tag/{{ tag | slugify }}.html">{{ tag }}</a></li>
+        <li><a class="text-(--color-text) no-underline" href="/tag/{{ tag | slugify }}.html">{{ tag }}</a></li>
       {% endfor %}
     </ul>
   </footer>

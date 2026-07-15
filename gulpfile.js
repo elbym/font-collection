@@ -87,6 +87,21 @@ function makeFontsSassTask({ withSourcemaps = false } = {}) {
   };
 }
 
+/** Returns a Gulp task that compiles src/css/tailwind.css via the Tailwind v4 CLI. */
+function makeTailwindTask({ minify = false } = {}) {
+  return function compileTailwind(done) {
+    const bin = path.join(__dirname, "node_modules", ".bin", "tailwindcss");
+    const args = ["-i", "src/css/tailwind.css", "-o", "dist/css/tailwind.css"];
+    if (minify) args.push("--minify");
+    cp.execFile(bin, args, { cwd: __dirname }, (err, stdout, stderr) => {
+      if (stdout) process.stdout.write(stdout);
+      if (stderr) process.stderr.write(stderr);
+      if (!err) browserSync.reload("tailwind.css");
+      done(err);
+    });
+  };
+}
+
 /** Returns a Gulp task that runs Eleventy, optionally with a path prefix for GitHub Pages. */
 function makeEleventyTask(pathprefix = null) {
   return function buildEleventy() {
@@ -408,6 +423,9 @@ const runPagefindGhPages = makePagefindTask();
 // SCSS tasks
 // ---------------------------------------------------------------------------
 
+const compileTailwind = makeTailwindTask();
+const compileTailwindMinified = makeTailwindTask({ minify: true });
+
 const compileMainSass = makeSassTask(PATHS.mainScss, null, {
   withSourcemaps: true,
 });
@@ -508,6 +526,7 @@ function serve(done) {
 
 function watchFiles() {
   watch([PATHS.mainScss, `!${PATHS.fontsScss}`], compileMainSass);
+  watch("src/css/tailwind.css", compileTailwind);
   watch(PATHS.fontsScss, compileFontsScss);
   watch(PATHS.webfonts, copyFonts);
   watch(PATHS.images, copyImages);
@@ -530,7 +549,7 @@ function watchFiles() {
     ],
     series(
       buildEleventy,
-      parallel(compileMainSass, compileFontsScss),
+      parallel(compileMainSass, compileFontsScss, compileTailwind),
       (done) => {
         browserSync.reload();
         done();
@@ -628,7 +647,7 @@ exports.default = series(
   clean,
   downloadBackgroundImages,
   buildEleventy,
-  parallel(copyStatic, compileMainSass, compileFontsScss),
+  parallel(copyStatic, compileMainSass, compileFontsScss, compileTailwind),
   generateColoredBorders,
   runPagefind,
   serve,
@@ -639,7 +658,7 @@ exports.build = series(
   clean,
   downloadBackgroundImages,
   buildEleventy,
-  parallel(copyStatic, compileMainSassMinified, compileFontsScssMinified),
+  parallel(copyStatic, compileMainSassMinified, compileFontsScssMinified, compileTailwindMinified),
   generateColoredBorders,
   runPagefind,
   beautifyHTML,
@@ -649,7 +668,7 @@ exports.ghpages = series(
   clean,
   downloadBackgroundImages,
   buildEleventyGhPages,
-  parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
+  parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages, compileTailwindMinified),
   generateColoredBorders,
   runPagefindGhPages,
   beautifyHTML,
@@ -664,7 +683,7 @@ exports.deploy = series(
   clean,
   downloadBackgroundImages,
   buildEleventyGhPages,
-  parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages),
+  parallel(copyStatic, compileMainSassGhPages, compileFontsScssGhPages, compileTailwindMinified),
   generateColoredBorders,
   runPagefindGhPages,
   beautifyHTML,

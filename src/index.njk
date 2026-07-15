@@ -57,7 +57,7 @@ eleventyNavigation:
   </div>
 </section>
 
-<section class="font-family-card-list" id="font-list">
+<section class="font-family-card-list px-4 flex flex-wrap flex-col gap-4 sm:flex-row sm:justify-start" id="font-list">
   {% for node in fontFolders %}
     {% if node.isLeaf %}
       {% include "font-card.njk" %}

@@ -48,18 +48,10 @@ h3 {
   font-weight: 700;
 }
 
-.justify {
-  text-align: justify;
-}
-
 .ligature,
 .ligatures {
   font-variant-ligatures: common-ligatures;
   font-feature-settings: "liga" 1, "clig" 1, "dlig" 1;
-}
-
-.upper {
-  text-transform: uppercase;
 }
 
 .small {
@@ -78,10 +70,6 @@ h3 {
 
 .old-nums {
   font-variant-numeric: oldstyle-nums;
-}
-
-.text-align-right {
-  text-align: right;
 }
 
 .initials {

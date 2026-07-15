@@ -70,7 +70,7 @@ permalink: "{{ folder.url }}.html"
     </div>
   </section>
 
-  <div class="font-family-card-list" id="font-list">
+  <div class="font-family-card-list px-4 flex flex-wrap flex-col gap-4 sm:flex-row sm:justify-start" id="font-list">
     {% for node in children %}
       {% include "font-card.njk" %}
     {% endfor %}

@@ -57,7 +57,7 @@
   </header>
 
   <section class="hero">
-    <article class="hero_grid">
+    <article class="sm:grid sm:grid-cols-2 sm:items-center sm:gap-y-4 sm:gap-x-16">
       <article class="letters">
         <p class="fitty">Aa Rr Ee</p>
         <p class="fitty italic">Aa Rr Ee</p>
@@ -81,7 +81,7 @@
         </svg>
       </article>
 
-      <article class="hero-word">
+      <article class="hero-word sm:col-span-2">
         <p class="display-size-6 {% if folder.herostyle %}{{ folder.herostyle }}{% endif %} ligatures" data-var-preview>
           {{ folder.heroword or site.heroword }}
         </p>
@@ -105,8 +105,8 @@
         {% endif %}
       </article>
 
-      <article class="alphabet">
-        <div class="alphabet_letters upper">
+      <article class="alphabet sm:col-span-2">
+        <div class="alphabet_letters uppercase">
           {% for char in "abc_upper" | unicodeChars %}
             <span>{{ char }}</span>
           {% endfor %}
@@ -154,17 +154,17 @@
         {% endif %}
       {% endfor %}
 
-      <p class="upper">Specimen</p>
-      <p class="upper fitty">Character <span class="small-caps">VM</span> sev</p>
+      <p class="uppercase">Specimen</p>
+      <p class="uppercase fitty">Character <span class="small-caps">VM</span> sev</p>
       {% if displayFont %}
         <p class="display-size-5 small-caps fitty"
                   style="font-family: '{{ displayFont.family }} {{ displayFont.optical }}';">
                   Also in Display weight
                 </p>
       {% endif %}
-      <p class="upper italic fitty">Typorum probatissimorum,</p>
+      <p class="uppercase italic fitty">Typorum probatissimorum,</p>
       <p class="fitty bold">Incondite qvidem, <span class="italic">sed secundum,</span></p>
-      <p class="upper fitty">svas tamen differentias propositum</p>
+      <p class="uppercase fitty">svas tamen differentias propositum</p>
     </article>
 
   </section>
@@ -179,7 +179,7 @@
         12,
         8
       ] %}
-        <p class="font-size-{{ size }} justify initials">
+        <p class="font-size-{{ size }} text-justify initials">
           {# <span>Size: {{ size }}px</span> #}
           {{ site["paragraph" + size] }}
         </p>

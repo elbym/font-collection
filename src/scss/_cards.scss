@@ -10,38 +10,14 @@ html {
   }
 }
 
+// Container-Layout (flex, gap, padding) → Tailwind-Utilities in index/tag/specimen.njk
 .font-family-card-list {
 
-  padding-left: 1rem;
-  padding-right: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 1rem;
-
   .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: .5rem;
+    // Layout/Spacing → Tailwind-Utilities in font-card.njk
     letter-spacing: 0.05ch;
-    width: 100%;
-
-    a {
-      text-decoration: none;
-      // text-decoration: underline;
-      // text-decoration-style: dashed;
-      // text-decoration-thickness: .1rem;
-    }
 
     header {
-      border-top-left-radius: .5rem;
-      border-top-right-radius: .5rem;
-      flex-grow: 1;
-      display: flex;
-      position: relative;
-      overflow: hidden;
-
       &::before {
         content: '';
         position: absolute;
@@ -71,26 +47,14 @@ html {
 
 
       a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        position: relative;
-        // background: hsla(120, 0%, 7%, 0 );
         transition: background 1s ease-out;
 
-
         &:hover {
-          background: var(--color-background);
           color: var(--color-text);
+          background: var(--color-background);
         }
 
       }
-    }
-
-    main {
-      background: var(--color-surface);
-      padding: 1rem;
     }
 
     .card-coverage {
@@ -119,16 +83,6 @@ html {
 
       .cov-zero {
         opacity: 0.3;
-      }
-    }
-
-    footer {
-      border-bottom-left-radius: .5rem;
-      border-bottom-right-radius: .5rem;
-      padding: .5rem 1rem;
-
-      a {
-        color: var(--color-text);
       }
     }
 
@@ -183,25 +137,12 @@ html {
   }
 
   .heroword {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-weight: 600;
-    text-align: right;
     text-shadow: 1px 1px 0 var(--color-text-shadow);
-  }
-
-  .comment {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
   }
 }
 
 @include bp.media-breakpoint-up(sm) {
   .font-family-card-list {
-    flex-direction: row;
-    justify-content: flex-start;
-
     > h2 {
       flex: 1 1 25%
     }

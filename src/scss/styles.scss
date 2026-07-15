@@ -12,33 +12,6 @@
 @use "_includes/html_colornames";
 @use "_print";
 
-header {
-  nav {
-    ul {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-
-      li {
-        display: flex;
-      }
-
-      .nav-category {
-        padding: 0.5rem;
-        font-weight: 600;
-      }
-    }
-
-    a {
-      padding: 0.5rem;
-      text-decoration: none;
-    }
-  }
-}
-
 .svg-seperator {
   width: 100%;
   height: auto;
