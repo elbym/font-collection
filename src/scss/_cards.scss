@@ -28,9 +28,10 @@ html {
     width: 100%;
 
     a {
-      text-decoration: underline;
-      text-decoration-style: dashed;
-      text-decoration-thickness: .1rem;
+      text-decoration: none;
+      // text-decoration: underline;
+      // text-decoration-style: dashed;
+      // text-decoration-thickness: .1rem;
     }
 
     header {
@@ -66,6 +67,8 @@ html {
       &:hover::before {
         transform: scale(1.1);
       }
+      
+
 
       a {
         display: flex;
@@ -73,6 +76,15 @@ html {
         justify-content: center;
         width: 100%;
         position: relative;
+        // background: hsla(120, 0%, 7%, 0 );
+        transition: background 1s ease-out;
+
+
+        &:hover {
+          background: var(--color-background);
+          color: var(--color-text);
+        }
+
       }
     }
 
@@ -127,7 +139,7 @@ html {
     text-align: center;
     @include ms.modscale(4, $responsive: true);
     margin: 0;
-    padding: 3rem 1rem;
+    padding: 3rem 2rem;
     height: 100%;
     // Reserve room for a second line so the hover-cycle through weights (see
     // font-style-hover.js) doesn't resize the card when a bold/wide instance wraps.
@@ -137,15 +149,15 @@ html {
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    opacity: .5;
+    // opacity: .85;
     mix-blend-mode: plus-lighter;
-    will-change: filter;
+    will-change: filter font-family;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     transition: opacity .3s ease, text-shadow .3s ease;
 
-    &:hover {
-      opacity: 1;
-    }
+    // &:hover {
+    //   opacity: 1;
+    // }
 
     @media (prefers-color-scheme: dark) {
       mix-blend-mode: screen;
@@ -193,7 +205,14 @@ html {
 
     .card {
       width: auto;
-      flex: 1 25%;
+      flex: 1 30%;
+      // min-width: 0 stops the flex item from growing to fit the widest hover-cycle
+      // weight (font-style-hover.js) — h3 wraps instead of pushing the card wider.
+      min-width: 0;
+      // Hard ceiling in case JS hasn't reserved a width yet (e.g. hover before
+      // preload finishes) or is unavailable — caps runaway growth from a single
+      // wide bold/italic instance.
+      // max-width: 28rem;
 
       .letters,
       .heroword {

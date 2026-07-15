@@ -28,6 +28,7 @@
     var card = {
       el: el,
       header: el.closest('header'),
+      cardEl: el.closest('.card'),
       slug: slugEl ? slugEl.getAttribute('data-font-slug') : null,
       family: el.getAttribute('data-font-family'),
       variants: variants,
@@ -93,8 +94,10 @@
     return cssReady[slug];
   }
 
-  // Reserve enough height for the heaviest normal/italic instance so cycling
-  // through weights during hover never grows the card.
+  // Reserve enough height and width for the heaviest normal/italic instance so
+  // cycling through weights during hover never resizes the card: height because
+  // a bold/wide instance may wrap onto a second line, width because the flex
+  // grid would otherwise regrow the card to fit a wider unbroken word.
   function reserveHeight(card) {
     if (!card.header) return;
     var maxWeightNormal = 0;
@@ -109,19 +112,29 @@
 
     var prevWeight = card.el.style.fontWeight;
     var prevStyle = card.el.style.fontStyle;
+    var prevWhiteSpace = card.el.style.whiteSpace;
     var maxHeight = card.header.getBoundingClientRect().height;
+    var maxWidth = card.cardEl ? card.cardEl.getBoundingClientRect().width : 0;
 
+    // Measure each candidate unwrapped so a single wide word can't be masked
+    // by line-wrapping — that's the width we actually need to reserve.
+    card.el.style.whiteSpace = 'nowrap';
     candidates.forEach(function (v) {
       card.el.style.fontWeight = v.weight;
       card.el.style.fontStyle = v.style;
       maxHeight = Math.max(maxHeight, card.header.getBoundingClientRect().height);
+      if (card.cardEl) maxWidth = Math.max(maxWidth, card.el.scrollWidth);
     });
 
     card.el.style.fontWeight = prevWeight;
     card.el.style.fontStyle = prevStyle;
+    card.el.style.whiteSpace = prevWhiteSpace;
 
     if (maxHeight > card.header.getBoundingClientRect().height) {
       card.header.style.minHeight = Math.ceil(maxHeight) + 'px';
+    }
+    if (card.cardEl && maxWidth > card.cardEl.getBoundingClientRect().width) {
+      card.cardEl.style.minWidth = Math.ceil(maxWidth) + 'px';
     }
   }
 
