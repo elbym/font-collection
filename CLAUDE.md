@@ -240,6 +240,7 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - Edit only files in `src/scss/` (not the auto-generated files).
 - Per-font `@font-face` declarations live in auto-generated `src/scss/webfonts/*.scss` — driven by `_generated-fonts.njk` (paginated over `fontLeaves`).
 - `font-display: block` is set globally in `_font-mixin.scss`. Specimen pages eagerly load their font via `<link>` in `<head>`; lazy-loaded card fonts are loaded 300px ahead of the viewport by the IntersectionObserver.
+- Font card (`_cards.scss`) `header` darkens to `#111` on hover (1s ease-out transition); card link underline is disabled.
 
 ### Font lazy loading
 - `font-lazy-loader.js` auto-detects `font-<slug>` CSS classes and lazy-loads the matching `/css/webfonts/<slug>.css` via IntersectionObserver (300px rootMargin).
