@@ -37,6 +37,7 @@ eleventyNavigation:
     </div>
     <div class="filter-buttons" role="group" aria-label="Filter">
       <button class="filter-btn is-active" data-filter="">Alle</button>
+      <button class="filter-btn filter-btn--special" data-filter="--favorite">★ Favoriten</button>
       {% for cat in allCategories | sort %}
         <button class="filter-btn" data-filter="{{ cat | slugify }}">{{ cat }}</button>
       {% endfor %}
@@ -91,6 +92,7 @@ eleventyNavigation:
       else if (activeFilter === '--variable')  visible = card.dataset.variable === 'true';
       else if (activeFilter === '--italic')    visible = card.dataset.italic === 'true';
       else if (activeFilter === '--family')    visible = (parseInt(card.dataset.styles) || 0) >= 8;
+      else if (activeFilter === '--favorite')  visible = card.dataset.favorite === 'true';
       else                                     visible = card.dataset.category === activeFilter;
       card.style.display = visible ? '' : 'none';
       list.appendChild(card);

@@ -186,12 +186,13 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 | `wikipedia` | Wikipedia article URL (shown as link on specimen page) |
 | `license` | License string (e.g. `SIL Open Font License 1.1`). Auto-detected from `OFL.txt` / `OFL-1.1.txt` / `LICENSE.txt` / `LICENSE` in the font folder if omitted. Shown next to `fontyear` in the specimen header. |
 | `license` | License string (e.g. `"SIL Open Font License 1.1"`). Overrides auto-detection. |
+| `favorite` | Boolean. When `true`, shows a gold star badge on the font's card and next to its title on the specimen page. |
 
 **License auto-detection**: `fonts.js` scans each font folder for `OFL.txt`, `OFL-1.1.txt`, `LICENSE.txt`, `LICENSE` etc. and reads the content to identify OFL, MIT, or Apache licenses. Result available as `folder.license` in templates.
 
 ### Flat node fields (`folder.*` in templates)
 
-Every leaf node exposes: `key`, `path`, `isLeaf`, `ownFonts`, `url`, `parentPath`, `title`, `sourceUrl`, `tags`, `category`, `fontauthor`, `fontyear`, `heroletter`, `heroword`, `herostyle`, `color`, `colorHex`, `colorIsAuto`, `border`, `comment`, `content`, `imageOverrides`, `wikipedia`, `license`, `varAxes`.
+Every leaf node exposes: `key`, `path`, `isLeaf`, `ownFonts`, `url`, `parentPath`, `title`, `sourceUrl`, `tags`, `category`, `fontauthor`, `fontyear`, `heroletter`, `heroword`, `herostyle`, `color`, `colorHex`, `colorIsAuto`, `border`, `comment`, `content`, `imageOverrides`, `wikipedia`, `license`, `favorite`, `varAxes`.
 
 - `colorIsAuto: true` when no `color` was set in `meta.yaml` (auto-generated from key hash).
 - `varAxes`: array of axis tags (`wght`, `wdth`, etc.) across all variable files in the folder.

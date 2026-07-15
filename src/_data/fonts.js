@@ -387,6 +387,7 @@ module.exports = function () {
       _imageOverrides: meta.imageOverrides ?? null,
       _wikipedia: meta.wikipedia ?? null,
       _license: detectLicense(dirPath, meta),
+      _favorite: !!meta.favorite,
     };
 
     subDirs.forEach((sub) => {
@@ -462,6 +463,7 @@ module.exports = function () {
         imageOverrides: node._imageOverrides,
         wikipedia:  node._wikipedia,
         license:    node._license,
+        favorite:   node._favorite,
         varAxes,
       });
     }

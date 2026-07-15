@@ -14,6 +14,7 @@
   data-category="{{ node.category | slugify }}"
   data-variable="{{ 'true' if (node.varAxes and node.varAxes.length > 0) else '' }}"
   data-italic="{{ 'true' if _hasItalic else '' }}"
+  data-favorite="{{ 'true' if node.favorite else '' }}"
   data-styles="{{ node.ownFonts | length }}"
   data-year="{{ node.fontyear or '' }}">
   {# Prefer per-font backgrounds from `fontBackgrounds`, fallback to global `backgrounds` #}
@@ -29,6 +30,9 @@
         data-hover-styles="{% for f in node.ownFonts %}{% if not loop.first %},{% endif %}{{ f.weight }}{{ 'i' if f.style == 'italic' else 'n' }}{% endfor %}"
         data-font-family="{{ _family }}">{{ _title }}</h3>
     </a>
+    {% if node.favorite %}
+    <span class="favorite-star" title="Must have font" aria-label="Favorit">★</span>
+    {% endif %}
     <button class="compare-toggle"
       aria-pressed="false"
       title="Zum Vergleich hinzufügen"
