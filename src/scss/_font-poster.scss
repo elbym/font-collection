@@ -743,6 +743,30 @@ article.content {
   }
 }
 
+.filter-input {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 400;
+  border: 0.025rem solid var(--color-border);
+  border-radius: 1rem;
+  background: transparent;
+  color: var(--color-text);
+  width: 12rem;
+  min-width: 8rem;
+  margin-left: 0.5rem;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    outline: none;
+    background: var(--color-accent-bg);
+    border-color: var(--color-accent);
+  }
+}
+
 // ── Compare toggle button on cards ───────────────────────────────────
 .compare-toggle {
   position: absolute;
