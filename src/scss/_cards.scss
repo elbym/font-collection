@@ -204,14 +204,15 @@ html {
     }
 
     .card {
-      width: auto;
+      // width: auto;
       flex: 1 30%;
+      min-width: 0;
       // min-width: 0 stops the flex item from growing to fit the widest hover-cycle
       // weight (font-style-hover.js) — h3 wraps instead of pushing the card wider.
-      min-width: 0;
       // Hard ceiling in case JS hasn't reserved a width yet (e.g. hover before
       // preload finishes) or is unavailable — caps runaway growth from a single
       // wide bold/italic instance.
+      min-width: 20%;
       // max-width: 28rem;
 
       .letters,
