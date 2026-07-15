@@ -67,7 +67,7 @@ html {
       &:hover::before {
         transform: scale(1.1);
       }
-      
+
 
 
       a {
@@ -152,12 +152,15 @@ html {
     // opacity: .85;
     mix-blend-mode: plus-lighter;
     will-change: filter font-family;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    // text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     transition: opacity .3s ease, text-shadow .3s ease;
 
     // &:hover {
     //   opacity: 1;
     // }
+    &:hover {
+      mix-blend-mode: unset;
+    }
 
     @media (prefers-color-scheme: dark) {
       mix-blend-mode: screen;
