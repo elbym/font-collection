@@ -27,17 +27,17 @@
   --color-text-muted:   color-mix(in oklab, var(--color-base-text),  var(--color-mix-light) 50%);
   --color-background:   color-mix(in oklab, var(--color-base-background),  var(--color-mix-light) 20%);
 
-  --color-accent:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 20%);
+  --color-accent:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 5%);
   --color-accent-bg:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 50%);
   --color-highlight:        color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 60%);
   --color-border:           color-mix(in oklab, var(--color-base-primary),   var(--color-mix-light) 50%);
 
-  --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 20%);
+  --color-accent-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 5%);
   --color-secondary-bg:        color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) );
   --color-highlight-secondary: color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 60%);
   --color-border-secondary:    color-mix(in oklab, var(--color-base-secondary), var(--color-mix-light) 50%);
 
-  --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 20%);
+  --color-accent-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 5%);
   --color-tertiary-bg:         color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) );
   --color-highlight-tertiary:  color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 60%);
   --color-border-tertiary:     color-mix(in oklab, var(--color-base-tertiary),  var(--color-mix-light) 50%);
