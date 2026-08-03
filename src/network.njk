@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+title: Netzwerk
+permalink: network.html
+eleventyNavigation:
+  key: Netzwerk
+  order: 1
+---
+
+<div class="font-network"></div>
+<script type="application/json" id="font-network-data">{{ fontNetwork | dump | safe }}</script>
+<script src="/js/force-graph.min.js" defer></script>
+<script src="/js/font-network.js" defer></script>
