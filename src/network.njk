@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 1
 ---
 
-<div class="font-network"></div>
+<div class="font-network" data-base-url="{{ '/' | url }}"></div>
 <script type="application/json" id="font-network-data">{{ fontNetwork | dump | safe }}</script>
 <script src="/js/force-graph.min.js" defer></script>
 <script src="/js/font-network.js" defer></script>
