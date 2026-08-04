@@ -84,15 +84,20 @@
       }
     });
 
-  if (highlightId) {
-    graph.onEngineStop(function () {
+  var didInitialZoom = false;
+  graph.onEngineStop(function () {
+    if (didInitialZoom) return;
+    didInitialZoom = true;
+    if (highlightId) {
       var node = data.nodes.find(function (n) { return n.id === highlightId; });
       if (node) {
         graph.centerAt(node.x, node.y, 600);
         graph.zoom(3, 600);
       }
-    });
-  }
+    } else {
+      graph.zoom(2, 600);
+    }
+  });
 
   window.addEventListener('resize', function () {
     graph.width(container.clientWidth);
