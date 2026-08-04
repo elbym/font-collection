@@ -5,6 +5,7 @@
 
   var data = JSON.parse(dataEl.textContent);
   var highlightId = container.dataset.highlight || null;
+  var baseUrl = container.dataset.baseUrl || '/';
 
   var CATEGORY_COLORS = {
     sans: '#4C6EF5',
@@ -79,7 +80,7 @@
     .height(container.clientHeight || Math.round(window.innerHeight * 0.7))
     .onNodeClick(function (node) {
       if (node.group === 'font' && node.url && node.id !== highlightId) {
-        window.location.href = '/' + node.url + '.html';
+        window.location.href = baseUrl + node.url + '.html';
       }
     });
 

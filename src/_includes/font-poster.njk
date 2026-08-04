@@ -258,7 +258,7 @@
   {# ── Netzwerk ─────────────────────────────────────────────────────── #}
   <section class="font-network-section">
     <h2 class="related-fonts__heading">Netzwerk</h2>
-    <div class="font-network font-network--embed" data-highlight="font:{{ folder.key }}"></div>
+    <div class="font-network font-network--embed" data-highlight="font:{{ folder.key }}" data-base-url="{{ '/' | url }}"></div>
   </section>
   <script type="application/json" id="font-network-data">{{ fontNetwork | dump | safe }}</script>
   <script src="/js/force-graph.min.js" defer></script>
