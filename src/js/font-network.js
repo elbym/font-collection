@@ -32,6 +32,82 @@
     return node.id === highlightId ? base + 4 : base;
   }
 
+  // Pulls font nodes toward a fixed per-category point on a circle so that
+  // categories form visually distinct clusters instead of one dense blob.
+  // Tag/author nodes are pulled toward the average target of the fonts they
+  // connect to, so they settle near the category (or categories) they belong to.
+  function forceCluster() {
+    var strength = 0.5;
+    var radius = 200;
+    var nodes;
+
+    function force(alpha) {
+      nodes.forEach(function (d) {
+        var target = d.__clusterTarget;
+        if (!target) return;
+        d.vx += (target.x * radius - d.x) * strength * alpha;
+        d.vy += (target.y * radius - d.y) * strength * alpha;
+      });
+    }
+
+    force.initialize = function (_nodes) {
+      nodes = _nodes;
+    };
+    force.radius = function (v) {
+      if (!arguments.length) return radius;
+      radius = v;
+      return force;
+    };
+
+    return force;
+  }
+
+  function assignClusterTargets(nodes, links) {
+    var categories = Object.keys(CATEGORY_COLORS).concat(['other']);
+    var centers = {};
+    categories.forEach(function (cat, i) {
+      var angle = (2 * Math.PI * i) / categories.length;
+      centers[cat] = { x: Math.cos(angle), y: Math.sin(angle) };
+    });
+
+    var nodeById = {};
+    nodes.forEach(function (n) { nodeById[n.id] = n; });
+
+    nodes.forEach(function (n) {
+      if (n.group === 'font') {
+        var cat = (n.category || 'other').toLowerCase();
+        n.__clusterTarget = centers[cat] || centers.other;
+      }
+    });
+
+    var accum = {};
+    links.forEach(function (link) {
+      var sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+      var targetId = typeof link.target === 'object' ? link.target.id : link.target;
+      var sourceNode = nodeById[sourceId];
+      var targetNode = nodeById[targetId];
+      if (!sourceNode || !targetNode) return;
+
+      var fontNode = sourceNode.group === 'font' ? sourceNode : (targetNode.group === 'font' ? targetNode : null);
+      var otherNode = fontNode === sourceNode ? targetNode : sourceNode;
+      if (!fontNode || !otherNode || otherNode.group === 'font') return;
+
+      var t = fontNode.__clusterTarget;
+      if (!t) return;
+      accum[otherNode.id] = accum[otherNode.id] || { x: 0, y: 0, count: 0 };
+      accum[otherNode.id].x += t.x;
+      accum[otherNode.id].y += t.y;
+      accum[otherNode.id].count++;
+    });
+
+    Object.keys(accum).forEach(function (id) {
+      var a = accum[id];
+      nodeById[id].__clusterTarget = { x: a.x / a.count, y: a.y / a.count };
+    });
+  }
+
+  assignClusterTargets(data.nodes, data.links);
+
   var graph = ForceGraph()(container)
     .graphData(data)
     .nodeId('id')
@@ -83,6 +159,13 @@
         window.location.href = baseUrl + node.url + '.html';
       }
     });
+
+  var clusterRadius = Math.max(160, Math.min(container.clientWidth, container.clientHeight || window.innerHeight * 0.7) * 0.6);
+  graph.d3Force('cluster', forceCluster().radius(clusterRadius));
+  var chargeForce = graph.d3Force('charge');
+  if (chargeForce && typeof chargeForce.strength === 'function') {
+    chargeForce.strength(-140);
+  }
 
   var didInitialZoom = false;
   graph.onEngineStop(function () {
