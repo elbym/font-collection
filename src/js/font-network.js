@@ -7,6 +7,23 @@
   var highlightId = container.dataset.highlight || null;
   var baseUrl = container.dataset.baseUrl || '/';
 
+  // On specimen pages (highlightId set), fade out every node that isn't
+  // directly linked to the current font so its immediate neighborhood stands out.
+  var connectedIds = null;
+  if (highlightId) {
+    connectedIds = new Set([highlightId]);
+    data.links.forEach(function (link) {
+      var sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+      var targetId = typeof link.target === 'object' ? link.target.id : link.target;
+      if (sourceId === highlightId) connectedIds.add(targetId);
+      if (targetId === highlightId) connectedIds.add(sourceId);
+    });
+  }
+
+  function isDimmed(node) {
+    return !!connectedIds && !connectedIds.has(node.id);
+  }
+
   var CATEGORY_COLORS = {
     sans: '#4C6EF5',
     serif: '#F76707',
@@ -144,6 +161,9 @@
       var r = nodeRadius(node);
       var isHighlight = node.id === highlightId;
 
+      ctx.save();
+      ctx.globalAlpha = isDimmed(node) ? 0.5 : 1;
+
       ctx.beginPath();
       ctx.arc(node.x, node.y, r, 0, 2 * Math.PI, false);
       ctx.fillStyle = nodeColor(node);
@@ -170,6 +190,8 @@
         ctx.fillStyle = HIGHLIGHT_COLOR;
         ctx.fillText('Sie sind hier ↓', node.x, node.y - r - markerSize - 2);
       }
+
+      ctx.restore();
     })
     .nodePointerAreaPaint(function (node, color, ctx) {
       var r = nodeRadius(node);
