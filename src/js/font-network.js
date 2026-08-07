@@ -190,7 +190,10 @@
   graph.d3Force('cluster', forceCluster().radius(clusterRadius));
   var chargeForce = graph.d3Force('charge');
   if (chargeForce && typeof chargeForce.strength === 'function') {
-    chargeForce.strength(-140);
+    var CHARGE_PER_RADIUS = -10;
+    chargeForce.strength(function (node) {
+      return CHARGE_PER_RADIUS * nodeRadius(node);
+    });
   }
 
   var didInitialZoom = false;
