@@ -27,8 +27,34 @@
     return TAG_COLOR;
   }
 
+  // Node size reflects how many connections (links) a node has, so hub
+  // tags/authors and heavily-tagged fonts stand out from sparsely linked ones.
+  var MIN_RADIUS = 3;
+  var MAX_RADIUS = 18;
+
+  (function computeDegrees() {
+    var degree = {};
+    data.links.forEach(function (link) {
+      var sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+      var targetId = typeof link.target === 'object' ? link.target.id : link.target;
+      degree[sourceId] = (degree[sourceId] || 0) + 1;
+      degree[targetId] = (degree[targetId] || 0) + 1;
+    });
+
+    var maxDegree = 1;
+    data.nodes.forEach(function (n) {
+      var d = degree[n.id] || 0;
+      n.__degree = d;
+      if (d > maxDegree) maxDegree = d;
+    });
+    data.nodes.forEach(function (n) {
+      n.__maxDegree = maxDegree;
+    });
+  })();
+
   function nodeRadius(node) {
-    var base = node.group === 'font' ? 7 : 4;
+    var ratio = node.__maxDegree ? node.__degree / node.__maxDegree : 0;
+    var base = MIN_RADIUS + Math.sqrt(ratio) * (MAX_RADIUS - MIN_RADIUS);
     return node.id === highlightId ? base + 4 : base;
   }
 
