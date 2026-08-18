@@ -13,6 +13,14 @@ function buildSteps(tag, min, max) {
     ];
   }
 
+  // WONK is a 0/1 toggle — only the extremes are meaningful
+  if (tag === "WONK") {
+    return [
+      { value: 0, style: "font-variation-settings: 'WONK' 0", label: "Aus" },
+      { value: 1, style: "font-variation-settings: 'WONK' 1", label: "An" },
+    ];
+  }
+
   const count = tag === "wght" ? 9 : 7;
   const interval = (max - min) / (count - 1);
   const raw = [];

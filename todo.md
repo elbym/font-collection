@@ -47,9 +47,6 @@
 | [x] **Bitter** | `Serif, Slab Serif` | ausstehend | https://fonts.google.com/specimen/Bitter |
 | [ ] **Reforma** | `Serif, Humanist` | ausstehend | https://pampatype.com/reforma |
 | [ ] **Sorts Mill Goudy** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Sorts+Mill+Goudy |
-| [ ] **Cardo** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Cardo |
-| [x] **STIX Two** | `Serif, Humanist` | ausstehend | https://www.stixfonts.org |
-| [ ] **Quattrocento** | `Serif, Humanist, Garalde` | ausstehend | https://fonts.google.com/specimen/Quattrocento |
 | [x] **Zodiak** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/zodiak |
 | [x] **Sentient** | `Serif, Humanist` | ausstehend | https://www.fontshare.com/fonts/sentient |
 | [x] **Gambetta** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/gambetta |
@@ -79,7 +76,6 @@
 |---|---|---|---|
 | [x] **Anton** | `Display, Condensed, Grotesk` | erledigt | https://fonts.google.com/specimen/Anton |
 | [x] **Dela Gothic One** | `Display, Geometric` | erledigt | https://fonts.google.com/specimen/Dela+Gothic+One |
-| [ ] **Silkscreen** | `Display, Monospace` | ausstehend | https://fonts.google.com/specimen/Silkscreen |
 | [x] **Big Shoulders Display** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Big+Shoulders+Display |
 | [x] **Anybody** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Anybody |
 

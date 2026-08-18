@@ -38,6 +38,77 @@
   var HIGHLIGHT_COLOR = '#212529';
   var RING_COLOR = '#FF1493';
 
+  // Pin the active font at the graph's origin so it structurally becomes
+  // the center the rest of the network is arranged around, not just the
+  // camera target.
+  var highlightNode = highlightId && data.nodes.find(function (n) { return n.id === highlightId; });
+  if (highlightNode) { highlightNode.fx = 0; highlightNode.fy = 0; }
+
+  // ForceAtlas2 (Jacomy et al.) as custom d3-force forces: degree-weighted
+  // repulsion, linear edge attraction, degree-weighted gravity to center.
+  var degree = {};
+  data.links.forEach(function (l) {
+    degree[l.source] = (degree[l.source] || 0) + 1;
+    degree[l.target] = (degree[l.target] || 0) + 1;
+  });
+
+  function forceAtlas2Repulsion(scaling) {
+    var nodes;
+    function force(alpha) {
+      var n = nodes.length;
+      for (var i = 0; i < n; i++) {
+        var a = nodes[i];
+        var da = (degree[a.id] || 0) + 1;
+        for (var j = i + 1; j < n; j++) {
+          var b = nodes[j];
+          var db = (degree[b.id] || 0) + 1;
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var d2 = dx * dx + dy * dy || 0.01;
+          var k = (scaling * da * db / d2) * alpha;
+          var fx = dx * k, fy = dy * k;
+          a.vx += fx; a.vy += fy;
+          b.vx -= fx; b.vy -= fy;
+        }
+      }
+    }
+    force.initialize = function (n) { nodes = n; };
+    return force;
+  }
+
+  function forceAtlas2Attraction(strength) {
+    var links;
+    function force(alpha) {
+      for (var i = 0; i < links.length; i++) {
+        var l = links[i];
+        var s = l.source, t = l.target;
+        var dx = t.x - s.x, dy = t.y - s.y;
+        var k = strength * alpha;
+        var fx = dx * k, fy = dy * k;
+        s.vx += fx; s.vy += fy;
+        t.vx -= fx; t.vy -= fy;
+      }
+    }
+    force.links = function (l) { links = l; return force; };
+    force.id = function () { return force; };
+    return force;
+  }
+
+  function forceAtlas2Gravity(gravity) {
+    var nodes;
+    function force(alpha) {
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        var da = (degree[a.id] || 0) + 1;
+        var dist = Math.sqrt(a.x * a.x + a.y * a.y) || 1;
+        var k = (gravity * da * alpha) / dist;
+        a.vx -= a.x * k;
+        a.vy -= a.y * k;
+      }
+    }
+    force.initialize = function (n) { nodes = n; };
+    return force;
+  }
+
   function nodeColor(node) {
     if (node.group === 'font') return CATEGORY_COLORS[(node.category || '').toLowerCase()] || TAG_COLOR;
     if (node.group === 'author') return AUTHOR_COLOR;
@@ -202,6 +273,10 @@
     })
     .width(container.clientWidth)
     .height(container.clientHeight || Math.round(window.innerHeight * 0.7))
+    .d3Force('charge', forceAtlas2Repulsion(5))
+    .d3Force('link', forceAtlas2Attraction(0.15).links(data.links))
+    .d3Force('center', null)
+    .d3Force('gravity', forceAtlas2Gravity(0.5013))
     .onNodeClick(function (node) {
       if (node.group === 'font' && node.url && node.id !== highlightId) {
         window.location.href = baseUrl + node.url + '.html';
@@ -222,12 +297,9 @@
   graph.onEngineStop(function () {
     if (didInitialZoom) return;
     didInitialZoom = true;
-    if (highlightId) {
-      var node = data.nodes.find(function (n) { return n.id === highlightId; });
-      if (node) {
-        graph.centerAt(node.x, node.y, 600);
-        graph.zoom(3, 600);
-      }
+    if (highlightNode) {
+      graph.centerAt(0, 0, 600);
+      graph.zoom(3, 600);
     } else {
       graph.zoom(2, 600);
     }
