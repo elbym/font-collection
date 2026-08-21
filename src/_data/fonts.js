@@ -141,10 +141,17 @@ module.exports = function () {
 
   const VARIABLE_AXES = ["wght", "wdth", "ital", "slnt", "opsz"];
 
+  // Bracket notation spells out the font's real axes, and those are not limited to the
+  // five registered ones: Fraunces ships SOFT/WONK, Recursive MONO/CASL/CRSV, Climate
+  // Crisis a YEAR axis. Match any comma-separated list of four-letter tags instead of a
+  // whitelist, otherwise such a font is not recognised as variable at all — no axis
+  // sliders, no 3D cube, no "Variable" tag.
+  const AXIS_LIST_RE = /\[([a-z]{4}(?:\s*,\s*[a-z]{4})*)\]/;
+
   function detectVariableFont(lowerName) {
     return (
       lowerName.includes("variable") ||
-      VARIABLE_AXES.some((axis) => new RegExp(`\\[[^\\]]*${axis}`).test(lowerName)) ||
+      AXIS_LIST_RE.test(lowerName) ||
       /[-_]vf$/.test(lowerName)
     );
   }
@@ -153,7 +160,9 @@ module.exports = function () {
     // Format 1: Filename[wght,opsz,wdth]
     const bracketMatch = lowerName.match(/\[([^\]]+)\]/);
     if (bracketMatch) {
-      return bracketMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => VARIABLE_AXES.includes(a));
+      // No whitelist filter here — custom axes (SOFT, WONK, MONO, CASL, CRSV, YEAR) are real axes.
+      const axes = bracketMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => /^[a-z]{4}$/.test(a));
+      if (axes.length > 0) return axes;
     }
     // Format 2: _opsz,wght or _variablefont_opsz,wght
     const underscoreMatch = lowerName.match(/[_-](?:variablefont[_-])?([a-z]{4}(?:,[a-z]{4})+)/);
