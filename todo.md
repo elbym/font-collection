@@ -2,93 +2,87 @@
 
 ## Schriften-Wunschliste
 
-`meta.yaml` für alle Einträge erstellt — Ordner angelegt, Fonts ausstehend. Neue Kategorie `display/` eingeführt für Schriften mit `Display` als erstem Tag. Alle `[x]`-Einträge haben fertige `meta.yaml`; Fonts selbst noch ausstehend.
+Lückenanalyse gegen den Bestand (96 Schriften: Serif 34, Sans 33, Script 15, Monospace 8, Blackletter 3, Display 3). Die Spalte **Lücke** begründet, was der Eintrag abdeckt. Neue Kategorie `display/` für Schriften mit `Display` als erstem Tag.
+
+Für keinen Eintrag existiert bisher eine `meta.yaml` — Ausnahmen: `mono/GeistMono/` und `blackletter/FetteFraktur/` haben Ordner samt `meta.yaml`, aber keine Font-Datei.
+
+**Top 3 nach Nutzen pro Aufwand:** Recursive, Courier Prime, IBM Plex Mono.
+
+**Quelle** ist die offizielle Projektseite bzw. das Upstream-Repo (via `METADATA.pb` in `google/fonts` ermittelt), nicht die Google-Fonts-Specimen-Seite — dort liegen die aktuellen Builds, oft neuer als bei Google. Alle URLs am 2026-08-21 auf HTTP 200 geprüft. Einträge mit *(nur GF-Repo)* haben keine unabhängige Projektheimat.
 
 
 ### Monospace
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [x] **Recursive** | `Monospace, Sans, Variable` | ausstehend | https://www.recursive.design |
-| [x] **0xProto** | `Monospace, Coding` | ausstehend | https://github.com/0xType/0xProto |
-| [x] **Monaspace** | `Monospace, Coding, Variable` | ausstehend | https://monaspace.githubnext.com |
-| [x] **Departure Mono** | `Monospace, Display` | ausstehend | https://departuremono.com |
-| [x] **Space Mono** | `Monospace, Geometric` | ausstehend | https://github.com/googlefonts/spacemono |
-| [x] **Geist Mono** | `Monospace, Coding` | ausstehend | https://github.com/vercel/geist-font |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **Recursive** | `Monospace, Sans, Variable` | ausstehend | https://www.recursive.design | 5 Achsen (MONO, CASL, wght, slnt, CRSV) — der Achsen-Würfel ist von recursive.design inspiriert, die Schrift selbst fehlt |
+| [ ] **Courier Prime** | `Monospace, Schreibmaschine` | ausstehend | https://quoteunquoteapps.com/courierprime/ | 8 Mono-Schriften, alle Coding — keine Schreibmaschine |
+| [ ] **TeX Gyre Cursor** | `Monospace, Schreibmaschine` | ausstehend | https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor | Courier-Klon, vervollständigt das vorhandene TeX-Gyre-Set |
+| [ ] **IBM Plex Mono** | `Monospace, Coding, Variable` | ausstehend | https://github.com/IBM/plex | Plex Sans + Serif sind da, Mono fehlt |
+| [ ] **Source Code Pro** | `Monospace, Coding, Variable` | ausstehend | https://github.com/adobe-fonts/source-code-pro | Source Sans + Serif sind da, Code Pro fehlt |
+| [ ] **Libertinus Mono** | `Monospace` | ausstehend | https://github.com/alerque/libertinus | Libertinus Sans + Serif sind da, Mono fehlt |
+| [ ] **Geist Mono** | `Monospace, Coding` | Ordner + meta.yaml vorhanden, Font fehlt | https://github.com/vercel/geist-font | `mono/GeistMono/` ist leer |
 
 ### Sans
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [x] **Bricolage Grotesque** | `Sans, Geometric, Grotesk, Display` | ausstehend | https://ateliertriay.github.io/bricolage/ |
-| [x] **Geist** | `Sans, Neo, Grotesk` | ausstehend | https://vercel.com/font |
-| [x] **Figtree** | `Sans, Geometric, Rounded` | ausstehend | https://www.erikdkennedy.com/projects/figtree.html |
-| [x] **Routed Gothic** | `Sans, Grotesk, Display` | ausstehend | https://webonastick.com/fonts/routed-gothic/ |
-| [X] **Satoshi** | `Sans, Neo, Grotesk` | ausstehend | https://www.fontshare.com/fonts/satoshi |
-| [x] **Manrope** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Manrope |
-| [x] **Lexend** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Lexend |
-| [x] **Cabinet Grotesk** | `Sans, Grotesk, Display` | ausstehend | https://www.fontshare.com/fonts/cabinet-grotesk |
-| [x] **Urbanist** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Urbanist |
-| [x] **Syne** | `Sans, Geometric, Display` | ausstehend | https://fonts.google.com/specimen/Syne |
-| [x] **Oswald** | `Sans, Condensed, Display` | ausstehend | https://github.com/vernnobile/OswaldFont |
-| [x] **Roboto Flex** | `Sans, Neo-Grotesk, Variable` | ausstehend | https://fonts.google.com/specimen/Roboto+Flex |
-| [x] **Plus Jakarta Sans** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Plus+Jakarta+Sans |
-| [x] **Outfit** | `Sans, Geometric, Grotesk` | ausstehend | https://fonts.google.com/specimen/Outfit |
-| [x] **Chivo** | `Sans, Humanist` | ausstehend | https://fonts.google.com/specimen/Chivo |
-| [x] **Barlow** | `Sans, Condensed, Grotesk` | ausstehend | https://fonts.google.com/specimen/Barlow |
-| [x] **Playpen Sans** | `Sans, Script, Handwriting` | ausstehend | https://fonts.google.com/specimen/Playpen+Sans |
-| [x] **Encode Sans** | `Sans, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Encode+Sans |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **Nunito** | `Sans, Rounded, Variable` | ausstehend | https://github.com/googlefonts/nunito *(kein eigenes Projekt, nur GF-Repo)* | 33 Sans und keine echte gerundete (Figtree ist nur leicht abgerundet) |
+| [ ] **Quicksand** | `Sans, Geometric, Rounded, Variable` | ausstehend | https://github.com/ThomasJockin/QuicksandFamily | s.o. — geometrisch-gerundet als Gegenpol zu Jost*/Metropolis |
+| [ ] **Varela Round** | `Sans, Rounded` | ausstehend | https://fonts.google.com/specimen/Varela+Round *(keine eigene Projektseite; GF-Upstream ist ein Hebräisch-Fork)* | s.o. — kompakte, weiche Grotesk |
+| [ ] **Karrik** | `Sans, Grotesk, Reverse Contrast` | ausstehend | https://velvetyne.fr/fonts/karrik/ | Umgekehrter Kontrast fehlt völlig; Velvetyne ist mit Compagnon + Krikikrak schon vertreten |
+| [ ] **Vazirmatn** | `Sans, Arabisch, Variable` | ausstehend | https://github.com/rastikerdar/vazirmatn | siehe Abschnitt „Nicht-lateinische Schriften" |
 
 ### Serif
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [ ] **Gentium Plus** | `Serif, Garalde, Old Style` | ausstehend | https://software.sil.org/gentium |
-| [x] **Bitter** | `Serif, Slab Serif` | ausstehend | https://fonts.google.com/specimen/Bitter |
-| [ ] **Reforma** | `Serif, Humanist` | ausstehend | https://pampatype.com/reforma |
-| [ ] **Sorts Mill Goudy** | `Serif, Garalde, Old Style` | ausstehend | https://fonts.google.com/specimen/Sorts+Mill+Goudy |
-| [x] **Zodiak** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/zodiak |
-| [x] **Sentient** | `Serif, Humanist` | ausstehend | https://www.fontshare.com/fonts/sentient |
-| [x] **Gambetta** | `Serif, Display` | erledigt | https://www.fontshare.com/fonts/gambetta |
-| [x] **Amstelvar** | `Serif, Variable, Optical Sizes` | erledigt | https://github.com/googlefonts/amstelvar |
-| [x] **Instrument Serif** | `Serif, Transitional` | ausstehend | https://fonts.google.com/specimen/Instrument+Serif |
-| [x] **Roslindale** | `Serif, Display, Optical Sizes` | ausstehend | https://fonts.google.com/specimen/Roslindale |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **Zilla Slab** | `Serif, Slab Serif, Clarendon` | ausstehend | https://github.com/mozilla/zilla-slab | Slabs sind da (Arvo, Bitter, Compagnon), aber keine mit Ballenserifen; passt zu Mozilla Text + Headline |
+| [ ] **Bevan** | `Serif, Slab Serif, Display` | ausstehend | https://github.com/googlefonts/BevanFont *(kein eigenes Projekt, nur GF-Repo)* | schwere Egyptienne für Titel — im Katalog nicht vorhanden |
+| [ ] **Basteleur** | `Serif, Display, Reverse Contrast` | ausstehend | https://velvetyne.fr/fonts/basteleur/ | umgekehrter Kontrast, Bitmap-Herkunft — nur Fraunces streift das Thema |
+| [ ] **Frank Ruhl Libre** | `Serif, Hebräisch, Variable` | ausstehend | https://github.com/fontef/frankruhllibre | siehe Abschnitt „Nicht-lateinische Schriften" |
 
 ### Script
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [x] **Caveat** | `Script, Handwriting` | erledigt | https://fonts.google.com/specimen/Caveat |
-| [x] **Pacifico** | `Script, Display` | erledigt | https://fonts.google.com/specimen/Pacifico |
-| [x] **Satisfy** | `Script, Kalligraphisch` | erledigt | https://fonts.google.com/specimen/Satisfy |
-| [x] **Dancing Script** | `Script, Kalligraphisch` | erledigt | https://fonts.google.com/specimen/Dancing+Script |
-| [x] **Amatic SC** | `Script, Handwriting, Display` | erledigt | https://fonts.google.com/specimen/Amatic+SC |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **TeX Gyre Chorus** | `Script, Kalligraphisch` | ausstehend | https://www.gust.org.pl/projects/e-foundry/tex-gyre/chorus | 15 Script-Schriften, alle Handwriting/Casual — keine Kanzleischrift. Zapf-Chancery-Klon, vervollständigt TeX Gyre |
+| [ ] **Great Vibes** | `Script, Kalligraphisch, Display` | ausstehend | https://github.com/googlefonts/great-vibes *(kein eigenes Projekt, nur GF-Repo)* | formaler Kupferstich-Duktus; Satisfy und Dancing Script sind beide locker |
+| [ ] **Tangerine** | `Script, Kalligraphisch` | ausstehend | https://github.com/googlefonts/TangerineFont *(kein eigenes Projekt, nur GF-Repo)* | Spitzfeder-Kalligrafie, feiner Strich |
 
 ### Blackletter
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [ ] **Fette Fraktur** | `Blackletter, Display` | ausstehend | https://fonts.google.com/specimen/Fette+Fraktur |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **Fette Fraktur** ⚠ | `Blackletter, Display` | Ordner + meta.yaml vorhanden, Font fehlt | **keine Quelle** — die eingetragene URL ist ein 404, „Fette Fraktur" existiert nicht bei Google Fonts und es gibt keine freie Digitalisierung. Ersatz mit eigener Projektseite: [Plakat Fraktur](http://www.peter-wiegel.de/PlakatFraktur.html) oder [Ganz Grobe Gotisch](http://www.peter-wiegel.de/GanzGrobe.html) (Peter Wiegel) | `blackletter/FetteFraktur/` ist leer; die `meta.yaml` nennt Peter Wiegel als Urheber — er hat aber keine Fette Fraktur im Programm |
+| [ ] **UnifrakturCook** | `Blackletter, Display` | ausstehend | https://unifraktur.sourceforge.net | nur 3 Blackletter im Katalog; Schwabacher-Variante neben der vorhandenen Maguntia |
+| [ ] **Jacquarda Bastarda 9** | `Blackletter, Display, Pixel` | ausstehend | https://github.com/scfried/soft-type-jacquarda-bastarda | Bastarda auf Pixelraster — deckt Blackletter *und* Bitmap ab |
 
 ### Display *(neue Kategorie)*
 
-| Schrift | Tags | Fonts | Quelle |
-|---|---|---|---|
-| [x] **Anton** | `Display, Condensed, Grotesk` | erledigt | https://fonts.google.com/specimen/Anton |
-| [x] **Dela Gothic One** | `Display, Geometric` | erledigt | https://fonts.google.com/specimen/Dela+Gothic+One |
-| [x] **Big Shoulders Display** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Big+Shoulders+Display |
-| [x] **Anybody** | `Display, Condensed, Variable` | ausstehend | https://fonts.google.com/specimen/Anybody |
+| Schrift | Tags | Fonts | Quelle | Lücke |
+|---|---|---|---|---|
+| [ ] **Big Shoulders Stencil** | `Display, Stencil, Condensed, Variable` | ausstehend | https://github.com/xotypeco/big_shoulders | Stencil fehlt komplett; Big Shoulders Display ist schon da |
+| [ ] **Saira Stencil One** | `Display, Stencil` | ausstehend | https://github.com/Omnibus-Type/Saira | s.o. — breitere, runde Schablonenform |
+| [ ] **Silkscreen** | `Display, Pixel, Bitmap` | ausstehend | https://kottke.org/plus/type/silkscreen/ | proportionale Bitmap-Schrift; Departure Mono ist Monospace-only |
+| [ ] **Pixelify Sans** | `Display, Pixel, Bitmap, Variable` | ausstehend | https://github.com/eifetx/Pixelify-Sans | s.o. — mit Gewichtsachse |
+| [ ] **Climate Crisis** | `Display, Condensed, Variable` | ausstehend | https://github.com/dancoull/ClimateCrisis | Achse `YEAR` (1979–2050) statt Gewicht — ungewöhnlichster Variable-Kandidat für den 3D-Würfel |
+
+### Nicht-lateinische Schriften *(Grundsatzentscheidung)*
+
+Der Katalog enthält bislang **keine** nicht-lateinische Schrift. Das ist kein Nebenbei-Eintrag: es braucht Panagramme, Beispieltexte und Unicode-Blöcke je Schriftsystem (`unicodeRanges.js`), sonst bleiben Coverage-Anzeige und Wasserfall leer. Erst entscheiden, ob der Katalog das abdecken soll — dann diese vier als Startpunkt:
+
+| Schrift | Schriftsystem | Quelle |
+|---|---|---|
+| Vazirmatn | Arabisch / Persisch | https://github.com/rastikerdar/vazirmatn |
+| Frank Ruhl Libre | Hebräisch | https://github.com/fontef/frankruhllibre |
+| Noto Serif Devanagari | Devanagari | https://github.com/notofonts/devanagari |
+| Sarasa Gothic | CJK (+ Monospace) | https://github.com/be5invis/Sarasa-Gothic |
 
 ---
 ## Features
 
-- [ ] **9 – Achsen-Tabelle auf Specimen-Seiten**
-  Variable-Font-Achsen (wght, wdth, opsz, ital, slnt) als Tabelle ausgeben. Info steckt im Dateinamen (`Fraunces[wght,opsz,WONK].woff2`). Reine Build-Zeit-Arbeit in `fonts.js`.
-
-- [ ] **11 – `content`-Feld bei Leaf-Nodes befüllen** *(redaktionell)*
-  Informationstexte zu einzelnen Schriften in den jeweiligen `meta.yaml`-Dateien schreiben.
-
-- [x] **17 – Wikipedia-Beschreibungen**
+- [] **17 – Wikipedia-Beschreibungen**
   Lies zuerst die CLAUDE.md vollständig. Dann führe folgende Aufgabe vollständig und systematisch durch.
 
   ## Ziel
