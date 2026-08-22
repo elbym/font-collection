@@ -16,7 +16,9 @@ Das ist eine persönliche und eigenwillige Sammlung von Schriftarten, die mir im
 
 2. **`.woff2`-Dateien ablegen** — Namensschema: `SchriftName_Gewicht.woff2`
    Beispiele: `Jost_Regular.woff2`, `Jost_Bold.woff2`, `Jost_BoldItalic.woff2`
-   Variable Fonts: Dateiname muss `Variable` oder `[wght]` enthalten.
+   Variable Fonts: Dateiname muss `Variable`, ein `_vf`-Suffix oder eine Achsenliste in
+   eckigen Klammern enthalten — `[wght]`, `[opsz,wght]`, `[MONO,CASL,wght,slnt,CRSV]`.
+   Beliebige vierstellige Achsen-Tags sind erlaubt, nicht nur die fünf registrierten.
 
 3. **`meta.yaml` erstellen** — Pflicht: `tags` (erster Tag bestimmt URL-Segment und Kategorie)
    ```yaml
@@ -42,7 +44,10 @@ Das ist eine persönliche und eigenwillige Sammlung von Schriftarten, die mir im
 | `fontyear` | `2017` | Erscheinungsjahr |
 | `wikipedia` | `https://…` | Link zur Wikipedia-Seite |
 | `content` | `Markdown-Text` | Freitext unter dem Specimen |
-| `comment` | `interner Hinweis` | Interne Notiz, nicht angezeigt |
+| `comment` | `interner Hinweis` | Interne Notiz, unter dem Header angezeigt |
+| `license` | `SIL Open Font License 1.1` | Überschreibt die Auto-Erkennung aus `OFL.txt`/`LICENSE.txt` |
+| `favorite` | `true` | Goldener Stern auf Karte und Specimen-Seite |
+| `url` | `https://…` | Projekt-/Quelllink (im Template `folder.sourceUrl`) |
 
 ### Optionale Bilder
 
@@ -64,28 +69,32 @@ npx gulp deploy     # Deploy auf GitHub Pages
 
 ## Schriften
 
-Aktuell **90 Schriften** mit Specimen-Seite, weitere 2 in Vorbereitung (Ordner & `meta.yaml` stehen, Schriftdatei fehlt noch).
+Aktuell **122 Schriften** mit Specimen-Seite. Die Gliederung folgt dem jeweils
+ersten Tag in der `meta.yaml` — der bestimmt auch die URL. Diese Liste ist aus dem
+Datenlayer generiert; beim Hinzufügen einer Schrift mit aktualisieren.
 
-### Serif (34)
-[Alegreya](https://elbym.github.io/font-collection/serif/alegreya.html) · [Arvo](https://elbym.github.io/font-collection/serif/arvo.html) · [Bitter](https://elbym.github.io/font-collection/serif/bitter.html) · [Bodoni\*](https://elbym.github.io/font-collection/serif/bodoni.html) · [Compagnon](https://elbym.github.io/font-collection/serif/compagnon.html) · [Cormorant](https://elbym.github.io/font-collection/serif/cormorant.html) · [Crimson Pro](https://elbym.github.io/font-collection/serif/crimsonpro.html) · [EB Garamond](https://elbym.github.io/font-collection/serif/ebgaramond.html) · [Fraunces](https://elbym.github.io/font-collection/serif/fraunces.html) · [Gambetta](https://elbym.github.io/font-collection/serif/gambetta.html) · [GFS Didot](https://elbym.github.io/font-collection/serif/gfsdidot.html) · [IBM Plex Serif](https://elbym.github.io/font-collection/serif/ibmplexserif.html) · [Junicode](https://elbym.github.io/font-collection/serif/junicode.html) · [Libertinus Serif](https://elbym.github.io/font-collection/serif/libertinusserif.html) · [Libre Baskerville](https://elbym.github.io/font-collection/serif/librebaskerville.html) · [Libre Caslon](https://elbym.github.io/font-collection/serif/librecaslon.html) · [Literata](https://elbym.github.io/font-collection/serif/literata.html) · [Lora](https://elbym.github.io/font-collection/serif/lora.html) · [Merriweather](https://elbym.github.io/font-collection/serif/merriweather.html) · [Mozilla Headline](https://elbym.github.io/font-collection/serif/mozillaheadline.html) · [Newsreader](https://elbym.github.io/font-collection/serif/newsreader.html) · [Piazzolla](https://elbym.github.io/font-collection/serif/piazzolla.html) · [Playfair](https://elbym.github.io/font-collection/serif/playfair.html) · [Reforma](https://elbym.github.io/font-collection/serif/reforma.html) · [Sentient](https://elbym.github.io/font-collection/serif/sentient.html) · [Source Serif](https://elbym.github.io/font-collection/serif/sourceserif.html) · [Spectral](https://elbym.github.io/font-collection/serif/spectral.html) · [Tex Gyre Bonum](https://elbym.github.io/font-collection/serif/texgyrebonum.html) · [Tex Gyre Pagella](https://elbym.github.io/font-collection/serif/texgyrepagella.html) · [Tex Gyre Schola](https://elbym.github.io/font-collection/serif/texgyreschola.html) · [Tex Gyre Termes](https://elbym.github.io/font-collection/serif/texgyretermes.html) · [Unna](https://elbym.github.io/font-collection/serif/unna.html) · [Vollkorn](https://elbym.github.io/font-collection/serif/vollkorn.html) · [Zodiak](https://elbym.github.io/font-collection/serif/zodiak.html)
+### Serif (38)
+[Alegreya](https://elbym.github.io/font-collection/serif/alegreya.html) · [Arvo](https://elbym.github.io/font-collection/serif/arvo.html) · [Basteleur](https://elbym.github.io/font-collection/serif/basteleur.html) · [Bevan](https://elbym.github.io/font-collection/serif/bevan.html) · [Bitter](https://elbym.github.io/font-collection/serif/bitter.html) · [Bodoni\*](https://elbym.github.io/font-collection/serif/bodoni.html) · [Compagnon](https://elbym.github.io/font-collection/serif/compagnon.html) · [Cormorant](https://elbym.github.io/font-collection/serif/cormorant.html) · [Crimson Pro](https://elbym.github.io/font-collection/serif/crimsonpro.html) · [EB Garamond](https://elbym.github.io/font-collection/serif/ebgaramond.html) · [Frank Ruhl Libre](https://elbym.github.io/font-collection/serif/frankruhllibre.html) · [Fraunces](https://elbym.github.io/font-collection/serif/fraunces.html) · [Gambetta](https://elbym.github.io/font-collection/serif/gambetta.html) · [GFS Didot](https://elbym.github.io/font-collection/serif/gfsdidot.html) · [IBM Plex Serif](https://elbym.github.io/font-collection/serif/ibmplexserif.html) · [Junicode](https://elbym.github.io/font-collection/serif/junicode.html) · [Libertinus Serif](https://elbym.github.io/font-collection/serif/libertinusserif.html) · [Libre Baskerville](https://elbym.github.io/font-collection/serif/librebaskerville.html) · [Libre Caslon](https://elbym.github.io/font-collection/serif/librecaslon.html) · [Literata](https://elbym.github.io/font-collection/serif/literata.html) · [Lora](https://elbym.github.io/font-collection/serif/lora.html) · [Merriweather](https://elbym.github.io/font-collection/serif/merriweather.html) · [Mozilla Headline](https://elbym.github.io/font-collection/serif/mozillaheadline.html) · [Newsreader](https://elbym.github.io/font-collection/serif/newsreader.html) · [Piazzolla](https://elbym.github.io/font-collection/serif/piazzolla.html) · [Playfair](https://elbym.github.io/font-collection/serif/playfair.html) · [Reforma](https://elbym.github.io/font-collection/serif/reforma.html) · [Sentient](https://elbym.github.io/font-collection/serif/sentient.html) · [Source Serif](https://elbym.github.io/font-collection/serif/sourceserif.html) · [Spectral](https://elbym.github.io/font-collection/serif/spectral.html) · [Tex Gyre Bonum](https://elbym.github.io/font-collection/serif/texgyrebonum.html) · [Tex Gyre Pagella](https://elbym.github.io/font-collection/serif/texgyrepagella.html) · [Tex Gyre Schola](https://elbym.github.io/font-collection/serif/texgyreschola.html) · [Tex Gyre Termes](https://elbym.github.io/font-collection/serif/texgyretermes.html) · [Unna](https://elbym.github.io/font-collection/serif/unna.html) · [Vollkorn](https://elbym.github.io/font-collection/serif/vollkorn.html) · [Zilla Slab](https://elbym.github.io/font-collection/serif/zillaslab.html) · [Zodiak](https://elbym.github.io/font-collection/serif/zodiak.html)
 
-### Sans-Serif (33)
-[Amstelvar](https://elbym.github.io/font-collection/sans/amstelvar.html) · [Asap](https://elbym.github.io/font-collection/sans/asap.html) · [Atkinson Hyperlegible Next](https://elbym.github.io/font-collection/sans/atkinsonhyperlegiblenext.html) · [Bricolage Grotesque](https://elbym.github.io/font-collection/sans/bricolagegrotesque.html) · [Cabinet Grotesk](https://elbym.github.io/font-collection/sans/cabinetgrotesk.html) · [Cooper Hewitt](https://elbym.github.io/font-collection/sans/cooperhewitt.html) · [DINish](https://elbym.github.io/font-collection/sans/dinish.html) · [Epilogue](https://elbym.github.io/font-collection/sans/epilogue.html) · [Figtree](https://elbym.github.io/font-collection/sans/figtree.html) · [Fira Sans](https://elbym.github.io/font-collection/sans/firasans.html) · [Geist](https://elbym.github.io/font-collection/sans/geist.html) · [IBM Plex Sans](https://elbym.github.io/font-collection/sans/ibmplexsans.html) · [Inter](https://elbym.github.io/font-collection/sans/inter.html) · [Jost\*](https://elbym.github.io/font-collection/sans/jost.html) · [League Spartan](https://elbym.github.io/font-collection/sans/leaguespartan.html) · [Libertinus Sans](https://elbym.github.io/font-collection/sans/libertinussans.html) · [Libre Franklin](https://elbym.github.io/font-collection/sans/librefranklin.html) · [Manrope](https://elbym.github.io/font-collection/sans/manrope.html) · [Metropolis](https://elbym.github.io/font-collection/sans/metropolis.html) · [Mozilla Text](https://elbym.github.io/font-collection/sans/mozillatext.html) · [Overpass](https://elbym.github.io/font-collection/sans/overpass.html) · [Playpen Sans](https://elbym.github.io/font-collection/sans/playpensans.html) · [Public Sans](https://elbym.github.io/font-collection/sans/publicsans.html) · [Raleway](https://elbym.github.io/font-collection/sans/raleway.html) · [Roboto Flex](https://elbym.github.io/font-collection/sans/robotoflex.html) · [Routed Gothic](https://elbym.github.io/font-collection/sans/routedgothic.html) · [Satoshi](https://elbym.github.io/font-collection/sans/satoshi.html) · [Source Sans](https://elbym.github.io/font-collection/sans/sourcesans.html) · [Space Grotesk](https://elbym.github.io/font-collection/sans/spacegrotesk.html) · [Tex Gyre Adventor](https://elbym.github.io/font-collection/sans/texgyreadventor.html) · [Tex Gyre Heros](https://elbym.github.io/font-collection/sans/texgyreheros.html) · [Titillum Web](https://elbym.github.io/font-collection/sans/titillumweb.html) · [Work Sans](https://elbym.github.io/font-collection/sans/worksans.html)
+### Sans-Serif (38)
+[Amstelvar](https://elbym.github.io/font-collection/sans/amstelvar.html) · [Asap](https://elbym.github.io/font-collection/sans/asap.html) · [Atkinson Hyperlegible Next](https://elbym.github.io/font-collection/sans/atkinsonhyperlegiblenext.html) · [Bricolage Grotesque](https://elbym.github.io/font-collection/sans/bricolagegrotesque.html) · [Cabinet Grotesk](https://elbym.github.io/font-collection/sans/cabinetgrotesk.html) · [Cooper Hewitt](https://elbym.github.io/font-collection/sans/cooperhewitt.html) · [DINish](https://elbym.github.io/font-collection/sans/dinish.html) · [Epilogue](https://elbym.github.io/font-collection/sans/epilogue.html) · [Figtree](https://elbym.github.io/font-collection/sans/figtree.html) · [Fira Sans](https://elbym.github.io/font-collection/sans/firasans.html) · [Geist](https://elbym.github.io/font-collection/sans/geist.html) · [IBM Plex Sans](https://elbym.github.io/font-collection/sans/ibmplexsans.html) · [Inter](https://elbym.github.io/font-collection/sans/inter.html) · [Jost\*](https://elbym.github.io/font-collection/sans/jost.html) · [Karrik](https://elbym.github.io/font-collection/sans/karrik.html) · [League Spartan](https://elbym.github.io/font-collection/sans/leaguespartan.html) · [Libertinus Sans](https://elbym.github.io/font-collection/sans/libertinussans.html) · [Libre Franklin](https://elbym.github.io/font-collection/sans/librefranklin.html) · [Manrope](https://elbym.github.io/font-collection/sans/manrope.html) · [Metropolis](https://elbym.github.io/font-collection/sans/metropolis.html) · [Mozilla Text](https://elbym.github.io/font-collection/sans/mozillatext.html) · [Nunito](https://elbym.github.io/font-collection/sans/nunito.html) · [Overpass](https://elbym.github.io/font-collection/sans/overpass.html) · [Playpen Sans](https://elbym.github.io/font-collection/sans/playpensans.html) · [Public Sans](https://elbym.github.io/font-collection/sans/publicsans.html) · [Quicksand](https://elbym.github.io/font-collection/sans/quicksand.html) · [Raleway](https://elbym.github.io/font-collection/sans/raleway.html) · [Roboto Flex](https://elbym.github.io/font-collection/sans/robotoflex.html) · [Routed Gothic](https://elbym.github.io/font-collection/sans/routedgothic.html) · [Satoshi](https://elbym.github.io/font-collection/sans/satoshi.html) · [Source Sans](https://elbym.github.io/font-collection/sans/sourcesans.html) · [Space Grotesk](https://elbym.github.io/font-collection/sans/spacegrotesk.html) · [Tex Gyre Adventor](https://elbym.github.io/font-collection/sans/texgyreadventor.html) · [Tex Gyre Heros](https://elbym.github.io/font-collection/sans/texgyreheros.html) · [Titillum Web](https://elbym.github.io/font-collection/sans/titillumweb.html) · [Varela Round](https://elbym.github.io/font-collection/sans/varelaround.html) · [Vazirmatn](https://elbym.github.io/font-collection/sans/vazirmatn.html) · [Work Sans](https://elbym.github.io/font-collection/sans/worksans.html)
 
-### Monospace (8 + 1 geplant)
-[0xProto](https://elbym.github.io/font-collection/monospace/0xproto.html) · [Cascadia Code](https://elbym.github.io/font-collection/monospace/cascadiacode.html) · [Departure Mono](https://elbym.github.io/font-collection/monospace/departuremono.html) · [Fira Code](https://elbym.github.io/font-collection/monospace/firacode.html) · Geist Mono · [Hack](https://elbym.github.io/font-collection/monospace/hack.html) · [JetBrains Mono](https://elbym.github.io/font-collection/monospace/jetbrainsmono.html) · [Maple Mono](https://elbym.github.io/font-collection/monospace/maplemono.html) · [Victor Mono](https://elbym.github.io/font-collection/monospace/victormono.html)
+### Monospace (15)
+[0xProto](https://elbym.github.io/font-collection/monospace/0xproto.html) · [Cascadia Code](https://elbym.github.io/font-collection/monospace/cascadiacode.html) · [Courier Prime](https://elbym.github.io/font-collection/monospace/courierprime.html) · [Departure Mono](https://elbym.github.io/font-collection/monospace/departuremono.html) · [Fira Code](https://elbym.github.io/font-collection/monospace/firacode.html) · [Geist Mono](https://elbym.github.io/font-collection/monospace/geistmono.html) · [Hack](https://elbym.github.io/font-collection/monospace/hack.html) · [IBM Plex Mono](https://elbym.github.io/font-collection/monospace/ibmplexmono.html) · [JetBrains Mono](https://elbym.github.io/font-collection/monospace/jetbrainsmono.html) · [Libertinus Mono](https://elbym.github.io/font-collection/monospace/libertinusmono.html) · [Maple Mono](https://elbym.github.io/font-collection/monospace/maplemono.html) · [Recursive](https://elbym.github.io/font-collection/monospace/recursive.html) · [Source Code Pro](https://elbym.github.io/font-collection/monospace/sourcecodepro.html) · [TeX Gyre Cursor](https://elbym.github.io/font-collection/monospace/texgyrecursor.html) · [Victor Mono](https://elbym.github.io/font-collection/monospace/victormono.html)
 
-### Script / Handschrift (7)
-[Amatic SC](https://elbym.github.io/font-collection/script/amaticsc.html) · [Caveat](https://elbym.github.io/font-collection/script/caveat.html) · [Dancing Script](https://elbym.github.io/font-collection/script/dancingscript.html) · [Pacifico](https://elbym.github.io/font-collection/script/pacifico.html) · [Playwrite](https://elbym.github.io/font-collection/script/playwritedela.html) · [Sansita Swashed](https://elbym.github.io/font-collection/display/sansitaswashed.html) · [Satisfy](https://elbym.github.io/font-collection/script/satisfy.html)
+### Script / Handschrift (18)
+[Amatic SC](https://elbym.github.io/font-collection/script/amaticsc.html) · [Because We Build](https://elbym.github.io/font-collection/script/becausewebuild.html) · [Because We Connect](https://elbym.github.io/font-collection/script/becauseweconnect.html) · [Because We Create](https://elbym.github.io/font-collection/script/becausewecreate.html) · [Because We Learn](https://elbym.github.io/font-collection/script/becausewelearn.html) · [Because We Mentor](https://elbym.github.io/font-collection/script/becausewementor.html) · [Because We Organize](https://elbym.github.io/font-collection/script/becauseweorganize.html) · [Caveat](https://elbym.github.io/font-collection/script/caveat.html) · [Dancing Script](https://elbym.github.io/font-collection/script/dancingscript.html) · [Great Vibes](https://elbym.github.io/font-collection/script/greatvibes.html) · [Kalam](https://elbym.github.io/font-collection/script/kalam.html) · [Komika](https://elbym.github.io/font-collection/script/komika.html) · [Krikikrak](https://elbym.github.io/font-collection/script/krikikrak.html) · [Pacifico](https://elbym.github.io/font-collection/script/pacifico.html) · [Playwrite](https://elbym.github.io/font-collection/script/playwritedela.html) · [Satisfy](https://elbym.github.io/font-collection/script/satisfy.html) · [Tangerine](https://elbym.github.io/font-collection/script/tangerine.html) · [TeX Gyre Chorus](https://elbym.github.io/font-collection/script/texgyrechorus.html)
 
-### Blackletter (3 + 1 geplant)
-Fette Fraktur · [Grenze](https://elbym.github.io/font-collection/blackletter/grenze.html) · [Grenze Gotisch](https://elbym.github.io/font-collection/blackletter/grenzegotisch.html) · [Unifraktur](https://elbym.github.io/font-collection/blackletter/unifraktur.html)
+### Blackletter (5)
+[Grenze](https://elbym.github.io/font-collection/blackletter/grenze.html) · [Grenze Gotisch](https://elbym.github.io/font-collection/blackletter/grenzegotisch.html) · [Jacquarda Bastarda 9](https://elbym.github.io/font-collection/blackletter/jacquardabastarda9.html) · [Unifraktur](https://elbym.github.io/font-collection/blackletter/unifraktur.html) · [UnifrakturCook](https://elbym.github.io/font-collection/blackletter/unifrakturcook.html)
 
-### Display (2)
-[Big Shoulders Display](https://elbym.github.io/font-collection/display/bigshouldersdisplay.html) · [Dela Gothic One](https://elbym.github.io/font-collection/display/delagothicone.html)
+### Display (8)
+[Big Shoulders Display](https://elbym.github.io/font-collection/display/bigshouldersdisplay.html) · [Big Shoulders Stencil](https://elbym.github.io/font-collection/display/bigshouldersstencil.html) · [Climate Crisis](https://elbym.github.io/font-collection/display/climatecrisis.html) · [Dela Gothic One](https://elbym.github.io/font-collection/display/delagothicone.html) · [Pixelify Sans](https://elbym.github.io/font-collection/display/pixelifysans.html) · [Saira Stencil One](https://elbym.github.io/font-collection/display/sairastencilone.html) · [Sansita Swashed](https://elbym.github.io/font-collection/display/sansitaswashed.html) · [Silkscreen](https://elbym.github.io/font-collection/display/silkscreen.html)
 
-### Nicht Comic Sans (3)
-[Kalam](https://elbym.github.io/font-collection/script/kalam.html) · [Komika](https://elbym.github.io/font-collection/script/komika.html) · [Krikikrak](https://elbym.github.io/font-collection/script/krikikrak.html)
+Die drei Nicht-Comic-Sans-Schriften ([Kalam](https://elbym.github.io/font-collection/script/kalam.html) ·
+[Komika](https://elbym.github.io/font-collection/script/komika.html) ·
+[Krikikrak](https://elbym.github.io/font-collection/script/krikikrak.html)) liegen im Ordner
+`src/webfonts/comicsans/`, sind aber als `Script` getaggt und erscheinen deshalb unter `/script/`.
 
 
 
@@ -267,6 +276,12 @@ https://htfonts.com/en/fonts/alegreya-sans/
 ## Arvo
 https://github.com/antonxheight/Arvo
 
+## Basteleur
+https://velvetyne.fr/fonts/basteleur/
+
+## Bevan
+https://github.com/googlefonts/BevanFont
+
 ## Bitter
 https://fonts.google.com/specimen/Bitter
 
@@ -284,6 +299,9 @@ https://github.com/Fonthausen/CrimsonPro
 
 ## EB Garamond
 https://googlefonts.github.io/ebgaramond-specimen
+
+## Frank Ruhl Libre
+https://github.com/fontef/frankruhllibre
 
 ## Fraunces
 https://github.com/undercasetype/Fraunces
@@ -353,6 +371,9 @@ https://www.omnibus-type.com/fonts/unna/
 
 ## Vollkorn
 http://vollkorn-typeface.com/
+
+## Zilla Slab
+https://github.com/mozilla/zilla-slab
 
 ## Zodiak
 https://www.fontshare.com/fonts/zodiak
@@ -435,6 +456,9 @@ https://vercel.com/font
 ## Junction
 https://theleagueofmoveabletype.com/junction
 
+## Karrik
+https://velvetyne.fr/fonts/karrik/
+
 ## League Spartan
 https://theleagueofmoveabletype.com/league-spartan
 
@@ -451,7 +475,7 @@ https://fonts.google.com/specimen/Manrope
 https://github.com/mozilla/mozilla-type-family
 
 ## Nunito
-https://github.com/googlefonts/NunitoSans
+https://github.com/googlefonts/nunito
 
 ## Oswald
 https://fonts.google.com/specimen/Oswald
@@ -467,6 +491,9 @@ https://fonts.google.com/specimen/Plus+Jakarta+Sans
 
 ## Public Sans
 https://github.com/uswds/public-sans
+
+## Quicksand
+https://github.com/ThomasJockin/QuicksandFamily
 
 ## Raleway
 https://github.com/impallari/Raleway
@@ -491,6 +518,12 @@ https://fonts.google.com/specimen/Syne
 
 ## Urbanist
 https://fonts.google.com/specimen/Urbanist
+
+## Varela Round
+https://fonts.google.com/specimen/Varela+Round
+
+## Vazirmatn
+https://github.com/rastikerdar/vazirmatn
 
 ## Work Sans
 https://weiweihuanghuang.github.io/Work-Sans/
@@ -593,6 +626,9 @@ https://github.com/0xType/0xProto
 ## Commit Mono
 https://commitmono.com/
 
+## Courier Prime
+https://quoteunquoteapps.com/courierprime/
+
 ## Departure Mono
 https://departuremono.com
 
@@ -602,11 +638,20 @@ https://github.com/vercel/geist-font
 ## Hack
 https://github.com/source-foundry/Hack
 
+## IBM Plex Mono
+https://github.com/IBM/plex
+
+## Libertinus Mono
+https://github.com/alerque/libertinus
+
 ## Monaspace
 https://monaspace.githubnext.com
 
 ## Recursive
 https://www.recursive.design
+
+## Source Code Pro
+https://github.com/adobe-fonts/source-code-pro
 
 ## Space Mono
 https://fonts.google.com/specimen/Space+Mono
@@ -619,11 +664,21 @@ https://rubjo.github.io/victor-mono/
 ## Amatic SC
 https://fonts.google.com/specimen/Amatic+SC
 
+## Because We Had To
+https://github.com/RedHatOfficial/bwht-fonts
+
+Sechs Handschriften, die Red Hat 2019 für die Artikelserie „Because We Had To" aus der
+Handschrift von Freundinnen und Kolleginnen entwickelte: Build, Connect, Create, Learn,
+Mentor, Organize. Alle bis auf Learn nutzen `calt`, um wiederkehrende Buchstaben zu variieren.
+
 ## Caveat
 https://fonts.google.com/specimen/Caveat
 
 ## Dancing Script
 https://fonts.google.com/specimen/Dancing+Script
+
+## Great Vibes
+https://github.com/googlefonts/great-vibes
 
 ## Pacifico
 https://fonts.google.com/specimen/Pacifico
@@ -636,6 +691,12 @@ https://www.omnibus-type.com/fonts/sansitaswashed/
 
 ## Satisfy
 https://fonts.google.com/specimen/Satisfy
+
+## Tangerine
+https://github.com/googlefonts/TangerineFont
+
+## TeX Gyre Chorus
+https://www.gust.org.pl/projects/e-foundry/tex-gyre/chorus
 
 # Display
 
@@ -651,24 +712,48 @@ https://fonts.google.com/specimen/Bebas+Neue
 ## Big Shoulders Display
 https://fonts.google.com/specimen/Big+Shoulders+Display
 
+## Big Shoulders Stencil
+https://github.com/xotypeco/big_shoulders
+
+## Climate Crisis
+https://github.com/dancoull/ClimateCrisis
+
+Variable Achse `YEAR` (1979–2050) statt Gewicht: die Buchstaben erodieren mit fortschreitendem
+Jahr wie das arktische Meereis.
+
+## Pixelify Sans
+https://github.com/eifetx/Pixelify-Sans
+
+## Saira Stencil One
+https://github.com/Omnibus-Type/Saira
+
 ## Dela Gothic One
 https://fonts.google.com/specimen/Dela+Gothic+One
 
 ## Silkscreen
-https://fonts.google.com/specimen/Silkscreen
+https://kottke.org/plus/type/silkscreen/
 
 # Blackletter
 
 ## Fette Fraktur
-https://fonts.google.com/specimen/Fette+Fraktur
+**Keine freie Quelle.** Die früher hier eingetragene Google-Fonts-URL ist ein 404 — „Fette Fraktur"
+gibt es dort nicht, und eine freie Digitalisierung existiert nicht. Als Ersatz mit eigener
+Projektseite: [Plakat Fraktur](http://www.peter-wiegel.de/PlakatFraktur.html) oder
+[Ganz Grobe Gotisch](http://www.peter-wiegel.de/GanzGrobe.html) (Peter Wiegel).
 
 ## Grenze Gotisch
 https://www.omnibus-type.com/fonts/grenze-gotisch/
+
+## Jacquarda Bastarda 9
+https://github.com/scfried/soft-type-jacquarda-bastarda
 
 ## Grenze
 https://www.omnibus-type.com/fonts/grenze/
 
 ## Unifraktur
+https://unifraktur.sourceforge.net/
+
+## UnifrakturCook
 https://unifraktur.sourceforge.net/
 
 # Nicht Comic Sans

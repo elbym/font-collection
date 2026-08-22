@@ -6,6 +6,8 @@ A personal font collection website. It scans a folder of `.woff2` font files, ge
 
 Output: `dist/` — fully static site with one HTML specimen page per font family, a homepage listing all fonts, and tag filter pages.
 
+Current inventory: **122 font families** across six groups (Serif 38, Sans 38, Monospace 15, Script 18, Display 8, Blackletter 5). `README.md` carries the human-readable list with links; regenerate it from the data layer rather than editing it by hand.
+
 ---
 
 ## Tech stack
@@ -24,7 +26,7 @@ Output: `dist/` — fully static site with one HTML specimen page per font famil
 | Markdown rendering | `markdown-it` (transitive dep) — used by `markdownify` Eleventy filter |
 | Font reading | `fontkit` 2.0.4 — reads `.woff2` files to extract codepoint maps |
 | Navigation | `@11ty/eleventy-navigation` |
-| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage); `font-search.js` (header autocomplete widget powered by Pagefind) |
+| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage); `font-search.js` (header autocomplete powered by Pagefind); `font-style-hover.js` (cycles a card's weights/styles on hover, 220 ms interval); `card-name-override.js` (retypes every card heading from one input); `font-network.js` + `force-graph.min.js` (force-directed tag/author graph, vendor bundle) |
 | Search | `pagefind` ^1.5.2 — static full-text index built after every Eleventy run; UI served from `dist/pagefind/` |
 | Clean utility | `rimraf` ^6.1.3 — cross-platform directory deletion used by the `clean` Gulp task |
 | CSS bundling | `gulp-concat`, `gulp-clean-css`, `gulp-sourcemaps`, `gulp-newer` — bundling, minification, sourcemaps, incremental copies |
@@ -44,7 +46,8 @@ src/
     fontImages.js      # gallery images per font folder (from gallery/ subfolders)
     fontBackgrounds.js # per-font card backgrounds (from background/ subfolders)
     fontCodepoints.js    # per-font codepoint map {cp: 1} — reads actual .woff2 via fontkit
-    fontVariableAxes.js  # per-font variable axes {axisTag: {name,min,max,default,step}} — reads actual .woff2 via fontkit
+    fontVariableAxes.js  # per-font variable axes {axisTag: {name,min,max,default,step,steps}} — reads actual .woff2 via fontkit
+    fontNetwork.js     # {nodes, links} graph: one node per font plus per tag and per author, edges font→tag and font→author
     unicodeRanges.js   # static list of named Unicode blocks used for coverage display
     backgrounds.js     # global background images from src/img/background/
     site.json          # global defaults: title, panagram, heroword/heroletter, paragraph text per size, randomColors config
@@ -79,6 +82,10 @@ src/
     webfonts/              # AUTO-GENERATED — never edit (gitignored)
   js/
     fitty.min.js
+    force-graph.min.js     # vendored force-graph bundle (exposes global `ForceGraph`, embeds d3-force)
+    font-network.js        # renders the font network graph; implements ForceAtlas2 on top of d3-force
+    font-style-hover.js    # cycles a card heading through the family's weights/styles on hover
+    card-name-override.js  # rewrites all card headings live from the #global-name-override input
     font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
     compare-manager.js     # font comparison tray (sessionStorage, max 4 fonts); injects #compare-tray into DOM
     font-search.js         # header autocomplete: queries Pagefind JS API, renders dropdown (max 8 hits), keyboard nav
@@ -96,6 +103,7 @@ src/
   tag.njk                  # paginated over fontTags; one page per tag
   alternatives.njk         # curated list of commercial/free font pairs; eleventyNavigation key "Alternatives"
   compare.njk              # side-by-side font comparison (up to 4); reads sessionStorage, inline JS; eleventyNavigation key "Vergleich" order 0
+  network.njk              # permalink: /network.html — full-page font network graph; eleventyNavigation key "Netzwerk" order 1
   search.njk               # permalink: /search.html — full Pagefind UI widget; German translations; extra_css: /pagefind/pagefind-ui.css
   llms.njk                 # permalink: /llms.txt — machine-readable catalog metadata for LLM tools
   sitemap.njk              # sitemap.xml
@@ -162,17 +170,17 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 ### Font file naming
 - Files must be `.woff2` (or `.woff`).
 - `fonts.js` parses weight (`Regular`, `Bold`, `SemiBold`, …) and style (`italic`) from the filename. Numeric weights (`_400`, `_700`) are also detected.
-- Variable fonts are detected by `variable` in the name, any axis bracket notation (`[wght]`, `[wdth]`, `[ital]`, `[slnt]`, `[opsz]`), or a `_vf` suffix.
+- Variable fonts are detected by `variable` in the name, a `_vf` suffix, or **any** bracketed list of four-letter axis tags — `[wght]`, `[opsz,wght]`, `[MONO,CASL,wght,slnt,CRSV]`, `[YEAR]`. There is deliberately **no whitelist** of registered axes: Fraunces ships `SOFT`/`WONK`, Recursive `MONO`/`CASL`/`CRSV`, Climate Crisis only `YEAR`. A font whose bracket list contains no registered axis would otherwise not count as variable at all — no sliders, no 3D cube, no `Variable` tag.
+- `extractAxes` returns the bracket contents lowercased, so `node.varAxes` holds `year`, `mono`, `soft` etc. The **real** axis metadata (correct case, min/max/default) comes from `fontVariableAxes.js` via fontkit, not from the filename.
+- Weight words in filenames are matched against a map, and longer keys win: `SemiBoldItalic` resolves to 600/italic, not 700. Avoid the words `Display`, `Headline`, `Text`, `Caption`, `Poster`, `Micro`, `Subhead` in a filename unless the file genuinely is an optical-size variant — `fonts.js` reads them as optical-size discriminators and splits the family.
 
 ### `meta.yaml` fields (all optional)
 
 | Field | Purpose |
 |---|---|
 | `title` | Display name (overrides sanitized folder name) |
-| `url` | Source/project link — exposed on the node object as `sourceUrl` (not `url`) |
-| `tags` | Comma-separated string or YAML array. **The first tag is the font class** (`category` field) and determines the first URL segment. |
-| `url` | Source/project link (exposed as `folder.sourceUrl` in templates) |
-| `tags` | Comma-separated string or YAML array. **The first tag is the font class** (`category` field) and determines the first URL segment. Variable fonts get `Variable` auto-appended to tags if not already present. |
+| `url` | Source/project link — exposed on the node object as `sourceUrl`, **not** `url` (`node.url` is the page path) |
+| `tags` | Comma-separated string or YAML array. **The first tag is the font class** (`category` field) and determines the first URL segment. Variable fonts get `Variable` auto-appended if not already present. |
 | `fontauthor` | Designer name |
 | `fontyear` | Year (original or digitisation) |
 | `heroletter` | Single character(s) for the large CMYK hero display |
@@ -184,8 +192,7 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 | `comment` | Internal note — displayed on page below the header |
 | `imageOverrides` | Override gallery image list |
 | `wikipedia` | Wikipedia article URL (shown as link on specimen page) |
-| `license` | License string (e.g. `SIL Open Font License 1.1`). Auto-detected from `OFL.txt` / `OFL-1.1.txt` / `LICENSE.txt` / `LICENSE` in the font folder if omitted. Shown next to `fontyear` in the specimen header. |
-| `license` | License string (e.g. `"SIL Open Font License 1.1"`). Overrides auto-detection. |
+| `license` | License string (e.g. `SIL Open Font License 1.1`). Auto-detected from `OFL.txt` / `OFL-1.1.txt` / `LICENSE.txt` / `LICENSE` in the font folder if omitted; setting it overrides detection. Shown next to `fontyear` in the specimen header. GUST fonts (TeX Gyre) are **not** detected — those nodes have `license: null`. |
 | `favorite` | Boolean. When `true`, shows a gold star badge on the font's card and next to its title on the specimen page. |
 
 **License auto-detection**: `fonts.js` scans each font folder for `OFL.txt`, `OFL-1.1.txt`, `LICENSE.txt`, `LICENSE` etc. and reads the content to identify OFL, MIT, or Apache licenses. Result available as `folder.license` in templates.
@@ -209,7 +216,9 @@ Every leaf node exposes: `key`, `path`, `isLeaf`, `ownFonts`, `url`, `parentPath
 ### Unicode coverage
 - `unicodeRanges.js` defines the named Unicode blocks shown on specimen pages (ASCII, Latin-1, Latin Extended A/B, Ligatures, Fractions).
 - `fontCodepoints.js` reads each font's actual `.woff2` file via `fontkit` and builds a `{ codepoint: 1 }` lookup map keyed by `node.key`. It picks the Regular upright file, falling back to any upright then any file. Missing or unreadable fonts are silently skipped; templates treat a missing entry as "all glyphs present".
-- `fontVariableAxes.js` reads variable axes from each font's `.woff2` via `fontkit`. Returns `{ nodeKey: { axisTag: { name, min, max, default, step } } }`. Used by `font-poster.njk` to generate axis sliders with correct min/max/default values. Only covers axes fontkit exposes (`wght`, `wdth`, `opsz`, `ital`, `slnt`); custom private axes are not returned.
+- `fontVariableAxes.js` reads variable axes from each font's `.woff2` via `fontkit`. Returns `{ nodeKey: { axisTag: { name, min, max, default, step, steps } } }`. Used by `font-poster.njk` for the axis sliders and the per-axis waterfall. fontkit reports **custom** axes too (`SOFT`, `WONK`, `MONO`, `CASL`, `CRSV`, `YEAR`), so this is the authoritative axis source — `node.varAxes` from `fonts.js` is only the lowercased filename bracket.
+- `buildSteps()` in that file special-cases binary axes: `ital` renders as `font-style: normal|italic`, `WONK` as a two-state toggle (`Aus`/`An`). Everything else gets evenly spaced steps (9 for `wght`, 7 otherwise) with a ready-made CSS string per step.
+- The `opsz` slider deliberately starts at the axis **maximum**, not at the font's own default. Fraunces defaults to `opsz 9`, which looks wrong on a large specimen preview — and suppresses WONK entirely, see the Fraunces note below.
 
 ### Variable font specimen
 
@@ -224,11 +233,40 @@ When `fontVariableAxes[folder.key]` is non-empty, `font-poster.njk` renders two 
 2. **Per-axis waterfall** — one `<section class="waterfall waterfall--axis waterfall--axis-{axisTag}">` per variable axis. Each row applies an inline `step.style` (generated by `fontVariableAxes.js`) to cycle through the axis range using real min/max/step values from fontkit.
 
 For **static (non-variable) fonts**, `font-poster.njk` renders the traditional weight waterfall via `waterfall-groups.njk` instead.
+### Non-obvious font behaviour worth knowing before debugging
+
+- **Fraunces `WONK` looks dead below ~opsz 22.** Fraunces implements Wonk purely through GSUB feature variations (`rvrn`) that swap 26 glyphs (`h m n s &` plus accented forms) — there are no outline deltas on the axis. Its condition set has *two* triggers for the same substitution: `WONK` ≤ −0.51 normalised, **and** `opsz` below roughly 21.7. So at ordinary text sizes the straight forms are forced no matter what `WONK` says. `fontVariableAxes.js` therefore pins `'opsz' <max>` into the WONK waterfall steps, and the `opsz` slider starts at the axis maximum. If you set `font-variation-settings: 'WONK' 1` anywhere else and see no change, this is why. Also note Wonk touches only those five letters — a heroword without `h`, `m`, `n`, `s` or `&` shows nothing.
+- **`font-optical-sizing: auto` is the CSS default**, so `opsz` follows the font-size in pt (px × 0.75) unless a rule pins it explicitly. Any axis whose behaviour depends on `opsz` is size-dependent in the waterfall.
+- **Non-Latin fonts have no coverage support yet.** Vazirmatn (Arabic/Persian) and Frank Ruhl Libre (Hebrew) are in the collection, but `unicodeRanges.js` lists only Latin blocks — their coverage bars read low and their native ranges are invisible. Adding a script means extending `unicodeRanges.js` plus panagram and paragraph samples in `site.json`.
+- **Pixel fonts** (Silkscreen, Pixelify Sans, Jacquarda Bastarda 9) render cleanly only at their design size and integer multiples of it. Blurry edges in the waterfall are expected, not a bug.
+- **Some fonts have very small glyph sets** (Tangerine 232, Silkscreen 228, UnifrakturCook 271). Low coverage percentages on those cards are correct.
+
 ### 3D variable font cube
 - `3dcube.njk` is included by `font-poster.njk` for variable fonts (when `fontVariableAxes[folder.key]` is non-empty).
 - Reads axis data from a `<script type="application/json" id="vf-cube-cfg">` block — maps up to 3 axes to X, Y, Z rotation of the cube.
 - Word shown on cube faces is `folder.heroword` or `folder.title`.
 - Inspired by recursive.design; drag to rotate; uses inline JS only (no external dependencies).
+
+### Font network graph
+
+- `fontNetwork.js` (data layer) emits one `{nodes, links}` object for the whole catalog: a node per
+  leaf font (`font:<key>`, carrying `url` and `category`), a node per tag (`tag:<slug>`) and a node per
+  author (`author:<slug>`), with an edge from each font to each of its tags and to its author. The same
+  payload is inlined on two surfaces, so it ships twice — as `#font-network-data` on `/network.html`
+  and again inside every specimen page.
+- `network.njk` renders the full graph. `font-poster.njk` embeds the same graph scoped to the current
+  font via `data-highlight="font:<key>"` — `font-network.js` then fades every node that is not directly
+  linked to it, so the immediate neighbourhood stands out.
+- The layout is **ForceAtlas2** (Jacomy et al.), hand-implemented as three custom d3-force forces in
+  `font-network.js`: `forceAtlas2Repulsion` (degree-weighted), `forceAtlas2Attraction` and
+  `forceAtlas2Gravity`, registered under the `charge` / `link` / `gravity` slots of the vendored
+  force-graph simulation. The tuned constants live at the `.d3Force(...)` calls — repulsion 5,
+  attraction 0.15, gravity 0.5013. `forceAtlas2Attraction` carries an `.id()` shim because
+  force-graph calls that method on whatever sits in the `link` slot.
+- The highlighted node is pinned to the origin so the camera can simply `centerAt(0, 0)`. Without that
+  pin the graph rendered outside the viewport and only appeared after a zoom gesture.
+- `force-graph.min.js` is a vendored minified bundle — do not edit it, and do not assume a matching
+  standalone d3 version is available.
 
 ### Border images
 - Master SVGs live in `src/img/borders/` (root level only, no subdirectories). They use `#cccccc` as the placeholder accent color.
@@ -241,7 +279,7 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - Edit only files in `src/scss/` (not the auto-generated files).
 - Per-font `@font-face` declarations live in auto-generated `src/scss/webfonts/*.scss` — driven by `_generated-fonts.njk` (paginated over `fontLeaves`).
 - `font-display: block` is set globally in `_font-mixin.scss`. Specimen pages eagerly load their font via `<link>` in `<head>`; lazy-loaded card fonts are loaded 300px ahead of the viewport by the IntersectionObserver.
-- Font card (`_cards.scss`) `header` darkens to `#111` on hover (1s ease-out transition); card link underline is disabled.
+- Font card (`_cards.scss`): the header's blurred background image scales to 1.1 on hover, and the card link swaps to `--color-text` on `--color-background` (1 s ease-out); the link underline is disabled. The card's tag footer is tinted in `font-card.njk` with `color-mix(in oklab, <color>, transparent 78%)` — a deliberately weak stripe, one value for both light and dark.
 
 ### Font lazy loading
 - `font-lazy-loader.js` auto-detects `font-<slug>` CSS classes and lazy-loads the matching `/css/webfonts/<slug>.css` via IntersectionObserver (300px rootMargin).
@@ -281,7 +319,8 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 
 ### URL slugs and navigation
 - Leaf node URLs: `/<tags[0]-slug>/<family-slug>.html` (e.g. `serif/cormorant.html`, `monospace/jetbrainsmono.html`).
-- Group node URLs: one virtual group per unique `tags[0]` value, URL = `/<tags[0]-slug>.html`. Current groups: `blackletter`, `comicsans`, `display`, `monospace`, `sans`, `script`, `serif`. Generated in `fonts.js` post-processing — there are no folder-based group nodes.
+- Group node URLs: one virtual group per unique `tags[0]` value, URL = `/<tags[0]-slug>.html`. Current groups: `blackletter`, `display`, `monospace`, `sans`, `script`, `serif` — six, generated in `fonts.js` post-processing. There are no folder-based group nodes.
+- `src/webfonts/comicsans/` still exists as a folder but produces **no** group: its three fonts (Kalam, Komika, Krikikrak) are tagged `Script` and live under `/script/`. Same for `src/webfonts/mono/`, whose fonts are tagged `Monospace` and live under `/monospace/`.
 - The `category` field on every leaf node equals `tags[0]`. If `tags` is empty the build emits a warning and `category` is `null`.
 - **Navigation (menu, breadcrumb) and URLs both follow `tags[0]`**, not the folder structure. Moving a font between category folders has no effect on its URL — only changing `tags[0]` does.
 - `node.parentPath` is set to `slugify(tags[0])`. Navigation filters operate on `parentPath`/`path`.
@@ -338,6 +377,14 @@ Both tools operate on **folders**, not individual files — scan `--input` recur
 2. Drop `.woff2` files in. Name them `FamilyName_Weight.woff2` (e.g. `Jost_Regular.woff2`, `Jost_Bold.woff2`).
 3. Add `meta.yaml` — the **first tag determines the URL** and `category` field (e.g. `tags: Garalde, Serif` → page at `/garalde/<familyname>.html`). A missing or empty `tags` field emits a build warning.
 4. Run `npx gulp` — Eleventy generates the SCSS partial, Gulp compiles it, the specimen page appears.
+
+### 1b. Where the wishlist lives
+
+`todo.md` holds the gap analysis and the wishlist. Each row carries the verified upstream
+project URL (resolved via `METADATA.pb` in the `google/fonts` repo, not the Google Fonts
+specimen page) and a `Lücke` column explaining what the entry would add. One entry stays
+open on purpose: **Fette Fraktur** has no free digitisation — its folder and `meta.yaml`
+exist but no font file, and the previously recorded Google Fonts URL was a 404.
 
 ### 2. Edit font metadata
 
