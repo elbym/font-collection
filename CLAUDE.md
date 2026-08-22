@@ -10,6 +10,43 @@ Current inventory: **122 font families** across six groups (Serif 38, Sans 38, M
 
 ---
 
+## Git: always delegate to the `git-worker` subagent
+
+**Every git task in this repository goes through the `git-worker` subagent** — defined at
+user level in `~/.claude/agents/git-worker.md`, so it is available in every project and is
+**not** part of this repository. Do not run git commands yourself; hand the task over via the
+Agent tool with `subagent_type: "git-worker"`. This applies to the whole range: `status`,
+`diff`, `log`, `add`, `commit`, `push`, `pull`, `fetch`, `branch`, `checkout`, `switch`,
+`merge`, `rebase`, `stash`, `tag`, `remote`.
+
+Give it the intent, not the command line — it knows this repo's conventions:
+
+> "Commit the new Nunito font folder. German conventional-commit message,
+>  one commit for this font only."
+
+What it does and does not do, so you know what comes back:
+
+- It shows `git status` plus `git log --oneline -5` and summarises the consequences before any
+  destructive action (`push --force`, `reset --hard`, `rebase`, `branch -D`, `clean -fd`). If
+  the order is ambiguous or uncommitted work would be destroyed, it aborts and reports back
+  instead of guessing — expect to make that call yourself.
+- It **does not resolve merge conflicts**. It lists the conflicting files with a description
+  and leaves the merge/rebase state untouched. Resolving them is your job, and it needs
+  Write/Edit access it deliberately does not have.
+- It **does not write application code**, not even through the shell. A task that needs a
+  source change comes back undone with a note on what would have to change. Make the change
+  first, then delegate the commit.
+- It returns a structured summary (`Getan / Branch / Status / Offen`). Read it before you
+  report success — it reports failures verbatim rather than papering over them.
+
+Commit convention in this repo is **German**, conventional-commits prefixes (`feat:`, `fix:`,
+`docs:`, `chore:`, `refactor:`), one commit per logical unit — e.g. one commit per font when
+adding several. The worker derives this from `git log` itself, but say so if it matters.
+
+Only bypass the worker when the user explicitly asks you to run a git command yourself.
+
+---
+
 ## Tech stack
 
 | Layer | Tool / Version |
@@ -366,6 +403,7 @@ Both tools operate on **folders**, not individual files — scan `--input` recur
 - `src/_data/site.json` sets global fallback values (heroword, heroletter, panagram, paragraph text). Specimen pages fall back to these when a font's `meta.yaml` omits them. `paragraph8` through `paragraph28` are keyed by font size in px. The `randomColors` object controls hue/saturation/lightness for auto-generated font accent colors.
 - Background images in `src/img/background/` are gitignored (except `sample.webp` and `urls.txt`). The data file prefers `.webp` when both formats exist for the same stem.
 - **Never add subdirectories to `src/img/borders/`** — color variants are build artifacts written directly to `dist/`.
+- **Never run git yourself** — every git task goes to the `git-worker` subagent, see the Git section at the top.
 
 ---
 
@@ -401,6 +439,9 @@ Edit `src/webfonts/<category>/<FamilyName>/meta.yaml`. The data layer re-reads i
 Edit `src/_data/site.json`.
 
 ### 5. Deploy to GitHub Pages
+
+Run the build yourself, but route the git side (the force-push to `gh-pages`) through the
+`git-worker` subagent — it is a force-push and therefore exactly the case the worker guards.
 
 ```bash
 npx gulp deploy
