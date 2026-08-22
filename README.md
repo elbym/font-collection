@@ -119,127 +119,138 @@ Beispiele:
     python font_specimen_generator.py --input ./fonts --output ./previews --overwrite
 
 ---
-* Serifenschriften
-  - [Literata](#literata)
-  - [IBM Plex Serif](#ibm-plex-serif)
-  - [Libertinus](#libertinus)
+Nur Schriften, die tatsächlich eine Specimen-Seite haben — dieselben 122 wie unter
+[Schriften](#schriften). Wunschliste und Lücken stehen in [`todo.md`](./todo.md).
+Sammel-Einträge (Tex Gyre, Because We Had To) werden von allen ihren Schnitten verlinkt.
+
+* Serifenschriften (38)
   - [Alegreya](#alegreya)
   - [Arvo](#arvo)
+  - [Basteleur](#basteleur)
+  - [Bevan](#bevan)
   - [Bitter](#bitter)
-  - [Bodoni*](#bodoni)
-  - [Cardo](#cardo)
+  - [Bodoni\*](#bodoni)
   - [Compagnon](#compagnon)
+  - [Cormorant](#cormorant-garamond)
   - [Crimson Pro](#crimson-pro)
   - [EB Garamond](#eb-garamond)
+  - [Frank Ruhl Libre](#frank-ruhl-libre)
   - [Fraunces](#fraunces)
   - [Gambetta](#gambetta)
-  - [Gentium Plus](#gentium-plus)
   - [GFS Didot](#gfs-didot)
-  - [Instrument Serif](#instrument-serif)
+  - [IBM Plex Serif](#ibm-plex-serif)
   - [Junicode](#junicode)
+  - [Libertinus Serif](#libertinus)
   - [Libre Baskerville](#libre-baskerville)
+  - [Libre Caslon](#libre-caslon-text)
+  - [Literata](#literata)
   - [Lora](#lora)
   - [Merriweather](#merriweather)
   - [Mozilla Headline](#mozilla-headline)
   - [Newsreader](#newsreader)
   - [Piazzolla](#piazzolla)
   - [Playfair](#playfair)
-  - [Quattrocento](#quattrocento)
   - [Reforma](#reforma)
-  - [Roslindale](#roslindale)
   - [Sentient](#sentient)
-  - [Sorts Mill Goudy](#sorts-mill-goudy)
   - [Source Serif](#source-serif)
   - [Spectral](#spectral)
-  - [STIX Two](#stix-two)
+  - [Tex Gyre Bonum](#tex-gyre)
+  - [Tex Gyre Pagella](#tex-gyre)
+  - [Tex Gyre Schola](#tex-gyre)
+  - [Tex Gyre Termes](#tex-gyre)
   - [Unna](#unna)
   - [Vollkorn](#vollkorn)
+  - [Zilla Slab](#zilla-slab)
   - [Zodiak](#zodiak)
-* Serifenlose Schriften
-  - [Atkinson Hyperlegible](#atkinson-hyperlegible)
-  - [Inter](#inter)
-  - [Metropolis](#metropolis)
-  - [IBM Plex Sans](#ibm-plex-sans)
-  - [Fira Sans](#fira-sans)
+* Serifenlose Schriften (38)
   - [Amstelvar](#amstelvar)
   - [Asap](#asap)
-  - [Barlow](#barlow)
+  - [Atkinson Hyperlegible Next](#atkinson-hyperlegible)
   - [Bricolage Grotesque](#bricolage-grotesque)
   - [Cabinet Grotesk](#cabinet-grotesk)
-  - [Chivo](#chivo)
+  - [Cooper Hewitt](#cooper-hewitt)
   - [DINish](#dinish)
-  - [DM Sans](#dm-sans)
-  - [Encode Sans](#encode-sans)
   - [Epilogue](#epilogue)
   - [Figtree](#figtree)
+  - [Fira Sans](#fira-sans)
   - [Geist](#geist)
-  - [Junction](#junction)
+  - [IBM Plex Sans](#ibm-plex-sans)
+  - [Inter](#inter)
+  - [Jost\*](#jost)
+  - [Karrik](#karrik)
   - [League Spartan](#league-spartan)
-  - [Lexend](#lexend)
   - [Libertinus Sans](#libertinus-sans)
+  - [Libre Franklin](#libre-franklin)
   - [Manrope](#manrope)
+  - [Metropolis](#metropolis)
   - [Mozilla Text](#mozilla-text)
   - [Nunito](#nunito)
-  - [Oswald](#oswald)
-  - [Outfit](#outfit)
+  - [Overpass](#overpass)
   - [Playpen Sans](#playpen-sans)
-  - [Plus Jakarta Sans](#plus-jakarta-sans)
   - [Public Sans](#public-sans)
+  - [Quicksand](#quicksand)
   - [Raleway](#raleway)
   - [Roboto Flex](#roboto-flex)
   - [Routed Gothic](#routed-gothic)
   - [Satoshi](#satoshi)
   - [Source Sans](#source-sans)
   - [Space Grotesk](#space-grotesk)
-  - [Syne](#syne)
-  - [Urbanist](#urbanist)
+  - [Tex Gyre Adventor](#tex-gyre)
+  - [Tex Gyre Heros](#tex-gyre)
+  - [Titillum Web](#titillium)
+  - [Varela Round](#varela-round)
+  - [Vazirmatn](#vazirmatn)
   - [Work Sans](#work-sans)
-* Die klassischen Pflichtschriften
-  - [Tex Gyre Collection](#tex-gyre)
-  - [Cormorant Garamond](#cormorant-garamond)
-  - [Libre Caslon](#libre-caslon-text)
-* Sehr schön zu haben
-  - [Titillium](#titillium)
-  - [Jost](#jost)
-  - [Overpass](#overpass)
-* Nichtproportionale Schriften
-  - [JetBrains Mono](#jetbrains-mono)
-  - [Maple Mono](#maple-mono)
-  - [Fira Code](#fira-code)
-  - [Cascadia Code](#cascadia-code)
+* Nichtproportionale Schriften (15)
   - [0xProto](#0xproto)
-  - [Commit Mono](#commit-mono)
+  - [Cascadia Code](#cascadia-code)
+  - [Courier Prime](#courier-prime)
   - [Departure Mono](#departure-mono)
+  - [Fira Code](#fira-code)
   - [Geist Mono](#geist-mono)
   - [Hack](#hack)
-  - [Monaspace](#monaspace)
+  - [IBM Plex Mono](#ibm-plex-mono)
+  - [JetBrains Mono](#jetbrains-mono)
+  - [Libertinus Mono](#libertinus-mono)
+  - [Maple Mono](#maple-mono)
   - [Recursive](#recursive)
-  - [Space Mono](#space-mono)
+  - [Source Code Pro](#source-code-pro)
+  - [TeX Gyre Cursor](#tex-gyre)
   - [Victor Mono](#victor-mono)
-* Schreibschriften
+* Schreibschriften (18)
   - [Amatic SC](#amatic-sc)
+  - [Because We Build](#because-we-had-to)
+  - [Because We Connect](#because-we-had-to)
+  - [Because We Create](#because-we-had-to)
+  - [Because We Learn](#because-we-had-to)
+  - [Because We Mentor](#because-we-had-to)
+  - [Because We Organize](#because-we-had-to)
   - [Caveat](#caveat)
   - [Dancing Script](#dancing-script)
+  - [Great Vibes](#great-vibes)
+  - [Kalam](#kalam)
+  - [Komika](#komika-hand)
+  - [Krikikrak](#krikikrak)
   - [Pacifico](#pacifico)
   - [Playwrite](#playwrite)
-  - [Sansita Swashed](#sansita-swashed)
   - [Satisfy](#satisfy)
-* Display
-  - [Anton](#anton)
-  - [Anybody](#anybody)
-  - [Bebas Neue](#bebas-neue)
-  - [Big Shoulders Display](#big-shoulders-display)
-  - [Dela Gothic One](#dela-gothic-one)
-  - [Silkscreen](#silkscreen)
-* Blackletter
-  - [Fette Fraktur](#fette-fraktur)
-  - [Grenze Gotisch](#grenze-gotisch)
+  - [Tangerine](#tangerine)
+  - [TeX Gyre Chorus](#tex-gyre-chorus)
+* Blackletter (5)
   - [Grenze](#grenze)
+  - [Grenze Gotisch](#grenze-gotisch)
+  - [Jacquarda Bastarda 9](#jacquarda-bastarda-9)
   - [Unifraktur](#unifraktur)
-* Nicht Comic Sans
-  - [Krikikrak](#krikikrak)
-  - [Komika Hand](#komika-hand)
-  - [Kalam](#kalam)
+  - [UnifrakturCook](#unifrakturcook)
+* Display (8)
+  - [Big Shoulders Display](#big-shoulders-display)
+  - [Big Shoulders Stencil](#big-shoulders-stencil)
+  - [Climate Crisis](#climate-crisis)
+  - [Dela Gothic One](#dela-gothic-one)
+  - [Pixelify Sans](#pixelify-sans)
+  - [Saira Stencil One](#saira-stencil-one)
+  - [Sansita Swashed](#sansita-swashed)
+  - [Silkscreen](#silkscreen)
 
 # Serifenschriften
 
@@ -289,10 +300,15 @@ https://fonts.google.com/specimen/Bitter
 https://github.com/indestructible-type/Bodoni
 
 ## Cardo
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Cardo
 
 ## Compagnon
 https://compagnon.eesab.fr/
+
+## Cooper Hewitt
+https://github.com/cooperhewitt/CooperHewitt-Font
 
 ## Crimson Pro
 https://github.com/Fonthausen/CrimsonPro
@@ -310,12 +326,16 @@ https://github.com/undercasetype/Fraunces
 https://www.fontshare.com/fonts/gambetta
 
 ## Gentium Plus
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://software.sil.org/gentium
 
 ## GFS Didot
 https://greekfontsociety-gfs.gr/typefaces/19th_century
 
 ## Instrument Serif
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Instrument+Serif
 
 ## Junicode
@@ -343,18 +363,24 @@ https://github.com/huertatipografica/piazzolla
 https://www.forthehearts.net/playfair
 
 ## Quattrocento
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Quattrocento
 
 ## Reforma
 https://pampatype.com/reforma
 
 ## Roslindale
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Roslindale
 
 ## Sentient
 https://www.fontshare.com/fonts/sentient
 
 ## Sorts Mill Goudy
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Sorts+Mill+Goudy
 
 ## Source Serif
@@ -364,6 +390,8 @@ https://adobe-fonts.github.io/source-serif/
 https://github.com/productiontype/Spectral
 
 ## STIX Two
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://www.stixfonts.org
 
 ## Unna
@@ -424,6 +452,8 @@ https://github.com/googlefonts/amstelvar
 https://www.omnibus-type.com/fonts/asap/
 
 ## Barlow
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Barlow
 
 ## Bricolage Grotesque
@@ -433,15 +463,21 @@ https://ateliertriay.github.io/bricolage/
 https://www.fontshare.com/fonts/cabinet-grotesk
 
 ## Chivo
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Chivo
 
 ## DINish
 https://github.com/playbeing/dinish
 
 ## DM Sans
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/DM+Sans
 
 ## Encode Sans
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Encode+Sans
 
 ## Epilogue
@@ -454,6 +490,8 @@ https://www.erikdkennedy.com/projects/figtree.html
 https://vercel.com/font
 
 ## Junction
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://theleagueofmoveabletype.com/junction
 
 ## Karrik
@@ -463,10 +501,15 @@ https://velvetyne.fr/fonts/karrik/
 https://theleagueofmoveabletype.com/league-spartan
 
 ## Lexend
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Lexend
 
 ## Libertinus Sans
 https://github.com/alerque/libertinus
+
+## Libre Franklin
+https://github.com/impallari/Libre-Franklin
 
 ## Manrope
 https://fonts.google.com/specimen/Manrope
@@ -478,15 +521,21 @@ https://github.com/mozilla/mozilla-type-family
 https://github.com/googlefonts/nunito
 
 ## Oswald
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Oswald
 
 ## Outfit
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Outfit
 
 ## Playpen Sans
 https://fonts.google.com/specimen/Playpen+Sans
 
 ## Plus Jakarta Sans
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Plus+Jakarta+Sans
 
 ## Public Sans
@@ -514,9 +563,13 @@ https://adobe-fonts.github.io/source-sans/
 https://floriankarsten.github.io/space-grotesk/
 
 ## Syne
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Syne
 
 ## Urbanist
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Urbanist
 
 ## Varela Round
@@ -624,6 +677,8 @@ Eigentlich nur wegen der kursiven Variante für Kommentare.
 https://github.com/0xType/0xProto
 
 ## Commit Mono
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://commitmono.com/
 
 ## Courier Prime
@@ -645,6 +700,8 @@ https://github.com/IBM/plex
 https://github.com/alerque/libertinus
 
 ## Monaspace
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://monaspace.githubnext.com
 
 ## Recursive
@@ -654,6 +711,8 @@ https://www.recursive.design
 https://github.com/adobe-fonts/source-code-pro
 
 ## Space Mono
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Space+Mono
 
 ## Victor Mono
@@ -701,12 +760,18 @@ https://www.gust.org.pl/projects/e-foundry/tex-gyre/chorus
 # Display
 
 ## Anton
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Anton
 
 ## Anybody
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Anybody
 
 ## Bebas Neue
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 https://fonts.google.com/specimen/Bebas+Neue
 
 ## Big Shoulders Display
@@ -736,6 +801,8 @@ https://kottke.org/plus/type/silkscreen/
 # Blackletter
 
 ## Fette Fraktur
+*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
+
 **Keine freie Quelle.** Die früher hier eingetragene Google-Fonts-URL ist ein 404 — „Fette Fraktur"
 gibt es dort nicht, und eine freie Digitalisierung existiert nicht. Als Ersatz mit eigener
 Projektseite: [Plakat Fraktur](http://www.peter-wiegel.de/PlakatFraktur.html) oder
