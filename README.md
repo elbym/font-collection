@@ -262,14 +262,14 @@ Kannte sie nicht, bevor ich bei Teuderun darauf gestoßen bin – und ich mag si
 * Literata Subhead
 * Literata Text
 
-![Vorschau des Literata TT Text Regular Schriftmusters](./src/img/font_previews/Literata.png)
+![Vorschau des Literata TT Text Regular Schriftmusters](./src/img/font_previews/Literata.svg)
 
 ## IBM Plex Serif
 https://github.com/IBM/plex
 
 Ich mag die IBM-Plex-Schriften sehr. Sie treffen den klassischen Look und sind gut lesbar. Mit einem Hauch „Tech-Feeling".
 
-![Vorschau des IBM Plex Serif Schriftmusters](./src/img/font_previews/IBM_Plex_Serif.png)
+![Vorschau des IBM Plex Serif Schriftmusters](./src/img/font_previews/IBMPlexSerif.svg)
 
 ## Libertinus
 https://github.com/alerque/libertinus
@@ -279,7 +279,7 @@ Libertinus ist der Nachfolger von Linux Libertine aus der TeX-Gyre-Sammlung. Die
 * Libertinus Serif Display
 * Libertinus Sans
 
-![Vorschau des Libertinus Serif Schriftmusters](./src/img/font_previews/Libertinus_Serif.png)
+![Vorschau des Libertinus Serif Schriftmusters](./src/img/font_previews/LibertinusSerif.svg)
 
 ## Alegreya
 https://htfonts.com/en/fonts/alegreya-sans/
@@ -298,9 +298,6 @@ https://fonts.google.com/specimen/Bitter
 
 ## Bodoni*
 https://github.com/indestructible-type/Bodoni
-
-## Cardo
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
 
 https://fonts.google.com/specimen/Cardo
 
@@ -325,18 +322,8 @@ https://github.com/undercasetype/Fraunces
 ## Gambetta
 https://www.fontshare.com/fonts/gambetta
 
-## Gentium Plus
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://software.sil.org/gentium
-
 ## GFS Didot
 https://greekfontsociety-gfs.gr/typefaces/19th_century
-
-## Instrument Serif
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Instrument+Serif
 
 ## Junicode
 https://github.com/psb1558/Junicode-font
@@ -362,37 +349,17 @@ https://github.com/huertatipografica/piazzolla
 ## Playfair
 https://www.forthehearts.net/playfair
 
-## Quattrocento
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Quattrocento
-
 ## Reforma
 https://pampatype.com/reforma
 
-## Roslindale
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Roslindale
-
 ## Sentient
 https://www.fontshare.com/fonts/sentient
-
-## Sorts Mill Goudy
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Sorts+Mill+Goudy
 
 ## Source Serif
 https://adobe-fonts.github.io/source-serif/
 
 ## Spectral
 https://github.com/productiontype/Spectral
-
-## STIX Two
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://www.stixfonts.org
 
 ## Unna
 https://www.omnibus-type.com/fonts/unna/
@@ -415,35 +382,35 @@ Nomen est omen. Sehr gut lesbar. Ich mag sie und sie wächst mir immer mehr ans 
 
 Entwickelt vom Braille Institute of America ist diese Schrift darauf ausgelegt, für sehbehinderte Leser besonders gut lesbar zu sein – alle Zeichen sind so unterschiedlich wie möglich gestaltet.
 
-![Vorschau des Atkinson Hyperlegible Schriftmusters](./src/img/font_previews/Atkinson_Hyperlegible_Next.png)
+![Vorschau des Atkinson Hyperlegible Schriftmusters](./src/img/font_previews/AtkinsonHyperlegibleNext.svg)
 
 ## Inter
 https://rsms.me/inter/
 
 Wie die Website es beschreibt: „Der Standard des 21. Jahrhunderts". Hat sogar eine schöne URL. Auch als Variable Font verfügbar.
 
-![Vorschau des Inter Schriftmusters](./src/img/font_previews/Inter_Variable.png)
+![Vorschau des Inter Schriftmusters](./src/img/font_previews/Inter.svg)
 
 ## Metropolis
 https://github.com/dw5/Metropolis
 
 Diese mag ich für Überschriften und größeren Text.
 
-![Vorschau des Metropolis Schriftmusters](./src/img/font_previews/Metropolis.png)
+![Vorschau des Metropolis Schriftmusters](./src/img/font_previews/Metropolis.svg)
 
 ## IBM Plex Sans
 https://github.com/IBM/plex
 
 Die IBM-Plex-Schriftfamilie ist einfach eine schöne und sehr gut lesbare Schrift.
 
-![Vorschau des IBM Plex Sans Schriftmusters](./src/img/font_previews/IBM_Plex_Sans.png)
+![Vorschau des IBM Plex Sans Schriftmusters](./src/img/font_previews/IBMPlexSans.svg)
 
 ## Fira Sans
 https://mozilla.github.io/Fira/
 
 Im Auftrag der Mozilla Foundation und Telefonica S.A. für deren mobiles Betriebssystem entwickelt. Erinnert sehr an Erik Spiekermanns „FF Meta".
 
-![Vorschau des Fira Sans Schriftmusters](./src/img/font_previews/Fira_Sans.png)
+![Vorschau des Fira Sans Schriftmusters](./src/img/font_previews/FiraSans.svg)
 
 ## Amstelvar
 https://github.com/googlefonts/amstelvar
@@ -451,34 +418,14 @@ https://github.com/googlefonts/amstelvar
 ## Asap
 https://www.omnibus-type.com/fonts/asap/
 
-## Barlow
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Barlow
-
 ## Bricolage Grotesque
 https://ateliertriay.github.io/bricolage/
 
 ## Cabinet Grotesk
 https://www.fontshare.com/fonts/cabinet-grotesk
 
-## Chivo
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Chivo
-
 ## DINish
 https://github.com/playbeing/dinish
-
-## DM Sans
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/DM+Sans
-
-## Encode Sans
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Encode+Sans
 
 ## Epilogue
 https://github.com/Etcetera-Type-Co/Epilogue
@@ -489,21 +436,11 @@ https://www.erikdkennedy.com/projects/figtree.html
 ## Geist
 https://vercel.com/font
 
-## Junction
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://theleagueofmoveabletype.com/junction
-
 ## Karrik
 https://velvetyne.fr/fonts/karrik/
 
 ## League Spartan
 https://theleagueofmoveabletype.com/league-spartan
-
-## Lexend
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Lexend
 
 ## Libertinus Sans
 https://github.com/alerque/libertinus
@@ -520,23 +457,8 @@ https://github.com/mozilla/mozilla-type-family
 ## Nunito
 https://github.com/googlefonts/nunito
 
-## Oswald
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Oswald
-
-## Outfit
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Outfit
-
 ## Playpen Sans
 https://fonts.google.com/specimen/Playpen+Sans
-
-## Plus Jakarta Sans
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Plus+Jakarta+Sans
 
 ## Public Sans
 https://github.com/uswds/public-sans
@@ -561,16 +483,6 @@ https://adobe-fonts.github.io/source-sans/
 
 ## Space Grotesk
 https://floriankarsten.github.io/space-grotesk/
-
-## Syne
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Syne
-
-## Urbanist
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Urbanist
 
 ## Varela Round
 https://fonts.google.com/specimen/Varela+Round
@@ -598,27 +510,28 @@ Freie Alternativen für:
 * Courier → TeX Gyre Cursor
 * Helvetica → TeX Gyre Heros
 
-![Vorschau des Tex Gyre Adventor Schriftmusters](./src/img/font_previews/TeX_Gyre_Termes.png)
-![Vorschau des Tex Gyre Bonum Schriftmusters](./src/img/font_previews/TeX_Gyre_Schola.png)
-![Vorschau des Tex Gyre Cursor Schriftmusters](./src/img/font_previews/TeX_Gyre_Pagella.png)
-![Vorschau des Tex Gyre Heros Schriftmusters](./src/img/font_previews/TeX_Gyre_Heros.png)
-![Vorschau des Tex Gyre Pagella Schriftmusters](./src/img/font_previews/TeX_Gyre_Cursor.png)
-![Vorschau des Tex Gyre Schola Schriftmusters](./src/img/font_previews/TeX_Gyre_Adventor.png)
-![Vorschau des Tex Gyre Termes Schriftmusters](./src/img/font_previews/TeX_Gyre_Bonum.png)
+![Vorschau des Schriftmusters von TeX Gyre Termes](./src/img/font_previews/TexGyreTermes.svg)
+![Vorschau des Schriftmusters von TeX Gyre Adventor](./src/img/font_previews/TexGyreAdventor.svg)
+![Vorschau des Schriftmusters von TeX Gyre Schola](./src/img/font_previews/TexGyreSchola.svg)
+![Vorschau des Schriftmusters von TeX Gyre Pagella](./src/img/font_previews/TexGyrePagella.svg)
+![Vorschau des Schriftmusters von TeX Gyre Chorus](./src/img/font_previews/TexGyreChorus.svg)
+![Vorschau des Schriftmusters von TeX Gyre Bonum](./src/img/font_previews/TexGyreBonum.svg)
+![Vorschau des Schriftmusters von TeX Gyre Cursor](./src/img/font_previews/TexGyreCursor.svg)
+![Vorschau des Schriftmusters von TeX Gyre Heros](./src/img/font_previews/TexGyreHeros.svg)
 
 ## Cormorant Garamond
 https://github.com/CatharsisFonts/Cormorant
 
 Kannte sie nicht vor Teuderun und mag sie sehr.
 
-![Vorschau des Cormorant Garamond Schriftmusters](./src/img/font_previews/Cormorant_Garamond.png)
+![Vorschau des Cormorant Garamond Schriftmusters](./src/img/font_previews/Cormorant.svg)
 
 ## Libre Caslon Text
 https://github.com/impallari/Libre-Caslon-Text/
 
 Caslon-Klon, speziell optimiert für Fließtext im Web. Auch verfügbar als [Libre Caslon Display](https://github.com/impallari/Libre-Caslon-Display/)
 
-![Vorschau des Libre Caslon Text Schriftmusters](./src/img/font_previews/Libre_Caslon_Text.png)
+![Vorschau des Libre Caslon Text Schriftmusters](./src/img/font_previews/LibreCaslon.svg)
 
 # Sehr schön zu haben
 
@@ -627,21 +540,21 @@ http://nta.accademiadiurbino.it/titillium/
 
 Für wenn man einen etwas anderen Look braucht.
 
-![Vorschau des Titillium Schriftmusters](./src/img/font_previews/Titillium_Web.png)
+![Vorschau des Titillium Schriftmusters](./src/img/font_previews/TitillumWeb.svg)
 
 ## Jost
 https://github.com/indestructible-type/Jost
 
 Ein etwas eleganteres Futura
 
-![Vorschau des Jost* Schriftmusters](./src/img/font_previews/Jost_.png)
+![Vorschau des Jost* Schriftmusters](./src/img/font_previews/Jost.svg)
 
 ## Overpass
 https://overpassfont.org/
 
 Open-Source-Schrift, inspiriert von Highway Gothic auf amerikanischen Straßenschildern.
 
-![Vorschau des Overpass Schriftmusters](./src/img/font_previews/Overpass.png)
+![Vorschau des Overpass Schriftmusters](./src/img/font_previews/Overpass.svg)
 
 # Nichtproportional
 
@@ -650,36 +563,31 @@ https://github.com/jetbrains/jetbrainsmono
 
 Sie ist einfach angenehm für meine Augen.
 
-![Vorschau des JetBrains Mono Schriftmusters](./src/img/font_previews/JetBrains_Mono.png)
+![Vorschau des JetBrains Mono Schriftmusters](./src/img/font_previews/JetBrainsMono.svg)
 
 ## Maple Mono
 https://font.subf.dev/en/download/
 
 Ich versuche, mich mit ihr anzufreunden.
 
-![Vorschau des Maple Mono Regular Schriftmusters](./src/img/font_previews/Maple_Mono.png)
+![Vorschau des Maple Mono Regular Schriftmusters](./src/img/font_previews/MapleMono.svg)
 
 ## Fira Code
 https://github.com/tonsky/FiraCode
 
 Meine frühere Monospace-Schrift. Ich lasse sie schweren Herzens hinter mir, aber JetBrains Mono ist einfach angenehmer anzuschauen.
 
-![Vorschau des Fira Code Regular Schriftmusters](./src/img/font_previews/Fira_Code.png)
+![Vorschau des Fira Code Regular Schriftmusters](./src/img/font_previews/FiraCode.svg)
 
 ## Cascadia Code
 https://github.com/microsoft/cascadia-code
 
 Eigentlich nur wegen der kursiven Variante für Kommentare.
 
-![Vorschau des Cascadia Code Kursiv-Kommentars](./src/img/font_previews/Cascadia_Code.png)
+![Vorschau des Cascadia Code Kursiv-Kommentars](./src/img/font_previews/CascadiaCode.svg)
 
 ## 0xProto
 https://github.com/0xType/0xProto
-
-## Commit Mono
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://commitmono.com/
 
 ## Courier Prime
 https://quoteunquoteapps.com/courierprime/
@@ -699,21 +607,11 @@ https://github.com/IBM/plex
 ## Libertinus Mono
 https://github.com/alerque/libertinus
 
-## Monaspace
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://monaspace.githubnext.com
-
 ## Recursive
 https://www.recursive.design
 
 ## Source Code Pro
 https://github.com/adobe-fonts/source-code-pro
-
-## Space Mono
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Space+Mono
 
 ## Victor Mono
 https://rubjo.github.io/victor-mono/
@@ -759,21 +657,6 @@ https://www.gust.org.pl/projects/e-foundry/tex-gyre/chorus
 
 # Display
 
-## Anton
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Anton
-
-## Anybody
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Anybody
-
-## Bebas Neue
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-https://fonts.google.com/specimen/Bebas+Neue
-
 ## Big Shoulders Display
 https://fonts.google.com/specimen/Big+Shoulders+Display
 
@@ -799,14 +682,6 @@ https://fonts.google.com/specimen/Dela+Gothic+One
 https://kottke.org/plus/type/silkscreen/
 
 # Blackletter
-
-## Fette Fraktur
-*Wunschliste — nicht in der Sammlung, siehe [`todo.md`](./todo.md).*
-
-**Keine freie Quelle.** Die früher hier eingetragene Google-Fonts-URL ist ein 404 — „Fette Fraktur"
-gibt es dort nicht, und eine freie Digitalisierung existiert nicht. Als Ersatz mit eigener
-Projektseite: [Plakat Fraktur](http://www.peter-wiegel.de/PlakatFraktur.html) oder
-[Ganz Grobe Gotisch](http://www.peter-wiegel.de/GanzGrobe.html) (Peter Wiegel).
 
 ## Grenze Gotisch
 https://www.omnibus-type.com/fonts/grenze-gotisch/
@@ -838,18 +713,18 @@ https://www.carrois.com/typefaces/retail/Krikikrak/
 
 Wenn man schon an _Comic Sans_ denkt – warum nicht gleich das innere Kind voll ausleben und Krikikrak verwenden?
 
-![Vorschau des Krikikrak Schriftmusters](./src/img/font_previews/Krikikrak_Tape.png)
+![Vorschau des Krikikrak Schriftmusters](./src/img/font_previews/Krikikrak.svg)
 
 ## Komika Hand
 https://www.1001fonts.com/komika-font.html
 
 Niemand muss Comic Sans benutzen, aber man könnte auch einfach voll auf Comic-Modus gehen.
 
-![Vorschau des Komika Schriftmusters](./src/img/font_previews/Komika_Hand.png)
+![Vorschau des Komika Schriftmusters](./src/img/font_previews/Komika.svg)
 
 ## Kalam
 https://fonts.google.com/specimen/Kalam
 
 Lieber nicht benutzen. Sie könnte das neue Comic Sans werden ;-)
 
-![Vorschau des Kalam Schriftmusters](./src/img/font_previews/Kalam.png)
+![Vorschau des Kalam Schriftmusters](./src/img/font_previews/Kalam.svg)
