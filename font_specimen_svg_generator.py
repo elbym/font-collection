@@ -6,9 +6,22 @@ Font Specimen SVG Generator
 ============================
 Analog zu font_specimen_generator.py — gibt SVGs statt PNGs aus.
 
-Durchsucht einen Ordner nach Schriftdateien (.ttf, .otf, .woff, .woff2)
-und erstellt für jede Schriftfamilie eine Vorschau als selbst-enthaltende SVG
-(Schrift als Base64 eingebettet, keine externen Abhängigkeiten zur Laufzeit).
+Durchsucht einen Ordner nach Schriftfamilien und erstellt für jede eine Vorschau
+als selbst-enthaltende SVG. Aller Text wird dabei in Konturen (<path>) gewandelt —
+die SVG enthält keine Schrift und kein @font-face und rendert deshalb überall
+gleich, auch in librsvg-basierten Betrachtern (GNOME-Bildbetrachter, Nautilus-
+Vorschau, ImageMagick), die @font-face nicht unterstützen.
+
+Gruppierung erfolgt **nach Ordner**: ein Ordner mit Schriftdateien = eine Schrift
+= eine SVG, benannt nach dem Ordner. Das entspricht 1:1 dem Aufbau der Sammlung
+(src/webfonts/<Kategorie>/<SchriftName>/) und damit den Einträgen in der README.
+
+Variable Fonts werden vorher auf eine statische Instanz eingefroren (wght 400),
+sonst würde ein Viertel der Sammlung in Thin oder Black rendern.
+
+Konturen kennen kein Text-Shaping: Kerning aus GPOS und Ligaturen entfallen.
+Für ein Schriftmuster ist das vertretbar — betroffen sind vor allem eng
+kernende Versalpaare im großen Schriftnamen.
 
 Layout (angelehnt an Wikipedia-Fontspecimen):
   Oberer Bereich  — Fontname, "Aa Ee Rr" Regular + Italic, Heroword, Ghost-Buchstabe
@@ -23,12 +36,13 @@ Verwendung:
     python font_specimen_svg_generator.py --input ./fonts --output ./previews --width 1400 --theme cream
     python font_specimen_svg_generator.py --input ./fonts --output ./previews --overwrite
     python font_specimen_svg_generator.py --input ./fonts --output ./previews --wordlist ./woerter.txt
+    python font_specimen_svg_generator.py --input ./fonts --output ./previews --readme README.md
 """
 
 import argparse
-import base64
 import colorsys
 import html as _html
+import logging
 import os
 import random
 import re
@@ -37,9 +51,16 @@ from pathlib import Path
 
 try:
     from fontTools.ttLib import TTFont
+    from fontTools.pens.boundsPen import BoundsPen
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from fontTools.varLib import instancer
 except ImportError:
     print("Fehler: fonttools nicht installiert. Bitte 'pip install fonttools brotli' ausführen.")
     sys.exit(1)
+
+# fontTools meldet pro Font mehrere unkritische Warnungen ("FFTM NOT subset", …)
+logging.getLogger("fontTools").setLevel(logging.ERROR)
 
 
 # ── Farbpaletten (identisch mit font_specimen_generator.py) ───────────────────
@@ -50,150 +71,253 @@ THEMES = {
         "lower_bg":   "#12141f",
         "accent":     "#b4d273",
         "text":       "#eaeaea",
-        "name_color": "#55577a",
+        "name_bg":    "#dfe2f0",
+        "name_color": "#1e2035",
         "ghost":      "#252848",
         "lower_text": "#dde0f0",
     },
+    # Helle Blau-/Teal-Töne. lower_text ist bewusst dunkel: mit dem hellen
+    # Wert der Vorgängerpalette lag das Alphabetband bei 1,7:1 und war
+    # praktisch unlesbar.
     "white": {
-        "upper_bg":   "#e8e4dc",
-        "lower_bg":   "#c8c0a8",
-        "accent":     "#7a5c10",
-        "text":       "#1a1208",
-        "name_color": "#9a9080",
-        "ghost":      "#f5f2ec",
-        "lower_text": "#faf8f4",
+        "upper_bg":   "#cee5ea",
+        "lower_bg":   "#a9ccd4",
+        "accent":     "#0f6f78",
+        "text":       "#10333a",
+        "name_bg":    "#f2fbfc",
+        "name_color": "#0d3b42",
+        "ghost":      "#e0f0f3",
+        "lower_text": "#0b2a30",
     },
     "cream": {
         "upper_bg":   "#c5baa0",
         "lower_bg":   "#b89354",
         "accent":     "#c8a020",
         "text":       "#1a1208",
-        "name_color": "#8a8070",
+        "name_bg":    "#f4eeda",
+        "name_color": "#4a3a12",
         "ghost":      "#ddd5c0",
         "lower_text": "#ffffff",
     },
 }
 
 
-def generate_random_theme() -> dict:
-    """Leitet harmonische Farben aus einem zufälligen Grundton ab."""
-    h = random.random()
-    h_accent = (h + random.choice([0.33, 0.38, 0.42, 0.58, 0.62, 0.67])) % 1.0
-    mode = random.choice(["dark", "light", "mid"])
-
-    def hls(hue: float, lightness: float, saturation: float) -> str:
-        r, g, b = colorsys.hls_to_rgb(hue % 1.0, lightness, saturation)
-        return f"#{int(r * 255):02x}{int(g * 255):02x}{int(b * 255):02x}"
-
-    if mode == "dark":
-        return {
-            "upper_bg":   hls(h,        0.11, 0.28),
-            "lower_bg":   hls(h,        0.07, 0.22),
-            "accent":     hls(h_accent, 0.65, 0.80),
-            "text":       hls(h,        0.91, 0.12),
-            "name_color": hls(h,        0.36, 0.28),
-            "ghost":      hls(h,        0.16, 0.24),
-            "lower_text": hls(h,        0.88, 0.15),
-        }
-    elif mode == "light":
-        return {
-            "upper_bg":   hls(h,        0.91, 0.20),
-            "lower_bg":   hls(h,        0.80, 0.28),
-            "accent":     hls(h_accent, 0.32, 0.72),
-            "text":       hls(h,        0.09, 0.28),
-            "name_color": hls(h,        0.60, 0.20),
-            "ghost":      hls(h,        0.96, 0.16),
-            "lower_text": hls(h,        0.07, 0.22),
-        }
-    else:  # mid
-        return {
-            "upper_bg":   hls(h,        0.68, 0.42),
-            "lower_bg":   hls(h,        0.54, 0.52),
-            "accent":     hls(h_accent, 0.20, 0.70),
-            "text":       hls(h,        0.06, 0.30),
-            "name_color": hls(h,        0.45, 0.32),
-            "ghost":      hls(h,        0.80, 0.35),
-            "lower_text": hls(h,        0.96, 0.12),
-        }
+def _relative_luminance(hex_color: str) -> float:
+    """WCAG-Leuchtdichte eines #rrggbb-Werts."""
+    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    lin = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
 
 
-# ── Dateinamen-Parsing (identisch mit font_specimen_generator.py) ─────────────
-
-_SUBFAMILY_RE = re.compile(
-    r"^(?:"
-    r"(thin|extralight|ultralight|light|regular|book|normal|medium|"
-    r"semibold|demibold|bold|extrabold|ultrabold|black|heavy|variable|vf)"
-    r"(italic|oblique)?"
-    r"|(\[?ital\]?|italic|oblique)"
-    r")$",
-    re.IGNORECASE,
-)
+def contrast_ratio(a: str, b: str) -> float:
+    """WCAG-Kontrastverhältnis zweier Farben, 1:1 bis 21:1."""
+    hi, lo = sorted((_relative_luminance(a), _relative_luminance(b)), reverse=True)
+    return (hi + 0.05) / (lo + 0.05)
 
 
-def _strip_axes(s: str) -> str:
-    return re.sub(r"[\[\(][^\]\)]*[\]\)]", "", s).rstrip("-_ ")
+def _hls(hue: float, lightness: float, saturation: float) -> str:
+    r, g, b = colorsys.hls_to_rgb(hue % 1.0, lightness, saturation)
+    return f"#{int(r * 255):02x}{int(g * 255):02x}{int(b * 255):02x}"
 
 
-def _parse_name_from_filename(stem: str) -> tuple[str, str]:
-    clean = _strip_axes(stem)
-    for sep in ("-", "_"):
-        if sep in clean:
-            idx = clean.rfind(sep)
-            suffix = clean[idx + 1:]
-            if _SUBFAMILY_RE.match(suffix):
-                return clean[:idx], suffix
-    return clean, ""
+def _darken_until(hue: float, lightness: float, saturation: float,
+                  background: str, target: float) -> str:
+    """Senkt die Helligkeit, bis der Kontrast zum Hintergrund `target` erreicht.
+
+    Nötig, weil HLS-Helligkeit nicht Leuchtdichte ist: Gelb bei L=0.30 ist
+    deutlich heller als Blau bei L=0.30. Bei zufälligem Farbton würde ein fester
+    Wert je nach Ton mal passen und mal nicht — hier wird das Ergebnis geprüft
+    statt gehofft.
+    """
+    while lightness > 0.0:
+        color = _hls(hue, lightness, saturation)
+        if contrast_ratio(color, background) >= target:
+            return color
+        lightness -= 0.02
+    return _hls(hue, 0.0, saturation)
 
 
-def get_font_name(font_path: str) -> tuple[str, str]:
+def generate_random_theme(rng: random.Random | None = None) -> dict:
+    """Helle Pastelltöne aus einem zufälligen Grundton.
+
+    Der Farbton würfelt, die Helligkeitsstaffelung nicht: die Flächen bleiben
+    immer pastellig hell, die Schrift immer dunkel genug. Der Akzent sitzt auf
+    einem versetzten Farbton, damit das Heroword sich absetzt.
+    """
+    rng = rng or random
+    h = rng.random()
+    h_accent = (h + rng.choice([0.33, 0.38, 0.42, 0.58, 0.62, 0.67])) % 1.0
+
+    # Flächen: pastellig, von oben nach unten zunehmend kräftiger
+    name_bg  = _hls(h, 0.96, 0.42)
+    upper_bg = _hls(h, 0.89, 0.45)
+    lower_bg = _hls(h, 0.78, 0.38)
+    ghost    = _hls(h, 0.93, 0.35)
+
+    return {
+        "name_bg":    name_bg,
+        "upper_bg":   upper_bg,
+        "lower_bg":   lower_bg,
+        "ghost":      ghost,
+        "name_color": _darken_until(h,        0.28, 0.55, name_bg,  7.0),
+        "text":       _darken_until(h,        0.26, 0.50, upper_bg, 7.0),
+        "lower_text": _darken_until(h,        0.24, 0.50, lower_bg, 7.0),
+        "accent":     _darken_until(h_accent, 0.40, 0.75, upper_bg, 4.5),
+    }
+
+
+# ── Ordner-Scan & Gruppierung ────────────────────────────────────────────────
+
+FONT_EXTENSIONS = {".ttf", ".otf", ".woff", ".woff2"}
+
+# Fallback, wenn meta.yaml kein `tags` hat. Der Ordner ist NICHT maßgeblich —
+# tags[0] gewinnt (z.B. display/Arvo ist Serif, script/PlaypenSans ist Sans).
+FOLDER_CATEGORY = {
+    "sans": "Sans", "serif": "Serif", "mono": "Monospace",
+    "comicsans": "Script", "script": "Script",
+    "display": "Display", "blackletter": "Blackletter",
+}
+
+CATEGORY_ORDER = ["Serif", "Sans", "Monospace", "Script", "Blackletter", "Display"]
+
+_ITALIC_RE = re.compile(r"italic|oblique|\[ital\]", re.IGNORECASE)
+_CANONICAL_RE = re.compile(r"regular|roman", re.IGNORECASE)
+
+# Gewichtswörter aus dem Dateinamen. Längere Schlüssel gewinnen, damit
+# "SemiBold" nicht als "Bold" gelesen wird. Ohne Treffer gilt 400 —
+# so zählen unqualifizierte Namen und Variable Fonts als Regular.
+_WEIGHT_WORDS = {
+    "thin": 100, "hairline": 100, "extralight": 200, "ultralight": 200,
+    "light": 300, "book": 400, "normal": 400, "regular": 400, "roman": 400,
+    "medium": 500, "semibold": 600, "demibold": 600, "semi": 600,
+    "bold": 700, "extrabold": 800, "ultrabold": 800, "heavy": 900, "black": 900,
+}
+_EXT_RANK = {".woff2": 0, ".woff": 1, ".otf": 2, ".ttf": 3}
+
+
+def _weight_of(filename: str) -> int:
+    lowered = filename.lower()
+    for word in sorted(_WEIGHT_WORDS, key=len, reverse=True):
+        if word in lowered:
+            return _WEIGHT_WORDS[word]
+    return 400
+
+
+def find_fonts(folder: str) -> list[str]:
+    found = []
+    for root, _, files in os.walk(folder):
+        for f in sorted(files):
+            if Path(f).suffix.lower() in FONT_EXTENSIONS:
+                found.append(os.path.join(root, f))
+    return found
+
+
+def group_fonts_by_folder(root: str) -> dict[str, list[str]]:
+    """Ein Ordner mit Schriftdateien = eine Schrift. Schlüssel = Ordnerpfad."""
+    groups: dict[str, list[str]] = {}
+    for path in find_fonts(root):
+        groups.setdefault(os.path.dirname(path), []).append(path)
+    return groups
+
+
+def pick_cuts(files: list[str]) -> tuple[str, str | None]:
+    """(aufrecht, kursiv|None) — reine Dateiname-Heuristik.
+
+    Bewusst NICHT über den Name-Table: variable Fonts melden dort ihre Instanz
+    am Achsenminimum ('ExtraLight', 'Sans Linear Light', 'Black'), wodurch 21
+    Ordner der Sammlung komplett durchfallen würden.
+    """
+    ital = [f for f in files if _ITALIC_RE.search(os.path.basename(f))]
+    upright = [f for f in files if f not in ital]
+
+    def rank(f):
+        """Sortiert nach Nähe zu 'Regular'.
+
+        Reihenfolge der Kriterien:
+        1. Dateiformat — woff2 ist das kanonische Format der Sammlung; manche
+           Ordner enthalten noch die ttf-Vorlage mit identischen Konturen.
+        2. Abstand zu Gewicht 400 — sonst gewänne bei GFSDidot der Bold-Schnitt
+           und bei Grenze die ThinItalic.
+        3. 'Regular'/'Roman' im Namen — entscheidet FiraSans-Regular vs. -Book.
+        4. Kürzester Name — die Basisfamilie trägt keinen Zusatz, deshalb
+           schlägt LibertinusSerif-Regular die Varianten -Display- und -Initials-
+           (letztere enthält nur Versalien und ließ die Alphabetzeilen leer).
+        """
+        n = os.path.basename(f)
+        return (
+            _EXT_RANK.get(Path(f).suffix.lower(), 9),
+            abs(_weight_of(n) - 400),
+            0 if _CANONICAL_RE.search(n) else 1,
+            len(n),
+            n,
+        )
+
+    upright = sorted(upright or files, key=rank)
+    chosen_italic = sorted(ital, key=rank)[0] if ital else None
+    # Ordner mit ausschliesslich kursiven Dateien (TexGyreChorus): aufrecht faellt
+    # auf die Kursive zurueck — dann nicht dieselbe Datei zweimal einbetten.
+    if chosen_italic == upright[0]:
+        chosen_italic = None
+    return upright[0], chosen_italic
+
+
+# ── meta.yaml (ohne PyYAML — es werden genau drei Skalarfelder gebraucht) ─────
+
+def read_meta(folder: str, key: str) -> str | None:
+    """Liest ein einzeiliges Skalarfeld aus meta.yaml. Kein YAML-Parser nötig."""
+    p = os.path.join(folder, "meta.yaml")
+    if not os.path.exists(p):
+        return None
     try:
-        tt = TTFont(font_path)
-        name_table = tt["name"]
+        text = Path(p).read_text(encoding="utf-8")
+    except OSError:
+        return None
+    m = re.search(rf"^{re.escape(key)}:[ \t]*(\S.*?)[ \t]*$", text, re.M)
+    if not m:
+        return None
+    val = m.group(1).strip()
+    if val.startswith("#"):
+        return None
+    return val.strip("\"'") or None
 
-        def get_name(name_id):
-            for record in name_table.names:
+
+def get_family_name(font_path: str) -> str:
+    """Familienname aus dem Name-Table; Fallback = Dateiname."""
+    try:
+        tt = TTFont(font_path, lazy=True)
+        names = tt["name"]
+        for name_id in (16, 1):  # typographic family, dann family
+            for record in names.names:
                 if record.nameID == name_id:
                     try:
-                        return record.toUnicode()
+                        val = record.toUnicode().strip()
                     except Exception:
-                        return record.string.decode("latin-1", errors="replace")
-            return ""
-
-        family = get_name(1) or Path(font_path).stem
-        sub    = get_name(2) or ""
-        pf     = get_name(16)
-        ps     = get_name(17)
-        if pf:
-            family = pf
-        if ps:
-            sub = ps
-        return family.strip(), sub.strip()
+                        continue
+                    if val:
+                        return val
     except Exception:
-        return _parse_name_from_filename(Path(font_path).stem)
+        pass
+    return Path(font_path).stem
 
 
-def classify_subfamily(subfamily: str) -> str:
-    s = subfamily.strip().lower().replace(" ", "").replace("-", "").replace("_", "")
-    if s in ("", "regular", "roman", "book", "normal", "upright", "variable", "vf"):
-        return "regular"
-    if s in ("italic", "regularitalic", "oblique", "regularoblique",
-             "variableitalic", "vfitalic"):
-        return "italic"
-    return "other"
+def display_name(folder: str, regular_path: str) -> str:
+    """meta.yaml `title` → Name-Table → CamelCase-Split des Ordnernamens."""
+    return (
+        read_meta(folder, "title")
+        or get_family_name(regular_path)
+        or re.sub(r"(?<!^)(?=[A-Z])", " ", os.path.basename(folder))
+    )
 
 
-def group_fonts_by_family(font_paths: list[str]) -> dict:
-    groups: dict[str, dict] = {}
-    for path in font_paths:
-        family, subfamily = get_font_name(path)
-        kind = classify_subfamily(subfamily)
-        if kind == "other":
-            continue
-        if family not in groups:
-            groups[family] = {"regular": None, "italic": None}
-        if groups[family][kind] is None:
-            groups[family][kind] = path
-    return groups
+def category_of(folder: str) -> str:
+    """Erster Tag aus meta.yaml, sonst Ordner-Mapping."""
+    tags = read_meta(folder, "tags")
+    if tags:
+        first = tags.split(",")[0].strip().strip("[]").strip("\"'")
+        if first:
+            return first
+    parent = os.path.basename(os.path.dirname(folder)).lower()
+    return FOLDER_CATEGORY.get(parent, "Weitere")
 
 
 def load_wordlist(wordlist_path: str) -> list[str]:
@@ -206,25 +330,42 @@ def load_wordlist(wordlist_path: str) -> list[str]:
         return ["Hamburgefonstiv"]
 
 
+def heroword_for(folder: str, words: list[str]) -> str:
+    """Heroword aus meta.yaml, sonst ein pro Ordner stabil gewürfeltes Wort.
+
+    Der Seed ist der Ordnername: derselbe Ordner liefert bei jedem Lauf dasselbe
+    Wort. Ohne das änderten sich bei jedem Durchlauf alle 122 Dateien und der
+    Diff wäre wertlos.
+    """
+    return read_meta(folder, "heroword") or random.Random(
+        os.path.basename(folder)
+    ).choice(words)
+
+
 def slugify(name: str) -> str:
     return "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
 
 
-# ── Font-Einbettung ───────────────────────────────────────────────────────────
+# ── Font-Aufbereitung: instanzieren + subsetten + einbetten ───────────────────
 
-def font_to_data_uri(font_path: str) -> tuple[str, str]:
-    """Gibt (data_uri, css_format_hint) für die Verwendung in @font-face zurück."""
-    ext = Path(font_path).suffix.lower()
-    mime_map = {
-        ".woff2": ("font/woff2",     "woff2"),
-        ".woff":  ("font/woff",      "woff"),
-        ".otf":   ("font/otf",       "opentype"),
-        ".ttf":   ("font/truetype",  "truetype"),
-    }
-    mime, fmt = mime_map.get(ext, ("font/truetype", "truetype"))
-    with open(font_path, "rb") as f:
-        b64 = base64.b64encode(f.read()).decode("ascii")
-    return f"data:{mime};base64,{b64}", fmt
+def load_font(font_path: str) -> TTFont:
+    """Öffnet die Schrift und friert variable Achsen auf eine statische Instanz ein.
+
+    Alle Metriken und Konturen müssen aus diesem Objekt kommen — bei 28 Schriften
+    der Sammlung ist der fvar-Default nicht 400 (Fraunces/Zodiak/Satoshi wären
+    Black, Big Shoulders wäre Thin).
+    """
+    font = TTFont(font_path)
+    if "fvar" in font:
+        axes = {a.axisTag: a for a in font["fvar"].axes}
+        location = {tag: a.defaultValue for tag, a in axes.items()}
+        if "wght" in axes:
+            ax = axes["wght"]
+            location["wght"] = min(max(400.0, ax.minValue), ax.maxValue)
+        font = instancer.instantiateVariableFont(
+            font, location, inplace=True, updateFontNames=False
+        )
+    return font
 
 
 # ── fonttools Metriken ────────────────────────────────────────────────────────
@@ -233,26 +374,47 @@ def _upem(tt: TTFont) -> int:
     return tt["head"].unitsPerEm
 
 
-def _ascender(tt: TTFont) -> int:
-    os2 = tt.get("OS/2")
-    return os2.sTypoAscender if os2 else tt["hhea"].ascent
+def ink_box(text: str, tt: TTFont, size: float) -> tuple[float, float, float, float]:
+    """(links, rechts, über Baseline, unter Baseline) in px — echte Konturmaße.
 
+    Bewusst NICHT Cap-Height oder OS/2-Ascender: die Versalhöhe ignoriert
+    Oberlängen, Akzente und Unterlängen, wodurch sich Zeilen bei Schreib-,
+    Fraktur- und Display-Schriften überlappten. Die Tabellenwerte wiederum
+    enthalten Zeilendurchschuss und reißen die Abstände unnötig auseinander.
+    Gemessen wird deshalb genau der Text, der auch gezeichnet wird.
 
-def _cap_height(tt: TTFont) -> int:
-    os2 = tt.get("OS/2")
-    if os2 and getattr(os2, "sCapHeight", 0):
-        return os2.sCapHeight
-    return int(_ascender(tt) * 0.72)
+    Waagerecht wird über die Vorschubbreiten gelaufen — anders als die reine
+    Textbreite berücksichtigt das die Seitenränder der Randglyphen, sodass die
+    Kontur bündig am Satzspiegel steht statt um das Seitenband daneben.
+    """
+    cmap = tt.getBestCmap() or {}
+    glyphs = tt.getGlyphSet()
+    hmtx = tt["hmtx"].metrics
+    upem = _upem(tt)
 
+    left = right = top = bottom = None
+    advance = 0.0
+    for ch in text:
+        gname = cmap.get(ord(ch))
+        if gname and gname in glyphs:
+            pen = BoundsPen(glyphs)
+            glyphs[gname].draw(pen)
+            if pen.bounds:
+                x_min, y_min, x_max, y_max = pen.bounds
+                x_min += advance
+                x_max += advance
+                left   = x_min if left   is None else min(left, x_min)
+                right  = x_max if right  is None else max(right, x_max)
+                top    = y_max if top    is None else max(top, y_max)
+                bottom = y_min if bottom is None else min(bottom, y_min)
+            advance += hmtx[gname][0] if gname in hmtx else upem * 0.5
+        else:
+            advance += upem * 0.5
 
-def text_height(tt: TTFont, size: float) -> float:
-    """Sichtbare Höhe einer Großbuchstabenzeile (≈ Cap-Height)."""
-    return _cap_height(tt) * size / _upem(tt)
-
-
-def baseline_offset(tt: TTFont, size: float) -> float:
-    """Abstand von der Oberkante der Textzeile zur Baseline."""
-    return _ascender(tt) * size / _upem(tt)
+    if top is None:                      # kein Zeichen hat eine Kontur
+        return 0.0, 0.0, 0.0, 0.0
+    scale = size / upem
+    return left * scale, right * scale, top * scale, -bottom * scale
 
 
 def text_width(text: str, tt: TTFont, size: float) -> float:
@@ -267,35 +429,51 @@ def text_width(text: str, tt: TTFont, size: float) -> float:
     return total * size / upem
 
 
-def lsb_of_char(ch: str, tt: TTFont, size: float) -> float:
-    """Left Side Bearing eines einzelnen Zeichens in Pixeln."""
-    cmap  = tt.getBestCmap() or {}
-    hmtx  = tt["hmtx"].metrics
-    upem  = _upem(tt)
-    gname = cmap.get(ord(ch))
-    lsb   = hmtx[gname][1] if gname and gname in hmtx else 0
-    return lsb * size / upem
-
-
 # ── SVG-Hilfsfunktionen ───────────────────────────────────────────────────────
 
 def _x(s) -> str:
     return _html.escape(str(s), quote=True)
 
 
-def _css_family(name: str) -> str:
-    """Gibt den Font-Family-Namen CSS-sicher in einfachen Anführungszeichen zurück."""
-    return "'" + name.replace("\\", "\\\\").replace("'", "\\'") + "'"
+def _glyph_path(x, y, content, tt, size, color) -> str:
+    """Zeichnet `content` als Konturen-<path> mit Baseline-Ursprung bei (x, y).
 
+    Die Konturen bleiben in Font-Einheiten; Skalierung und Y-Spiegelung
+    (SVG zählt nach unten, Schriften nach oben) macht das transform-Attribut.
+    Das hält die Pfaddaten ganzzahlig und kompakt.
 
-def _text(x, y, content, family, size, color, style="normal"):
-    css = (
-        f"font-family: {_css_family(family)}; "
-        f"font-size: {size}px; "
-        f"fill: {color}; "
-        f"font-style: {style};"
+    Kein Shaping: Vorschubbreiten aus hmtx, kein Kerning, keine Ligaturen —
+    dieselbe Rechnung wie in text_width(), Layout und Darstellung stimmen
+    dadurch exakt überein.
+    """
+    cmap = tt.getBestCmap() or {}
+    glyphs = tt.getGlyphSet()
+    hmtx = tt["hmtx"].metrics
+    upem = _upem(tt)
+
+    commands, advance = [], 0.0
+    for ch in content:
+        gname = cmap.get(ord(ch))
+        if gname and gname in glyphs:
+            # ntos: Font-Einheiten auf ganze Zahlen runden. Default ist str(),
+            # was bei CFF-Schriften volle Float-Präzision schreibt und die
+            # Datei vervielfacht — bei ~1000 Einheiten/em ist das unsichtbar.
+            pen = SVGPathPen(glyphs, ntos=lambda v: str(int(round(v))))
+            glyphs[gname].draw(TransformPen(pen, (1, 0, 0, 1, advance, 0)))
+            d = pen.getCommands()
+            if d:
+                commands.append(d)
+            advance += hmtx[gname][0] if gname in hmtx else upem * 0.5
+        else:
+            advance += upem * 0.5
+
+    if not commands:
+        return ""
+    scale = size / upem
+    return (
+        f'  <path fill="{color}" transform="translate({x:.1f} {y:.1f}) '
+        f'scale({scale:.6f} {-scale:.6f})" d="{" ".join(commands)}"/>'
     )
-    return f'  <text x="{x:.1f}" y="{y:.1f}" style="{css}">{_x(content)}</text>'
 
 
 # ── SVG-Specimen-Generierung ──────────────────────────────────────────────────
@@ -307,84 +485,96 @@ def draw_specimen_svg(
     heroword: str = "Hamburgefonstiv",
     canvas_width: int = 1000,
     theme_name: str = "dark",
+    family: str | None = None,
+    rng: random.Random | None = None,
 ) -> None:
 
-    C   = generate_random_theme() if theme_name == "random" else THEMES[theme_name]
+    C   = generate_random_theme(rng) if theme_name == "random" else THEMES[theme_name]
     PAD = int(canvas_width * 0.10)
 
-    family, _ = get_font_name(regular_path)
+    family = family or get_family_name(regular_path)
 
-    tt_r = TTFont(regular_path)
-    tt_i = TTFont(italic_path) if italic_path else None
-
-    # ── Schriftgrößen (analog PNG-Version) ────────────────────────────────────
-    sz_demo  = int(canvas_width * 0.115)
-    sz_hero  = int(canvas_width * 0.090)
-    sz_ghost = int(canvas_width * 0.520)
-    sz_digit = int(canvas_width * 0.068)
-
-    # Fontname: Größe dynamisch so wählen, dass Name die volle Breite ausfüllt
-    _ref_sz   = int(canvas_width * 0.14)
-    _name_tgt = canvas_width - 2 * PAD
-    _ref_w    = text_width(family, tt_r, _ref_sz)
-    name_sz   = int(_ref_sz * _name_tgt / max(_ref_w, 1))
-    name_sz   = max(min(name_sz, int(canvas_width * 0.42)), int(canvas_width * 0.05))
-
-    # Alphabet-Größe: begrenzen, damit Zeile nicht überläuft
+    demo_str   = "Aa Ee Rr"
+    ghost_str  = "Aa"
     alpha1     = " ".join("abcdefghijklm")
     alpha2     = " ".join("nopqrstuvwxyz")
     digits_str = " ".join("1234567890")
+
+    tt_r = load_font(regular_path)
+    tt_i = load_font(italic_path) if italic_path else None
+
+    # ── Schriftgrößen ─────────────────────────────────────────────────────────
+    sz_demo  = int(canvas_width * 0.095)
+    sz_hero  = int(canvas_width * 0.090)
+    sz_ghost = int(canvas_width * 0.400)
+    sz_digit = int(canvas_width * 0.068)
+
+    _name_tgt = canvas_width - 2 * PAD
+
+    # Fontname: Größe dynamisch so wählen, dass Name die volle Breite ausfüllt
+    _ref_sz = int(canvas_width * 0.14)
+    _ref_w  = text_width(family, tt_r, _ref_sz)
+    name_sz = int(_ref_sz * _name_tgt / max(_ref_w, 1))
+    name_sz = max(min(name_sz, int(canvas_width * 0.42)), int(canvas_width * 0.05))
+
+    tt_h = tt_i if tt_i else tt_r
+
+    # Heroword: bei langen Wörtern verkleinern, damit es nicht über den Rand läuft
+    _hero_w = text_width(heroword, tt_h, sz_hero)
+    if _hero_w > _name_tgt:
+        sz_hero = max(int(canvas_width * 0.03), int(sz_hero * _name_tgt / _hero_w))
+
+    # Alphabet-Größe: begrenzen, damit Zeile nicht überläuft
     _alpha_max = int(canvas_width * 0.075)
     _alpha_w   = text_width(alpha1, tt_r, _alpha_max)
     sz_alpha   = max(20, int(_alpha_max * _name_tgt / _alpha_w)) if _alpha_w > _name_tgt else _alpha_max
 
-    # ── Höhen berechnen (analog PNG-Version) ──────────────────────────────────
-    LINE_S = int(canvas_width * 0.022)
-    LINE_M = int(canvas_width * 0.038)
-    LINE_L = int(canvas_width * 0.052)
+    # ── Zeilen stapeln ────────────────────────────────────────────────────────
+    # Die Abstände sind echter Weißraum zwischen den Konturen, kein Zeilenabstand
+    # ab Baseline. Dadurch stimmt der Abstand auch bei Schriften mit extremen
+    # Ober- und Unterlängen.
+    GAP_S = int(canvas_width * 0.030)
+    GAP_M = int(canvas_width * 0.045)
+    GAP_L = int(canvas_width * 0.060)
 
-    name_h   = text_height(tt_r,          name_sz)
-    demo_r_h = text_height(tt_r,          sz_demo)
-    demo_i_h = text_height(tt_i,          sz_demo) if tt_i else 0
-    hero_h   = text_height(tt_i or tt_r,  sz_hero)
-    alpha_h  = text_height(tt_r,          sz_alpha)
-    digit_h  = text_height(tt_r,          sz_digit)
+    # (Text, Schrift, Größe, Farbe, Ausrichtung, Abstand nach unten)
+    # Der Name bekommt ein eigenes, hell hinterlegtes Band — Gegenstück zum
+    # dunkel hinterlegten Alphabetband unten.
+    name_lines = [(family, tt_r, name_sz, C["name_color"], "left", 0)]
+    upper_lines = [
+        (demo_str, tt_r, sz_demo, C["text"], "left", GAP_S if tt_i else GAP_M),
+    ]
+    if tt_i:
+        upper_lines.append((demo_str, tt_i, sz_demo, C["text"], "left", GAP_M))
+    upper_lines.append((heroword, tt_h, sz_hero, C["accent"], "left", 0))
 
-    upper_h = int(
-        PAD
-        + name_h + LINE_L
-        + demo_r_h + LINE_S
-        + ((demo_i_h + LINE_M) if tt_i else 0)
-        + hero_h
-        + PAD
-    )
-    lower_h = int(
-        PAD
-        + alpha_h + int(LINE_S * 0.8)
-        + alpha_h + LINE_M
-        + digit_h
-        + PAD
-    )
-    canvas_height = upper_h + lower_h
+    lower_lines = [
+        (alpha1,     tt_r, sz_alpha, C["lower_text"], "left",  int(GAP_S * 0.7)),
+        (alpha2,     tt_r, sz_alpha, C["lower_text"], "left",  GAP_M),
+        (digits_str, tt_r, sz_digit, C["lower_text"], "right", 0),
+    ]
 
-    # ── @font-face CSS ────────────────────────────────────────────────────────
-    r_uri, r_fmt = font_to_data_uri(regular_path)
-    font_css  = (
-        f'@font-face {{\n'
-        f'  font-family: {_css_family(family)};\n'
-        f'  font-style: normal;\n'
-        f'  src: url("{r_uri}") format("{r_fmt}");\n'
-        f'}}\n'
-    )
-    if italic_path:
-        i_uri, i_fmt = font_to_data_uri(italic_path)
-        font_css += (
-            f'@font-face {{\n'
-            f'  font-family: {_css_family(family)};\n'
-            f'  font-style: italic;\n'
-            f'  src: url("{i_uri}") format("{i_fmt}");\n'
-            f'}}\n'
-        )
+    def stack(lines, top):
+        """Setzt Baselines so, dass sich die Konturen zweier Zeilen nie berühren."""
+        placed, cursor = [], top
+        for text, tt, size, color, align, gap in lines:
+            _, _, ink_top, ink_bottom = ink_box(text, tt, size)
+            baseline = cursor + ink_top
+            x = PAD if align == "left" else canvas_width - PAD - text_width(text, tt, size)
+            placed.append((x, baseline, text, tt, size, color))
+            cursor = baseline + ink_bottom + gap
+        return placed, cursor
+
+    # Das Namensband wird enger gesetzt als die anderen Blöcke, sonst wirkt die
+    # helle Fläche bei großen Namen wie eine eigene Seite statt wie ein Band.
+    NAME_PAD = int(PAD * 0.55)
+    name_placed, name_end = stack(name_lines, NAME_PAD)
+    name_h = int(name_end + NAME_PAD)
+
+    upper_placed, upper_end = stack(upper_lines, name_h + PAD)
+    upper_h = int(upper_end + PAD)
+    lower_placed, lower_end = stack(lower_lines, upper_h + PAD)
+    canvas_height = int(lower_end + PAD)
 
     # ── SVG zusammenbauen ─────────────────────────────────────────────────────
     out = []
@@ -392,64 +582,33 @@ def draw_specimen_svg(
     out.append(
         f'<svg xmlns="http://www.w3.org/2000/svg"'
         f' width="{canvas_width}" height="{canvas_height}"'
-        f' viewBox="0 0 {canvas_width} {canvas_height}">'
+        f' viewBox="0 0 {canvas_width} {canvas_height}" role="img">'
     )
+    # Der Text steckt in Konturen — ohne <title> gäbe es keine Textalternative.
+    out.append(f'  <title>Schriftmuster {_x(family)}</title>')
 
-    # Eingebettete Schrift
-    out.append('  <defs>')
-    out.append('    <style><![CDATA[')
-    out.append(font_css)
-    out.append('    ]]></style>')
-    out.append('  </defs>')
+    # Hintergrundbänder. Das Namensband wird bewusst NACH dem Ghost-Buchstaben
+    # gezeichnet: der ragt bei kompakten Schriften oben aus dem Mittelband
+    # heraus und würde sonst in die helle Fläche hineinlaufen.
+    out.append(f'  <rect y="{name_h}" width="{canvas_width}" '
+               f'height="{upper_h - name_h}" fill="{C["upper_bg"]}"/>')
+    out.append(f'  <rect y="{upper_h}" width="{canvas_width}" '
+               f'height="{canvas_height - upper_h}" fill="{C["lower_bg"]}"/>')
 
-    # Hintergründe
-    out.append(f'  <rect width="{canvas_width}" height="{upper_h}" fill="{C["upper_bg"]}"/>')
-    out.append(f'  <rect y="{upper_h}" width="{canvas_width}" height="{lower_h}" fill="{C["lower_bg"]}"/>')
+    # Ghost-Buchstabe: dekoratives Wasserzeichen, liegt bewusst hinter dem Text.
+    # Rechtsbündig am Satzspiegel, Unterkante bündig zur Trennkante der Flächen —
+    # ausgerichtet an der Kontur, nicht an der Vorschubbreite.
+    _, ghost_right, _, ghost_bottom = ink_box(ghost_str, tt_r, sz_ghost)
+    out.append(_glyph_path(
+        canvas_width - PAD - ghost_right, upper_h - ghost_bottom,
+        ghost_str, tt_r, sz_ghost, C["ghost"],
+    ))
 
-    # Ghost-Buchstabe (zuerst → liegt hinter dem Fließtext)
-    demo_end = PAD + max(
-        text_width("Aa Ee Rr", tt_r, sz_demo),
-        text_width("Aa Ee Rr", tt_i, sz_demo) if tt_i else 0,
-    )
-    ghost_lsb = lsb_of_char("A", tt_r, sz_ghost)
-    ghost_x   = demo_end + int(canvas_width * 0.02) - ghost_lsb
-    ghost_y   = PAD + name_h + baseline_offset(tt_r, sz_ghost)
-    out.append(_text(ghost_x, ghost_y, "Aa", family, sz_ghost, C["ghost"]))
+    # Namensband zuletzt — deckt den überstehenden Ghost-Buchstaben ab.
+    out.append(f'  <rect width="{canvas_width}" height="{name_h}" fill="{C["name_bg"]}"/>')
 
-    # ── Oberer Bereich ────────────────────────────────────────────────────────
-    y = PAD
-
-    # Fontname
-    out.append(_text(PAD, y + baseline_offset(tt_r, name_sz), family, family, name_sz, C["name_color"]))
-    y += name_h + LINE_L
-
-    # "Aa Ee Rr" Regular
-    out.append(_text(PAD, y + baseline_offset(tt_r, sz_demo), "Aa Ee Rr", family, sz_demo, C["text"]))
-    y += demo_r_h + LINE_S
-
-    # "Aa Ee Rr" Italic (nur wenn Italic-Schnitt vorhanden)
-    if tt_i:
-        out.append(_text(PAD, y + baseline_offset(tt_i, sz_demo), "Aa Ee Rr", family, sz_demo, C["text"], "italic"))
-        y += demo_i_h + LINE_M
-
-    # Heroword in Akzentfarbe
-    tt_h     = tt_i if tt_i else tt_r
-    hero_sty = "italic" if tt_i else "normal"
-    out.append(_text(PAD, y + baseline_offset(tt_h, sz_hero), heroword, family, sz_hero, C["accent"], hero_sty))
-
-    # ── Unterer Bereich ───────────────────────────────────────────────────────
-    y = upper_h + PAD
-
-    out.append(_text(PAD, y + baseline_offset(tt_r, sz_alpha), alpha1, family, sz_alpha, C["lower_text"]))
-    y += alpha_h + int(LINE_S * 0.8)
-
-    out.append(_text(PAD, y + baseline_offset(tt_r, sz_alpha), alpha2, family, sz_alpha, C["lower_text"]))
-    y += alpha_h + LINE_M
-
-    # Ziffern: rechtsbündig
-    digit_w = text_width(digits_str, tt_r, sz_digit)
-    digit_x = canvas_width - PAD - digit_w
-    out.append(_text(digit_x, y + baseline_offset(tt_r, sz_digit), digits_str, family, sz_digit, C["lower_text"]))
+    for x, baseline, text, tt, size, color in name_placed + upper_placed + lower_placed:
+        out.append(_glyph_path(x, baseline, text, tt, size, color))
 
     out.append('</svg>')
 
@@ -458,22 +617,53 @@ def draw_specimen_svg(
         f.write("\n")
 
     italic_info = " + Italic" if italic_path else ""
-    print(f"  ✓  {Path(output_path).name}  [{canvas_width}×{canvas_height}px]  ({family}{italic_info})")
+    size_kb = os.path.getsize(output_path) / 1024
+    print(f"  ✓  {Path(output_path).name}  [{canvas_width}×{canvas_height}px, {size_kb:.0f} KB]  ({family}{italic_info})")
 
 
-# ── Ordner-Scan & Batch-Verarbeitung ─────────────────────────────────────────
+# ── README-Block ──────────────────────────────────────────────────────────────
 
-FONT_EXTENSIONS = {".ttf", ".otf", ".woff", ".woff2"}
+README_START = "<!-- previews:start -->"
+README_END   = "<!-- previews:end -->"
 
 
-def find_fonts(folder: str) -> list[str]:
-    found = []
-    for root, _, files in os.walk(folder):
-        for f in sorted(files):
-            if Path(f).suffix.lower() in FONT_EXTENSIONS:
-                found.append(os.path.join(root, f))
-    return found
+def write_readme_block(readme_path: str, entries: list[tuple[str, str, str]]) -> bool:
+    """Schreibt die Bildliste zwischen die Marker in README.md.
 
+    entries: (Kategorie, Anzeigename, SVG-Pfad relativ zum Repo-Root)
+    """
+    text = Path(readme_path).read_text(encoding="utf-8")
+    if README_START not in text or README_END not in text:
+        print(
+            f"\nHinweis: '{readme_path}' enthält keine Marker.\n"
+            f"  Bitte einfügen:\n\n    {README_START}\n    {README_END}\n"
+        )
+        return False
+
+    by_cat: dict[str, list[tuple[str, str]]] = {}
+    for cat, name, svg in entries:
+        by_cat.setdefault(cat, []).append((name, svg))
+
+    block = ["<!-- automatisch erzeugt von font_specimen_svg_generator.py — nicht von Hand bearbeiten -->"]
+    for cat in CATEGORY_ORDER + sorted(set(by_cat) - set(CATEGORY_ORDER)):
+        if cat not in by_cat:
+            continue
+        block.append(f"\n### {cat} ({len(by_cat[cat])})\n")
+        for name, svg in sorted(by_cat[cat], key=lambda e: e[0].lower()):
+            block.append(f'<img src="./{svg}" alt="Schriftmuster {name}" width="420">')
+
+    new = re.sub(
+        re.escape(README_START) + r".*?" + re.escape(README_END),
+        lambda _: README_START + "\n" + "\n".join(block) + "\n" + README_END,
+        text,
+        flags=re.S,
+    )
+    Path(readme_path).write_text(new, encoding="utf-8")
+    print(f"\nREADME aktualisiert: {readme_path}  ({len(entries)} Vorschauen)")
+    return True
+
+
+# ── Batch-Verarbeitung ───────────────────────────────────────────────────────
 
 def process_folder(
     input_folder: str,
@@ -482,19 +672,16 @@ def process_folder(
     theme: str = "dark",
     overwrite: bool = False,
     wordlist_path: str | None = None,
+    readme_path: str | None = None,
 ) -> None:
 
     os.makedirs(output_folder, exist_ok=True)
-    all_fonts = find_fonts(input_folder)
+    groups = group_fonts_by_folder(input_folder)
 
-    if not all_fonts:
+    if not groups:
         print(f"Keine Schriftdateien in '{input_folder}' gefunden.")
         print(f"Unterstützte Formate: {', '.join(sorted(FONT_EXTENSIONS))}")
         return
-
-    families              = group_fonts_by_family(all_fonts)
-    families_with_regular = {k: v for k, v in families.items() if v["regular"]}
-    skipped_no_regular    = len(families) - len(families_with_regular)
 
     default_wordlist = Path(__file__).parent / "wordlist.txt"
     words = load_wordlist(str(wordlist_path) if wordlist_path else str(default_wordlist))
@@ -504,27 +691,29 @@ def process_folder(
     print(f"Eingabe:  {input_folder}")
     print(f"Ausgabe:  {output_folder}")
     print(f"Breite:   {width}px   Theme: {theme}")
-    print(
-        f"Dateien gefunden: {len(all_fonts)}  →  Familien: {len(families_with_regular)}"
-        + (f"  ({skipped_no_regular} ohne Regular übersprungen)" if skipped_no_regular else "")
-    )
+    print(f"Schriften (= Ordner mit Schriftdateien): {len(groups)}")
     print(f"{'─' * 50}\n")
 
     ok = skip = err = 0
+    entries: list[tuple[str, str, str]] = []
 
-    for family, cuts in families_with_regular.items():
-        regular_path = cuts["regular"]
-        italic_path  = cuts["italic"]
-        safe_name    = slugify(family)
-        out_name     = f"{safe_name}.svg"
-        out_path     = os.path.join(output_folder, out_name)
+    for folder, files in sorted(groups.items()):
+        name     = os.path.basename(folder)
+        out_name = f"{slugify(name)}.svg"
+        out_path = os.path.join(output_folder, out_name)
+
+        regular_path, italic_path = pick_cuts(files)
+        title    = display_name(folder, regular_path)
+        category = category_of(folder)
+        entries.append((category, title, os.path.join(output_folder, out_name).replace(os.sep, "/")))
 
         if not overwrite and os.path.exists(out_path):
             print(f"  –  {out_name}  (übersprungen, bereits vorhanden)")
             skip += 1
             continue
 
-        heroword = random.choice(words)
+        heroword = heroword_for(folder, words)
+        rng = random.Random(name)     # nur für --theme random
 
         try:
             draw_specimen_svg(
@@ -534,22 +723,29 @@ def process_folder(
                 heroword=heroword,
                 canvas_width=width,
                 theme_name=theme,
+                family=title,
+                rng=rng,
             )
             ok += 1
         except Exception as e:
-            print(f"  ✗  {family}  →  Fehler: {e}")
+            print(f"  ✗  {title}  →  Fehler: {e}")
+            entries.pop()
             err += 1
 
     print(f"\n{'─' * 50}")
     print(f"Fertig!  ✓ {ok} erstellt   – {skip} übersprungen   ✗ {err} Fehler")
-    print(f"Vorschauen in: {os.path.abspath(output_folder)}\n")
+    print(f"Vorschauen in: {os.path.abspath(output_folder)}")
+
+    if readme_path:
+        write_readme_block(readme_path, entries)
+    print()
 
 
 # ── Einstiegspunkt ────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generiert Font-Specimen-SVGs für alle Schriftfamilien in einem Ordner.",
+        description="Generiert Font-Specimen-SVGs für alle Schriftordner in einem Verzeichnis.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Beispiele:
@@ -558,6 +754,7 @@ Beispiele:
   python font_specimen_svg_generator.py --input ./fonts --output ./previews --width 1400 --theme cream
   python font_specimen_svg_generator.py --input ./fonts --output ./previews --overwrite
   python font_specimen_svg_generator.py --input ./fonts --output ./previews --wordlist ./woerter.txt
+  python font_specimen_svg_generator.py --input ./fonts --output ./previews --readme README.md
         """,
     )
     parser.add_argument("--input",    "-i", required=True,
@@ -573,6 +770,8 @@ Beispiele:
                         help="Pfad zur Wortliste (Standard: wordlist.txt neben dem Script)")
     parser.add_argument("--overwrite", action="store_true",
                         help="Bereits vorhandene Vorschauen überschreiben")
+    parser.add_argument("--readme", default=None,
+                        help="README.md, in die der Vorschau-Block geschrieben wird")
 
     args = parser.parse_args()
 
@@ -587,6 +786,7 @@ Beispiele:
         theme         = args.theme,
         overwrite     = args.overwrite,
         wordlist_path = args.wordlist,
+        readme_path   = args.readme,
     )
 
 
