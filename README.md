@@ -284,96 +284,154 @@ Libertinus ist der Nachfolger von Linux Libertine aus der TeX-Gyre-Sammlung. Die
 ## Alegreya
 https://htfonts.com/en/fonts/alegreya-sans/
 
+![Vorschau des Schriftmusters von Alegreya](./src/img/font_previews/Alegreya.svg)
+
 ## Arvo
 https://github.com/antonxheight/Arvo
+
+![Vorschau des Schriftmusters von Arvo](./src/img/font_previews/Arvo.svg)
 
 ## Basteleur
 https://velvetyne.fr/fonts/basteleur/
 
+![Vorschau des Schriftmusters von Basteleur](./src/img/font_previews/Basteleur.svg)
+
 ## Bevan
 https://github.com/googlefonts/BevanFont
+
+![Vorschau des Schriftmusters von Bevan](./src/img/font_previews/Bevan.svg)
 
 ## Bitter
 https://fonts.google.com/specimen/Bitter
 
+![Vorschau des Schriftmusters von Bitter](./src/img/font_previews/Bitter.svg)
+
 ## Bodoni*
 https://github.com/indestructible-type/Bodoni
 
-https://fonts.google.com/specimen/Cardo
+![Vorschau des Schriftmusters von Bodoni*](./src/img/font_previews/Bodoni.svg)
 
 ## Compagnon
 https://compagnon.eesab.fr/
 
+![Vorschau des Schriftmusters von Compagnon](./src/img/font_previews/Compagnon.svg)
+
 ## Cooper Hewitt
 https://github.com/cooperhewitt/CooperHewitt-Font
+
+![Vorschau des Schriftmusters von Cooper Hewitt](./src/img/font_previews/CooperHewitt.svg)
 
 ## Crimson Pro
 https://github.com/Fonthausen/CrimsonPro
 
+![Vorschau des Schriftmusters von Crimson Pro](./src/img/font_previews/CrimsonPro.svg)
+
 ## EB Garamond
 https://googlefonts.github.io/ebgaramond-specimen
+
+![Vorschau des Schriftmusters von EB Garamond](./src/img/font_previews/EBGaramond.svg)
 
 ## Frank Ruhl Libre
 https://github.com/fontef/frankruhllibre
 
+![Vorschau des Schriftmusters von Frank Ruhl Libre](./src/img/font_previews/FrankRuhlLibre.svg)
+
 ## Fraunces
 https://github.com/undercasetype/Fraunces
+
+![Vorschau des Schriftmusters von Fraunces](./src/img/font_previews/Fraunces.svg)
 
 ## Gambetta
 https://www.fontshare.com/fonts/gambetta
 
+![Vorschau des Schriftmusters von Gambetta](./src/img/font_previews/Gambetta.svg)
+
 ## GFS Didot
 https://greekfontsociety-gfs.gr/typefaces/19th_century
+
+![Vorschau des Schriftmusters von GFS Didot](./src/img/font_previews/GFSDidot.svg)
 
 ## Junicode
 https://github.com/psb1558/Junicode-font
 
+![Vorschau des Schriftmusters von Junicode](./src/img/font_previews/Junicode.svg)
+
 ## Libre Baskerville
 https://github.com/impallari/Libre-Baskerville
+
+![Vorschau des Schriftmusters von Libre Baskerville](./src/img/font_previews/LibreBaskerville.svg)
 
 ## Lora
 https://github.com/cyrealtype/Lora-Cyrillic
 
+![Vorschau des Schriftmusters von Lora](./src/img/font_previews/Lora.svg)
+
 ## Merriweather
 https://github.com/SorkinType/Merriweather
+
+![Vorschau des Schriftmusters von Merriweather](./src/img/font_previews/Merriweather.svg)
 
 ## Mozilla Headline
 https://github.com/mozilla/mozilla-type-family
 
+![Vorschau des Schriftmusters von Mozilla Headline](./src/img/font_previews/MozillaHeadline.svg)
+
 ## Newsreader
 https://github.com/productiontype/Newsreader
+
+![Vorschau des Schriftmusters von Newsreader](./src/img/font_previews/Newsreader.svg)
 
 ## Piazzolla
 https://github.com/huertatipografica/piazzolla
 
+![Vorschau des Schriftmusters von Piazzolla](./src/img/font_previews/Piazzolla.svg)
+
 ## Playfair
 https://www.forthehearts.net/playfair
+
+![Vorschau des Schriftmusters von Playfair](./src/img/font_previews/Playfair.svg)
 
 ## Reforma
 https://pampatype.com/reforma
 
+![Vorschau des Schriftmusters von Reforma](./src/img/font_previews/Reforma.svg)
+
 ## Sentient
 https://www.fontshare.com/fonts/sentient
+
+![Vorschau des Schriftmusters von Sentient](./src/img/font_previews/Sentient.svg)
 
 ## Source Serif
 https://adobe-fonts.github.io/source-serif/
 
+![Vorschau des Schriftmusters von Source Serif](./src/img/font_previews/SourceSerif.svg)
+
 ## Spectral
 https://github.com/productiontype/Spectral
+
+![Vorschau des Schriftmusters von Spectral](./src/img/font_previews/Spectral.svg)
 
 ## Unna
 https://www.omnibus-type.com/fonts/unna/
 
+![Vorschau des Schriftmusters von Unna](./src/img/font_previews/Unna.svg)
+
 ## Vollkorn
 http://vollkorn-typeface.com/
 
+![Vorschau des Schriftmusters von Vollkorn](./src/img/font_previews/Vollkorn.svg)
+
 ## Zilla Slab
 https://github.com/mozilla/zilla-slab
+
+![Vorschau des Schriftmusters von Zilla Slab](./src/img/font_previews/ZillaSlab.svg)
 
 ## Zodiak
 https://www.fontshare.com/fonts/zodiak
 
 # Serifenlose Schriften
+
+![Vorschau des Schriftmusters von Zodiak](./src/img/font_previews/Zodiak.svg)
 
 ## Atkinson Hyperlegible
 https://www.brailleinstitute.org/freefont/
@@ -415,86 +473,140 @@ Im Auftrag der Mozilla Foundation und Telefonica S.A. für deren mobiles Betrieb
 ## Amstelvar
 https://github.com/googlefonts/amstelvar
 
+![Vorschau des Schriftmusters von Amstelvar](./src/img/font_previews/Amstelvar.svg)
+
 ## Asap
 https://www.omnibus-type.com/fonts/asap/
+
+![Vorschau des Schriftmusters von Asap](./src/img/font_previews/Asap.svg)
 
 ## Bricolage Grotesque
 https://ateliertriay.github.io/bricolage/
 
+![Vorschau des Schriftmusters von Bricolage Grotesque](./src/img/font_previews/BricolageGrotesque.svg)
+
 ## Cabinet Grotesk
 https://www.fontshare.com/fonts/cabinet-grotesk
+
+![Vorschau des Schriftmusters von Cabinet Grotesk](./src/img/font_previews/CabinetGrotesk.svg)
 
 ## DINish
 https://github.com/playbeing/dinish
 
+![Vorschau des Schriftmusters von DINish](./src/img/font_previews/DINish.svg)
+
 ## Epilogue
 https://github.com/Etcetera-Type-Co/Epilogue
+
+![Vorschau des Schriftmusters von Epilogue](./src/img/font_previews/Epilogue.svg)
 
 ## Figtree
 https://www.erikdkennedy.com/projects/figtree.html
 
+![Vorschau des Schriftmusters von Figtree](./src/img/font_previews/Figtree.svg)
+
 ## Geist
 https://vercel.com/font
+
+![Vorschau des Schriftmusters von Geist](./src/img/font_previews/Geist.svg)
 
 ## Karrik
 https://velvetyne.fr/fonts/karrik/
 
+![Vorschau des Schriftmusters von Karrik](./src/img/font_previews/Karrik.svg)
+
 ## League Spartan
 https://theleagueofmoveabletype.com/league-spartan
+
+![Vorschau des Schriftmusters von League Spartan](./src/img/font_previews/LeagueSpartan.svg)
 
 ## Libertinus Sans
 https://github.com/alerque/libertinus
 
+![Vorschau des Schriftmusters von Libertinus Sans](./src/img/font_previews/LibertinusSans.svg)
+
 ## Libre Franklin
 https://github.com/impallari/Libre-Franklin
+
+![Vorschau des Schriftmusters von Libre Franklin](./src/img/font_previews/LibreFranklin.svg)
 
 ## Manrope
 https://fonts.google.com/specimen/Manrope
 
+![Vorschau des Schriftmusters von Manrope](./src/img/font_previews/Manrope.svg)
+
 ## Mozilla Text
 https://github.com/mozilla/mozilla-type-family
+
+![Vorschau des Schriftmusters von Mozilla Text](./src/img/font_previews/MozillaText.svg)
 
 ## Nunito
 https://github.com/googlefonts/nunito
 
+![Vorschau des Schriftmusters von Nunito](./src/img/font_previews/Nunito.svg)
+
 ## Playpen Sans
 https://fonts.google.com/specimen/Playpen+Sans
+
+![Vorschau des Schriftmusters von Playpen Sans](./src/img/font_previews/PlaypenSans.svg)
 
 ## Public Sans
 https://github.com/uswds/public-sans
 
+![Vorschau des Schriftmusters von Public Sans](./src/img/font_previews/PublicSans.svg)
+
 ## Quicksand
 https://github.com/ThomasJockin/QuicksandFamily
+
+![Vorschau des Schriftmusters von Quicksand](./src/img/font_previews/Quicksand.svg)
 
 ## Raleway
 https://github.com/impallari/Raleway
 
+![Vorschau des Schriftmusters von Raleway](./src/img/font_previews/Raleway.svg)
+
 ## Roboto Flex
 https://fonts.google.com/specimen/Roboto+Flex
+
+![Vorschau des Schriftmusters von Roboto Flex](./src/img/font_previews/RobotoFlex.svg)
 
 ## Routed Gothic
 https://webonastick.com/fonts/routed-gothic/
 
+![Vorschau des Schriftmusters von Routed Gothic](./src/img/font_previews/RoutedGothic.svg)
+
 ## Satoshi
 https://www.fontshare.com/fonts/satoshi
+
+![Vorschau des Schriftmusters von Satoshi](./src/img/font_previews/Satoshi.svg)
 
 ## Source Sans
 https://adobe-fonts.github.io/source-sans/
 
+![Vorschau des Schriftmusters von Source Sans](./src/img/font_previews/SourceSans.svg)
+
 ## Space Grotesk
 https://floriankarsten.github.io/space-grotesk/
+
+![Vorschau des Schriftmusters von Space Grotesk](./src/img/font_previews/SpaceGrotesk.svg)
 
 ## Varela Round
 https://fonts.google.com/specimen/Varela+Round
 
+![Vorschau des Schriftmusters von Varela Round](./src/img/font_previews/VarelaRound.svg)
+
 ## Vazirmatn
 https://github.com/rastikerdar/vazirmatn
+
+![Vorschau des Schriftmusters von Vazirmatn](./src/img/font_previews/Vazirmatn.svg)
 
 ## Work Sans
 https://weiweihuanghuang.github.io/Work-Sans/
 
 # Die Klassiker
 Das sind einfach die Klassiker.
+
+![Vorschau des Schriftmusters von Work Sans](./src/img/font_previews/WorkSans.svg)
 
 ## Tex Gyre
 
@@ -589,37 +701,59 @@ Eigentlich nur wegen der kursiven Variante für Kommentare.
 ## 0xProto
 https://github.com/0xType/0xProto
 
+![Vorschau des Schriftmusters von 0xProto](./src/img/font_previews/0xProto.svg)
+
 ## Courier Prime
 https://quoteunquoteapps.com/courierprime/
+
+![Vorschau des Schriftmusters von Courier Prime](./src/img/font_previews/CourierPrime.svg)
 
 ## Departure Mono
 https://departuremono.com
 
+![Vorschau des Schriftmusters von Departure Mono](./src/img/font_previews/DepartureMono.svg)
+
 ## Geist Mono
 https://github.com/vercel/geist-font
+
+![Vorschau des Schriftmusters von Geist Mono](./src/img/font_previews/GeistMono.svg)
 
 ## Hack
 https://github.com/source-foundry/Hack
 
+![Vorschau des Schriftmusters von Hack](./src/img/font_previews/Hack.svg)
+
 ## IBM Plex Mono
 https://github.com/IBM/plex
+
+![Vorschau des Schriftmusters von IBM Plex Mono](./src/img/font_previews/IBMPlexMono.svg)
 
 ## Libertinus Mono
 https://github.com/alerque/libertinus
 
+![Vorschau des Schriftmusters von Libertinus Mono](./src/img/font_previews/LibertinusMono.svg)
+
 ## Recursive
 https://www.recursive.design
 
+![Vorschau des Schriftmusters von Recursive](./src/img/font_previews/Recursive.svg)
+
 ## Source Code Pro
 https://github.com/adobe-fonts/source-code-pro
+
+![Vorschau des Schriftmusters von Source Code Pro](./src/img/font_previews/SourceCodePro.svg)
 
 ## Victor Mono
 https://rubjo.github.io/victor-mono/
 
 # Schreibschriften
 
+![Vorschau des Schriftmusters von Victor Mono](./src/img/font_previews/VictorMono.svg)
+
 ## Amatic SC
 https://fonts.google.com/specimen/Amatic+SC
+
+![Vorschau des Schriftmusters von Amatic SC](./src/img/font_previews/AmaticSC.svg)
 
 ## Because We Had To
 https://github.com/RedHatOfficial/bwht-fonts
@@ -628,40 +762,69 @@ Sechs Handschriften, die Red Hat 2019 für die Artikelserie „Because We Had To
 Handschrift von Freundinnen und Kolleginnen entwickelte: Build, Connect, Create, Learn,
 Mentor, Organize. Alle bis auf Learn nutzen `calt`, um wiederkehrende Buchstaben zu variieren.
 
+![Vorschau des Schriftmusters von Because We Build](./src/img/font_previews/BecauseWeBuild.svg)
+![Vorschau des Schriftmusters von Because We Connect](./src/img/font_previews/BecauseWeConnect.svg)
+![Vorschau des Schriftmusters von Because We Create](./src/img/font_previews/BecauseWeCreate.svg)
+![Vorschau des Schriftmusters von Because We Learn](./src/img/font_previews/BecauseWeLearn.svg)
+![Vorschau des Schriftmusters von Because We Mentor](./src/img/font_previews/BecauseWeMentor.svg)
+![Vorschau des Schriftmusters von Because We Organize](./src/img/font_previews/BecauseWeOrganize.svg)
+
 ## Caveat
 https://fonts.google.com/specimen/Caveat
+
+![Vorschau des Schriftmusters von Caveat](./src/img/font_previews/Caveat.svg)
 
 ## Dancing Script
 https://fonts.google.com/specimen/Dancing+Script
 
+![Vorschau des Schriftmusters von Dancing Script](./src/img/font_previews/DancingScript.svg)
+
 ## Great Vibes
 https://github.com/googlefonts/great-vibes
+
+![Vorschau des Schriftmusters von Great Vibes](./src/img/font_previews/GreatVibes.svg)
 
 ## Pacifico
 https://fonts.google.com/specimen/Pacifico
 
+![Vorschau des Schriftmusters von Pacifico](./src/img/font_previews/Pacifico.svg)
+
 ## Playwrite
 https://github.com/TypeTogether/Playwrite
+
+![Vorschau des Schriftmusters von Playwrite](./src/img/font_previews/PlaywriteDELA.svg)
 
 ## Sansita Swashed
 https://www.omnibus-type.com/fonts/sansitaswashed/
 
+![Vorschau des Schriftmusters von Sansita Swashed](./src/img/font_previews/SansitaSwashed.svg)
+
 ## Satisfy
 https://fonts.google.com/specimen/Satisfy
 
+![Vorschau des Schriftmusters von Satisfy](./src/img/font_previews/Satisfy.svg)
+
 ## Tangerine
 https://github.com/googlefonts/TangerineFont
+
+![Vorschau des Schriftmusters von Tangerine](./src/img/font_previews/Tangerine.svg)
 
 ## TeX Gyre Chorus
 https://www.gust.org.pl/projects/e-foundry/tex-gyre/chorus
 
 # Display
 
+![Vorschau des Schriftmusters von TeX Gyre Chorus](./src/img/font_previews/TexGyreChorus.svg)
+
 ## Big Shoulders Display
 https://fonts.google.com/specimen/Big+Shoulders+Display
 
+![Vorschau des Schriftmusters von Big Shoulders Display](./src/img/font_previews/BigShouldersDisplay.svg)
+
 ## Big Shoulders Stencil
 https://github.com/xotypeco/big_shoulders
+
+![Vorschau des Schriftmusters von Big Shoulders Stencil](./src/img/font_previews/BigShouldersStencil.svg)
 
 ## Climate Crisis
 https://github.com/dancoull/ClimateCrisis
@@ -669,31 +832,49 @@ https://github.com/dancoull/ClimateCrisis
 Variable Achse `YEAR` (1979–2050) statt Gewicht: die Buchstaben erodieren mit fortschreitendem
 Jahr wie das arktische Meereis.
 
+![Vorschau des Schriftmusters von Climate Crisis](./src/img/font_previews/ClimateCrisis.svg)
+
 ## Pixelify Sans
 https://github.com/eifetx/Pixelify-Sans
+
+![Vorschau des Schriftmusters von Pixelify Sans](./src/img/font_previews/PixelifySans.svg)
 
 ## Saira Stencil One
 https://github.com/Omnibus-Type/Saira
 
+![Vorschau des Schriftmusters von Saira Stencil One](./src/img/font_previews/SairaStencilOne.svg)
+
 ## Dela Gothic One
 https://fonts.google.com/specimen/Dela+Gothic+One
+
+![Vorschau des Schriftmusters von Dela Gothic One](./src/img/font_previews/DelaGothicOne.svg)
 
 ## Silkscreen
 https://kottke.org/plus/type/silkscreen/
 
 # Blackletter
 
+![Vorschau des Schriftmusters von Silkscreen](./src/img/font_previews/Silkscreen.svg)
+
 ## Grenze Gotisch
 https://www.omnibus-type.com/fonts/grenze-gotisch/
+
+![Vorschau des Schriftmusters von Grenze Gotisch](./src/img/font_previews/GrenzeGotisch.svg)
 
 ## Jacquarda Bastarda 9
 https://github.com/scfried/soft-type-jacquarda-bastarda
 
+![Vorschau des Schriftmusters von Jacquarda Bastarda 9](./src/img/font_previews/JacquardaBastarda9.svg)
+
 ## Grenze
 https://www.omnibus-type.com/fonts/grenze/
 
+![Vorschau des Schriftmusters von Grenze](./src/img/font_previews/Grenze.svg)
+
 ## Unifraktur
 https://unifraktur.sourceforge.net/
+
+![Vorschau des Schriftmusters von Unifraktur](./src/img/font_previews/Unifraktur.svg)
 
 ## UnifrakturCook
 https://unifraktur.sourceforge.net/
@@ -707,6 +888,8 @@ Die _einzige_ angemessene Verwendung von „Comic Sans" laut [Comic Sans Crimina
 > * Das Publikum ist legasthenisch und hat angegeben, Comic Sans zu bevorzugen
 
 Spaß beiseite: Comic Sans verletzt keine Menschen, Menschen verletzen Menschen.
+
+![Vorschau des Schriftmusters von UnifrakturCook](./src/img/font_previews/UnifrakturCook.svg)
 
 ## Krikikrak
 https://www.carrois.com/typefaces/retail/Krikikrak/
