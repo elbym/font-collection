@@ -1,81 +1,49 @@
+{% from "nav.njk" import navDesktop, navMobile %}
+
+{# ── Flat, breakpoint-agnostic item list, built once ───────────────────────
+   type "link"  → manual eleventyNavigation pages (index, Vergleich, Netzwerk …)
+   type "group" → a font category root node (Serif, Sans, Monospace, …) plus
+                   its leaf children — both macros below render from this
+                   same list, so desktop and mobile never drift apart.
+   Computed by the getNavItems filter (.eleventy.js) from fontFolders
+   (fonts.js data layer) and getManualNav — no data is hardcoded here. #}
+{%- set navItems = fontFolders | getNavItems(collections.all | getManualNav, folder, page.url) -%}
+
 <header data-pagefind-ignore>
-  <nav aria-label="Hauptnavigation">
+  <div class="flex items-center justify-between gap-4 py-2">
+    <nav aria-label="Hauptnavigation" class="min-w-0">
+      {{ navDesktop(navItems) }}
+    </nav>
 
-    {# ── Rekursives Makro für Font-Nodes ──────────────────────── #}
-    {%- macro renderFontNode(node, fontFolders, currentFolder) -%}
-      {%- set children = node | getChildNodes(fontFolders) -%}
-      {%- set isActive   = currentFolder and (node.path == currentFolder.path) -%}
-      {%- set isAncestor = currentFolder and (node | isAncestorOf(currentFolder)) -%}
-      {%- set isOpen = isActive or isAncestor -%}
-      <li class="flex
-        {%- if isActive %} is-active{%- endif %}
-        {%- if isAncestor %} is-ancestor{%- endif %}
-        {%- if children.length %} has-children{%- endif %}
-      ">
-        <a class="p-2 no-underline" href="/{{ node.url }}.html"
-          {%- if isActive %} aria-current="page"{% endif %}
-          {%- if children.length %} aria-expanded="{{ 'true' if isOpen else 'false' }}"{% endif %}
-          {%- if node.color %} style="color: {{ node.color }}"{% endif %}>
-          {{ node.title }}
-        </a>
-        {%- if children.length and isOpen -%}
-          <ul aria-label="{{ node.title }}" class="m-0 p-0 flex flex-wrap items-center gap-1">
-            {%- for child in children -%}
-              {{ renderFontNode(child, fontFolders, currentFolder) }}
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-      </li>
-    {%- endmacro -%}
+    <button type="button" id="nav-toggle" class="nav-icon-btn md:hidden" aria-expanded="false" aria-controls="mobile-nav-panel" aria-label="Menü öffnen">
+      <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+      </svg>
+    </button>
 
-    <ul class="primary m-0 p-0 flex flex-wrap items-center gap-2">
-
-      {# ── Manuelle Seiten (index.njk, alternativen.njk …) ─────── #}
-      {% set manualPages = collections.all | getManualNav %}
-      {%- for entry in manualPages %}
-        <li class="flex{% if entry.url == page.url %} is-active{% endif %}">
-          <a class="p-2 no-underline" href="{{ entry.url }}"
-            {%- if entry.url == page.url %} aria-current="page"{% endif %}>
-            {{ entry.title }}
-          </a>
-        </li>
-      {%- endfor %}
-      {# ── Fonts-Gruppe ─────────────────────────────────────────── #}
-      {%- set fontRoots = fontFolders | getRootNodes -%}
-      {%- if fontRoots.length %}
-        <li class="nav-group flex
-          {%- if folder %} is-open{%- endif %}">
-          <ul aria-labelledby="nav-group-fonts" class="m-0 p-0 flex flex-wrap items-center gap-1">
-            {%- for node in fontRoots -%}
-              {{ renderFontNode(node, fontFolders, folder) }}
-            {%- endfor -%}
-          </ul>
-        </li>
-      {%- endif %}
-
-    </ul>
-  </nav>
-  
-  <form
-    role="search"
-    class="font-search smaller"
-    aria-label="Schriften suchen"
-    data-pagefind-url="{{ '/pagefind/pagefind.js' | url }}"
-    data-search-url="{{ '/search.html' | url }}"
-  >
-    <input
-      type="search"
-      id="font-search-input"
-      name="q"
-      placeholder="Schrift suchen …"
-      autocomplete="off"
-      spellcheck="false"
-      aria-label="Schrift suchen"
-      aria-autocomplete="list"
-      aria-expanded="false"
-      aria-haspopup="listbox"
-      aria-controls="font-search-results"
+    <form
+      role="search"
+      class="font-search smaller"
+      aria-label="Schriften suchen"
+      data-pagefind-url="{{ '/pagefind/pagefind.js' | url }}"
+      data-search-url="{{ '/search.html' | url }}"
     >
-    <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden></ul>
-  </form>
+      <input
+        type="search"
+        id="font-search-input"
+        name="q"
+        placeholder="Schrift suchen …"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Schrift suchen"
+        aria-autocomplete="list"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-controls="font-search-results"
+      >
+      <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden></ul>
+    </form>
+  </div>
+
+  {{ navMobile(navItems) }}
 </header>

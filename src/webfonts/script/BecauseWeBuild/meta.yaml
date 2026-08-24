@@ -1,15 +1,14 @@
 title: Because We Build
 url: https://github.com/RedHatOfficial/bwht-fonts
 
-tags: Display, Handwriting
+tags: Script, Handwriting, Display
 
-fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson
+fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson (Red Hat)
 fontyear: 2019
 
-heroletter: Bu
-heroword: Build
-herostyle:
-color: chocolate
+heroletter: Bb
+heroword: "Build"
+color: sienna
 
 content: |
-  Because We Build ist eine von sechs handgeschriebenen Display-Schriften aus Red Hats redaktionellem Projekt "Because We Had To". Die Formen stammen aus echter Handschrift von Kolleginnen und wurden mit OpenType-Features versehen, die den Zeilenfluss leicht randomisieren und so eine organische, unregelmäßige Anmutung erzeugen. Gedacht für großformatige Headlines statt Fließtext.
+  Because We Build ist eine von sechs Handschriften, die Red Hat 2019 für die Artikelserie „Because We Had To“ entwickelte. Die Formen entstanden aus der echten Handschrift von Freundinnen und Kolleginnen — gesammelt, überarbeitet und zu einem vollen Zeichensatz ausgebaut. Eine `calt`-Kontextvariante sorgt dafür, dass sich Buchstabenformen im Textfluss abwechseln und die Zeile organisch wirkt.

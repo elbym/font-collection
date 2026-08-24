@@ -153,6 +153,42 @@ module.exports = function (eleventyConfig) {
       }));
   });
 
+  /**
+   * Baut die flache Item-Liste für die Hauptnavigation (header.njk): manuelle
+   * Seiten (aus getManualNav) gefolgt von den Font-Gruppen-Wurzelknoten samt
+   * ihrer Kinder. Einzige Datenquelle bleibt fontFolders (fonts.js) plus die
+   * bereits vorhandenen eleventyNavigation-Einträge — nichts wird hier neu
+   * hartkodiert.
+   * Nutzung: fontFolders | getNavItems(collections.all | getManualNav, folder, page.url)
+   */
+  eleventyConfig.addFilter("getNavItems", (fontFolders, manualPages, currentFolder, currentPageUrl) => {
+    const items = manualPages.map((entry) => ({
+      type: "link",
+      url: entry.url,
+      title: entry.title,
+      isActive: entry.url === currentPageUrl,
+    }));
+
+    const roots = fontFolders.filter((n) => !n.parentPath);
+    for (const node of roots) {
+      const children = fontFolders.filter((n) => n.parentPath === node.path);
+      const isActive = !!currentFolder && node.path === currentFolder.path;
+      const isAncestor = !!currentFolder && currentFolder.parentPath === node.path;
+      items.push({
+        type: "group",
+        node,
+        isActive,
+        isOpen: isActive || isAncestor,
+        children: children.map((c) => ({
+          url: c.url,
+          title: c.title,
+          isActive: !!currentFolder && c.path === currentFolder.path,
+        })),
+      });
+    }
+    return items;
+  });
+
   eleventyConfig.addPlugin(HtmlBasePlugin);
 
   return {

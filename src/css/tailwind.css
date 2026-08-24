@@ -14,3 +14,21 @@
   --breakpoint-xl: 1200px;
   --breakpoint-2xl: 1400px;
 }
+
+/* Repeated utility combinations for the main navigation (header.njk, nav.njk).
+   Pulled into components because every nav link/icon-button needs the same
+   ~6 utilities and repeating them at every call site hurt readability more
+   than @apply's indirection costs here. */
+@layer components {
+  .nav-link {
+    @apply rounded-md px-2 py-1.5 font-semibold text-(--color-text) no-underline transition-colors duration-150 hover:bg-(--color-highlight) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) aria-[current=page]:bg-(--color-highlight) aria-[current=page]:text-(--color-accent);
+  }
+
+  .nav-icon-btn {
+    @apply flex size-9 items-center justify-center rounded-md text-(--color-text) transition-colors duration-150 hover:bg-(--color-highlight) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent);
+  }
+
+  .nav-dropdown {
+    @apply rounded-md border border-(--color-border) bg-(--color-surface) p-2 shadow-lg;
+  }
+}

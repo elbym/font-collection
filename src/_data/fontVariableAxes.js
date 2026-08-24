@@ -4,7 +4,7 @@ const path = require("path");
 const WEBFONTS = path.join(__dirname, "../webfonts");
 
 // Generates evenly spaced waterfall steps for an axis, each with a ready-to-use CSS style string.
-function buildSteps(tag, min, max) {
+function buildSteps(tag, min, max, allAxes) {
   // ital is binary (0/1) — show only the two extremes
   if (tag === "ital") {
     return [
@@ -13,11 +13,15 @@ function buildSteps(tag, min, max) {
     ];
   }
 
-  // WONK is a 0/1 toggle — only the extremes are meaningful
+  // WONK is a 0/1 toggle — only the extremes are meaningful.
+  // Fraunces swaps the wonky h/m/n/s via GSUB feature variations (rvrn), and one of its
+  // condition sets kills them below ~opsz 22 regardless of WONK. Pin opsz to max, else
+  // the toggle renders identically at normal text sizes.
   if (tag === "WONK") {
+    const opsz = allAxes && allAxes.opsz ? `'opsz' ${allAxes.opsz.max}, ` : "";
     return [
-      { value: 0, style: "font-variation-settings: 'WONK' 0", label: "Aus" },
-      { value: 1, style: "font-variation-settings: 'WONK' 1", label: "An" },
+      { value: 0, style: `font-variation-settings: ${opsz}'WONK' 0`, label: "Aus" },
+      { value: 1, style: `font-variation-settings: ${opsz}'WONK' 1`, label: "An" },
     ];
   }
 
@@ -97,9 +101,11 @@ module.exports = async function () {
           name: info.name || tag.toUpperCase(),
           min: info.min,
           max: info.max,
-          default: info.default,
+          // opsz defaults to the text-size end of the range (9 in Fraunces), which looks
+          // wrong on a large specimen preview and suppresses WONK. Start at the display end.
+          default: tag === "opsz" ? info.max : info.default,
           step,
-          steps: buildSteps(tag, info.min, info.max),
+          steps: buildSteps(tag, info.min, info.max, raw),
         };
       }
 
@@ -111,3 +117,7 @@ module.exports = async function () {
 
   return result;
 };
+
+// Exposed for unit testing only — the Eleventy data layer only ever calls the
+// default export above. Not part of the public data API.
+module.exports._internal = { buildSteps };

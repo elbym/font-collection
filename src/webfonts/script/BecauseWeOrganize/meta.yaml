@@ -1,15 +1,14 @@
 title: Because We Organize
 url: https://github.com/RedHatOfficial/bwht-fonts
 
-tags: Display, Handwriting
+tags: Script, Handwriting, Display
 
-fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson
+fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson (Red Hat)
 fontyear: 2019
 
-heroletter: Or
-heroword: Organize
-herostyle:
-color: indigo
+heroletter: Oo
+heroword: "Organize"
+color: goldenrod
 
 content: |
-  Because We Organize ist eine von sechs handgeschriebenen Display-Schriften aus Red Hats redaktionellem Projekt "Because We Had To". Die Formen stammen aus echter Handschrift von Kolleginnen und wurden mit OpenType-Features versehen, die den Zeilenfluss leicht randomisieren und so eine organische, unregelmäßige Anmutung erzeugen. Gedacht für großformatige Headlines statt Fließtext.
+  Because We Organize ist der kräftigste der sechs „Because We Had To“-Schnitte von Red Hat — breite, bestimmte Striche mit klarer Grundlinie. Wie die Geschwister nutzt er `calt`, um wiederkehrende Buchstaben leicht variieren zu lassen.

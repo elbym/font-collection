@@ -1,30 +1,6 @@
-@use "../_includes/modularscale" as ms;
-@use "../_includes/breakpoints" as bp;
-
-
-header {
-  nav {
-    @include ms.modscale(-1, $responsive: true);
-
-    a {
-      color: var(--color-text);
-    }
-
-    ul {
-      font-weight: 600;
-      li {
-        background: var(--color-surface);
-        border-right: .1rem solid var(--color-border);
-
-        &.is-ancestor,
-        &.is-active {
-          background: var(--color-highlight);
-        }
-      }
-
-    }
-  }
-}
+/* Header/nav styling now lives entirely in Tailwind utilities + the
+   .nav-link/.nav-icon-btn/.nav-dropdown component classes (src/css/tailwind.css),
+   consumed from src/_includes/nav.njk and header.njk. */
 
 .breadcrumb {
   margin: 1rem 0 2rem 0;

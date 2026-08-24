@@ -1,15 +1,14 @@
 title: Because We Mentor
 url: https://github.com/RedHatOfficial/bwht-fonts
 
-tags: Display, Handwriting
+tags: Script, Handwriting, Display
 
-fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson
+fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson (Red Hat)
 fontyear: 2019
 
-heroletter: Me
-heroword: Mentor
-herostyle:
-color: darkorange
+heroletter: Mm
+heroword: "Mentor"
+color: mediumvioletred
 
 content: |
-  Because We Mentor ist eine von sechs handgeschriebenen Display-Schriften aus Red Hats redaktionellem Projekt "Because We Had To". Die Formen stammen aus echter Handschrift von Kolleginnen und wurden mit OpenType-Features versehen, die den Zeilenfluss leicht randomisieren und so eine organische, unregelmäßige Anmutung erzeugen. Gedacht für großformatige Headlines statt Fließtext.
+  Because We Mentor stammt aus dem sechsteiligen Handschriften-Set, das Red Hat 2019 aus der Handschrift von Freundinnen und Kolleginnen entwickelte — im Umfeld einer Artikelserie über Frauen an der Schnittstelle von Kunst und Technologie. Kontextvarianten (`calt`) halten den Duktus in Bewegung.
