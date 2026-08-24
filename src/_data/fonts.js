@@ -79,100 +79,102 @@ function generateFallbackColor(key) {
   return chroma.hsl(hue, saturation, lightness).hex();
 }
 
+const variableWeights = [
+  { weight: 100, label: "Thin" },
+  { weight: 200, label: "ExtraLight" },
+  { weight: 300, label: "Light" },
+  { weight: 400, label: "Regular" },
+  { weight: 500, label: "Medium" },
+  { weight: 600, label: "SemiBold" },
+  { weight: 700, label: "Bold" },
+  { weight: 800, label: "ExtraBold" },
+  { weight: 900, label: "Black" },
+];
+
+const weightMap = {
+  extralight: 200,
+  ultralight: 200,
+  extrabold: 800,
+  semibold: 600,
+  medium: 500,
+  heavy: 900,
+  black: 900,
+  light: 300,
+  hair: 100,
+  thin: 100,
+  bold: 700,
+  regular: 400,
+};
+
+const opticalMap = {
+  caption: 1,
+  subhead: 2,
+  display: 3,
+  condensed: 4,
+  mono: 5,
+  text: 6,
+  headline: 7,
+  initials: 8,
+  math: 9,
+  script: 10,
+  monospace: 11,
+  regular: 4,
+};
+
+const sanitizeFamily = (name) => {
+  let cleanName = name;
+  Object.keys(opticalMap)
+    .filter((k) => k !== "regular")
+    .forEach((key) => {
+      const regex = new RegExp(`[-_\\s]?${key}$`, "i");
+      cleanName = cleanName.replace(regex, "");
+    });
+  return cleanName.trim();
+};
+
+const VARIABLE_AXES = ["wght", "wdth", "ital", "slnt", "opsz"];
+
+// Bracket notation spells out the font's real axes, and those are not limited to the
+// five registered ones: Fraunces ships SOFT/WONK, Recursive MONO/CASL/CRSV, Climate
+// Crisis a YEAR axis. Match any comma-separated list of four-letter tags instead of a
+// whitelist, otherwise such a font is not recognised as variable at all — no axis
+// sliders, no 3D cube, no "Variable" tag.
+const AXIS_LIST_RE = /\[([a-z]{4}(?:\s*,\s*[a-z]{4})*)\]/;
+
+function detectVariableFont(lowerName) {
+  return (
+    lowerName.includes("variable") ||
+    AXIS_LIST_RE.test(lowerName) ||
+    /[-_]vf$/.test(lowerName)
+  );
+}
+
+function extractAxes(lowerName) {
+  // Format 1: Filename[wght,opsz,wdth]
+  const bracketMatch = lowerName.match(/\[([^\]]+)\]/);
+  if (bracketMatch) {
+    // No whitelist filter here — custom axes (SOFT, WONK, MONO, CASL, CRSV, YEAR) are real axes.
+    const axes = bracketMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => /^[a-z]{4}$/.test(a));
+    if (axes.length > 0) return axes;
+  }
+  // Format 2: _opsz,wght or _variablefont_opsz,wght
+  const underscoreMatch = lowerName.match(/[_-](?:variablefont[_-])?([a-z]{4}(?:,[a-z]{4})+)/);
+  if (underscoreMatch) {
+    const candidates = underscoreMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => VARIABLE_AXES.includes(a));
+    if (candidates.length > 0) return candidates;
+  }
+  // Fallback: wght is always present in variable fonts
+  return ["wght"];
+}
+
+const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
 let _cache = null;
 
 module.exports = function () {
   if (_cache) return _cache;
   const baseDir = path.join(__dirname, "../webfonts");
   if (!fs.existsSync(baseDir)) return {};
-
-  const variableWeights = [
-    { weight: 100, label: "Thin" },
-    { weight: 200, label: "ExtraLight" },
-    { weight: 300, label: "Light" },
-    { weight: 400, label: "Regular" },
-    { weight: 500, label: "Medium" },
-    { weight: 600, label: "SemiBold" },
-    { weight: 700, label: "Bold" },
-    { weight: 800, label: "ExtraBold" },
-    { weight: 900, label: "Black" },
-  ];
-
-  const weightMap = {
-    extralight: 200,
-    ultralight: 200,
-    extrabold: 800,
-    semibold: 600,
-    medium: 500,
-    heavy: 900,
-    black: 900,
-    light: 300,
-    hair: 100,
-    thin: 100,
-    bold: 700,
-    regular: 400,
-  };
-
-  const opticalMap = {
-    caption: 1,
-    subhead: 2,
-    display: 3,
-    condensed: 4,
-    mono: 5,
-    text: 6,
-    headline: 7,
-    initials: 8,
-    math: 9,
-    script: 10,
-    monospace: 11,
-    regular: 4,
-  };
-
-  const sanitizeFamily = (name) => {
-    let cleanName = name;
-    Object.keys(opticalMap)
-      .filter((k) => k !== "regular")
-      .forEach((key) => {
-        const regex = new RegExp(`[-_\\s]?${key}$`, "i");
-        cleanName = cleanName.replace(regex, "");
-      });
-    return cleanName.trim();
-  };
-
-  const VARIABLE_AXES = ["wght", "wdth", "ital", "slnt", "opsz"];
-
-  // Bracket notation spells out the font's real axes, and those are not limited to the
-  // five registered ones: Fraunces ships SOFT/WONK, Recursive MONO/CASL/CRSV, Climate
-  // Crisis a YEAR axis. Match any comma-separated list of four-letter tags instead of a
-  // whitelist, otherwise such a font is not recognised as variable at all — no axis
-  // sliders, no 3D cube, no "Variable" tag.
-  const AXIS_LIST_RE = /\[([a-z]{4}(?:\s*,\s*[a-z]{4})*)\]/;
-
-  function detectVariableFont(lowerName) {
-    return (
-      lowerName.includes("variable") ||
-      AXIS_LIST_RE.test(lowerName) ||
-      /[-_]vf$/.test(lowerName)
-    );
-  }
-
-  function extractAxes(lowerName) {
-    // Format 1: Filename[wght,opsz,wdth]
-    const bracketMatch = lowerName.match(/\[([^\]]+)\]/);
-    if (bracketMatch) {
-      // No whitelist filter here — custom axes (SOFT, WONK, MONO, CASL, CRSV, YEAR) are real axes.
-      const axes = bracketMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => /^[a-z]{4}$/.test(a));
-      if (axes.length > 0) return axes;
-    }
-    // Format 2: _opsz,wght or _variablefont_opsz,wght
-    const underscoreMatch = lowerName.match(/[_-](?:variablefont[_-])?([a-z]{4}(?:,[a-z]{4})+)/);
-    if (underscoreMatch) {
-      const candidates = underscoreMatch[1].split(",").map((a) => a.trim().toLowerCase()).filter((a) => VARIABLE_AXES.includes(a));
-      if (candidates.length > 0) return candidates;
-    }
-    // Fallback: wght is always present in variable fonts
-    return ["wght"];
-  }
 
   /**
    * Liest meta.yaml (oder meta.yml) aus einem Ordner.
@@ -419,8 +421,6 @@ module.exports = function () {
     return node;
   }
 
-  const slugify = (s) => s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
-
   function flattenNodes(node, name = "") {
     const result = [];
 
@@ -544,4 +544,18 @@ module.exports = function () {
 
   _cache = fontsByPath;
   return _cache;
+};
+
+// Exposed for unit testing only — the Eleventy data layer only ever calls the
+// default export above. Not part of the public data API.
+module.exports._internal = {
+  sanitizeFamily,
+  detectVariableFont,
+  extractAxes,
+  slugify,
+  hashKey,
+  generateFallbackColor,
+  resolveColorHex,
+  weightMap,
+  opticalMap,
 };

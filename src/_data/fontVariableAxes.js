@@ -117,3 +117,7 @@ module.exports = async function () {
 
   return result;
 };
+
+// Exposed for unit testing only — the Eleventy data layer only ever calls the
+// default export above. Not part of the public data API.
+module.exports._internal = { buildSteps };
