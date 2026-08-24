@@ -13,9 +13,9 @@ Current inventory: **122 font families** across six groups (Serif 38, Sans 38, M
 ## Git: always delegate to the `git-worker` subagent
 
 **Every git task in this repository goes through the `git-worker` subagent** — defined at
-user level in `~/.claude/agents/git-worker.md`, so it is available in every project and is
-**not** part of this repository. Do not run git commands yourself; hand the task over via the
-Agent tool with `subagent_type: "git-worker"`. This applies to the whole range: `status`,
+`.claude/agents/git-worker.md`, checked into this repository (so it also works from a fresh
+clone without a matching user-level agent). Do not run git commands yourself; hand the task
+over via the Agent tool with `subagent_type: "git-worker"`. This applies to the whole range: `status`,
 `diff`, `log`, `add`, `commit`, `push`, `pull`, `fetch`, `branch`, `checkout`, `switch`,
 `merge`, `rebase`, `stash`, `tag`, `remote`.
 
@@ -53,7 +53,7 @@ Only bypass the worker when the user explicitly asks you to run a git command yo
 |---|---|
 | SSG | Eleventy (`@11ty/eleventy`) 3.1.5 |
 | Templates | Nunjucks (`.njk`) |
-| CSS | SCSS → compiled by `gulp-sass` (sass 1.99.0) |
+| CSS | SCSS → compiled by `gulp-sass` (sass 1.99.0), **plus** Tailwind CSS v4 (`tailwindcss` + `@tailwindcss/cli` ^4.3.2) compiled as a separate stylesheet — see "Tailwind CSS v4" below |
 | Build | Gulp 5 |
 | Dev server | BrowserSync, port 3000 |
 | Images | `sharp` + `through2` — JPG/PNG → WebP, max 1080px, quality 60 |
@@ -63,10 +63,11 @@ Only bypass the worker when the user explicitly asks you to run a git command yo
 | Markdown rendering | `markdown-it` (transitive dep) — used by `markdownify` Eleventy filter |
 | Font reading | `fontkit` 2.0.4 — reads `.woff2` files to extract codepoint maps |
 | Navigation | `@11ty/eleventy-navigation` |
-| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage); `font-search.js` (header autocomplete powered by Pagefind); `font-style-hover.js` (cycles a card's weights/styles on hover, 220 ms interval); `card-name-override.js` (retypes every card heading from one input); `font-network.js` + `force-graph.min.js` (force-directed tag/author graph, vendor bundle) |
+| JS (browser) | `fitty.min.js` (text auto-fitting, vendor-only); `font-lazy-loader.js` (lazy-loads per-font CSS via IntersectionObserver); `compare-manager.js` (font comparison tray, sessionStorage); `font-search.js` (header autocomplete powered by Pagefind); `font-style-hover.js` (cycles a card's weights/styles on hover, 220 ms interval); `card-name-override.js` (retypes every card heading from one input); `font-network.js` + `force-graph.min.js` (force-directed tag/author graph, vendor bundle); `nav-toggle.js` (mobile off-canvas nav: hamburger toggle, focus trap, accordion for font-group submenus) |
 | Search | `pagefind` ^1.5.2 — static full-text index built after every Eleventy run; UI served from `dist/pagefind/` |
 | Clean utility | `rimraf` ^6.1.3 — cross-platform directory deletion used by the `clean` Gulp task |
 | CSS bundling | `gulp-concat`, `gulp-clean-css`, `gulp-sourcemaps`, `gulp-newer` — bundling, minification, sourcemaps, incremental copies |
+| Tests | Node's built-in `node:test` runner (`npm test` → `node --test test/*.test.js`) — unit tests for Eleventy filters and pure helper functions in `fonts.js` / `fontVariableAxes.js` |
 | Python tools | `font_specimen_generator.py` (PNG), `font_specimen_svg_generator.py` (SVG) — standalone, not part of the build |
 
 ---
@@ -89,31 +90,35 @@ src/
     backgrounds.js     # global background images from src/img/background/
     site.json          # global defaults: title, panagram, heroword/heroletter, paragraph text per size, randomColors config
   _includes/
-    layouts/base.njk      # HTML shell — the only layout; emits JSON-LD BreadcrumbList + SoftwareApplication structured data
+    layouts/base.njk      # HTML shell — the only layout; emits JSON-LD BreadcrumbList + SoftwareApplication structured data; links both styles.css and tailwind.css
     font-card.njk         # card used on index and group pages
     font-poster.njk       # full specimen poster used on leaf pages
     font-image-list.njk   # gallery grid on specimen pages
     waterfall-groups.njk  # waterfall display grouped by Unicode range
     3dcube.njk            # interactive 3D variable font cube; maps up to 3 axes to X/Y/Z rotation; included by font-poster.njk for variable fonts
+    nav.njk               # Tailwind-based nav macros — navDesktop(items) / navMobile(items) — both driven by one flat item list; imported by header.njk
     header.njk / footer.njk / seperator.njk
   css/
+    tailwind.css           # Tailwind v4 entry point — see "Tailwind CSS v4" below
     _dynamic-colors.njk    # Eleventy template → generates src/scss/_includes/_html_colornames.scss
     _generated-fonts.njk   # Eleventy template → generates src/scss/webfonts/<slug>.scss per font
     _generated-borders.njk # Eleventy template → generates src/scss/_includes/_font-borders.scss
   scss/
-    styles.scss            # SCSS entry point
+    styles.scss            # SCSS entry point → dist/css/styles.css
     _base/                 # colors, typography, html reset, navigation, footer, grid
       _colors.scss         # CSS custom properties for three-tier color system (primary/secondary/tertiary)
       _grid.scss
-      _typography.scss / _html.scss / _navigation.scss / _footer.scss
+      _typography.scss / _html.scss / _footer.scss
+      _navigation.scss     # now just `.breadcrumb` — header/nav styling moved to Tailwind utilities (src/css/tailwind.css)
     _includes/
       _font-mixin.scss     # @font-face mixin used by generated partials
-      _breakpoints.scss
+      _breakpoints.scss    # Bootstrap 5 breakpoint values, mirrored into tailwind.css's @theme so both systems agree
       _modularscale.scss
       _html_colornames.scss  # AUTO-GENERATED — never edit
       _font-borders.scss     # AUTO-GENERATED — never edit
     _cards.scss
     _font-poster.scss
+    _network.scss           # sizing for the .font-network graph container (full-page and embedded specimen variants)
     _print.scss            # print media styles — hides UI chrome, sets print-friendly layout
     _search.scss           # .font-search form in header + #font-search-results autocomplete dropdown
     webfonts/              # AUTO-GENERATED — never edit (gitignored)
@@ -126,6 +131,7 @@ src/
     font-lazy-loader.js    # lazy-loads per-font CSS; marks eagerly-loaded fonts to skip idle prefetch
     compare-manager.js     # font comparison tray (sessionStorage, max 4 fonts); injects #compare-tray into DOM
     font-search.js         # header autocomplete: queries Pagefind JS API, renders dropdown (max 8 hits), keyboard nav
+    nav-toggle.js           # mobile off-canvas nav: hamburger toggle, focus trap/scroll lock, accordion for font-group submenus (desktop dropdowns are CSS-only)
   webfonts/                # Font files, organised by category
     sans/ serif/ mono/ blackletter/ comicsans/ script/ display/
     meta.yaml              # group-level metadata (optional)
@@ -134,7 +140,7 @@ src/
     borders/               # master border SVGs (root level only); color variants generated to dist/ by Gulp
     alt/                   # category alt text references
   robots.txt             # copied to dist/ by Eleventy passthrough
-  favicon.ico / favicon.svg  # copied to dist/ root by copyFavicon Gulp task
+  favicon.ico / favicon.svg / apple-icon-180x180.png  # copied to dist/ root by copyFavicon Gulp task
   index.njk                # homepage — lists all leaf nodes as cards
   specimen.njk             # paginated over fontFolders; one page per node
   tag.njk                  # paginated over fontTags; one page per tag
@@ -145,15 +151,20 @@ src/
   llms.njk                 # permalink: /llms.txt — machine-readable catalog metadata for LLM tools
   sitemap.njk              # sitemap.xml
 dist/                      # BUILD OUTPUT — never edit (gitignored)
-previews/                  # PNG specimen previews generated by font_specimen_generator.py (dark/light/cream)
-preview/test/              # PNG specimen previews from test runs (untracked)
-download-links.md          # Direct download URLs for all fonts, grouped by category
-download-fonts.sh          # Bash script: parses download-links.md, downloads fonts to ./download/
+test/                       # node:test unit tests — see "Testing" below
+  eleventy-filters.test.js
+  fontVariableAxes-buildSteps.test.js
+  fonts-helpers.test.js
+  helpers/loadEleventyConfig.js  # loads .eleventy.js's filters in isolation for testing
+webfonts_disabled/          # Fonts parked outside the build — see "Disabled fonts" below
+previews/                  # PNG specimen previews generated by font_specimen_generator.py (dark/light/cream) — untracked build output, absent from a fresh checkout
+preview.png                # Static preview image shown at the top of README.md (tracked)
 wordlist.txt               # German word list used by font_specimen_svg_generator.py
 font_specimen_generator.py     # Standalone: generates PNG specimen previews (requires Pillow fonttools)
 font_specimen_svg_generator.py # Standalone: generates SVG specimen previews (requires fonttools brotli)
 notes.md                   # Personal dev notes / reference links
 todo.md                    # Font wishlist and status tracking
+.claude/agents/git-worker.md  # git-worker subagent definition (checked into this repo — see "Git" above)
 ```
 
 ---
@@ -163,6 +174,9 @@ todo.md                    # Font wishlist and status tracking
 ```bash
 # Install
 npm install
+
+# Run the unit test suite (node:test — filters, fonts.js/fontVariableAxes.js helpers)
+npm test
 
 # Dev server (clean → build → serve + watch, port 3000)
 npx gulp
@@ -189,11 +203,11 @@ npx gulp convertFonts
 cd dist && git init && git add -A && git commit -m "deploy" && git push git@github.com:elbym/font-collection.git HEAD:gh-pages --force && cd ..
 ```
 
-**Build pipeline**: Eleventy runs first (generates HTML + SCSS partials into `dist/`), then Gulp compiles SCSS and copies/optimises assets on top, then Pagefind indexes `dist/` into `dist/pagefind/`. Running just `npx @11ty/eleventy` alone leaves CSS and the search index missing.
+**Build pipeline**: Eleventy runs first (generates HTML + SCSS partials into `dist/`), then Gulp compiles SCSS **and** Tailwind CSS and copies/optimises assets on top, then Pagefind indexes `dist/` into `dist/pagefind/`. Running just `npx @11ty/eleventy` alone leaves both CSS bundles and the search index missing.
 
-**Dev vs prod SCSS**: Dev mode (`npx gulp`) compiles with sourcemaps, no minification. Prod/ghpages compiles minified with no sourcemaps.
+**Dev vs prod CSS**: Dev mode (`npx gulp`) compiles SCSS with sourcemaps, no minification; Tailwind is always compiled via its own CLI, minified only in `build`/`ghpages`/`deploy` (`compileTailwindMinified`). Prod/ghpages SCSS compiles minified with no sourcemaps.
 
-The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and `webfonts/**/*.yaml` changes, then reloads BrowserSync.
+The watch task re-runs Eleventy (then recompiles SCSS + Tailwind in parallel and reloads BrowserSync) on `.njk`, `.md`, `.html`, `_data/**/*.js`, `webfonts/**/*.js`, and `webfonts/**/*.{yaml,yml,jpg}` changes. `src/css/tailwind.css` and the main SCSS glob are also watched independently for a faster incremental recompile.
 
 ---
 
@@ -203,6 +217,12 @@ The watch task re-runs Eleventy on `.njk`, `.md`, `.html`, `_data/**/*.js`, and 
 - One folder per font family inside a category folder: `src/webfonts/<category>/<FamilyName>/`
 - The folder is a **filesystem container only** — it has no effect on URLs, navigation, or category. All three are derived from `tags[0]`.
 - Category folders (`sans`, `serif`, `mono`, etc.) may have a `meta.yaml`, but it is not used to generate group pages. Group pages are virtual nodes built from unique `tags[0]` values at build time.
+
+### Disabled fonts (`webfonts_disabled/`)
+- A top-level folder, **outside `src/`**, that `fonts.js` never scans — fonts here have no specimen page and don't count toward the collection total.
+- Same per-family layout as `src/webfonts/`: one folder per family with `meta.yaml` and (for most) `.woff2` files and a license file. It is tracked in git.
+- Use it to park a font that's been considered or removed without losing its metadata/license research: move the folder out of `src/webfonts/<category>/` into `webfonts_disabled/` (or add it there directly) rather than deleting it. To bring one back into the site, move its folder into the correct `src/webfonts/<category>/` and rebuild.
+- This is distinct from `todo.md` (fonts not yet acquired at all) — entries here typically already have metadata researched and sometimes the actual font files, just not currently shown on the site.
 
 ### Font file naming
 - Files must be `.woff2` (or `.woff`).
@@ -317,6 +337,15 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - Per-font `@font-face` declarations live in auto-generated `src/scss/webfonts/*.scss` — driven by `_generated-fonts.njk` (paginated over `fontLeaves`).
 - `font-display: block` is set globally in `_font-mixin.scss`. Specimen pages eagerly load their font via `<link>` in `<head>`; lazy-loaded card fonts are loaded 300px ahead of the viewport by the IntersectionObserver.
 - Font card (`_cards.scss`): the header's blurred background image scales to 1.1 on hover, and the card link swaps to `--color-text` on `--color-background` (1 s ease-out); the link underline is disabled. The card's tag footer is tinted in `font-card.njk` with `color-mix(in oklab, <color>, transparent 78%)` — a deliberately weak stripe, one value for both light and dark.
+- **Header/nav styling no longer lives in SCSS.** `_base/_navigation.scss` was reduced to `.breadcrumb`; the nav bar, dropdowns, and mobile off-canvas panel are styled entirely with Tailwind utility classes in `src/css/tailwind.css` — see "Tailwind CSS v4" below.
+
+### Tailwind CSS v4
+- `src/css/tailwind.css` is compiled by the Tailwind v4 CLI (`node_modules/.bin/tailwindcss`) via the Gulp `compileTailwind`/`compileTailwindMinified` tasks (`makeTailwindTask` in `gulpfile.js`) into `dist/css/tailwind.css`. It ships as a **second, independent stylesheet** alongside the SCSS-compiled `dist/css/styles.css` — both are linked in `base.njk`, and neither imports the other.
+- **Scope is deliberately narrow: navigation only.** Tailwind has **no Preflight import** (the site keeps its own reset in `_base/_html.scss`) and colors are **not** mapped into `@theme` — utilities reference the site's own CSS custom properties directly via the `var` shorthand (e.g. `bg-(--color-surface)`, `text-(--color-accent)`), because the three-tier color system is per-page runtime CSS (`_base/_colors.scss`), not a static Tailwind palette. Don't add a `@theme` color scale without checking that constraint still holds.
+- `@theme` currently only redeclares the Bootstrap 5 breakpoints (`--breakpoint-sm` … `--breakpoint-2xl`) so they match `_includes/_breakpoints.scss`.
+- Repeated navigation utility combinations are pulled into `@layer components` classes — `.nav-link`, `.nav-icon-btn`, `.nav-dropdown` — consumed by `src/_includes/nav.njk` and `header.njk`.
+- The Tailwind build is watched separately from SCSS (`watch("src/css/tailwind.css", compileTailwind)` in `gulpfile.js`) — editing `tailwind.css` alone triggers a fast recompile without a full Eleventy rebuild.
+- **Main navigation is built entirely from data, not hardcoded markup.** `header.njk` computes one flat `navItems` list via the `getNavItems` filter (fontFolders + `getManualNav` output) and passes it to `nav.njk`'s `navDesktop()`/`navMobile()` macros, so desktop and mobile can never drift apart. `nav-toggle.js` handles the mobile off-canvas panel (hamburger, focus trap, scroll lock, submenu accordion); desktop dropdowns are pure CSS (`group-hover`/`group-focus-within`).
 
 ### Font lazy loading
 - `font-lazy-loader.js` auto-detects `font-<slug>` CSS classes and lazy-loads the matching `/css/webfonts/<slug>.css` via IntersectionObserver (300px rootMargin).
@@ -345,14 +374,22 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - **Note**: `src/img/` contains `or_preview.jpg` (likely a personal reference image). The OG fallback `og_preview.png` is not tracked in git — it must exist in `dist/img/` or be placed there manually.
 
 ### Eleventy filters (`.eleventy.js`)
-- Active filters: `chr`, `charCodeAt`, `coveragePercent`, `unicodeChars`, `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf`, `getManualNav`, `hueShift`, `markdownify`, `jsonEscape`, `toDomain`, `findRelated`, `findPrevNext`.
+- Active filters: `chr`, `charCodeAt`, `coveragePercent`, `unicodeChars`, `getChildNodes`, `getAncestors`, `getRootNodes`, `isAncestorOf`, `getManualNav`, `getNavItems`, `hueShift`, `markdownify`, `jsonEscape`, `toDomain`, `findRelated`, `findPrevNext`.
 - `hueShift(degrees)`: rotates a CSS color's hue via chroma-js.
 - `markdownify`: renders markdown string to HTML via markdown-it (`html: false`, `breaks: true`, `linkify: true`).
 - `jsonEscape`: escapes a string for safe embedding in JSON (backslash, quote, newline, carriage return).
 - `toDomain`: extracts hostname from a URL; returns the input string on parse failure.
 - `findRelated(folder, fontLeaves, limit?)`: returns leaf nodes sharing at least one tag with `folder`, excluding `folder` itself. Optional `limit` slices the result.
 - `findPrevNext(key, list)`: returns `{ prev, next }` neighbours of the node with `key` inside `list`. Returns `null` for missing neighbours.
+- `getNavItems(fontFolders, manualPages, currentFolder, currentPageUrl)`: builds the flat item list consumed by `header.njk`/`nav.njk` — manual pages (from `getManualNav`) as `{type: "link", ...}` entries, followed by one `{type: "group", node, children, isOpen, ...}` entry per font-group root with its leaf children inlined. Sole data source is `fontFolders`; nothing is hardcoded in the template.
 - Dead filters were removed (`familyName`, `getNavDepth`, `isChildOf`, `getParentNode`, `getDescendants`, `find`) — do not re-add unless a template actually uses them.
+
+### Testing
+- Unit tests use Node's built-in test runner: `npm test` (→ `node --test test/*.test.js`). No test framework dependency — assertions use `node:assert/strict`.
+- `test/helpers/loadEleventyConfig.js` loads `.eleventy.js` in isolation and returns its registered filters, so filter behaviour (`eleventy-filters.test.js`) can be tested without spinning up a full Eleventy build.
+- `fonts.js` and `fontVariableAxes.js` export their pure helper functions under an `_internal` key (e.g. `require("../src/_data/fonts.js")._internal`) purely so tests can reach them directly — `sanitizeFamily`, `detectVariableFont`, `extractAxes`, `slugify`, `hashKey`, `generateFallbackColor`, `resolveColorHex`, `buildSteps`, etc. This is test-only plumbing; templates and other data files should keep calling the public `fonts()`/`fontVariableAxes()` entry points, not `_internal`.
+- Coverage: Eleventy filters (`chr`/`charCodeAt`, `coveragePercent`, …), the filename-parsing/color/slug helpers in `fonts.js`, and the axis-step generation logic (`buildSteps`) in `fontVariableAxes.js` — including the Fraunces WONK/opsz special case documented below.
+- There is no test for `getNavItems`, the Gulp build, or template rendering — those still need manual verification (`npx gulp` + browser check).
 
 ### URL slugs and navigation
 - Leaf node URLs: `/<tags[0]-slug>/<family-slug>.html` (e.g. `serif/cormorant.html`, `monospace/jetbrainsmono.html`).
@@ -362,6 +399,7 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - **Navigation (menu, breadcrumb) and URLs both follow `tags[0]`**, not the folder structure. Moving a font between category folders has no effect on its URL — only changing `tags[0]` does.
 - `node.parentPath` is set to `slugify(tags[0])`. Navigation filters operate on `parentPath`/`path`.
 - **Manual nav pages** (`alternatives.njk`, `compare.njk`) use `eleventyNavigation` frontmatter and are surfaced by the `getManualNav` filter — they are independent of the font data tree and do not appear in group/leaf navigation.
+- The header/mobile nav itself is rendered from `getNavItems` (manual pages + font-group roots and children) — see "Tailwind CSS v4" above. Adding a font never requires a nav template change; a new `tags[0]` value automatically becomes a new nav group on the next build.
 
 ### Background image downloads
 - `src/img/background/` and per-font `background/` folders support a `urls.txt` file listing image sources to download.
@@ -372,7 +410,6 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 ### Font conversion
 - `npx gulp convertFonts` scans `src/webfonts/` recursively for `.ttf`/`.otf` files and converts each to `.woff2` via the system binary `woff2_compress`.
 - Skips files where a `.woff2` already exists. Errors if `woff2_compress` is not installed.
-- `download-fonts.sh` is a separate bash script (independent of Gulp) that parses `download-links.md` and downloads font ZIP packages from Google Fonts and GitHub releases into `./download/`.
 
 ### Structured data (SEO)
 - `base.njk` emits JSON-LD `BreadcrumbList` on all folder/leaf pages and a `SoftwareApplication` entity on the homepage. Uses `jsonEscape` filter to safely embed template values into JSON.
@@ -456,11 +493,4 @@ The `ghpages` Gulp task uses `HtmlBasePlugin` via the Eleventy `--pathprefix=fon
 ```bash
 # Requires woff2_compress (e.g. sudo apt install woff2 / brew install woff2)
 npx gulp convertFonts
-```
-
-### 7. Download fonts listed in download-links.md
-
-```bash
-bash download-fonts.sh
-# Fonts land in ./download/ as ZIP files
 ```
