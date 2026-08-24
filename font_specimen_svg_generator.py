@@ -73,7 +73,7 @@ THEMES = {
         "text":       "#eaeaea",
         "name_bg":    "#dfe2f0",
         "name_color": "#1e2035",
-        "ghost":      "#252848",
+        "ghost":      "#3d416c",
         "lower_text": "#dde0f0",
     },
     # Helle Blau-/Teal-Töne. lower_text ist bewusst dunkel: mit dem hellen
@@ -86,7 +86,7 @@ THEMES = {
         "text":       "#10333a",
         "name_bg":    "#f2fbfc",
         "name_color": "#0d3b42",
-        "ghost":      "#e0f0f3",
+        "ghost":      "#7fbbc8",
         "lower_text": "#0b2a30",
     },
     "cream": {
@@ -96,7 +96,7 @@ THEMES = {
         "text":       "#1a1208",
         "name_bg":    "#f4eeda",
         "name_color": "#4a3a12",
-        "ghost":      "#ddd5c0",
+        "ghost":      "#a29066",
         "lower_text": "#ffffff",
     },
 }
@@ -137,6 +137,22 @@ def _darken_until(hue: float, lightness: float, saturation: float,
     return _hls(hue, 0.0, saturation)
 
 
+def _lighten_until(hue: float, lightness: float, saturation: float,
+                   background: str, target: float) -> str:
+    """Hebt die Helligkeit, bis der Kontrast zum Hintergrund `target` erreicht.
+
+    Gegenstück zu `_darken_until`, für den Ghost-Buchstaben: der sitzt als
+    heller Tonwert auf `upper_bg` und muss trotzdem als Kontur erkennbar
+    bleiben statt fast mit dem Hintergrund zu verschmelzen.
+    """
+    while lightness < 1.0:
+        color = _hls(hue, lightness, saturation)
+        if contrast_ratio(color, background) >= target:
+            return color
+        lightness += 0.02
+    return _hls(hue, 1.0, saturation)
+
+
 def generate_random_theme(rng: random.Random | None = None) -> dict:
     """Helle Pastelltöne aus einem zufälligen Grundton.
 
@@ -152,7 +168,9 @@ def generate_random_theme(rng: random.Random | None = None) -> dict:
     name_bg  = _hls(h, 0.96, 0.42)
     upper_bg = _hls(h, 0.89, 0.45)
     lower_bg = _hls(h, 0.78, 0.38)
-    ghost    = _hls(h, 0.93, 0.35)
+    # Der Ghost-Buchstabe braucht sichtbaren Kontrast zu upper_bg statt nur
+    # einer minimal helleren Tönung, sonst geht die Kontur im Hintergrund unter.
+    ghost    = _lighten_until(h, 0.93, 0.35, upper_bg, 1.6)
 
     return {
         "name_bg":    name_bg,
@@ -596,11 +614,14 @@ def draw_specimen_svg(
                f'height="{canvas_height - upper_h}" fill="{C["lower_bg"]}"/>')
 
     # Ghost-Buchstabe: dekoratives Wasserzeichen, liegt bewusst hinter dem Text.
-    # Rechtsbündig am Satzspiegel, Unterkante bündig zur Trennkante der Flächen —
-    # ausgerichtet an der Kontur, nicht an der Vorschubbreite.
+    # Rechtsbündig am Satzspiegel, ausgerichtet an der Kontur, nicht an der
+    # Vorschubbreite. Die Unterkante bekommt etwas Luft zur Trennkante der
+    # Flächen — auf der Kante selbst verschwamm der Buchstabe optisch mit dem
+    # Farbwechsel und war kaum als eigene Form zu erkennen.
+    GHOST_LIFT = int(canvas_width * 0.02)
     _, ghost_right, _, ghost_bottom = ink_box(ghost_str, tt_r, sz_ghost)
     out.append(_glyph_path(
-        canvas_width - PAD - ghost_right, upper_h - ghost_bottom,
+        canvas_width - PAD - ghost_right, upper_h - ghost_bottom - GHOST_LIFT,
         ghost_str, tt_r, sz_ghost, C["ghost"],
     ))
 
