@@ -1,6 +1,6 @@
-/* Header/nav styling now lives entirely in Tailwind utilities + the
-   .nav-link/.nav-icon-btn/.nav-dropdown component classes (src/css/tailwind.css),
-   consumed from src/_includes/nav.njk and header.njk. */
+/* Header/nav styling now lives entirely in Tailwind utilities plus the
+   .nav-link component class and the <details>-nav rules in
+   src/css/tailwind.css, consumed from src/_includes/nav.njk and header.njk. */
 
 .breadcrumb {
   margin: 1rem 0 2rem 0;
