@@ -1,12 +1,14 @@
 title: Nunito
-url: https://github.com/googlefonts/NunitoSans
-tags: Sans, Geometric, Rounded
-fontauthor: Vernon Adams, Cyreal
-fontyear: 2014
-heroletter: No
-heroword: Rund
+url: https://github.com/googlefonts/nunito
 
-border: dots.svg
+tags: Sans, Rounded, Variable
+
+fontauthor: Vernon Adams, Cyreal, Jacques Le Bailly
+fontyear: 2011
+
+heroletter: Nn
+heroword: "Warm"
+color: lightseagreen
 
 content: |
-  Nunito von Vernon Adams ist eine geometrische Groteskschrift mit durchgehend abgerundeten Endstrichen, die ihr einen freundlichen, zugänglichen Charakter verleihen. Die weichen Formen machen sie zur beliebten Wahl für Kinder-Apps, UI-Designs und Marken, die Zugänglichkeit und Wärme kommunizieren wollen.
+  Nunito ist eine klassische Rundungs-Sans mit weichen, abgerundeten Terminals – ursprünglich als Display-Schrift konzipiert und später zu einer vielseitigen Text-Familie ausgebaut. Mit variabler Gewichtsskala bietet sie von zarten bis kräftigen Gewichten eine freundliche, zugängliche Typografie für alle Größen. In dieser Sammlung ist sie die erste echte Rundschrift unter 33 Serifenlosen — Figtree ist nur leicht abgerundet.
