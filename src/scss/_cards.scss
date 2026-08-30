@@ -1,5 +1,6 @@
 @use "_includes/breakpoints" as bp;
 @use "_includes/modularscale" as ms;
+@use "_includes/theme" as theme;
 
 html {
   transition: color .5s cubic-bezier(0.075, 0.82, 0.165, 1),
@@ -38,7 +39,7 @@ html {
         // on the page. The browser promotes on hover for the .5s scale anyway.
         transition: transform .5s ease-out;
 
-        @media (prefers-color-scheme: dark) {
+        @include theme.dark {
           background-blend-mode: screen;
           filter: blur(5px) brightness(-0.45);
         }
@@ -127,7 +128,7 @@ html {
       mix-blend-mode: unset;
     }
 
-    @media (prefers-color-scheme: dark) {
+    @include theme.dark {
       mix-blend-mode: screen;
     }
 

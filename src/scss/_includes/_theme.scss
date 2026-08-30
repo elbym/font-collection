@@ -1,0 +1,34 @@
+// Dark-mode helpers for the three-state theme toggle (top bar → theme-toggle.js).
+//
+// Theme state lives on <html data-theme>:
+//   (no attribute) → "system": follow prefers-color-scheme (the default)
+//   data-theme="light" → force light
+//   data-theme="dark"  → force dark
+//
+// Use `dark-root` for CSS-variable overrides on :root itself, and for
+// top-level rules whose selector you write inside the block. Use `dark`
+// when calling from *inside* another selector (it appends `&`).
+
+@mixin dark-root {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      @content;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) & {
+      @content;
+    }
+  }
+
+  :root[data-theme="dark"] & {
+    @content;
+  }
+}

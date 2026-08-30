@@ -1,3 +1,5 @@
+@use "../_includes/theme" as theme;
+
 :root {
   // base colors
   --color-mix-light: hsl(0, 0%, 90%);
@@ -58,8 +60,7 @@
   --dot-end: 35%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+@include theme.dark-root {
     // Swap light/dark bases — all semantic tokens recompute automatically
     --color-mix-light: hsl(0, 0%, 10%);
     --color-mix-dark:  hsl(0, 0%, 90%);
@@ -101,7 +102,6 @@
     --cmyk-black:   hsla(0, 0%, 0%, 0.5);
     --dot-start: 35%;
     --dot-end: 40%;
-  }
 
   img {
     opacity: 0.8;

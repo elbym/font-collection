@@ -11,6 +11,7 @@
 @use "_search";
 @use "_network";
 @use "_includes/html_colornames";
+@use "_includes/theme" as theme;
 @use "_print";
 
 .svg-seperator {
@@ -63,7 +64,7 @@
   transition: background-size .5s ease-out;
 
   mix-blend-mode: multiply;
-  @media (prefers-color-scheme: dark) {
+  @include theme.dark {
     mix-blend-mode: screen;
   }
 }

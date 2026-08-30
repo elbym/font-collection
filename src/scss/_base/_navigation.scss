@@ -5,3 +5,36 @@
 .breadcrumb {
   margin: 1rem 0 2rem 0;
 }
+
+/* Slim bar above the header — holds the light/dark/system theme switch. */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  background-color: var(--color-background);
+}
+
+.top-bar__theme {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.25rem 0.6rem;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
