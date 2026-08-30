@@ -1,0 +1,15 @@
+title: Source Code Pro
+url: https://github.com/adobe-fonts/source-code-pro
+
+tags: Monospace, Coding, Variable
+
+fontauthor: Paul D. Hunt (Adobe)
+fontyear: 2012
+
+heroletter: Cc
+heroword: Code
+herostyle:
+color: crimson
+
+content: |
+  Source Code Pro ist Adobes erste Open-Source-Schrift und eine der meistgenutzten Schriften im Programmierbereich. Entworfen 2012 von Paul D. Hunt, schließt die Variable-Schrift die Lücke in dieser Sammlung zwischen Source Sans und Source Serif. Mit ihrer klaren Formgebung und exzellenten Lesbarkeit in kleinen Größen und TextEditoren ist sie ideal für Code und technische Anwendungen.

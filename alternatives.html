@@ -1,0 +1,1601 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+
+    <title>Open-Source-Alternativen bekannten Schriften | Schriftposter fürs Web</title>
+
+    <meta
+      name="description"
+      content="Kostenlose Alternativen zu Helvetica, Futura, Garamond, Bodoni und Times New Roman: kuratierte Open-Source-Schriften für Design, Druck und Web."
+    />
+    <meta name="author" content="elbym" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://elbym.github.io/alternatives.html" />
+
+    <meta http-equiv="Content-Language" content="de" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:url" content="https://elbym.github.io/alternatives.html" />
+    <meta property="og:title" content="Open-Source-Alternativen bekannten Schriften | Schriftposter fürs Web" />
+    <meta
+      property="og:description"
+      content="Kostenlose Alternativen zu Helvetica, Futura, Garamond, Bodoni und Times New Roman: kuratierte Open-Source-Schriften für Design, Druck und Web."
+    />
+    <meta property="og:site_name" content="Schriftposter fürs Web" />
+    <meta property="og:image" content="https://elbym.github.io/font-collection/img/og_preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Open-Source-Alternativen bekannten Schriften | Schriftposter fürs Web" />
+    <meta
+      name="twitter:description"
+      content="Kostenlose Alternativen zu Helvetica, Futura, Garamond, Bodoni und Times New Roman: kuratierte Open-Source-Schriften für Design, Druck und Web."
+    />
+    <meta name="twitter:image" content="https://elbym.github.io/font-collection/img/og_preview.png" />
+
+    <meta name="theme-color" content="#4b0082" />
+
+    <link rel="stylesheet" href="/font-collection/css/styles.css" />
+    <link rel="stylesheet" href="/font-collection/css/tailwind.css" />
+
+    <script src="/font-collection/js/font-lazy-loader.js" defer=""></script>
+    <script src="/font-collection/js/compare-manager.js" defer=""></script>
+    <script src="/font-collection/js/font-search.js" defer=""></script>
+    <script src="/font-collection/js/font-style-hover.js" defer=""></script>
+    <script src="/font-collection/js/card-name-override.js" defer=""></script>
+    <script src="/font-collection/js/theme-toggle.js" defer=""></script>
+
+    <link rel="icon" type="image/svg+xml" href="/font-collection/favicon.svg" />
+    <link rel="shortcut icon" href="/font-collection/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/font-collection/apple-icon-180x180.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Schriftposter fürs Web",
+        "description": "Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir besonders im Gedächtnis geblieben sind, und ein Vorwand, um das Musterplakat zu präsentieren.",
+        "url": "https://elbym.github.io"
+      }
+    </script>
+  </head>
+
+  <body class="">
+    <div class="top-bar" data-pagefind-ignore="">
+      <button
+        type="button"
+        id="theme-toggle"
+        class="top-bar__theme"
+        aria-label="Farbschema wechseln"
+        title="Farbschema: System (klicken zum Wechseln)"
+      >
+        <span data-theme-icon="" aria-hidden="true">🖥</span>
+        <span data-theme-label="">System</span>
+      </button>
+    </div>
+
+    <header data-pagefind-ignore="">
+      <div class="relative flex items-center justify-between gap-4 py-2">
+        <nav aria-label="Hauptnavigation" class="min-w-0">
+          <details class="site-nav">
+            <summary class="nav-link inline-flex w-fit items-center gap-2 md:hidden" aria-label="Hauptmenü">
+              <svg
+                class="size-5 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"></path>
+              </svg>
+              Menü
+            </summary>
+
+            <ul
+              class="site-nav__list absolute inset-x-0 top-full z-30 mt-2 flex flex-col gap-1 rounded-md border border-(--color-border) bg-(--color-surface) p-2 shadow-lg md:relative md:mt-0 md:flex-row md:flex-wrap md:items-center md:gap-1 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+            >
+              <li>
+                <a class="nav-link block" href="/font-collection/">Freie Open-Source Schriften</a>
+              </li>
+              <li>
+                <a class="nav-link block" href="/font-collection/alternatives.html" aria-current="page">
+                  Open-Source-Alternativen bekannten Schriften
+                </a>
+              </li>
+              <li>
+                <a class="nav-link block" href="/font-collection/network.html">Netzwerk</a>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Blackletter
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Blackletter"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/blackletter.html">
+                        Alle Blackletter
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/grenze.html">Grenze</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/grenzegotisch.html">
+                        Grenze Gotisch
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/jacquardabastarda9.html">
+                        Jacquarda Bastarda 9
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/unifraktur.html">
+                        Unifraktur
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/unifrakturcook.html">
+                        UnifrakturCook
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Display
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Display"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/display.html">Alle Display</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/bigshouldersdisplay.html">
+                        Big Shoulders Display
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/bigshouldersstencil.html">
+                        Big Shoulders Stencil
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/climatecrisis.html">
+                        Climate Crisis
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/delagothicone.html">
+                        Dela Gothic One
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/pixelifysans.html">
+                        Pixelify Sans
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/sairastencilone.html">
+                        Saira Stencil One
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/silkscreen.html">Silkscreen</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/sansitaswashed.html">
+                        Sansita Swashed
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Monospace
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Monospace"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/monospace.html">Alle Monospace</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/0xproto.html">0xProto</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/cascadiacode.html">
+                        Cascadia Code
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/courierprime.html">
+                        Courier Prime
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/departuremono.html">
+                        Departure Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/firacode.html">Fira Code</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/geistmono.html">Geist Mono</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/hack.html">Hack</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/ibmplexmono.html">
+                        IBM Plex Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/jetbrainsmono.html">
+                        JetBrains Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/libertinusmono.html">
+                        Libertinus Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/maplemono.html">Maple Mono</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/recursive.html">Recursive</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/sourcecodepro.html">
+                        Source Code Pro
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/texgyrecursor.html">
+                        TeX Gyre Cursor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/victormono.html">
+                        Victor Mono
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Sans
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Sans"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/sans.html">Alle Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/amstelvar.html">Amstelvar</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/asap.html">Asap</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/atkinsonhyperlegiblenext.html">
+                        Atkinson Hyperlegible Next
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/bricolagegrotesque.html">
+                        Bricolage Grotesque
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/cooperhewitt.html">Cooper Hewitt</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/dinish.html">DINish</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/epilogue.html">Epilogue</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/firasans.html">Fira Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/geist.html">Geist</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/ibmplexsans.html">IBM Plex Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/inter.html">Inter</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/jost.html">Jost*</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/libertinussans.html">
+                        Libertinus Sans
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/librefranklin.html">
+                        Libre Franklin
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/metropolis.html">Metropolis</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/overpass.html">Overpass</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/publicsans.html">Public Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/quicksand.html">Quicksand</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/raleway.html">Raleway</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/robotoflex.html">Roboto Flex</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/routedgothic.html">Routed Gothic</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/satoshi.html">Satoshi</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/sourcesans.html">Source Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/texgyreadventor.html">
+                        Tex Gyre Adventor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/texgyreheros.html">
+                        Tex Gyre Heros
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/titillumweb.html">Titillum Web</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/varelaround.html">Varela Round</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/worksans.html">Work Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/playpensans.html">Playpen Sans</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Script
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Script"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/script.html">Alle Script</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/kalam.html">Kalam</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/komika.html">Komika</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/krikikrak.html">Krikikrak</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/amaticsc.html">Amatic SC</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewebuild.html">
+                        Because We Build
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becauseweconnect.html">
+                        Because We Connect
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewecreate.html">
+                        Because We Create
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewelearn.html">
+                        Because We Learn
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewementor.html">
+                        Because We Mentor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becauseweorganize.html">
+                        Because We Organize
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/caveat.html">Caveat</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/dancingscript.html">
+                        Dancing Script
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/greatvibes.html">Great Vibes</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/pacifico.html">Pacifico</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/playwritedela.html">Playwrite</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/satisfy.html">Satisfy</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/tangerine.html">Tangerine</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/texgyrechorus.html">
+                        TeX Gyre Chorus
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Serif
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Serif"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/serif.html">Alle Serif</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/arvo.html">Arvo</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/alegreya.html">Alegreya</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/basteleur.html">Basteleur</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bevan.html">Bevan</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bitter.html">Bitter</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bodoni.html">Bodoni*</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/compagnon.html">Compagnon</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/cormorant.html">Cormorant</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/crimsonpro.html">Crimson Pro</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/ebgaramond.html">EB Garamond</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/frankruhllibre.html">
+                        Frank Ruhl Libre
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/fraunces.html">Fraunces</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/gfsdidot.html">GFS Didot</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/gambetta.html">Gambetta</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/ibmplexserif.html">
+                        IBM Plex Serif
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/junicode.html">Junicode</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/libertinusserif.html">
+                        Libertinus Serif
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/librebaskerville.html">
+                        Libre Baskerville
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/librecaslon.html">Libre Caslon</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/literata.html">Literata</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/lora.html">Lora</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/merriweather.html">Merriweather</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/mozillaheadline.html">
+                        Mozilla Headline
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/newsreader.html">Newsreader</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/piazzolla.html">Piazzolla</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/playfair.html">Playfair</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/reforma.html">Reforma</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/sentient.html">Sentient</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/sourceserif.html">Source Serif</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/spectral.html">Spectral</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyrebonum.html">
+                        Tex Gyre Bonum
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyrepagella.html">
+                        Tex Gyre Pagella
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyreschola.html">
+                        Tex Gyre Schola
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyretermes.html">
+                        Tex Gyre Termes
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/unna.html">Unna</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/vollkorn.html">Vollkorn</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/zillaslab.html">Zilla Slab</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/zodiak.html">Zodiak</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </nav>
+
+        <form
+          role="search"
+          class="font-search smaller"
+          aria-label="Schriften suchen"
+          data-pagefind-url="/font-collection/pagefind/pagefind.js"
+          data-search-url="/font-collection/search.html"
+        >
+          <input
+            type="search"
+            id="font-search-input"
+            name="q"
+            placeholder="Schrift suchen …"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Schrift suchen"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-controls="font-search-results"
+          />
+          <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden=""></ul>
+        </form>
+      </div>
+    </header>
+
+    <article class="content">
+      <h1>Freie Alternativen zu klassischen kommerziellen Schriften</h1>
+
+      <p>
+        Diese Sammlung enthält qualitativ hochwertige Open-Source-Schriften als direkte oder funktionale Alternativen zu
+        bekannten kommerziellen Schriften.
+      </p>
+
+      <dl>
+        <dt><a href="/font-collection/sans.html">Sans</a></dt>
+        <dd>
+          Serifenlose Schriften – die größte Gruppe dieser Sammlung. Reicht von humanistisch-warm über geometrisch bis
+          neo-grotesk-neutral.
+        </dd>
+
+        <dt><a href="/font-collection/tag/humanist.html">Humanist</a></dt>
+        <dd>
+          Proportionen und Ductus der Renaissance-Handschrift. Warm, lebendig, gut lesbar – als Sans (
+          <em>Fira Sans</em>
+          ,
+          <em>Gill Sans</em>
+          ) oder Serif (
+          <em>Alegreya</em>
+          ,
+          <em>Literata</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/geometric.html">Geometric</a></dt>
+        <dd>
+          Auf geometrischen Grundformen (Kreis, Quadrat, Dreieck) aufgebaut. Typisch für Schriften wie
+          <em>Futura</em>
+          oder
+          <em>Avant Garde</em>
+          .
+        </dd>
+
+        <dt><a href="/font-collection/tag/grotesk.html">Grotesk</a></dt>
+        <dd>Klassische europäische Groteskschriften mit leichtem Strichstärkenkontrast und sachlichem Charakter.</dd>
+
+        <dt><a href="/font-collection/tag/neo.html">Neo</a></dt>
+        <dd>
+          Neo-Grotesken: extrem sachlich, neutral und funktional. Kaum Strichstärkenkontrast, enge Strichführung
+          (Helvetica-Tradition).
+        </dd>
+
+        <dt><a href="/font-collection/tag/neo-grotesk.html">Neo-Grotesk</a></dt>
+        <dd>
+          Direkte Bezeichnung für den Neo-Grotesk-Stil (z. B.
+          <em>Tex Gyre Heros</em>
+          ). Sachlich, neutral, für Fließtext und UI gleichermaßen geeignet.
+        </dd>
+
+        <dt><a href="/font-collection/tag/rounded.html">Rounded</a></dt>
+        <dd>
+          Gerundete Strichenden – warm und freundlich. Gut für Consumer-Apps und UI (z. B.
+          <em>Nunito</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/serif.html">Serif</a></dt>
+        <dd>
+          Schriften mit Endstrichen. Umfasst Garalde, Didone, Transitional, Slab Serif und humanistische Antiqua für
+          Buch- und Bildschirmsatz.
+        </dd>
+
+        <dt><a href="/font-collection/tag/garalde.html">Garalde</a></dt>
+        <dd>
+          Renaissance-Antiqua mit kursiver Achse und weichen Strichstärkenkontrasten (z. B.
+          <em>Garamond</em>
+          ,
+          <em>Caslon</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/didone.html">Didone</a></dt>
+        <dd>
+          Klassizistische Antiqua mit extremem Kontrast und senkrechten Achsen (z. B.
+          <em>Bodoni</em>
+          ,
+          <em>Didot</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/transitional.html">Transitional</a></dt>
+        <dd>
+          Übergangsform zwischen Garalde und Didone mit ausgewogenem Kontrast und fast senkrechten Achsen (z. B.
+          <em>Baskerville</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/slab-serif.html">Slab Serif</a></dt>
+        <dd>Blockförmige, gleichstarke Serifen (Egyptienne). Plakativ, retro oder technisch – je nach Ausführung.</dd>
+
+        <dt><a href="/font-collection/tag/slab.html">Slab</a></dt>
+        <dd>
+          Variante des Slab-Serif-Stils; hier:
+          <em>Grenze</em>
+          , die Blackletter mit Slab-Elementen kombiniert.
+        </dd>
+
+        <dt><a href="/font-collection/tag/old-style.html">Old Style</a></dt>
+        <dd>
+          Schriften im Stil früher Renaissance-Drucktypen – runde, offene Formen, wenig Kontrast (z. B.
+          <em>Junicode</em>
+          ,
+          <em>Lora</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/kalligraphisch.html">Kalligraphisch</a></dt>
+        <dd>
+          Starker kalligrafischer Einfluss mit sichtbarem Federzug; der Übergang von Schreib- zu Druckschrift ist
+          spürbar (z. B.
+          <em>Lora</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/monospace.html">Monospace</a></dt>
+        <dd>Jeder Buchstabe belegt dieselbe Breite. Standard für Code-Editoren, Terminals und technische Dokumente.</dd>
+
+        <dt><a href="/font-collection/tag/coding.html">Coding</a></dt>
+        <dd>
+          Für Programmierumgebungen optimiert: hohe Lesbarkeit bei kleinen Graden, klare Unterscheidung ähnlicher
+          Zeichen (0/O, l/1/I).
+        </dd>
+
+        <dt><a href="/font-collection/tag/ligaturen.html">Ligaturen</a></dt>
+        <dd>
+          Schriften mit Programmierligaturen, die Operatoren wie
+          <code>!=</code>
+          ,
+          <code>-&gt;</code>
+          oder
+          <code>&gt;=</code>
+          als einzelnes Zeichen darstellen (z. B.
+          <em>Cascadia Code</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/neutral.html">Neutral</a></dt>
+        <dd>
+          Bewusst zurückhaltende, unaufdringliche Gestaltung – visuell ruhig, ohne Eigencharakter, der ablenken könnte
+          (z. B.
+          <em>Commit Mono</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/blackletter.html">Blackletter</a></dt>
+        <dd>
+          Gebrochene Schriften in der Tradition von Textura und Fraktur. Für historischen, dramatischen oder dekorativen
+          Einsatz.
+        </dd>
+
+        <dt><a href="/font-collection/script.html">Script</a></dt>
+        <dd>
+          Handschriftliche Schriften – von formal-kalligrafisch (Kanzleischriften) bis locker-informal (Handschrift,
+          Comic-ähnlich).
+        </dd>
+
+        <dt><a href="/font-collection/display.html">Display</a></dt>
+        <dd>
+          Für große Schriftgrade konzipiert: Überschriften, Plakate, Headlines. Starke Eigencharaktere, die im Fließtext
+          zu dominant wären.
+        </dd>
+
+        <dt><a href="/font-collection/tag/swashed.html">Swashed</a></dt>
+        <dd>
+          Mit dekorativen Schwungalternativen (Swash-Alternates). Gut für Einladungen, Logos und kalligrafische
+          Headlines (z. B.
+          <em>Sansita Swashed</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/optical-sizes.html">Optical Sizes</a></dt>
+        <dd>
+          Variationsachse für optische Größen: bei kleinen Graden offener und kräftiger, bei großen Graden kontrastreich
+          und fein (z. B.
+          <em>Fraunces</em>
+          ,
+          <em>Newsreader</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/screen.html">Screen</a></dt>
+        <dd>
+          Besonders für digitale Bildschirmdarstellung und lange Lesestrecken optimiert (z. B.
+          <em>Spectral</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/newspaper.html">Newspaper</a></dt>
+        <dd>
+          Im Zeitungsdruckstil: hoher Kontrast, enge Proportionen, für kleine Schriftgrade und große Textmengen
+          optimiert (z. B.
+          <em>Newsreader</em>
+          ).
+        </dd>
+
+        <dt><a href="/font-collection/tag/expressiv.html">Expressiv</a></dt>
+        <dd>
+          Bewusst unregelmäßige oder dramatische Formen mit starker Persönlichkeit (z. B.
+          <em>Piazzolla</em>
+          ,
+          <em>Fraunces</em>
+          mit Wonky-Achse).
+        </dd>
+      </dl>
+
+      <main class="sm:grid sm:grid-cols-2 sm:gap-y-4 sm:gap-x-12">
+        <article class="article">
+          <h2 class="font-firasans">Alternative zu ITC Officina Sans</h2>
+          <p>
+            ITC Officina, entworfen von Erik Spiekermann, ist schwer zu ersetzen – das »J« und das »i« sind
+            unverwechselbar. Mögliche Alternativen:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/firasans.html">Fira Sans</a></strong>
+              – ebenfalls von Spiekermann, die nächstgelegene Alternative.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/asap.html">Asap</a></strong>
+              – etwas zu gerundet für einen vollständigen Ersatz, aber nah dran.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/sourcesans.html">Source Sans</a></strong>
+              – kommt im neutralen Fließtext sehr nah heran.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-firasans">Alternative zu FF Meta</h2>
+          <p>
+            FF Meta von Erik Spiekermann gilt als „Anti-Helvetica": humanistisch, warm, für Text optimiert. Spiekermann
+            lieferte auch die beste freie Alternative gleich mit:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/firasans.html">Fira Sans</a></strong>
+              – teilt die humanistische DNA der Meta.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/mozillatext.html">Mozilla Text</a></strong>
+              – Mozillas aktuelle Hausschrift, ähnlicher Charakter.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyreheros">Alternative zu Helvetica / Arial</h2>
+          <p>
+            Max Miedinger entwarf Helvetica 1957 für die Haas'sche Schriftgießerei. Sie wurde zur meistgenutzten Schrift
+            des 20. Jahrhunderts. Arial ist Microsofts metrisch kompatibler Nachbau.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/texgyreheros.html">Tex Gyre Heros</a></strong>
+              – basiert auf URW Nimbus Sans, dem direkten Nachfolger von Helvetica. Metrisch kompatibel.
+            </li>
+          </ul>
+          <figure>
+            <img src="/font-collection/img/alt/Helvetica/helvetica_ad.webp" alt="Helvetica-Werbung" />
+            <figcaption>Helvetica-Werbung</figcaption>
+          </figure>
+        </article>
+
+        <article class="article">
+          <h2 class="font-inter">Alternative zu Helvetica Neue / San Francisco</h2>
+          <p>
+            Helvetica Neue und Apples SF Pro dominieren digitale Oberflächen. Inter wurde für denselben Zweck entwickelt
+            – sachlich, neutral, auf Bildschirme optimiert.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/inter.html">Inter</a></strong>
+              – heute de facto Standard in Open-Source-UI.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-jost">Alternative zu Futura</h2>
+          <p>Paul Renner entwarf Futura 1927 als Schrift der Moderne – Kreis, Dreieck, Quadrat.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/jost.html">Jost*</a></strong>
+              – die naheliegendste Alternative. Vollständiges Gewichtsrepertoire.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/metropolis.html">Metropolis</a></strong>
+              – geometrisch, stärker auf Display ausgerichtet.
+            </li>
+          </ul>
+          <figure>
+            <img src="/font-collection/img/alt/Futura/Futura_ad_1928.webp" alt="Futura-Werbung von 1928" />
+            <figcaption>Futura-Werbung von 1928</figcaption>
+          </figure>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyreadventor">Alternative zu ITC Avant Garde Gothic</h2>
+          <p>
+            Herb Lubalin entwarf ITC Avant Garde Gothic 1970 auf Basis des Logos des gleichnamigen Magazins – eine
+            konsequent auf dem Kreis konstruierte Grotesk.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/texgyreadventor.html">Tex Gyre Adventor</a></strong>
+              – basiert auf URW Gothic L, dem direkten Nachfolger von ITC Avant Garde Gothic.
+            </li>
+          </ul>
+          <figure>
+            <img
+              src="/font-collection/img/alt/ITCAvantGarde/ArcRaiders_KeyArt_Main_1-1_2160x2160.webp"
+              alt="Keyart von ArcRaiders"
+            />
+            <figcaption>
+              Keyart aus dem
+              <a href="https://www.embark-studios.com/press" target="_blank" rel="noopener noreferrer">
+                ArcRaiders Presskit
+              </a>
+              – gesetzt in ITC Avant Garde Gothic.
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="article">
+          <h2 class="font-metropolis bold">Alternative zu Gotham</h2>
+          <p>
+            Tobias Frere-Jones entwarf Gotham im Jahr 2000 für das Magazin
+            <em>GQ</em>
+            , inspiriert von der Beschilderung New Yorker Nachkriegsbauten. Die geometrisch-amerikanische Grotesk wurde
+            durch Barack Obamas Wahlkampf 2008 weltbekannt.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/metropolis.html">Metropolis</a></strong>
+              – ähnliche Direktheit und Gewichtspalette.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/leaguespartan.html">League Spartan</a></strong>
+              – für fette Headlines, wo Gothams komprimierte Bold gefragt ist.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/raleway.html">Raleway</a></strong>
+              – für leichte Gewichte. Das doppelte „W" ist unverwechselbar.
+            </li>
+          </ul>
+          <figure>
+            <img src="/font-collection/img/alt/Gotham/Gotham_Yes_we_Can.webp" alt="Obama-Wahlkampfplakat 2008" />
+            <figcaption>Plakat des Obama-Wahlkampfs 2008 – gesetzt in Gotham Bold.</figcaption>
+          </figure>
+        </article>
+
+        <article class="article">
+          <h2 class="font-atkinsonhyperlegiblenext">Alternative zu Gill Sans</h2>
+          <p>
+            Eric Gill entwarf Gill Sans zwischen 1926 und 1930 für Monotype. Die »britische Helvetica«: humanistisch,
+            warm, mit Persönlichkeit.
+          </p>
+          <ul>
+            <li>
+              <strong>
+                <a href="/font-collection/sans/atkinsonhyperlegiblenext.html">Atkinson Hyperlegible Next</a>
+              </strong>
+              – maximale Unterscheidbarkeit aller Zeichen als Designziel. Ähnliche humanistische Wärme.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/firasans.html">Fira Sans</a></strong>
+              – derselbe Einsatzbereich.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-ibmplexsans">Alternative zu Trade Gothic / News Gothic</h2>
+          <p>
+            Trade Gothic war jahrzehntelang die Standardschrift im amerikanischen Zeitungs- und Institutionsdruck.
+            Sachlich, leicht kondensiert, unaufgeregt.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/ibmplexsans.html">IBM Plex Sans</a></strong>
+              – sachlich-funktional, dieselbe institutionelle Nüchternheit.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/publicsans.html">Public Sans</a></strong>
+              – entwickelt für US-Behörden, selbe Zweckmäßigkeit.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-worksans">Alternative zu Akzidenz Grotesk</h2>
+          <p>
+            Akzidenz Grotesk (1896, Berthold) war die erste große Grotesk für Werbedruck – Vorbild für Helvetica und
+            Univers.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/worksans.html">Work Sans</a></strong>
+              – auf frühen Grotesken-Proportionen, gut für mittlere Textgrößen und Displays.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-dinish">Alternative zu DIN 1451</h2>
+          <p>
+            DIN 1451 ist die genormte deutsche Industrieschrift von 1931 – konstruiert, technisch und unverwechselbar.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/dinish.html">DINish</a></strong>
+              – moderne Fassung mit mehr Gewichten und Condensed-Varianten.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-overpass">Alternative zu Highway Gothic</h2>
+          <p>Für US-Straßenschilder entwickelt: klar, offen, auf Lesbarkeit bei Geschwindigkeit optimiert.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/overpass.html">Overpass</a></strong>
+              – direkt von Highway Gothic inspiriert.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/junction.html">Junction</a></strong>
+              – ähnlich offen, humanistischer Charakter.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-nunito">Alternative zu VAG Rounded / FF Dax Rounded</h2>
+          <p>VAG Rounded (VW, 1979) hat gerundete Strichenden – warm, freundlich, gut für Consumer-UI.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/nunito.html">Nunito</a></strong>
+              – gerundete Enden, dieselbe Wirkung. Gut für Apps, wo Helvetica zu steril wäre.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-titillumweb">Alternative zu Eurostile / Microgramma</h2>
+          <p>Die Space-Age-Schrift schlechthin. Quadratisch, technisch, unverkennbar.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/titillumweb.html">Titillum Web</a></strong>
+              – entstand als Lehrprojekt der Accademia di Urbino. Derselbe technische Biss.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-spacegrotesk">Alternative zu Neue Haas Grotesk Display</h2>
+          <p>
+            Die ursprünglichen Helvetica-Zeichnungen haben mehr Persönlichkeit als die verwässerten digitalen Versionen.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/spacegrotesk.html">Space Grotesk</a></strong>
+              – ungewöhnliche Details in Ziffern und Großbuchstaben. Eigenständiger als Inter.
+            </li>
+            <li>
+              <strong><a href="/font-collection/sans/epilogue.html">Epilogue</a></strong>
+              – klar und modern, wo Inter zu neutral wäre.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-libertinussans">Alternative zu Optima</h2>
+          <p>
+            Optima (Zapf, 1958): keine Serifen, aber spürbare Strichstärkenkontraste. Diese Mischung ist schwer zu
+            ersetzen.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/sans/libertinussans.html">Libertinus Sans</a></strong>
+              – Companion zu Libertinus Serif, Zapf-Tradition.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-bodoni bold">Alternative zu Bodoni / Didot</h2>
+          <p>Extremer Kontrast, senkrechte Achsen. Bodoni und Didot – Inbegriff des klassizistischen Stils.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/bodoni.html">Bodoni*</a></strong>
+              – Open-Source-Neuschnitt mit vollem Gewichtsrepertoire.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/gfsdidot.html">GFS Didot</a></strong>
+              – Neuinterpretation von Didot durch die Greek Font Society.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/playfair.html">Playfair</a></strong>
+              – modernes Didone mit starkem Display-Charakter.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/unna.html">Unna</a></strong>
+              – elegante Didone für Buchsatz und Editorial Design.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-ebgaramond">Alternative zu Garamond / Adobe Garamond</h2>
+          <p>
+            Claude Garamond schnitt seine Typen Mitte des 16. Jahrhunderts in Paris. Adobe Garamond und ITC Garamond
+            sind die bekanntesten modernen Revisionen.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/ebgaramond.html">EB Garamond</a></strong>
+              – direkte Rekonstruktion der Original-Typen.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/cormorant.html">Cormorant</a></strong>
+              – Garamond-Tradition, stärker auf Display ausgerichtet.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/librecaslon.html">Libre Caslon</a></strong>
+              – für die verwandte Caslon-Linie.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/crimsonpro.html">Crimson Pro</a></strong>
+              – gut lesbar, variabler Gewichtsbereich.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-librebaskerville">Alternative zu Baskerville</h2>
+          <p>
+            John Baskerville entwarf seine Transitional-Antiqua um 1750 in Birmingham – klarerer Kontrast als Garamond,
+            nahezu senkrechte Achsen.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/librebaskerville.html">Libre Baskerville</a></strong>
+              – textoptimiert, mit erweitertem Gewichtsrepertoire.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyrepagella">Alternative zu Palatino / Book Antiqua</h2>
+          <p>
+            Hermann Zapf entwarf Palatino in den 1940er Jahren für Stempel. Book Antiqua ist Microsofts lizenzfreier
+            Nachbau.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/texgyrepagella.html">Tex Gyre Pagella</a></strong>
+              – basiert auf URW Palladio L, dem direkten Nachfolger von Palatino. Metrisch kompatibel.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/libertinusserif.html">Libertinus Serif</a></strong>
+              – breite, gut lesbare Humanist-Antiqua in derselben Tradition.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-literata">Alternative zu Georgia / Charter / Minion Pro</h2>
+          <p>Drei Klassiker für Buchsatz und Bildschirmlesbarkeit. Open-Source-Alternativen:</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/literata.html">Literata</a></strong>
+              – für Google Books entwickelt, auf digitale Lesbarkeit optimiert.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/sourceserif.html">Source Serif</a></strong>
+              – Charter/Minion-Tradition, für Buchsatz und Screen.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/ibmplexserif.html">IBM Plex Serif</a></strong>
+              – sachlich, gut lesbar, für technische Texte.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyretermes">Alternative zu Times New Roman</h2>
+          <p>
+            Stanley Morison entwarf Times New Roman 1931 für die Londoner Zeitung
+            <em>The Times</em>
+            . Seit Jahrzehnten ist sie die Standardschrift in Büros, Schulen und Gerichten weltweit.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/texgyretermes.html">Tex Gyre Termes</a></strong>
+              – basiert auf URW Nimbus Roman No9 L, dem direkten Nachfolger von Times. Metrisch kompatibel.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyreschola">Alternative zu Century Schoolbook</h2>
+          <p>Morris Fuller Benton entwarf Century Schoolbook 1919 – robust, klar, eigens für Schulbücher entwickelt.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/texgyreschola.html">Tex Gyre Schola</a></strong>
+              – basiert auf URW Century Schoolbook L, dem direkten Nachfolger.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-texgyrebonum">Alternative zu ITC Bookman</h2>
+          <p>
+            ITC Bookman (Edward Benguiat, 1975): kräftig, runde Formen, starke Serifen. Klassiker im amerikanischen
+            Buchsatz.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/texgyrebonum.html">Tex Gyre Bonum</a></strong>
+              – basiert auf URW Bookman L, dem direkten Nachfolger von ITC Bookman.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-lora">Alternative zu Georgia / Palatino für Web-Texte</h2>
+          <p>Wer Georgia oder Palatino für längere Webtexte nutzt, aber etwas Wärmeres sucht:</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/lora.html">Lora</a></strong>
+              – wärmer als Georgia, mit kalligrafischen Wurzeln. Gut auch auf Kyrillisch.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-merriweather">Alternative zu Charter / Georgia (Leseantiqua)</h2>
+          <p>
+            Charter und Georgia wurden explizit für Bildschirmlesbarkeit entwickelt. Zwei Open-Source-Schriften mit
+            demselben Ziel:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/merriweather.html">Merriweather</a></strong>
+              – kräftige Serifen, dichter Grauton, sehr gut lesbar auch bei kleinen Graden.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/spectral.html">Spectral</a></strong>
+              – schärferer Kontrast, eleganter. Gut für Editorial und lange Artikel.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-alegreya">Alternative zu Minion Pro / Arno Pro</h2>
+          <p>
+            Robert Slimbachs Minion und Arno Pro sind der Maßstab für humanistische Antiqua im Buchsatz. Zwei gute
+            Alternativen:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/alegreya.html">Alegreya</a></strong>
+              – literarischer Charakter, breites Gewichtsrepertoire.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/vollkorn.html">Vollkorn</a></strong>
+              – robust, elegant, seit 2005 aktiv gepflegt.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-mozillaheadline">Alternative zu Rockwell / Clarendon</h2>
+          <p>Kräftige, gleichstarke Serifen, die Überschriften Nachdruck verleihen.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/mozillaheadline.html">Mozilla Headline</a></strong>
+              – kräftig, für Überschriften.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/arvo.html">Arvo</a></strong>
+              – geometrische Slab, hohe x-Höhe, taugt auch für Fließtext.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/compagnon.html">Compagnon</a></strong>
+              – französischer Charakter, viel Persönlichkeit.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-newsreader">Alternative zu Times / Ionic No. 5</h2>
+          <p>
+            Times war fürs Zeitungssetzen optimiert: hoher Kontrast, enge Proportionen, klein gut lesbar. Newsreader
+            überträgt das ins Digitale.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/newsreader.html">Newsreader</a></strong>
+              – mit optischer Größen-Achse: bei kleinen Graden offen, bei großen kontrastreich.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-fraunces bold">Alternative zu Cooper Black / Hoefler Text Display</h2>
+          <p>
+            Expressiv, fett, unübersehbar. Cooper Black (1921) und Hoefler Text Display sind die Klassiker des
+            dramatischen Display-Serifs.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/fraunces.html">Fraunces</a></strong>
+              – vier Variationsachsen. Die Wonky-Achse erzeugt absichtlich unregelmäßige Formen.
+            </li>
+            <li>
+              <strong><a href="/font-collection/serif/piazzolla.html">Piazzolla</a></strong>
+              – benannt nach Astor Piazzolla. Theatralisch, ausdrucksstark.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-junicode">Alternative zu Palatino für wissenschaftliche Texte</h2>
+          <p>
+            Wer Texte mit Runen, IPA-Notation oder mittelalterlichen Sonderzeichen setzt, braucht mehr Unicode-Abdeckung
+            als Palatino bietet:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/serif/junicode.html">Junicode</a></strong>
+              – breite Unicode-Abdeckung: Runen, IPA, mittelalterliche Zeichen.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-grenzegotisch">Fraktur / Blackletter</h2>
+          <p>Für Designs wo ein Blackletter-Charakter gefragt ist:</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/blackletter/grenzegotisch.html">Grenze Gotisch</a></strong>
+              – dramatisch, für große Schriftgrade.
+            </li>
+            <li>
+              <strong><a href="/font-collection/blackletter/grenze.html">Grenze</a></strong>
+              – elegantere Schwester, kombiniert Blackletter mit Slab-Serifen.
+            </li>
+            <li>
+              <strong><a href="/font-collection/blackletter/unifraktur.html">Unifraktur</a></strong>
+              – nach Fahrenwaldt (1901), breite Unicode-Abdeckung.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-jetbrainsmono">Alternative zu Consolas / Monaco / Menlo</h2>
+          <p>Die verbreitetsten Schriften in Code-Editoren und Terminals. Sechs gute Open-Source-Alternativen:</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/monospace/jetbrainsmono.html">JetBrains Mono</a></strong>
+              – erhöhte x-Höhe, optimierte Klammern. Gut für lange Sessions.
+            </li>
+            <li>
+              <strong><a href="/font-collection/monospace/firacode.html">Fira Code</a></strong>
+              – bekannt für Programmierligaturen (
+              <code>!=</code>
+              →
+              <code>≠</code>
+              ,
+              <code>-></code>
+              →
+              <code>→</code>
+              ).
+            </li>
+            <li>
+              <strong><a href="/font-collection/monospace/maplemono.html">Maple Mono</a></strong>
+              – abgerundete Ecken, umfangreiches Ligaturen-Set.
+            </li>
+            <li>
+              <strong><a href="/font-collection/monospace/cascadiacode.html">Cascadia Code</a></strong>
+              – optionale Kursive für Kommentare (SS01).
+            </li>
+            <li>
+              <strong><a href="/font-collection/monospace/commitmono.html">Commit Mono</a></strong>
+              – sehr neutral, auf visuelle Ruhe ausgelegt.
+            </li>
+            <li>
+              <strong><a href="/font-collection/monospace/hack.html">Hack</a></strong>
+              – schnörkellos, besonders gut lesbar bei kleinen Größen im Terminal.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-victormono italic">Alternative zu Operator Mono</h2>
+          <p>
+            Operator Mono (Hoefler &amp; Co., 2016) machte echte Kursive im Code-Editor populär – Kommentare heben sich
+            optisch ab statt nur geneigt zu sein.
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/monospace/victormono.html">Victor Mono</a></strong>
+              – echte Kursive, Programmierligaturen. Kostenlos.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-kalam">Alternative zu Comic Sans</h2>
+          <p>
+            Vincent Connare entwarf Comic Sans 1994 für Microsoft Bob – informal, handschriftlich, und seit Jahrzehnten
+            gleichermaßen beliebt wie verspottet. Wer den informellen Charakter sucht, findet hier bessere Alternativen:
+          </p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/script/kalam.html">Kalam</a></strong>
+              – natürliche Handschrift, gut lesbar.
+            </li>
+            <li>
+              <strong><a href="/font-collection/script/komika.html">Komika</a></strong>
+              – Comic-nah, mit Kursiven.
+            </li>
+            <li>
+              <strong><a href="/font-collection/script/krikikrak.html">Krikikrak</a></strong>
+              – expressiv, viel Persönlichkeit.
+            </li>
+          </ul>
+        </article>
+
+        <article class="article">
+          <h2 class="font-playwritedela">Alternative zu Zapf Chancery / Snell Roundhand</h2>
+          <p>Die klassischen Script-Schriften für Einladungen und Urkunden.</p>
+          <ul>
+            <li>
+              <strong><a href="/font-collection/script/playwritedela.html">Playwrite DE LA</a></strong>
+              – für den Schreibschrift-Unterricht entwickelt. Echte kalligrafische Qualität.
+            </li>
+            <li>
+              <strong><a href="/font-collection/display/sansitaswashed.html">Sansita Swashed</a></strong>
+              – dekorative Swash-Alternates, gut für Einladungen und Headlines.
+            </li>
+          </ul>
+        </article>
+      </main>
+    </article>
+
+    <footer class="site-footer text-center py-8" data-pagefind-ignore="">
+      <p>made with ❤️, 11ty and font from a lot of people.</p>
+    </footer>
+
+    <script src="/font-collection/js/fitty.min.js"></script>
+    <script>
+      /* Fires `fitty` once fonts are loaded and applied */
+      document.fonts.ready.then(function () {
+        requestAnimationFrame(function () {
+          fitty(".fitty", {
+            minSize: 5,
+            maxSize: 9600,
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

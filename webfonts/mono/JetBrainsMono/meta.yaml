@@ -1,0 +1,19 @@
+title: JetBrains Mono
+url: https://github.com/JetBrains/JetBrainsMono
+wikipedia: "https://en.wikipedia.org/wiki/JetBrains"
+favorite: true
+
+tags: Monospace, Coding
+
+comment: "Sie ist einfach angenehm für meine Augen."
+
+fontauthor: JetBrains
+fontyear:
+
+heroletter: Aa
+heroword: Computer
+
+border: hash.svg
+
+content: |
+  JetBrains Mono wurde von JetBrains intern für ihre IDE-Familie entwickelt und 2020 als Open Source veröffentlicht. Der erhöhte x-Grad, die vergrößerten Buchstabenbreiten und die bewusst reduzierte Ligatur-Philosophie sollen die kognitive Belastung beim Lesen langer Codezeilen senken.

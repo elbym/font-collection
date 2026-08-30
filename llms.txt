@@ -1,0 +1,70 @@
+# Font Collection
+
+> Personal catalogue of high-quality open-source typefaces curated as free alternatives to well-known commercial fonts. Each family has a specimen page with waterfall diagrams, character overview, Unicode coverage, gallery, and metadata (author, year, Wikipedia link). Published at https://elbym.github.io/font-collection/
+
+## Key pages
+
+- [Overview](https://elbym.github.io/font-collection/): Card grid of all 56 font families with previews and tag filters.
+- [Free alternatives to commercial typefaces](https://elbym.github.io/font-collection/alternatives.html): Curated list pairing commercial classics (Helvetica, Bodoni, Garamond, Times New Roman, Futura, Gotham, DIN 1451, Comic Sans, etc.) with their open-source counterparts.
+
+## Font classification
+
+- [Serif](https://elbym.github.io/font-collection/tag/serif.html): Classical serif typefaces.
+- [Garalde](https://elbym.github.io/font-collection/tag/garalde.html): Renaissance humanist serifs — Garamond and Caslon tradition.
+- [Didone](https://elbym.github.io/font-collection/tag/didone.html): High-contrast classical serifs — Bodoni and Didot tradition.
+- [Slab Serif](https://elbym.github.io/font-collection/tag/slab-serif.html): Block-serif / Egyptienne typefaces.
+- [Humanist Sans](https://elbym.github.io/font-collection/tag/humanist-sans.html): Warm, humanist grotesques.
+- [Neo-Grotesk](https://elbym.github.io/font-collection/tag/neo-grotesk.html): Neutral, functional grotesques — Helvetica tradition.
+- [Geometric Grotesk](https://elbym.github.io/font-collection/tag/geometric-grotesk.html): Geometry-based sans-serifs — Futura tradition.
+- [Grotesk](https://elbym.github.io/font-collection/tag/grotesk.html): General grotesque sans-serifs.
+- [Monospace](https://elbym.github.io/font-collection/tag/monospace.html): Fixed-width typefaces for code and terminals.
+- [Display](https://elbym.github.io/font-collection/tag/display.html): Large-size display typefaces.
+- [Old Style](https://elbym.github.io/font-collection/tag/old-style.html): Old-style serifs.
+
+## Commercial → open-source alternatives
+
+Helvetica / Arial → [Tex Gyre Heros](https://elbym.github.io/font-collection/sans/texgyreheros.html) (based on URW Nimbus Sans, metrically compatible)
+Helvetica Neue / Apple SF Pro → [Inter](https://elbym.github.io/font-collection/sans/inter.html)
+Futura → [Jost*](https://elbym.github.io/font-collection/sans/jost.html), [Metropolis](https://elbym.github.io/font-collection/sans/metropolis.html)
+ITC Avant Garde Gothic → [Tex Gyre Adventor](https://elbym.github.io/font-collection/sans/texgyreadventor.html) (based on URW Gothic L)
+Gotham → [Metropolis](https://elbym.github.io/font-collection/sans/metropolis.html), [League Spartan](https://elbym.github.io/font-collection/sans/leaguespartan.html)
+Gill Sans → [Atkinson Hyperlegible Next](https://elbym.github.io/font-collection/sans/atkinsonhyperlegiblenext.html), [Fira Sans](https://elbym.github.io/font-collection/sans/firasans.html)
+FF Meta / ITC Officina Sans → [Fira Sans](https://elbym.github.io/font-collection/sans/firasans.html) (also by Erik Spiekermann)
+Trade Gothic / News Gothic → [IBM Plex Sans](https://elbym.github.io/font-collection/sans/ibmplexsans.html), [Public Sans](https://elbym.github.io/font-collection/sans/publicsans.html)
+Akzidenz Grotesk → [Work Sans](https://elbym.github.io/font-collection/sans/worksans.html)
+DIN 1451 → [DINish](https://elbym.github.io/font-collection/sans/dinish.html)
+Highway Gothic → [Overpass](https://elbym.github.io/font-collection/sans/overpass.html), [Junction](https://elbym.github.io/font-collection/sans/junction.html)
+Bodoni / Didot → [Bodoni*](https://elbym.github.io/font-collection/serif/bodoni.html), [GFS Didot](https://elbym.github.io/font-collection/serif/gfsdidot.html), [Playfair](https://elbym.github.io/font-collection/serif/playfair.html), [Unna](https://elbym.github.io/font-collection/serif/unna.html)
+Garamond / Adobe Garamond → [EB Garamond](https://elbym.github.io/font-collection/serif/ebgaramond.html), [Cormorant](https://elbym.github.io/font-collection/serif/cormorant.html)
+Caslon → [Libre Caslon](https://elbym.github.io/font-collection/serif/librecaslon.html)
+Baskerville → [Libre Baskerville](https://elbym.github.io/font-collection/serif/librebaskerville.html)
+Palatino / Book Antiqua → [Tex Gyre Pagella](https://elbym.github.io/font-collection/serif/texgyrepagella.html), [Libertinus Serif](https://elbym.github.io/font-collection/serif/libertinusserif.html)
+Times New Roman → [Tex Gyre Termes](https://elbym.github.io/font-collection/serif/texgyretermes.html) (based on URW Nimbus Roman, metrically compatible)
+Georgia / Charter / Minion Pro → [Literata](https://elbym.github.io/font-collection/serif/literata.html), [Source Serif](https://elbym.github.io/font-collection/serif/sourceserif.html), [IBM Plex Serif](https://elbym.github.io/font-collection/serif/ibmplexserif.html)
+Century Schoolbook → [Tex Gyre Schola](https://elbym.github.io/font-collection/serif/texgyreschola.html)
+ITC Bookman → [Tex Gyre Bonum](https://elbym.github.io/font-collection/serif/texgyrebonum.html)
+Consolas / Monaco / Menlo → [JetBrains Mono](https://elbym.github.io/font-collection/mono/jetbrainsmono.html), [Fira Code](https://elbym.github.io/font-collection/mono/firacode.html), [Maple Mono](https://elbym.github.io/font-collection/mono/maplemono.html)
+Comic Sans → [Kalam](https://elbym.github.io/font-collection/script/kalam.html), [Komika](https://elbym.github.io/font-collection/script/komika.html), [Krikikrak](https://elbym.github.io/font-collection/script/krikikrak.html)
+Zapf Chancery / Snell Roundhand → [Playwrite DE LA](https://elbym.github.io/font-collection/script/playwritedela.html)
+
+## Optional
+
+- [Alegreya](https://elbym.github.io/font-collection/serif/alegreya.html): Humanist serif by Juan Pablo del Peral.
+- [Arvo](https://elbym.github.io/font-collection/serif/arvo.html): Geometric slab serif by Anton Koovit.
+- [Asap](https://elbym.github.io/font-collection/sans/asap.html): Slightly condensed humanist sans by Omnibus-Type.
+- [Compagnon](https://elbym.github.io/font-collection/serif/compagnon.html): French slab serif by Juliette Duhe and Lea Pradine.
+- [Grenze](https://elbym.github.io/font-collection/blackletter/grenze.html): Elegant blackletter serif by Omnibus-Type.
+- [Grenze Gotisch](https://elbym.github.io/font-collection/blackletter/grenzegotisch.html): Dramatic blackletter display by Omnibus-Type.
+- [Hack](https://elbym.github.io/font-collection/mono/hack.html): Programming monospace by Source Foundry.
+- [Iosevka](https://elbym.github.io/font-collection/mono/iosevka.html): Slender, highly customisable monospace.
+- [Junicode](https://elbym.github.io/font-collection/serif/junicode.html): Old-style serif with broad Unicode coverage for medieval scholarship.
+- [Libertinus Sans](https://elbym.github.io/font-collection/sans/libertinussans.html): Humanist sans companion to Libertinus Serif.
+- [Merriweather](https://elbym.github.io/font-collection/serif/merriweather.html): Screen-optimised humanist serif by Eben Sorkin.
+- [Mozilla Headline](https://elbym.github.io/font-collection/serif/mozillaheadline.html): Mozilla slab serif for display use.
+- [Mozilla Text](https://elbym.github.io/font-collection/sans/mozillatext.html): Mozilla humanist sans for body text.
+- [Recursive](https://elbym.github.io/font-collection/mono/recursive.html): Variable monospace with casual personality by Arrow Type.
+- [Sansita Swashed](https://elbym.github.io/font-collection/script/sansitaswashed.html): Display humanist with swash alternates.
+- [Source Sans](https://elbym.github.io/font-collection/sans/sourcesans.html): Adobe humanist sans for body text by Paul D. Hunt.
+- [Titillum Web](https://elbym.github.io/font-collection/sans/titillumweb.html): Geometric grotesque, Accademia di Belle Arti di Urbino.
+- [Unifraktur](https://elbym.github.io/font-collection/blackletter/unifraktur.html): Fraktur based on Carl Albert Fahrenwaldt (1901).
+- [Vollkorn](https://elbym.github.io/font-collection/serif/vollkorn.html): Robust humanist serif for body text by Friedrich Althausen.

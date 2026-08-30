@@ -1,0 +1,1584 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+
+    <title>Display Fonts | Schriftposter fürs Web</title>
+
+    <meta name="description" content="Browse Display fonts in this personal font collection." />
+    <meta name="author" content="elbym" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://elbym.github.io/display.html" />
+
+    <meta http-equiv="Content-Language" content="de" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:url" content="https://elbym.github.io/display.html" />
+    <meta property="og:title" content="Display Fonts | Schriftposter fürs Web" />
+    <meta property="og:description" content="Browse Display fonts in this personal font collection." />
+    <meta property="og:site_name" content="Schriftposter fürs Web" />
+    <meta property="og:image" content="https://elbym.github.io/font-collection/img/og_preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Display Fonts | Schriftposter fürs Web" />
+    <meta name="twitter:description" content="Browse Display fonts in this personal font collection." />
+    <meta name="twitter:image" content="https://elbym.github.io/font-collection/img/og_preview.png" />
+
+    <meta name="theme-color" content="#4b0082" />
+
+    <link rel="stylesheet" href="/font-collection/css/styles.css" />
+    <link rel="stylesheet" href="/font-collection/css/tailwind.css" />
+
+    <script src="/font-collection/js/font-lazy-loader.js" defer=""></script>
+    <script src="/font-collection/js/compare-manager.js" defer=""></script>
+    <script src="/font-collection/js/font-search.js" defer=""></script>
+    <script src="/font-collection/js/font-style-hover.js" defer=""></script>
+    <script src="/font-collection/js/card-name-override.js" defer=""></script>
+    <script src="/font-collection/js/theme-toggle.js" defer=""></script>
+
+    <style>
+      :root {
+      }
+    </style>
+    <script>
+      (function () {
+        var r = function () {
+          return Math.floor(Math.random() * 219) + 120;
+        };
+        document.documentElement.style.setProperty("--hue-offset-2", r());
+        document.documentElement.style.setProperty("--hue-offset-3", r());
+      })();
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="/font-collection/favicon.svg" />
+    <link rel="shortcut icon" href="/font-collection/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/font-collection/apple-icon-180x180.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Schriftposter fürs Web",
+            "item": "https://elbym.github.io/font-collection/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Display",
+            "item": "https://elbym.github.io/display.html"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Display Fonts | Schriftposter fürs Web",
+        "description": "Browse Display fonts in this personal font collection.",
+        "url": "https://elbym.github.io/display.html"
+      }
+    </script>
+  </head>
+
+  <body class="specimen font-display" data-pagefind-ignore="all">
+    <div class="top-bar" data-pagefind-ignore="">
+      <button
+        type="button"
+        id="theme-toggle"
+        class="top-bar__theme"
+        aria-label="Farbschema wechseln"
+        title="Farbschema: System (klicken zum Wechseln)"
+      >
+        <span data-theme-icon="" aria-hidden="true">🖥</span>
+        <span data-theme-label="">System</span>
+      </button>
+    </div>
+
+    <header data-pagefind-ignore="">
+      <div class="relative flex items-center justify-between gap-4 py-2">
+        <nav aria-label="Hauptnavigation" class="min-w-0">
+          <details class="site-nav">
+            <summary class="nav-link inline-flex w-fit items-center gap-2 md:hidden" aria-label="Hauptmenü">
+              <svg
+                class="size-5 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"></path>
+              </svg>
+              Menü
+            </summary>
+
+            <ul
+              class="site-nav__list absolute inset-x-0 top-full z-30 mt-2 flex flex-col gap-1 rounded-md border border-(--color-border) bg-(--color-surface) p-2 shadow-lg md:relative md:mt-0 md:flex-row md:flex-wrap md:items-center md:gap-1 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+            >
+              <li>
+                <a class="nav-link block" href="/font-collection/">Freie Open-Source Schriften</a>
+              </li>
+              <li>
+                <a class="nav-link block" href="/font-collection/alternatives.html">
+                  Open-Source-Alternativen bekannten Schriften
+                </a>
+              </li>
+              <li>
+                <a class="nav-link block" href="/font-collection/network.html">Netzwerk</a>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Blackletter
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Blackletter"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/blackletter.html">
+                        Alle Blackletter
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/grenze.html">Grenze</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/grenzegotisch.html">
+                        Grenze Gotisch
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/jacquardabastarda9.html">
+                        Jacquarda Bastarda 9
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/unifraktur.html">
+                        Unifraktur
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/blackletter/unifrakturcook.html">
+                        UnifrakturCook
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group" open="">
+                  <summary
+                    class="nav-link flex items-center justify-between gap-2 md:justify-start"
+                    aria-current="page"
+                  >
+                    Display
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Display"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/display.html" aria-current="page">
+                        Alle Display
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/bigshouldersdisplay.html">
+                        Big Shoulders Display
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/bigshouldersstencil.html">
+                        Big Shoulders Stencil
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/climatecrisis.html">
+                        Climate Crisis
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/delagothicone.html">
+                        Dela Gothic One
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/pixelifysans.html">
+                        Pixelify Sans
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/sairastencilone.html">
+                        Saira Stencil One
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/silkscreen.html">Silkscreen</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/display/sansitaswashed.html">
+                        Sansita Swashed
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Monospace
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Monospace"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/monospace.html">Alle Monospace</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/0xproto.html">0xProto</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/cascadiacode.html">
+                        Cascadia Code
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/courierprime.html">
+                        Courier Prime
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/departuremono.html">
+                        Departure Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/firacode.html">Fira Code</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/geistmono.html">Geist Mono</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/hack.html">Hack</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/ibmplexmono.html">
+                        IBM Plex Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/jetbrainsmono.html">
+                        JetBrains Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/libertinusmono.html">
+                        Libertinus Mono
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/maplemono.html">Maple Mono</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/recursive.html">Recursive</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/sourcecodepro.html">
+                        Source Code Pro
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/texgyrecursor.html">
+                        TeX Gyre Cursor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/monospace/victormono.html">
+                        Victor Mono
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Sans
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Sans"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/sans.html">Alle Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/amstelvar.html">Amstelvar</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/asap.html">Asap</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/atkinsonhyperlegiblenext.html">
+                        Atkinson Hyperlegible Next
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/bricolagegrotesque.html">
+                        Bricolage Grotesque
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/cooperhewitt.html">Cooper Hewitt</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/dinish.html">DINish</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/epilogue.html">Epilogue</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/firasans.html">Fira Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/geist.html">Geist</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/ibmplexsans.html">IBM Plex Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/inter.html">Inter</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/jost.html">Jost*</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/libertinussans.html">
+                        Libertinus Sans
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/librefranklin.html">
+                        Libre Franklin
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/metropolis.html">Metropolis</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/overpass.html">Overpass</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/publicsans.html">Public Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/quicksand.html">Quicksand</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/raleway.html">Raleway</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/robotoflex.html">Roboto Flex</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/routedgothic.html">Routed Gothic</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/satoshi.html">Satoshi</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/sourcesans.html">Source Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/texgyreadventor.html">
+                        Tex Gyre Adventor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/texgyreheros.html">
+                        Tex Gyre Heros
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/titillumweb.html">Titillum Web</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/varelaround.html">Varela Round</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/worksans.html">Work Sans</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/sans/playpensans.html">Playpen Sans</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Script
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Script"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/script.html">Alle Script</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/kalam.html">Kalam</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/komika.html">Komika</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/krikikrak.html">Krikikrak</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/amaticsc.html">Amatic SC</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewebuild.html">
+                        Because We Build
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becauseweconnect.html">
+                        Because We Connect
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewecreate.html">
+                        Because We Create
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewelearn.html">
+                        Because We Learn
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becausewementor.html">
+                        Because We Mentor
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/becauseweorganize.html">
+                        Because We Organize
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/caveat.html">Caveat</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/dancingscript.html">
+                        Dancing Script
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/greatvibes.html">Great Vibes</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/pacifico.html">Pacifico</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/playwritedela.html">Playwrite</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/satisfy.html">Satisfy</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/tangerine.html">Tangerine</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/script/texgyrechorus.html">
+                        TeX Gyre Chorus
+                      </a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li class="nav-group">
+                <details class="nav-group__d" name="nav-group">
+                  <summary class="nav-link flex items-center justify-between gap-2 md:justify-start">
+                    Serif
+                    <svg
+                      class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </summary>
+
+                  <ul
+                    aria-label="Serif"
+                    class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg"
+                  >
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs italic" href="/font-collection/serif.html">Alle Serif</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/arvo.html">Arvo</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/alegreya.html">Alegreya</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/basteleur.html">Basteleur</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bevan.html">Bevan</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bitter.html">Bitter</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/bodoni.html">Bodoni*</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/compagnon.html">Compagnon</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/cormorant.html">Cormorant</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/crimsonpro.html">Crimson Pro</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/ebgaramond.html">EB Garamond</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/frankruhllibre.html">
+                        Frank Ruhl Libre
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/fraunces.html">Fraunces</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/gfsdidot.html">GFS Didot</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/gambetta.html">Gambetta</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/ibmplexserif.html">
+                        IBM Plex Serif
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/junicode.html">Junicode</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/libertinusserif.html">
+                        Libertinus Serif
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/librebaskerville.html">
+                        Libre Baskerville
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/librecaslon.html">Libre Caslon</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/literata.html">Literata</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/lora.html">Lora</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/merriweather.html">Merriweather</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/mozillaheadline.html">
+                        Mozilla Headline
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/newsreader.html">Newsreader</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/piazzolla.html">Piazzolla</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/playfair.html">Playfair</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/reforma.html">Reforma</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/sentient.html">Sentient</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/sourceserif.html">Source Serif</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/spectral.html">Spectral</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyrebonum.html">
+                        Tex Gyre Bonum
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyrepagella.html">
+                        Tex Gyre Pagella
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyreschola.html">
+                        Tex Gyre Schola
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/texgyretermes.html">
+                        Tex Gyre Termes
+                      </a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/unna.html">Unna</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/vollkorn.html">Vollkorn</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/zillaslab.html">Zilla Slab</a>
+                    </li>
+                    <li class="md:break-inside-avoid">
+                      <a class="nav-link block text-xs" href="/font-collection/serif/zodiak.html">Zodiak</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </nav>
+
+        <form
+          role="search"
+          class="font-search smaller"
+          aria-label="Schriften suchen"
+          data-pagefind-url="/font-collection/pagefind/pagefind.js"
+          data-search-url="/font-collection/search.html"
+        >
+          <input
+            type="search"
+            id="font-search-input"
+            name="q"
+            placeholder="Schrift suchen …"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Schrift suchen"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-controls="font-search-results"
+          />
+          <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden=""></ul>
+        </form>
+      </div>
+    </header>
+
+    <section class="font-list-controls">
+      <h2>8 Schriften</h2>
+      <div class="sort-filter">
+        <div class="sort-buttons" role="group" aria-label="Sortierung">
+          <button class="sort-btn is-active" data-sort="default">Standard</button>
+          <button class="sort-btn" data-sort="alpha">A–Z</button>
+          <button class="sort-btn" data-sort="year-desc">Neueste</button>
+          <button class="sort-btn" data-sort="styles-desc">Schnitte</button>
+        </div>
+        <div class="filter-buttons" role="group" aria-label="Filter">
+          <button class="filter-btn is-active" data-filter="">Alle</button>
+          <button class="filter-btn filter-btn--special" data-filter="--variable">Variable</button>
+          <button class="filter-btn filter-btn--special" data-filter="--italic">Hat Kursiv</button>
+          <button class="filter-btn filter-btn--special" data-filter="--family">Große Familie</button>
+          <input
+            type="text"
+            id="global-name-override"
+            class="filter-input"
+            placeholder="Eigenes Wort für alle Karten…"
+            aria-label="Vorschautext für alle Karten überschreiben"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+    </section>
+
+    <div class="font-family-card-list px-4 flex flex-wrap flex-col gap-4 sm:flex-row sm:justify-start" id="font-list">
+      <article
+        class="card font-bigshouldersdisplay flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="bigshouldersdisplay"
+        data-name="big shoulders display"
+        data-category="display"
+        data-variable="true"
+        data-italic="true"
+        data-favorite=""
+        data-styles="9"
+        data-year="2019"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/airplane-seats2.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/bigshouldersdisplay.html"
+            class="color-darkslateblue flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3
+              data-hover-styles="100n,200n,300n,400n,500n,600n,700n,800n,900n"
+              data-font-family="Big Shoulders Display"
+            >
+              Big Shoulders Display
+            </h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="bigshouldersdisplay"
+            data-title="Big Shoulders Display"
+            data-family="Big Shoulders Display"
+            data-url="display/bigshouldersdisplay"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-darkslateblue py-4 font-semibold text-right">BIG</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item" title="Fractions: 38%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">38%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 97%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">97%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 38%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">38%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, darkslateblue, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li>
+              <a class="text-(--color-text) no-underline" href="/font-collection/tag/condensed.html">Condensed</a>
+            </li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/variable.html">Variable</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-bigshouldersstencil flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="bigshouldersstencil"
+        data-name="big shoulders stencil"
+        data-category="display"
+        data-variable="true"
+        data-italic="true"
+        data-favorite=""
+        data-styles="9"
+        data-year="2019"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/bark.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/bigshouldersstencil.html"
+            class="color-yellowgreen flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3
+              data-hover-styles="100n,200n,300n,400n,500n,600n,700n,800n,900n"
+              data-font-family="Big Shoulders Stencil"
+            >
+              Big Shoulders Stencil
+            </h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="bigshouldersstencil"
+            data-title="Big Shoulders Stencil"
+            data-family="Big Shoulders Stencil"
+            data-url="display/bigshouldersstencil"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-yellowgreen py-4 font-semibold text-right">CUTS</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item" title="Fractions: 38%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">38%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 97%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">97%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 38%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">38%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, yellowgreen, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/stencil.html">Stencil</a></li>
+
+            <li>
+              <a class="text-(--color-text) no-underline" href="/font-collection/tag/condensed.html">Condensed</a>
+            </li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/variable.html">Variable</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-climatecrisis flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="climatecrisis"
+        data-name="climate crisis"
+        data-category="display"
+        data-variable="true"
+        data-italic="true"
+        data-favorite=""
+        data-styles="9"
+        data-year="2022"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/waves.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/climatecrisis.html"
+            class="color-darkkhaki flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="100n,200n,300n,400n,500n,600n,700n,800n,900n" data-font-family="Climate Crisis">
+              Climate Crisis
+            </h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="climatecrisis"
+            data-title="Climate Crisis"
+            data-family="Climate Crisis"
+            data-url="display/climatecrisis"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-darkkhaki py-4 font-semibold text-right">Schmelze</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Fractions: 0%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">0%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 99%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">99%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 100%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 13%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">13%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, darkkhaki, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li>
+              <a class="text-(--color-text) no-underline" href="/font-collection/tag/condensed.html">Condensed</a>
+            </li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/variable.html">Variable</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-delagothicone flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="delagothicone"
+        data-name="dela gothic one"
+        data-category="display"
+        data-variable=""
+        data-italic="true"
+        data-favorite=""
+        data-styles="1"
+        data-year="2021"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/underwater.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/delagothicone.html"
+            class="color-deeppink flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="400n" data-font-family="Dela Gothic One">Dela Gothic One</h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="delagothicone"
+            data-title="Dela Gothic One"
+            data-family="Dela Gothic One"
+            data-url="display/delagothicone"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-deeppink py-4 font-semibold text-right">Dela</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item" title="Fractions: 100%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 80%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">80%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 12%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">12%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, deeppink, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li>
+              <a class="text-(--color-text) no-underline" href="/font-collection/tag/geometric.html">Geometric</a>
+            </li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-pixelifysans flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="pixelifysans"
+        data-name="pixelify sans"
+        data-category="display"
+        data-variable="true"
+        data-italic="true"
+        data-favorite=""
+        data-styles="9"
+        data-year="2023"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/airplane-seats.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/pixelifysans.html"
+            class="color-slateblue flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="100n,200n,300n,400n,500n,600n,700n,800n,900n" data-font-family="Pixelify Sans">
+              Pixelify Sans
+            </h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="pixelifysans"
+            data-title="Pixelify Sans"
+            data-family="Pixelify Sans"
+            data-url="display/pixelifysans"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-slateblue py-4 font-semibold text-right">PIXEL</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 86%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">86%</span>
+          </span>
+
+          <span class="cov-item" title="Fractions: 38%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">38%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 98%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">98%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 98%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">98%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 5%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">5%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, slateblue, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/pixel.html">Pixel</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/bitmap.html">Bitmap</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/variable.html">Variable</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-sairastencilone flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="sairastencilone"
+        data-name="saira stencil one"
+        data-category="display"
+        data-variable=""
+        data-italic="true"
+        data-favorite=""
+        data-styles="1"
+        data-year="2018"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/skyscraper-up.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/sairastencilone.html"
+            class="color-deepskyblue flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="400n" data-font-family="Saira Stencil One">Saira Stencil One</h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="sairastencilone"
+            data-title="Saira Stencil One"
+            data-family="Saira Stencil One"
+            data-url="display/sairastencilone"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-deepskyblue py-4 font-semibold text-right">Stencil</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Fractions: 0%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">0%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 100%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 38%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">38%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, deepskyblue, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/stencil.html">Stencil</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-silkscreen flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="silkscreen"
+        data-name="silkscreen"
+        data-category="display"
+        data-variable=""
+        data-italic="true"
+        data-favorite=""
+        data-styles="2"
+        data-year="2001"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/woodwork2.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/silkscreen.html"
+            class="color-springgreen flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="400n,700n" data-font-family="Silkscreen">Silkscreen</h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="silkscreen"
+            data-title="Silkscreen"
+            data-family="Silkscreen"
+            data-url="display/silkscreen"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-springgreen py-4 font-semibold text-right">PIXEL</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Ligatures: 0%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">0%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Fractions: 0%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">0%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 5%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">5%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Latein Erweitert-B: 0%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">0%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, springgreen, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/pixel.html">Pixel</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/bitmap.html">Bitmap</a></li>
+          </ul>
+        </footer>
+      </article>
+
+      <article
+        class="card font-sansitaswashed flex flex-col justify-between rounded-lg w-full"
+        data-font-slug="sansitaswashed"
+        data-name="sansita swashed"
+        data-category="display"
+        data-variable=""
+        data-italic="true"
+        data-favorite=""
+        data-styles="7"
+        data-year="2018"
+      >
+        <header
+          class="rounded-t-lg grow flex relative overflow-hidden"
+          style="background-image: url(&quot;/font-collection/img/background/laptop-hands.webp&quot;)"
+        >
+          <a
+            href="/font-collection/display/sansitaswashed.html"
+            class="color-plum flex flex-col justify-center w-full relative no-underline"
+          >
+            <h3 data-hover-styles="300n,400n,500n,600n,700n,800n,900n" data-font-family="Sansita Swashed">
+              Sansita Swashed
+            </h3>
+          </a>
+
+          <button
+            class="compare-toggle"
+            aria-pressed="false"
+            title="Zum Vergleich hinzufügen"
+            data-slug="sansitaswashed"
+            data-title="Sansita Swashed"
+            data-family="Sansita Swashed"
+            data-url="display/sansitaswashed"
+          >
+            +
+          </button>
+        </header>
+
+        <main class="bg-(--color-surface) p-4">
+          <p class="letters">Aa Rr Ee</p>
+          <p class="letters italic">Aa Rr Ee</p>
+
+          <p class="display-size-2 heroword ligature color-plum py-4 font-semibold text-right">Wizard</p>
+          <p class="display-size-2 numbers text-right old-nums">0123456789</p>
+        </main>
+
+        <div class="card-coverage">
+          <span class="cov-item" title="Basic ASCII: 100%">
+            <span class="cov-label">ASCII</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Ligatures: 29%">
+            <span class="cov-label">Lig.</span>
+            <span class="cov-pct">29%</span>
+          </span>
+
+          <span class="cov-item cov-zero" title="Fractions: 0%">
+            <span class="cov-label">Frac.</span>
+            <span class="cov-pct">0%</span>
+          </span>
+
+          <span class="cov-item" title="Latin-1: 100%">
+            <span class="cov-label">Latin-1</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-A: 100%">
+            <span class="cov-label">Lat-A</span>
+            <span class="cov-pct">100%</span>
+          </span>
+
+          <span class="cov-item" title="Latein Erweitert-B: 38%">
+            <span class="cov-label">Lat-B</span>
+            <span class="cov-pct">38%</span>
+          </span>
+        </div>
+
+        <footer class="rounded-b-lg py-2 px-4" style="background: color-mix(in oklab, plum, transparent 78%)">
+          <ul class="keywords small ligatures">
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/display.html">Display</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/humanist.html">Humanist</a></li>
+
+            <li><a class="text-(--color-text) no-underline" href="/font-collection/tag/swashed.html">Swashed</a></li>
+          </ul>
+        </footer>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var list = document.getElementById("font-list");
+        if (!list) return;
+        var cards = Array.from(list.querySelectorAll(".card"));
+        var originalOrder = cards.slice();
+        var activeSort = "default";
+        var activeFilter = "";
+
+        function apply() {
+          var sorted;
+          if (activeSort === "alpha") {
+            sorted = cards.slice().sort(function (a, b) {
+              return a.dataset.name.localeCompare(b.dataset.name, "de");
+            });
+          } else if (activeSort === "year-desc") {
+            sorted = cards.slice().sort(function (a, b) {
+              return (parseInt(b.dataset.year) || 0) - (parseInt(a.dataset.year) || 0);
+            });
+          } else if (activeSort === "styles-desc") {
+            sorted = cards.slice().sort(function (a, b) {
+              return (parseInt(b.dataset.styles) || 0) - (parseInt(a.dataset.styles) || 0);
+            });
+          } else {
+            sorted = originalOrder;
+          }
+
+          sorted.forEach(function (card) {
+            var visible;
+            if (!activeFilter) visible = true;
+            else if (activeFilter === "--variable") visible = card.dataset.variable === "true";
+            else if (activeFilter === "--italic") visible = card.dataset.italic === "true";
+            else if (activeFilter === "--family") visible = (parseInt(card.dataset.styles) || 0) >= 8;
+            else visible = false;
+            card.style.display = visible ? "" : "none";
+            list.appendChild(card);
+          });
+        }
+
+        document.querySelectorAll(".sort-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            document.querySelectorAll(".sort-btn").forEach(function (b) {
+              b.classList.remove("is-active");
+            });
+            btn.classList.add("is-active");
+            activeSort = btn.dataset.sort;
+            apply();
+          });
+        });
+
+        document.querySelectorAll(".filter-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            document.querySelectorAll(".filter-btn").forEach(function (b) {
+              b.classList.remove("is-active");
+            });
+            btn.classList.add("is-active");
+            activeFilter = btn.dataset.filter;
+            apply();
+          });
+        });
+      })();
+    </script>
+
+    <footer class="site-footer text-center py-8" data-pagefind-ignore="">
+      <p>made with ❤️, 11ty and font from a lot of people.</p>
+    </footer>
+
+    <script src="/font-collection/js/fitty.min.js"></script>
+    <script>
+      /* Fires `fitty` once fonts are loaded and applied */
+      document.fonts.ready.then(function () {
+        requestAnimationFrame(function () {
+          fitty(".fitty", {
+            minSize: 5,
+            maxSize: 9600,
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

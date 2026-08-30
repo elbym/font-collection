@@ -1,0 +1,19 @@
+title: Atkinson Hyperlegible Next
+url: https://www.brailleinstitute.org/freefont/
+wikipedia: "https://de.wikipedia.org/wiki/Atkinson_Hyperlegible"
+favorite: true
+
+tags: Sans, Humanist
+
+comment: "Nomen est omen. Sehr gut lesbar. Ich mag sie, und sie wächst mir ans Herz. Entwickelt vom Braille Institute of America – die Schrift soll auch für sehbeeinträchtigte Leser gut lesbar sein, da alle Zeichen so unterschiedlich wie möglich gestaltet sind."
+
+fontauthor: Braille Institute, Applied Design Works, Elliott Scott, Megan Eiswerth, Linus Boman, Theodore Petrosky
+fontyear: 2019
+
+heroletter: Br
+heroword: Braille
+herostyle:
+color: steelblue
+
+content: |
+  Atkinson Hyperlegible wurde vom Braille Institute of America entwickelt, um auch Menschen mit Sehbeeinträchtigungen das Lesen zu erleichtern. Das Kernprinzip: Jeder Buchstabe soll so distinktiv wie möglich sein – charakteristische Bögen, offene Gegenformen und unverwechselbare Details bei 0/O, 1/l/I reduzieren Verwechslungen zuverlässig.

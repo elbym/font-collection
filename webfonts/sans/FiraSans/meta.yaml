@@ -1,0 +1,19 @@
+title: Fira Sans
+url: https://mozilla.github.io/Fira/
+wikipedia: https://en.wikipedia.org/wiki/Fira_(typeface)
+
+tags: Sans, Humanist
+
+comment: 'Im Auftrag der Mozilla Foundation und Telefonica S.A. für ihr mobiles Betriebssystem entwickelt. Erinnert stark an Erik Spiekermanns „FF Meta".'
+
+fontauthor: Erik Spiekermann, Ralph du Carrois
+fontyear: 2013
+
+heroletter: Fi
+heroword: Meta Erik
+herostyle:
+
+border: lines.svg
+
+content: |
+  Fira Sans wurde 2013 von Erik Spiekermann und Ralph du Carrois im Auftrag von Mozilla und Telefónica entworfen, ursprünglich als Systemschrift für Firefox OS. Die humanistische Groteskschrift spiegelt Spiekermanns Handschrift wider, erinnert stark an seine FF Meta und verbindet technische Präzision mit warmem, lesbarem Charakter.

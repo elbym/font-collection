@@ -1,0 +1,18 @@
+title: Libertinus Serif
+url: https://github.com/alerque/libertinus
+wikipedia: "https://de.wikipedia.org/wiki/Linux_Libertine"
+
+tags: Serif, Garalde
+
+comment: "Libertinus ist der Nachfolger von Linux Libertine aus der TeX-Gyre-Sammlung."
+
+fontauthor: Philipp H. Poll
+fontyear: 2025
+
+heroletter: Ls
+heroword: Liberal
+herostyle: italic
+color: sienna
+
+content: |
+  Libertinus Serif ist ein aktiv gepflegter Fork von Linux Libertine, der ursprünglich als freie Alternative zu Times New Roman für den Linux-Desktop entwickelt wurde. Philipp H. Poll und die Community haben die Schrift um vollständige OpenType-Unterstützung, mathematische Symbole und umfangreiche Sprachabdeckung erweitert.

@@ -1,0 +1,77 @@
+# Globale Hintergrundbilder für Font Cards
+# ==========================================
+# Bilder werden beim Build heruntergeladen und in diesem Ordner gespeichert.
+# Die heruntergeladenen Dateien sind gitignored.
+# Nur diese urls.txt wird committed.
+# Bereits vorhandene Dateien werden nicht erneut heruntergeladen.
+# Zum Erzwingen: Datei löschen, dann npx gulp download (oder npx gulp).
+#
+# Lokale Hintergrundbilder für einzelne Schriften können in
+# `scr/webfonts/[sorting-folder-name]/[font-name]/backgrounds` hinterlegt werden.
+#
+# Format: eigener-name=<Quelle:ID>  oder  eigener-name=https://...
+#
+# ── UNSPLASH ────────────────────────────────────────────────────────────────
+# Photo-ID steht am Ende der URL: unsplash.com/photos/<ID>
+# Beispiel:  foto=unsplash:4VDrSK0ixA4
+#
+# ── Pexels ──────────────────────────────────────────────────────────────────
+# @todo: Pexels ingegrieren
+#
+# ============================================================================
+
+# --- Trees and Forests --------------------------------------------------------
+trees=unsplash:50bzI1F6urA
+foggy-trees=unsplash:ugnrXk1129g
+trees-fog1=unsplash:Ln9wvXBDqr0
+trees-fog2=unsplash:SrASYZZpyjw
+little-tree=unsplash:Rfflri94rs8
+
+# --- Wood ---------------------------------------------------------------------
+wood=unsplash:J2gEgTPM_OA
+trees-wood=unsplash:GfYA6q5ESLI
+wood2=unsplash:2mqJJEA2AAo
+bark=unsplash:BxIxt5s57FA
+old-wood=unsplash:Ra8xSzVHv90
+woodwork=unsplash:3cIvvzjE6Lk
+woodwork2=unsplash:hdW4rZPHe2g
+
+# --- Scenery ---------------------------------------------------------------
+soft-hills=unsplash:01_igFr7hd4
+dark-beach=unsplash:SRGib9KboaE
+wild-creek=unsplash:Jy5cHPgQ3i0
+beach=unsplash:VR0A57PgXOE
+
+# --- Mountains ----------------------------------------------------------------
+mountains=unsplash:v0Qujn-zHJk
+mountains-foggy=unsplash:kbKEuU-YEIw
+mountains-dusk=unsplash:RYDNX3f4psg
+mountains-dusk2=unsplash:475ULYyRU3A
+
+# --- Meer ---------------------------------------------------------------------
+ocean=unsplash:LlDQPnErFxo
+underwater=unsplash:588l4wraJQo
+waves=unsplash:WnPZeEbya50
+calm-surface=unsplash:hRemch0ZDwI
+
+# --- City ---------------------------------------------------------------
+skyscraper=unsplash:_jFDQJfCTyA
+skyscraper-up=unsplash:XSONkHbAHkU
+city-night=unsplash:cXU6tNxhub0
+city-urban=unsplash:qi2hmCwlhcE
+wallstreet=unsplash:J4M9FKPEaUA
+city-japan=unsplash:oCZHIa1D4EU
+city-manhattan=unsplash:e4xOmzd8vzg
+
+# --- Airport / Airplanes ----------------------------------------------------------------
+airport=unsplash:CGf5m4OYKQE
+airport-terminal=unsplash:k579uI6E2Uw
+airport-waiting=unsplash:Z_KQy0Qd3ag
+airplane-seats=unsplash:Pwc9LuYVFr0
+airplane-seats2=unsplash:M8ZmpOr9Lrc
+
+# --- Office ---------------------------------------------------------------------
+milky-glass=unsplash:9VbAaQyLvWc
+laptop-hands=unsplash:vZJdYl5JVXY
+business-man=unsplash:MYbhN8KaaEc
+office=unsplash:wYoOgm5vpjI

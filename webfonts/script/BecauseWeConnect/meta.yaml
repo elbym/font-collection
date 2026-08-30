@@ -1,0 +1,14 @@
+title: Because We Connect
+url: https://github.com/RedHatOfficial/bwht-fonts
+
+tags: Script, Handwriting, Display
+
+fontauthor: Russ McMullin, Liz Wetzel, Aaron Williamson (Red Hat)
+fontyear: 2019
+
+heroletter: Cc
+heroword: "Connect"
+color: steelblue
+
+content: |
+  Because We Connect gehört zum sechsteiligen Handschriften-Set von Red Hat für die Serie „Because We Had To“. Drei der Schnitte waren für Titel gedacht, drei für Pull-Quotes — dieser gehört zur ruhigeren, gut lesbaren Gruppe. Kontextabhängige Alternativen (`calt`) verhindern, dass sich identische Buchstabenformen im Wort wiederholen.
