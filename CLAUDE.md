@@ -317,11 +317,14 @@ For **static (non-variable) fonts**, `font-poster.njk` renders the traditional w
 - The layout is **ForceAtlas2** (Jacomy et al.), hand-implemented as three custom d3-force forces in
   `font-network.js`: `forceAtlas2Repulsion` (degree-weighted), `forceAtlas2Attraction` and
   `forceAtlas2Gravity`, registered under the `charge` / `link` / `gravity` slots of the vendored
-  force-graph simulation. The tuned constants live at the `.d3Force(...)` calls — repulsion 5,
-  attraction 0.15, gravity 0.5013. `forceAtlas2Attraction` carries an `.id()` shim because
+  force-graph simulation. The tuned constants live at the `.d3Force(...)` calls — repulsion 1.8,
+  attraction 0.05, gravity 0.18 (plus `d3VelocityDecay(0.5)`); scaled ~3x down from the original
+  5 / 0.15 / 0.5013 to calm per-tick forces without changing the equilibrium layout.
+  `forceAtlas2Attraction` carries an `.id()` shim because
   force-graph calls that method on whatever sits in the `link` slot.
-- The highlighted node is pinned to the origin so the camera can simply `centerAt(0, 0)`. Without that
-  pin the graph rendered outside the viewport and only appeared after a zoom gesture.
+- The highlighted node is **not** pinned — it lays out with the rest of the network (visual
+  highlight only). After the sim settles, `onEngineStop` pans the camera to the node's resting
+  position (`centerAt(node.x, node.y)`) and zooms in, so it still lands centered in the viewport.
 - `force-graph.min.js` is a vendored minified bundle — do not edit it, and do not assume a matching
   standalone d3 version is available.
 

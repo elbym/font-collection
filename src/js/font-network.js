@@ -38,11 +38,9 @@
   var HIGHLIGHT_COLOR = '#212529';
   var RING_COLOR = '#FF1493';
 
-  // Pin the active font at the graph's origin so it structurally becomes
-  // the center the rest of the network is arranged around, not just the
-  // camera target.
+  // The active font is only highlighted visually — it lays out with the rest
+  // of the network. The camera pans to wherever it settles (see onEngineStop).
   var highlightNode = highlightId && data.nodes.find(function (n) { return n.id === highlightId; });
-  if (highlightNode) { highlightNode.fx = 0; highlightNode.fy = 0; }
 
   // ForceAtlas2 (Jacomy et al.) as custom d3-force forces: degree-weighted
   // repulsion, linear edge attraction, degree-weighted gravity to center.
@@ -273,10 +271,15 @@
     })
     .width(container.clientWidth)
     .height(container.clientHeight || Math.round(window.innerHeight * 0.7))
-    .d3Force('charge', forceAtlas2Repulsion(5))
-    .d3Force('link', forceAtlas2Attraction(0.15).links(data.links))
+    // ponytail: FA2 constants — repulsion/attraction/gravity scaled down ~3x
+    // from the original 5 / 0.15 / 0.5013. Same ratio, so the equilibrium
+    // layout is unchanged, but per-tick forces are gentler (less fling/jitter).
+    // Tune in-browser if the graph feels too loose or too tight.
+    .d3Force('charge', forceAtlas2Repulsion(1.8))
+    .d3Force('link', forceAtlas2Attraction(0.05).links(data.links))
     .d3Force('center', null)
-    .d3Force('gravity', forceAtlas2Gravity(0.5013))
+    .d3Force('gravity', forceAtlas2Gravity(0.18))
+    .d3VelocityDecay(0.5)
     .onNodeClick(function (node) {
       if (node.group === 'font' && node.url && node.id !== highlightId) {
         window.location.href = baseUrl + node.url + '.html';
@@ -298,7 +301,7 @@
     if (didInitialZoom) return;
     didInitialZoom = true;
     if (highlightNode) {
-      graph.centerAt(0, 0, 600);
+      graph.centerAt(highlightNode.x || 0, highlightNode.y || 0, 600);
       graph.zoom(3, 600);
     } else {
       graph.zoom(2, 600);
