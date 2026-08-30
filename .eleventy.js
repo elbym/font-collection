@@ -173,12 +173,11 @@ module.exports = function (eleventyConfig) {
     for (const node of roots) {
       const children = fontFolders.filter((n) => n.parentPath === node.path);
       const isActive = !!currentFolder && node.path === currentFolder.path;
-      const isAncestor = !!currentFolder && currentFolder.parentPath === node.path;
       items.push({
         type: "group",
         node,
         isActive,
-        isOpen: isActive || isAncestor,
+        isOpen: isActive,
         children: children.map((c) => ({
           url: c.url,
           title: c.title,
