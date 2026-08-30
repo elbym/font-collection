@@ -17,6 +17,13 @@ html {
     // Layout/Spacing → Tailwind-Utilities in font-card.njk
     letter-spacing: 0.05ch;
 
+    // Skip layout+paint for off-screen cards. contain-intrinsic-size keeps the
+    // scrollbar stable; `auto` lets the browser remember each card's real size
+    // once it has been rendered. Biggest single scroll-perf win on the index
+    // page (100+ cards, each with a blurred blend-mode header).
+    content-visibility: auto;
+    contain-intrinsic-size: auto 480px;
+
     header {
       &::before {
         content: '';
@@ -27,7 +34,8 @@ html {
         background-position: 50% 50%;
         background-blend-mode: color-burn;
         filter: blur(5px) brightness(0.45);
-        will-change: transform;
+        // No permanent `will-change` — that promoted a GPU layer for every card
+        // on the page. The browser promotes on hover for the .5s scale anyway.
         transition: transform .5s ease-out;
 
         @media (prefers-color-scheme: dark) {
@@ -42,6 +50,7 @@ html {
 
       &:hover::before {
         transform: scale(1.1);
+        will-change: transform;
       }
 
 
@@ -105,7 +114,9 @@ html {
     font-weight: 600;
     // opacity: .85;
     mix-blend-mode: plus-lighter;
-    will-change: filter font-family;
+    // No `will-change` here — `font-family` isn't a valid hint and this promoted
+    // a compositing layer for every card title on the page. mix-blend-mode alone
+    // is cheap enough once off-screen cards are skipped (content-visibility).
     // text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     transition: opacity .3s ease, text-shadow .3s ease;
 
@@ -122,7 +133,6 @@ html {
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;
-      will-change: auto;
     }
   }
 

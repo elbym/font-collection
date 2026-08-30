@@ -15,20 +15,45 @@
   --breakpoint-2xl: 1400px;
 }
 
-/* Repeated utility combinations for the main navigation (header.njk, nav.njk).
-   Pulled into components because every nav link/icon-button needs the same
-   ~6 utilities and repeating them at every call site hurt readability more
-   than @apply's indirection costs here. */
+/* Main navigation (header.njk + nav.njk). The nav is a pure HTML/CSS
+   <details> disclosure — no JavaScript. Every nav item shares the same
+   ~8 utilities, so they live in one @apply'd class. */
 @layer components {
   .nav-link {
-    @apply rounded-md px-2 py-1.5 font-semibold text-(--color-text) no-underline transition-colors duration-150 hover:bg-(--color-highlight) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) aria-[current=page]:bg-(--color-highlight) aria-[current=page]:text-(--color-accent);
+    @apply rounded-md px-3 py-2 font-semibold text-(--color-text) no-underline transition-colors duration-150 hover:bg-(--color-highlight) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent) aria-[current=page]:bg-(--color-highlight) aria-[current=page]:text-(--color-accent);
   }
+}
 
-  .nav-icon-btn {
-    @apply flex size-9 items-center justify-center rounded-md text-(--color-text) transition-colors duration-150 hover:bg-(--color-highlight) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent);
+/* <details>-nav bits that Tailwind utilities can't express inline.
+   Unlayered on purpose: the md rules must beat the user-agent
+   "a closed <details> hides its content" rule in both the legacy
+   (display:none) and the modern (::details-content) engines. */
+.site-nav summary {
+  list-style: none;
+  cursor: pointer;
+}
+.site-nav summary::-webkit-details-marker {
+  display: none;
+}
+/* No Tailwind preflight on this site — reset the nav lists by hand. */
+.site-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+details[open] > summary .nav-chevron {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+  /* mirrors --breakpoint-md in @theme above */
+  .site-nav > summary {
+    display: none;
   }
-
-  .nav-dropdown {
-    @apply rounded-md border border-(--color-border) bg-(--color-surface) p-2 shadow-lg;
+  .site-nav > .site-nav__list {
+    display: flex;
+  }
+  .site-nav::details-content {
+    content-visibility: visible;
   }
 }

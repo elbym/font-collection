@@ -1,101 +1,58 @@
-{# ── Navigation component ─────────────────────────────────────────────────
-   Two entry points, both driven by the same `items` list built in header.njk:
-     navDesktop(items) — horizontal bar with hover/focus dropdowns (md and up)
-     navMobile(items)  — off-canvas accordion panel (below md)
-   `items` is a list of { type: "link", url, title } or
-   { type: "group", node, children, isOpen } produced by header.njk from the
-   font data layer (fontFolders) and from eleventyNavigation frontmatter
-   (getManualNav) — nothing here is hardcoded.
-─────────────────────────────────────────────────────────────────────────── #}
+{# ── Navigation ──────────────────────────────────────────────────────────
+   One markup tree for every breakpoint, no JavaScript.
 
-{%- macro navDesktop(items) -%}
-  <ul class="nav-bar hidden md:flex items-center gap-1">
+   Outer  <details class="site-nav">  — below md the <summary> is a hamburger
+   that toggles the menu; at md+ the <summary> is hidden and the list is
+   forced visible via CSS (src/css/tailwind.css), rendering as a bar.
+
+   Nested <details class="nav-group">  — one per font category. Native
+   click / Enter / Space toggle on every breakpoint; at md+ the open panel
+   is positioned as an absolute dropdown. `name="nav-group"` makes the
+   categories behave as an exclusive accordion where supported.
+
+   `items` comes from the getNavItems filter (.eleventy.js): manual
+   eleventyNavigation pages first, then the font-category roots with their
+   leaf children. Nothing is hardcoded here.
+──────────────────────────────────────────────────────────────────────── #}
+{%- macro navTree(items) -%}
+<details class="site-nav">
+  <summary class="nav-link inline-flex w-fit items-center gap-2 md:hidden" aria-label="Hauptmenü">
+    <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+    </svg>
+    Menü
+  </summary>
+
+  <ul class="site-nav__list absolute inset-x-0 top-full z-30 mt-2 flex flex-col gap-1 rounded-md border border-(--color-border) bg-(--color-surface) p-2 shadow-lg md:relative md:mt-0 md:flex-row md:flex-wrap md:items-center md:gap-1 md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none">
     {%- for item in items %}
       {%- if item.type == "link" %}
         <li>
-          <a class="nav-link" href="{{ item.url }}"
-            {%- if item.isActive %} aria-current="page"{% endif %}>
-            {{ item.title }}
-          </a>
+          <a class="nav-link block" href="{{ item.url }}"{% if item.isActive %} aria-current="page"{% endif %}>{{ item.title }}</a>
         </li>
       {%- else %}
-        <li class="group relative">
-          <a class="nav-link inline-flex items-center gap-1" href="/{{ item.node.url }}.html"
-            {%- if item.isActive %} aria-current="page"{% endif %}
-            aria-haspopup="true" aria-expanded="false"
-            {%- if item.node.color %} style="color: {{ item.node.color }}"{% endif %}>
-            {{ item.node.title }}
-            <svg class="size-3 shrink-0 transition-transform duration-200 ease-out group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <ul aria-label="{{ item.node.title }}"
-            class="nav-dropdown invisible absolute left-0 top-full z-20 mt-1 w-max max-w-[min(90vw,40rem)] columns-2 gap-x-4 opacity-0 -translate-y-1 transition duration-150 ease-out group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-              {%- if item.isOpen %} md:visible md:opacity-100 md:translate-y-0{% endif %}">
-            {%- for child in item.children %}
-              <li class="break-inside-avoid">
-                <a class="nav-link block text-sm" href="/{{ child.url }}.html"
-                  {%- if child.isActive %} aria-current="page"{% endif %}>
-                  {{ child.title }}
-                </a>
+        <li class="nav-group">
+          <details class="nav-group__d" name="nav-group"{% if item.isOpen %} open{% endif %}>
+            <summary class="nav-link flex items-center justify-between gap-2 md:justify-start"{% if item.isActive %} aria-current="page"{% endif %}{% if item.node.color %} style="color: {{ item.node.color }}"{% endif %}>
+              {{ item.node.title }}
+              <svg class="nav-chevron size-3 shrink-0 transition-transform duration-200 ease-out" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+
+            <ul aria-label="{{ item.node.title }}" class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg">
+              <li class="md:break-inside-avoid">
+                <a class="nav-link block text-sm italic" href="/{{ item.node.url }}.html"{% if item.isActive %} aria-current="page"{% endif %}>Alle {{ item.node.title }}</a>
               </li>
-            {%- endfor %}
-          </ul>
+              {%- for child in item.children %}
+                <li class="md:break-inside-avoid">
+                  <a class="nav-link block text-sm" href="/{{ child.url }}.html"{% if child.isActive %} aria-current="page"{% endif %}>{{ child.title }}</a>
+                </li>
+              {%- endfor %}
+            </ul>
+          </details>
         </li>
       {%- endif %}
     {%- endfor %}
   </ul>
-{%- endmacro -%}
-
-{%- macro navMobile(items) -%}
-  <div id="mobile-nav-panel" class="mobile-nav fixed inset-0 z-40 hidden md:hidden" role="dialog" aria-modal="true" aria-label="Hauptnavigation" data-state="closed">
-    <div class="mobile-nav__backdrop absolute inset-0 bg-(--color-base-shadow)" data-nav-close></div>
-    <div class="mobile-nav__sheet absolute inset-y-0 right-0 flex w-[85vw] max-w-sm translate-x-full flex-col overflow-y-auto bg-(--color-background) p-4 shadow-xl transition-transform duration-200 ease-out">
-      <div class="flex items-center justify-between pb-2">
-        <span class="font-semibold text-(--color-text)">Menü</span>
-        <button type="button" class="nav-icon-btn" data-nav-close aria-label="Menü schließen">
-          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <ul class="flex flex-col gap-1">
-        {%- for item in items %}
-          {%- if item.type == "link" %}
-            <li>
-              <a class="nav-link block" href="{{ item.url }}"
-                {%- if item.isActive %} aria-current="page"{% endif %}>
-                {{ item.title }}
-              </a>
-            </li>
-          {%- else %}
-            <li class="border-t border-(--color-border) pt-1 first:border-t-0 first:pt-0">
-              <div class="flex items-center">
-                <a class="nav-link flex-1" href="/{{ item.node.url }}.html"
-                  {%- if item.isActive %} aria-current="page"{% endif %}>
-                  {{ item.node.title }}
-                </a>
-                <button type="button" class="nav-icon-btn group" data-nav-accordion-toggle aria-expanded="{{ 'true' if item.isOpen else 'false' }}" aria-controls="mobile-group-{{ loop.index }}" aria-label="{{ item.node.title }} Untermenü umschalten">
-                  <svg class="size-4 shrink-0 transition-transform duration-200 ease-out group-aria-expanded:rotate-180" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-              </div>
-              <ul id="mobile-group-{{ loop.index }}" class="{% if not item.isOpen %}hidden{% endif %} flex flex-col gap-0.5 py-1 pl-3">
-                {%- for child in item.children %}
-                  <li>
-                    <a class="nav-link block text-sm" href="/{{ child.url }}.html"
-                      {%- if child.isActive %} aria-current="page"{% endif %}>
-                      {{ child.title }}
-                    </a>
-                  </li>
-                {%- endfor %}
-              </ul>
-            </li>
-          {%- endif %}
-        {%- endfor %}
-      </ul>
-    </div>
-  </div>
+</details>
 {%- endmacro -%}

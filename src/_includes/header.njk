@@ -1,25 +1,15 @@
-{% from "nav.njk" import navDesktop, navMobile %}
+{% from "nav.njk" import navTree %}
 
-{# ── Flat, breakpoint-agnostic item list, built once ───────────────────────
-   type "link"  → manual eleventyNavigation pages (index, Vergleich, Netzwerk …)
-   type "group" → a font category root node (Serif, Sans, Monospace, …) plus
-                   its leaf children — both macros below render from this
-                   same list, so desktop and mobile never drift apart.
-   Computed by the getNavItems filter (.eleventy.js) from fontFolders
-   (fonts.js data layer) and getManualNav — no data is hardcoded here. #}
+{# Flat nav item list — manual eleventyNavigation pages, then the font-category
+   roots with their leaf children. Built by getNavItems (.eleventy.js) from the
+   fonts.js data layer and getManualNav; nothing is hardcoded here. #}
 {%- set navItems = fontFolders | getNavItems(collections.all | getManualNav, folder, page.url) -%}
 
 <header data-pagefind-ignore>
-  <div class="flex items-center justify-between gap-4 py-2">
+  <div class="relative flex items-center justify-between gap-4 py-2">
     <nav aria-label="Hauptnavigation" class="min-w-0">
-      {{ navDesktop(navItems) }}
+      {{ navTree(navItems) }}
     </nav>
-
-    <button type="button" id="nav-toggle" class="nav-icon-btn md:hidden" aria-expanded="false" aria-controls="mobile-nav-panel" aria-label="Menü öffnen">
-      <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-        <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
-      </svg>
-    </button>
 
     <form
       role="search"
@@ -44,6 +34,4 @@
       <ul id="font-search-results" role="listbox" aria-label="Suchergebnisse" hidden></ul>
     </form>
   </div>
-
-  {{ navMobile(navItems) }}
 </header>
