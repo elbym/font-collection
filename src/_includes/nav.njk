@@ -41,11 +41,11 @@
 
             <ul aria-label="{{ item.node.title }}" class="mt-1 flex flex-col gap-0.5 pl-3 md:absolute md:inset-x-0 md:top-full md:z-30 md:mt-1 md:block md:columns-[9rem] md:gap-x-6 md:rounded-md md:border md:border-(--color-border) md:bg-(--color-surface) md:p-3 md:pl-3 md:shadow-lg">
               <li class="md:break-inside-avoid">
-                <a class="nav-link block text-sm italic" href="/{{ item.node.url }}.html"{% if item.isActive %} aria-current="page"{% endif %}>Alle {{ item.node.title }}</a>
+                <a class="nav-link block text-xs italic" href="/{{ item.node.url }}.html"{% if item.isActive %} aria-current="page"{% endif %}>Alle {{ item.node.title }}</a>
               </li>
               {%- for child in item.children %}
                 <li class="md:break-inside-avoid">
-                  <a class="nav-link block text-sm" href="/{{ child.url }}.html"{% if child.isActive %} aria-current="page"{% endif %}>{{ child.title }}</a>
+                  <a class="nav-link block text-xs" href="/{{ child.url }}.html"{% if child.isActive %} aria-current="page"{% endif %}>{{ child.title }}</a>
                 </li>
               {%- endfor %}
             </ul>
