@@ -47,13 +47,23 @@
       el.style.fontStyle = v.style;
     }
 
+    var hovering = false;
+
     el.addEventListener('mouseenter', function () {
-      index = 0;
-      applyStep();
-      timer = setInterval(applyStep, INTERVAL_MS);
+      hovering = true;
+      // Load this card's weight files + reserve its size on first hover only —
+      // doing it up front for every card on the page flooded the network with
+      // woff2 downloads and thrashed layout right after load.
+      preloadCard(card).then(function () {
+        if (!hovering || timer) return;
+        index = 0;
+        applyStep();
+        timer = setInterval(applyStep, INTERVAL_MS);
+      });
     });
 
     el.addEventListener('mouseleave', function () {
+      hovering = false;
       clearInterval(timer);
       timer = null;
       el.style.fontWeight = originalWeight;
@@ -138,9 +148,16 @@
     }
   }
 
+  // Memoised per card: loads the weight files this card's hover cycle needs,
+  // then reserves the card's size once so cycling never resizes it. Resolves
+  // when the card is ready to animate.
   function preloadCard(card) {
-    if (!card.slug || !card.family || !('fonts' in document)) return;
-    ensureFontCss(card.slug).then(function () {
+    if (card._preload) return card._preload;
+    if (!card.slug || !card.family || !('fonts' in document)) {
+      card._preload = Promise.resolve();
+      return card._preload;
+    }
+    card._preload = ensureFontCss(card.slug).then(function () {
       var loads = card.variants.map(function (v) {
         try {
           return document.fonts.load((v.style === 'italic' ? 'italic ' : '') + v.weight + ' 16px "' + card.family + '"');
@@ -148,23 +165,10 @@
           return Promise.resolve();
         }
       });
-      Promise.all(loads).then(function () {
-        reserveHeight(card);
-      });
+      return Promise.all(loads);
+    }).then(function () {
+      reserveHeight(card);
     });
+    return card._preload;
   }
-
-  window.addEventListener('load', function () {
-    var idle = window.requestIdleCallback
-      ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
-      : function (fn) { setTimeout(fn, 500); };
-
-    var i = 0;
-    function next() {
-      if (i >= cards.length) return;
-      preloadCard(cards[i++]);
-      idle(next);
-    }
-    idle(next);
-  });
 })();
