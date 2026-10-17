@@ -61,8 +61,8 @@
       const keep = s => [...s].filter(c => !n.glyphs || n.glyphs.includes(c.codePointAt(0))).join('');
       const esc = s => s.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
       const seq = (s, size) => `<p class="${size} whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
-      // Alphabet in einer Zeile: 3.2cqw reicht für die breiteste Schrift (Climate Crisis, ca. 27em je Zeile in 88cqw); Wert anheben, wenn diese Schrift wegfällt
-      const ALPHA = 'text-[3.2cqw]';
+      // Alphabet in einer Zeile mit fester Größe: passt bei den meisten Schriften in die Plakatbreite, sehr breite (z. B. Climate Crisis) laufen bewusst über den Rand
+      const ALPHA = 'text-[5cqw]';
       const hero = keep(n.heroletter || 'Aa');
       const heroSize = hero.length <= 2 ? 'text-[52cqw]' : hero.length <= 3 ? 'text-[36cqw]' : 'text-[26cqw]'; // nach Länge
       const meta = [n.author, n.year].filter(Boolean).join(', ');
