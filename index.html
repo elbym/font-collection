@@ -87,7 +87,37 @@
         </div>`;
     };
     // --- Karte 3: Poster B (Schnitte, Fließtext) ---
-    const card3 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Poster B</p>`;
+    const card3 = n => {
+      const F = `font-family:'${n.family}'`;
+      const PANGRAM = 'Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.';
+      const LOREM = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.';
+      const NAME = { 100: 'Thin', 200: 'ExtraLight', 300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'SemiBold', 700: 'Bold', 800: 'ExtraBold', 900: 'Black' };
+      // Zeilenhöhe teilt die verfügbare Höhe (in cqh) auf alle Zeilen auf, maximal 2.6cqw
+      const fs = (k, total) => `min(2.6cqw,${(total / k).toFixed(2)}cqh)`;
+      const list = (ws, total, label) => `<div class="grid grid-cols-[auto_1fr] content-start gap-x-[2.5cqw]">${ws.map(w => `
+        <span style="${F};font-size:${fs(ws.length, total)}" class="leading-[1.1] whitespace-nowrap">${label(w)}</span>
+        <span style="${F};font-size:${fs(ws.length, total)};font-weight:${w.weight};font-style:${w.italic ? 'italic' : 'normal'}" class="leading-[1.1] whitespace-nowrap">Boxkämpfer</span>`).join('')}</div>`;
+      const waterfall = [[7.5, 8], [4.8, 5.2], [3.2, 3.4]]
+        .map(([x, y]) => `<p style="${F};font-size:min(${x}cqw,${y}cqh)" class="leading-[1.05]">${PANGRAM}</p>`).join('');
+      const gradient = Array.from({ length: 9 }, (_, k) => ({ weight: 100 + 100 * k, italic: false }));
+      return `
+      <div style="${F};padding:max(5cqw,3.75rem) 5cqw 5cqw" class="w-full h-full flex flex-col gap-[2.5cqh] overflow-hidden text-left">
+        <div class="flex items-baseline justify-between gap-[3cqw]">
+          <p style="${F};font-size:min(4cqw,4.5cqh)" class="leading-tight">${n.title}</p>
+          <p style="${F};font-size:min(2.4cqw,2.6cqh)" class="uppercase tracking-widest text-[color:var(--accent-ui)]">${n.weights.length} Schnitte</p>
+        </div>
+        <div>${waterfall}</div>
+        <div class="grid sm:grid-cols-2 content-start gap-x-[5cqw] gap-y-[3cqh]">
+          <div>${list(n.weights, 34, w => NAME[w.weight] + (w.italic ? ' Italic' : ''))}</div>
+          <div class="flex flex-col gap-[2cqh]">
+            ${n.variable ? `
+            <p style="${F};font-size:min(2.4cqw,2.6cqh)" class="uppercase tracking-widest text-[color:var(--accent-ui)]">Gewichtsverlauf</p>
+            ${list(gradient, 16, w => w.weight)}` : ''}
+            <p style="${F};font-size:min(3cqw,3.2cqh)" class="line-clamp-3 sm:line-clamp-6 leading-[1.35]">${LOREM}</p>
+          </div>
+        </div>
+      </div>`;
+    };
     // --- Karte 4: Infos ---
     const card4 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Infos</p>`;
     // --- Ende Karten ---
