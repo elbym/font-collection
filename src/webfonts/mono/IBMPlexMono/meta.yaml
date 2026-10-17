@@ -1,0 +1,18 @@
+title: IBM Plex Mono
+url: https://github.com/IBM/plex
+wikipedia: https://en.wikipedia.org/wiki/IBM_Plex
+
+tags: Monospace, Coding, Variable
+
+comment: "Die IBM-Plex-Familie ist nun komplett: Sans, Serif und Mono vereint die gleiche Designphilosophie."
+
+fontauthor: Mike Abbink, Bold Monday
+fontyear: 2017
+
+heroletter: Mm
+heroword: Terminal
+herostyle:
+color: dodgerblue
+
+content: |
+  IBM Plex Mono schließt die Lücke in der IBM-Plex-Schriftfamilie und bringt die gleiche technische Präzision und humanistische Eleganz in die Welt der Monospace-Schriften. Diese Variable-Font-Version mit der Gewichtsachse (wght) bietet eine nahtlose Palette von dünn bis fett, ideal für Code-Editoren, Terminals und technische Dokumentation. Der deutliche, enge Buchstabensatz gewährleistet optimale Lesbarkeit auch bei kleinen Größen.

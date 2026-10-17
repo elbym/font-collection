@@ -1,0 +1,13 @@
+title: TeX Gyre Cursor
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor
+
+tags: Monospace, Schreibmaschine
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki (GUST e-foundry)
+fontyear: 2007
+
+heroletter: Cc
+heroword: Code
+color: olive
+content: |
+  TeX Gyre Cursor ist eine erweiterte Version von Courier und gehört zur umfangreichen TeX Gyre Schriftfamilie der GUST e-foundry. Als Courier-Klon ist sie neben Courier Prime die zweite Schreibmaschinenschrift der Sammlung, in der die übrigen Monospace-Schriften alle Coding-Fonts sind. Sie bietet die gleiche hohe Qualität und erweiterte Zeichensätze wie die anderen TeX Gyre Fonts (Adventor, Heros, Bonum, Pagella, Schola und Termes).

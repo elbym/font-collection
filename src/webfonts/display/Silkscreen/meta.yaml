@@ -1,0 +1,14 @@
+title: Silkscreen
+url: https://kottke.org/plus/type/silkscreen/
+
+tags: Display, Pixel, Bitmap
+
+fontauthor: Jason Kottke
+fontyear: 2001
+
+heroletter: Ss
+heroword: PIXEL
+color: springgreen
+
+content: |
+  Silkscreen ist die seltene Spezies der proportionalen Bitmap-Schrift – eine Pixelschrift mit variabler Buchstabenbreite, nicht monospaced. Entworfen von Jason Kottke im Jahr 2001 für den Bildschirmeinsatz bei winzigen Größen. Eine wichtige Besonderheit: Pixel-Schriften wirken nur bei ihrer Designgröße und ganzzahligen Vielfachen davon wirklich scharf; dazwischen werden die Kanten unsauber.
