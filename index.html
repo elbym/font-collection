@@ -81,8 +81,6 @@
             ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', ALPHA)}
             ${seq('abcdefghijklmnopqrstuvwxyz', ALPHA)}
             ${seq('0123456789', ALPHA)}
-            ${seq('.,:;!?-–—_()[]{}', 'text-[4.5cqw]')}
-            ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 'text-[4.5cqw]')}
           </div>
           </div>
         </div>`;
@@ -140,19 +138,25 @@
     const content = (n, c) => CARDS[c](n);
     const acc = n => `--accent:${n.accent}`;
 
-    nodes.forEach((n, i) => {
-      // Kachel: Container, Schrift skaliert mit der Kachelbreite (cqw)
-      grid.insertAdjacentHTML('beforeend', `
-        <button data-i="${i}" style="${acc(n)}"
-          class="acc scroll-mt-12 [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
-          <div class="text-[5cqw] h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
-        </button>`);
-      cards.insertAdjacentHTML('beforeend', `
-        <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          ${Array.from({ length: DETAILS }, (_, c) => `
-            <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
-        </div>`);
-    });
+    // Kacheln und leere Rows (h-dvh-Platzhalter, damit Snap/offsetTop stimmen) in je einem Rutsch einfügen
+    grid.innerHTML = nodes.map((n, i) => `
+      <button data-i="${i}" style="${acc(n)}"
+        class="acc scroll-mt-12 [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+        <div class="text-[5cqw] h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
+      </button>`).join('');
+    cards.innerHTML = nodes.map(() => `
+      <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`).join('');
+
+    // Detailkarten einer Row erst bei Bedarf erzeugen (Row ± 1 Bildschirm im Dialog, oder direkt per show())
+    function fill(row) {
+      if (row.firstChild) return;
+      const n = nodes[[...cards.children].indexOf(row)];
+      row.innerHTML = Array.from({ length: DETAILS }, (_, c) => `
+        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${c ? content(n, c) : `<div class="flex flex-col items-center text-[2em]">${content(n, 0)}</div>`}</section>`).join('');
+      row.scrollLeft = col * row.clientWidth;
+    }
+    const lazy = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && fill(e.target)), { root: detail, rootMargin: '100% 0px' });
+    for (const row of cards.children) lazy.observe(row);
 
     // Punkte: eine Anzeige für die aktuelle Detailkarte
     const dots = document.getElementById('dots');
@@ -203,6 +207,7 @@
     // Detailansicht auf Node i / Detailkarte c stellen (ohne Animation)
     function show(i, c) {
       if (!detail.open) detail.showModal();
+      fill(cards.children[i]);
       detail.scrollTop = cards.children[i].offsetTop;
       for (const r of cards.children) r.scrollLeft = c * r.clientWidth;
       setDot(c);
