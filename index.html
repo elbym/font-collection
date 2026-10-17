@@ -86,15 +86,17 @@
           </div>
         </div>`;
     };
-    // Alphabet-Zeilen von Poster A: eine Zeile je Alphabet, beide Zeilen einer Karte bekommen dieselbe (kleinste nötige) Größe
-    const fitAlphabet = () => {
-      for (const sec of cards.querySelectorAll('section')) {
-        const rows = [...sec.querySelectorAll('[data-fit]')];
-        rows.forEach(e => e.style.fontSize = ''); // zurück auf die Klassen-Größe
-        const k = Math.min(1, ...rows.map(e => e.clientWidth / e.scrollWidth));
-        if (k < 1) rows.forEach(e => e.style.fontSize = parseFloat(getComputedStyle(e).fontSize) * k + 'px');
-      }
+    // Alphabet-Zeilen von Poster A: eine Zeile je Alphabet, beide Zeilen einer Karte bekommen dieselbe (kleinste nötige) Größe.
+    // Übersprungene Karten (content-visibility:auto) haben Breite 0 und werden erst beim Sichtbarwerden angepasst.
+    const fitSection = sec => {
+      const rows = [...sec.querySelectorAll('[data-fit]')].filter(e => e.clientWidth);
+      if (!rows.length) return;
+      rows.forEach(e => e.style.fontSize = ''); // zurück auf die Klassen-Größe
+      const k = Math.min(1, ...rows.map(e => e.clientWidth / e.scrollWidth));
+      if (k < 1) rows.forEach(e => e.style.fontSize = parseFloat(getComputedStyle(e).fontSize) * k + 'px');
     };
+    const fitAlphabet = () => cards.querySelectorAll('section').forEach(fitSection);
+    cards.addEventListener('contentvisibilityautostatechange', e => { if (!e.skipped) fitSection(e.target); }, true);
     // --- Karte 3: Poster B (Schnitte, Fließtext) ---
     const card3 = n => {
       const PANGRAM = 'Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.';
@@ -158,7 +160,7 @@
       cards.insertAdjacentHTML('beforeend', `
         <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           ${Array.from({ length: DETAILS }, (_, c) => `
-            <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
+            <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
         </div>`);
     });
 
@@ -261,7 +263,8 @@
     detail.addEventListener('cancel', e => { e.preventDefault(); go(BASE); }); // Esc
     addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
     document.fonts.ready.then(fitAlphabet); // Schrift erst geladen -> Breite erst dann messbar
-    addEventListener('resize', fitAlphabet);
+    let fitFrame;
+    addEventListener('resize', () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(fitAlphabet); });
     route(false); // direkter Aufruf einer URL
   </script>
 </body>
