@@ -1,9 +1,11 @@
 // Flache Liste aller Schriften (Blatt-Knoten) für die UI: src/fonts.json.njk → /fonts.json
 const fonts = require("./fonts");
 const fontCodepoints = require("./fontCodepoints");
+const fontAxes = require("./fontAxes");
 
 module.exports = async function () {
   const codepoints = await fontCodepoints();
+  const axes = await fontAxes();
   const slugs = new Set();
 
   const list = fonts()
@@ -41,6 +43,7 @@ module.exports = async function () {
         heroword: n.heroword ?? null,
         weights,
         variable: n.ownFonts.some((f) => f.isVariable),
+        axes: axes[n.key] ?? null,
         glyphs: cp ? Object.keys(cp).map(Number).sort((a, b) => a - b) : null,
       };
     });

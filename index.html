@@ -99,7 +99,6 @@
         <span class="${WEIGHT[w.weight]} ${w.italic ? 'italic' : ''}">Boxkämpfer</span>`).join('')}</div>`;
       const waterfall = ['text-[length:min(7.5cqw,8cqh)]', 'text-[length:min(4.8cqw,5.2cqh)]', 'text-[length:min(3.2cqw,3.4cqh)]']
         .map(size => `<p class="${size} leading-[1.2]">${PANGRAM}</p>`).join('');
-      const gradient = Array.from({ length: 9 }, (_, k) => ({ weight: 100 + 100 * k, italic: false }));
       return `
       <div class="${n.family} p-[max(5cqw,3.75rem)_5cqw_5cqw] w-full h-full flex flex-col gap-[2.5cqh] overflow-hidden text-left">
         <div class="flex items-baseline justify-between gap-[3cqw]">
@@ -108,12 +107,9 @@
         </div>
         <div>${waterfall}</div>
         <div class="grid sm:grid-cols-2 content-start gap-x-[5cqw] gap-y-[3cqh]">
-          <div>${list(n.weights, 34, w => NAME[w.weight] + (w.italic ? ' Italic' : ''))}</div>
+          <div>${list([...n.weights].sort((a, b) => a.italic - b.italic || a.weight - b.weight), 34, w => NAME[w.weight] + (w.italic ? ' Italic' : ''))}</div>
           <div class="flex flex-col gap-[2cqh]">
-            ${n.variable ? `
-            <p class="text-[length:min(2.4cqw,2.6cqh)] uppercase tracking-widest text-[color:var(--accent-ui)]">Gewichtsverlauf</p>
-            ${list(gradient, 16, w => w.weight)}` : ''}
-            <p class="text-[length:min(max(3cqw,13px),3.2cqh)] line-clamp-3 sm:line-clamp-6 leading-[1.35]">${LOREM}</p>
+            <p style="font-size:${fs(n.weights.length, 34)}" class="line-clamp-3 sm:line-clamp-6 leading-[1.35]">${LOREM}</p>
           </div>
         </div>
       </div>`;
@@ -130,7 +126,7 @@
         <p class="${n.family} text-[2em] leading-tight">${esc(n.title)}</p>
         <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>
         ${rows.length ? `<dl class="grid grid-cols-[auto_1fr] gap-x-[1em] gap-y-[.3em] max-w-[28em] text-left">${rows.join('')}</dl>` : ''}
-        ${n.tags?.length ? `<ul class="mt-[1em] flex flex-wrap justify-center gap-[.4em]">${n.tags.map(t => `<li class="rounded-full border border-[color:var(--accent-ui)] px-[.7em] py-[.15em] text-[.8em]">${esc(t)}</li>`).join('')}</ul>` : ''}
+        ${n.tags?.length ? `<ul class="mt-[1em] flex flex-wrap justify-center gap-[.4em]">${n.tags.map(t => `<li><a data-nav href="${BASE}?tag=${encodeURIComponent(t)}" class="block rounded-full border border-[color:var(--accent-ui)] px-[.7em] py-[.15em] text-[.8em]">${esc(t)}</a></li>`).join('')}</ul>` : ''}
         ${n.comment ? `<p class="mt-[1em] max-w-[24em] text-[.85em] opacity-70">${esc(n.comment)}</p>` : ''}`;
     };
     // --- Ende Karten ---
@@ -147,12 +143,45 @@
     cards.innerHTML = nodes.map(() => `
       <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`).join('');
 
+    // Variable Schriften: Slider je Achse unter dem „Aa" (Detailkarte 1); laufen von selbst, bis man einen anfasst
+    const axisPanel = n => !n.axes ? '' : `
+      <div data-axes class="mt-[1em] grid w-[min(34em,90cqw)] max-h-[22cqh] grid-cols-[auto_1fr_auto] items-center gap-x-[.6em] gap-y-[.1em] overflow-y-auto overscroll-contain text-[.5em] text-left">${Object.entries(n.axes).map(([tag, a]) => `
+        <span class="opacity-60">${esc(a.name)}</span>
+        <input type="range" data-axis="${esc(tag)}" min="${a.min}" max="${a.max}" step="${a.step}" value="${a.default}" aria-label="${esc(a.name)}" class="accent-[color:var(--accent-ui)]">
+        <output class="w-[3.5em] text-right tabular-nums">${a.default}</output>`).join('')}
+      </div>`;
+    const applyAxes = panel => {
+      panel.parentElement.querySelector('[data-vt=aa]').style.fontVariationSettings =
+        [...panel.querySelectorAll('input')].map(i => `'${i.dataset.axis}' ${i.value}`).join(',');
+    };
+    cards.addEventListener('input', e => {
+      const panel = e.target.closest('[data-axes]');
+      if (!panel) return;
+      e.target.nextElementSibling.value = e.target.value;
+      applyAxes(panel);
+    });
+    for (const ev of ['pointerdown', 'keydown']) cards.addEventListener(ev, e => { const p = e.target.closest('[data-axes]'); if (p) p.dataset.stop = 1; });
+    // ponytail: eine rAF-Schleife für die sichtbare Karte 1; läuft leer weiter, solange nichts zu tun ist
+    requestAnimationFrame(function tick(t) {
+      const panel = detail.open && col === 0 && current().card.querySelector('[data-axes]');
+      if (panel && !panel.dataset.stop) {
+        panel.querySelectorAll('input').forEach((inp, k) => {
+          const min = +inp.min, max = +inp.max, step = +inp.step;
+          const v = (min + max) / 2 + (max - min) / 2 * Math.sin(t / 1000 * (0.08 + k * 0.04) * 2 * Math.PI + k * 2.1);
+          inp.value = Math.min(max, Math.max(min, Math.round(v / step) * step));
+          inp.nextElementSibling.value = Math.round(inp.value * 10) / 10;
+        });
+        applyAxes(panel);
+      }
+      requestAnimationFrame(tick);
+    });
+
     // Detailkarten einer Row erst bei Bedarf erzeugen (Row ± 1 Bildschirm im Dialog, oder direkt per show())
     function fill(row) {
       if (row.firstChild) return;
       const n = nodes[[...cards.children].indexOf(row)];
       row.innerHTML = Array.from({ length: DETAILS }, (_, c) => `
-        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${c ? content(n, c) : `<div class="flex flex-col items-center text-[2em]">${content(n, 0)}</div>`}</section>`).join('');
+        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${c ? content(n, c) : `<div class="flex flex-col items-center text-[2em]">${content(n, 0)}${axisPanel(n)}</div>`}</section>`).join('');
       row.scrollLeft = col * row.clientWidth;
     }
     const lazy = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && fill(e.target)), { root: detail, rootMargin: '100% 0px' });
@@ -241,7 +270,15 @@
     // Routing: <BASE>node1#3 = Node 1, Detailkarte 3; <BASE> = Raster
     // BASE kommt aus <base href> (Root lokal, /font-collection/ auf GitHub Pages, siehe scripts/set-base.js)
     const BASE = new URL(document.baseURI).pathname;
+    // Tag-Filter (?tag=…) gilt nur für die Rasteransicht; beim Öffnen einer Schrift bleibt er erhalten
+    let tag = '';
+    const home = () => BASE + (tag ? `?tag=${encodeURIComponent(tag)}` : '');
     function route(animate = true) {
+      if (!location.pathname.slice(BASE.length)) {
+        tag = new URLSearchParams(location.search).get('tag') || '';
+        [...grid.children].forEach((t, k) => t.hidden = !!tag && !nodes[k].tags?.includes(tag));
+        document.getElementById('tools').innerHTML = tag ? `<a data-nav href="${BASE}" class="rounded-full border border-neutral-500/50 px-3 py-1 text-sm">${esc(tag)} ×</a>` : '';
+      }
       const i = nodes.findIndex(n => n.slug === location.pathname.slice(BASE.length));
       const c = Math.min(Math.max((parseInt(location.hash.slice(1)) || 1) - 1, 0), DETAILS - 1);
       if (i >= 0) detail.open ? show(i, c) : openAnim(i, c, animate);
@@ -249,12 +286,41 @@
     }
     const go = url => { history.pushState(null, '', url); route(); };
 
+    // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
+    let hoverTile, hoverTimer;
+    const hoverStop = () => {
+      clearInterval(hoverTimer);
+      if (hoverTile) hoverTile.firstElementChild.style.cssText = '';
+      hoverTile = null;
+    };
+    grid.addEventListener('pointerover', e => {
+      const tile = e.pointerType === 'mouse' && e.target.closest('[data-i]');
+      if (tile === hoverTile) return;
+      hoverStop();
+      const ws = tile && nodes[tile.dataset.i].weights;
+      if (!ws || ws.length < 2) return;
+      hoverTile = tile;
+      let k = 0;
+      const step = () => {
+        const w = ws[k++ % ws.length];
+        tile.firstElementChild.style.cssText = `font-weight:${w.weight};font-style:${w.italic ? 'italic' : 'normal'}`;
+      };
+      step();
+      hoverTimer = setInterval(step, 300);
+    });
+    grid.addEventListener('pointerleave', hoverStop);
+    grid.addEventListener('click', hoverStop, true); // vor dem Öffnen beenden
+
     grid.addEventListener('click', e => {
       const tile = e.target.closest('[data-i]');
       if (tile) go(`${BASE}${nodes[tile.dataset.i].slug}#${col + 1}`);
     });
-    document.getElementById('close').onclick = () => go(BASE);
-    detail.addEventListener('cancel', e => { e.preventDefault(); go(BASE); }); // Esc
+    document.getElementById('close').onclick = () => go(home());
+    detail.addEventListener('cancel', e => { e.preventDefault(); go(home()); }); // Esc
+    document.addEventListener('click', e => { // Tag-Links und Filter-Chip: ohne Reload über den Router
+      const a = e.target.closest('a[data-nav]');
+      if (a && !e.metaKey && !e.ctrlKey && !e.shiftKey) { e.preventDefault(); go(a.getAttribute('href')); }
+    });
     addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
     route(false); // direkter Aufruf einer URL
   </script>
