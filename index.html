@@ -23,6 +23,13 @@
 </head>
 <body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
 
+  <!-- Top-Bar: nur über der Rasterübersicht (das <dialog> liegt im Top-Layer und deckt sie ab).
+       Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
+  <header id="topbar" class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/80 backdrop-blur dark:bg-neutral-950/80 border-b border-neutral-300 dark:border-neutral-800">
+    <h1 class="text-base font-semibold">Schriften</h1>
+    <div id="tools" class="ml-auto flex items-center gap-2"></div>
+  </header>
+
   <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
   <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
 
@@ -64,7 +71,7 @@
       // Kachel: Container, Schrift skaliert mit der Kachelbreite (cqw)
       grid.insertAdjacentHTML('beforeend', `
         <button data-i="${i}" style="${acc(n)}"
-          class="acc [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+          class="acc scroll-mt-12 [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
           <div style="font-size:5cqw" class="h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
         </button>`);
       cards.insertAdjacentHTML('beforeend', `
