@@ -1,0 +1,51 @@
+// @ts-check
+import { BASE, state } from '../state.js';
+import { acc, content } from './cards/index.js';
+import { go } from './router.js';
+
+/** Rasterübersicht: Kacheln aus `state.nodes`, Klick öffnet die Detailansicht, Hover schaltet Schnitte durch. @param {Document} [root] */
+export function init(root = document) {
+  const grid = root.querySelector('#grid');
+  if (!grid) return;
+
+  // Kacheln in einem Rutsch einfügen
+  grid.innerHTML = state.nodes.map((n, i) => `
+      <button data-i="${i}" style="${acc(n)}"
+        class="acc scroll-mt-12 [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+        <div class="text-[5cqw] h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
+      </button>`).join('');
+
+  // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
+  /** @type {HTMLElement|null} */
+  let hoverTile = null;
+  /** @type {ReturnType<typeof setInterval>|undefined} */
+  let hoverTimer;
+  const hoverStop = () => {
+    clearInterval(hoverTimer);
+    if (hoverTile) /** @type {HTMLElement} */ (hoverTile.firstElementChild).style.cssText = '';
+    hoverTile = null;
+  };
+  grid.addEventListener('pointerover', (e) => {
+    const ev = /** @type {PointerEvent} */ (e);
+    const tile = ev.pointerType === 'mouse' ? /** @type {HTMLElement|null} */ (/** @type {Element} */ (ev.target).closest('[data-i]')) : null;
+    if (tile === hoverTile) return;
+    hoverStop();
+    const ws = tile && state.nodes[Number(tile.dataset.i)].weights;
+    if (!tile || !ws || ws.length < 2) return;
+    hoverTile = tile;
+    let k = 0;
+    const step = () => {
+      const w = ws[k++ % ws.length];
+      /** @type {HTMLElement} */ (tile.firstElementChild).style.cssText = `font-weight:${w.weight};font-style:${w.italic ? 'italic' : 'normal'}`;
+    };
+    step();
+    hoverTimer = setInterval(step, 300);
+  });
+  grid.addEventListener('pointerleave', hoverStop);
+  grid.addEventListener('click', hoverStop, true); // vor dem Öffnen beenden
+
+  grid.addEventListener('click', (e) => {
+    const tile = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('[data-i]'));
+    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}#${state.col + 1}`);
+  });
+}

@@ -6,6 +6,7 @@ if (spawnSync("npm", ["run", "build"], { stdio: "inherit" }).status) process.exi
 const procs = [
   ["npx", ["eleventy", "--watch"]],
   ["npx", ["tailwindcss", "-i", "src/css/tailwind.css", "-o", "_site/tailwind.css", "--watch"]],
+  ["node", ["scripts/build-js.js", "--dev"]],
   ["python3", ["server.py"]],
 ].map(([cmd, args]) => spawn(cmd, args, { stdio: "inherit" }));
 

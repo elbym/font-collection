@@ -2,7 +2,7 @@
   "name": "font-collection",
   "private": true,
   "scripts": {
-    "build": "eleventy && npm run css && node scripts/set-base.js",
+    "build": "eleventy && npm run css && npm run js && node scripts/set-base.js",
     "build:pages": "BASE_PATH=/font-collection/ npm run build",
     "css": "tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --minify",
     "dev": "node scripts/dev.js",
@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "js": "node scripts/build-js.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
