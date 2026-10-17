@@ -36,7 +36,7 @@ module.exports = async function () {
       const cpMap = {};
       for (const cp of font.characterSet) cpMap[cp] = 1;
       result[node.key] = cpMap;
-    } catch (_) {
+    } catch {
       // Skip unreadable files; template treats missing entry as "all present"
     }
   }

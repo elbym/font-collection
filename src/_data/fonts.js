@@ -200,7 +200,7 @@ module.exports = function () {
           if (/Open Font License/i.test(c)) return "SIL Open Font License 1.1";
           if (/MIT License/i.test(c)) return "MIT";
           if (/Apache License/i.test(c)) return "Apache 2.0";
-        } catch (_) {}
+        } catch { /* Datei nicht lesbar: überspringen */ }
       }
     }
     return null;

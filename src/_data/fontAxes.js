@@ -32,7 +32,7 @@ module.exports = async function () {
         };
       }
       result[node.key] = axes;
-    } catch (_) {
+    } catch {
       // unlesbare Datei: keine Slider
     }
   }
