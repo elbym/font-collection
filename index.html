@@ -61,7 +61,8 @@
       // Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden); HTML-Sonderzeichen escapen
       const keep = s => [...s].filter(c => !n.glyphs || n.glyphs.includes(c.codePointAt(0))).join('');
       const esc = s => s.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
-      const seq = (s, size) => `<p style="${F};font-size:${size}cqw" class="whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
+      // fit: Zeile bekommt data-fit und wird nach dem Öffnen auf die Plakatbreite geschrumpft (siehe fitAlphabet); --fs ist die Startgröße
+      const seq = (s, size, fit) => `<p ${fit ? 'data-fit' : ''} style="${F};--fs:${size}cqw;font-size:var(--fs)" class="whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
       const hero = keep(n.heroletter || 'Aa');
       const heroSize = hero.length <= 2 ? 52 : hero.length <= 3 ? 36 : 26; // cqw, nach Länge
       const meta = [n.author, n.year].filter(Boolean).join(', ');
@@ -77,17 +78,23 @@
             ${rule}
             <p style="${F};font-size:${heroSize}cqw" class="flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
             ${rule}
-            <!-- Alphabet in zwei gleich langen Zeilen statt zufälligem Umbruch -->
-            ${seq('ABCDEFGHIJKLM', 7)}
-            ${seq('NOPQRSTUVWXYZ', 7)}
-            ${seq('abcdefghijklm', 7)}
-            ${seq('nopqrstuvwxyz', 7)}
+            ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8, true)}
+            ${seq('abcdefghijklmnopqrstuvwxyz', 8, true)}
             ${seq('0123456789', 6.5)}
             ${seq('.,:;!?-–—_()[]{}', 4.5)}
             ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
           </div>
           </div>
         </div>`;
+    };
+    // Alphabet-Zeilen von Poster A: eine Zeile je Alphabet, beide Zeilen einer Karte bekommen dieselbe (kleinste nötige) Größe
+    const fitAlphabet = () => {
+      for (const sec of cards.querySelectorAll('section')) {
+        const rows = [...sec.querySelectorAll('[data-fit]')];
+        rows.forEach(e => e.style.fontSize = 'var(--fs)');
+        const k = Math.min(1, ...rows.map(e => e.clientWidth / e.scrollWidth));
+        if (k < 1) rows.forEach(e => e.style.fontSize = `calc(var(--fs)*${k})`);
+      }
     };
     // --- Karte 3: Poster B (Schnitte, Fließtext) ---
     const card3 = n => {
@@ -207,6 +214,7 @@
       detail.scrollTop = cards.children[i].offsetTop;
       for (const r of cards.children) r.scrollLeft = c * r.clientWidth;
       setDot(c);
+      fitAlphabet();
     }
 
     function openAnim(i, c, animate) {
@@ -252,6 +260,8 @@
     document.getElementById('close').onclick = () => go(BASE);
     detail.addEventListener('cancel', e => { e.preventDefault(); go(BASE); }); // Esc
     addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
+    document.fonts.ready.then(fitAlphabet); // Schrift erst geladen -> Breite erst dann messbar
+    addEventListener('resize', fitAlphabet);
     route(false); // direkter Aufruf einer URL
   </script>
 </body>
