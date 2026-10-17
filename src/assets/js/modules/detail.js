@@ -2,7 +2,6 @@
 import { BASE, DETAILS, state } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
 import { acc, content } from './cards/index.js';
-import { axisPanel } from './cards/axisPanel.js';
 
 /** @type {HTMLDialogElement} */ let detail;
 /** @type {HTMLElement} */ let cards;
@@ -14,7 +13,7 @@ function fill(row) {
   if (row.firstChild) return;
   const n = state.nodes[[...cards.children].indexOf(row)];
   row.innerHTML = Array.from({ length: DETAILS }, (_, c) => `
-        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${c ? content(n, c) : `<div class="flex flex-col items-center text-[2em]">${content(n, 0)}${axisPanel(n)}</div>`}</section>`).join('');
+        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('');
   row.scrollLeft = state.col * row.clientWidth;
 }
 

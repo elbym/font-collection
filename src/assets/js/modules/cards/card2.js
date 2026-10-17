@@ -1,5 +1,6 @@
 // @ts-check
 import { esc } from '../../utils/html.js';
+import { axisPanel } from './axisPanel.js';
 
 /** Karte 2: Poster A (Zeichensatz). @param {import('../../state.js').Node} n */
 export const card2 = (n) => {
@@ -17,7 +18,7 @@ export const card2 = (n) => {
   return `
         <div class="${n.family} w-full h-full flex justify-center">
           <div class="w-[min(100cqw,70cqh)] h-full min-h-0 [container-type:inline-size]">
-          <div class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[14cqw] text-left">
+          <div data-axes-target class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[14cqw] text-left">
             <!-- ponytail: Padding im inneren Div, damit cqw-Werte auf die Plakatbreite (nicht die Karte) beziehen -->
 
             <p class="text-[3.6cqw] leading-tight">${esc(n.title)}</p>
@@ -25,6 +26,7 @@ export const card2 = (n) => {
             ${rule}
             <p class="${heroSize} flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
             ${rule}
+            ${axisPanel(n)}
             ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', ALPHA)}
             ${seq('abcdefghijklmnopqrstuvwxyz', ALPHA)}
             ${seq('0123456789', ALPHA)}
