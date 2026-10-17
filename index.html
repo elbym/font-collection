@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nodes</title>
+  <!-- ponytail: Tailwind Play-CDN reicht zum Testen; für Produktion Tailwind CLI nutzen -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Kachel <-> Karte: gemeinsames Element "node" wird per View Transition ineinander überführt */
+    ::view-transition-group(*) { animation-duration: .4s; animation-timing-function: cubic-bezier(.2,.8,.2,1); }
+    /* Ecken: Radius der Kachel (rounded-2xl = 1rem) läuft beim Öffnen auf 0, beim Schließen zurück */
+    ::view-transition-image-pair(node) { overflow: clip; animation: .4s cubic-bezier(.2,.8,.2,1) both radius; }
+    html[data-dir=close]::view-transition-image-pair(node) { animation-direction: reverse; }
+    @keyframes radius { from { border-radius: 1rem; } to { border-radius: 0; } }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-group(*) { animation-duration: 0s; } }
+  </style>
+</head>
+<body class="bg-neutral-950 text-neutral-50">
+
+  <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
+  <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
+
+  <!-- Detailansicht: natives <dialog> (Esc, Fokus, Hintergrundsperre inklusive); Karten rasten per scroll-snap ein -->
+  <dialog id="detail" class="m-0 p-0 w-screen h-dvh max-w-none max-h-none bg-transparent text-neutral-50 overflow-y-auto snap-y snap-mandatory overscroll-contain">
+    <button id="close" aria-label="Schließen"
+      class="fixed top-3 right-3 z-10 size-11 rounded-full bg-black/40 text-2xl leading-none backdrop-blur hover:bg-black/60">×</button>
+    <div id="dots" class="fixed bottom-4 inset-x-0 z-10 flex justify-center gap-2 pointer-events-none"></div>
+    <div id="cards"></div>
+  </dialog>
+
+  <script>
+    // Dummy-Inhalt, wird später ersetzt. Jeder Node hat gleich viele Detailkarten (DETAILS).
+    const DETAILS = 4;
+    const nodes = Array.from({ length: 12 }, (_, i) => ({
+      slug: `node${i + 1}`,
+      title: `Node ${i + 1}`,
+      text: 'Hier kommen später die Infos hin.',
+      hue: i * 30,
+    }));
+
+    const grid = document.getElementById('grid');
+    const cards = document.getElementById('cards');
+    const detail = document.getElementById('detail');
+
+    // Detailansicht: vertikal = Node wechseln, horizontal = Detailkarte wechseln
+    // Inhalt einer Detailkarte in em: Karte und Kachel (Detailkarte 1) zeigen dasselbe, nur die Basisschrift unterscheidet sich
+    const content = (n, c) => `
+      <h2 data-vt="title" class="text-[2.25em] leading-tight font-bold">${n.title}</h2>
+      <p data-vt="label" class="mt-[.5em] text-[.875em] uppercase tracking-widest opacity-60">Detail ${c + 1} / ${DETAILS}</p>
+      <p data-vt="text" class="mt-[1em] max-w-prose text-[1.125em] opacity-80">${n.text}</p>`;
+    const bg = (n, c) => `background:hsl(${n.hue} 55% ${35 + c * 6}%)`;
+
+    nodes.forEach((n, i) => {
+      // Kachel: Container, Schrift skaliert mit der Kachelbreite (cqw)
+      grid.insertAdjacentHTML('beforeend', `
+        <button data-i="${i}" style="${bg(n, 0)}"
+          class="[container-type:inline-size] aspect-square rounded-2xl hover:brightness-110 active:scale-95 transition-transform">
+          <div style="font-size:5cqw" class="h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
+        </button>`);
+      cards.insertAdjacentHTML('beforeend', `
+        <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          ${Array.from({ length: DETAILS }, (_, c) => `
+            <section style="${bg(n, c)}" class="snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
+        </div>`);
+    });
+
+    // Punkte: eine Anzeige für die aktuelle Detailkarte
+    const dots = document.getElementById('dots');
+    dots.innerHTML = '<i class="size-2 rounded-full bg-white/40 transition"></i>'.repeat(DETAILS);
+    let col = 0; // zuletzt sichtbare Detailkarte (gilt für alle Nodes)
+    const setDot = c => { col = c; [...dots.children].forEach((d, k) => d.classList.toggle('!bg-white', k === c)); };
+    setDot(0);
+
+    // Gleiche Detailkarte in allen Nodes: sobald ein Row ausgescrollt ist, ziehen die anderen nach
+    // ponytail: Debounce statt scrollend (Safari < 26 kennt es nicht)
+    let syncTimer;
+    cards.addEventListener('scroll', e => {
+      setDot(Math.round(e.target.scrollLeft / e.target.clientWidth));
+      syncUrl();
+      clearTimeout(syncTimer);
+      syncTimer = setTimeout(() => {
+        for (const row of cards.children) if (row !== e.target) row.scrollLeft = e.target.scrollLeft;
+      }, 100);
+    }, true);
+
+    // aktuell sichtbare Karte (Node i, Detailkarte c)
+    const current = () => {
+      const row = cards.children[Math.round(detail.scrollTop / detail.clientHeight)];
+      return { i: [...cards.children].indexOf(row), card: row.children[Math.round(row.scrollLeft / row.clientWidth)] };
+    };
+
+    // ponytail: ohne View-Transitions-Support (ältere Browser) wird einfach ohne Animation umgeschaltet
+    const transition = (dir, fn) => {
+      document.documentElement.dataset.dir = dir;
+      return document.startViewTransition ? document.startViewTransition(fn).finished : (fn(), Promise.resolve());
+    };
+    // Kachel/Karte und deren Texte bekommen gleiche Namen -> Elemente morphen einzeln (Position/Größe) statt zu überblenden
+    const name = (el, on) => {
+      el.style.viewTransitionName = on ? 'node' : '';
+      el.querySelectorAll('[data-vt]').forEach(e => e.style.viewTransitionName = on ? 'node-' + e.dataset.vt : '');
+    };
+
+    // URL der Detailansicht nach dem Scrollen nachziehen (kein neuer History-Eintrag)
+    let urlTimer;
+    const syncUrl = () => {
+      clearTimeout(urlTimer);
+      urlTimer = setTimeout(() => {
+        if (detail.open) history.replaceState(null, '', `/${nodes[current().i].slug}#${col + 1}`);
+      }, 150);
+    };
+    detail.addEventListener('scroll', syncUrl);
+
+    // Detailansicht auf Node i / Detailkarte c stellen (ohne Animation)
+    function show(i, c) {
+      if (!detail.open) detail.showModal();
+      detail.scrollTop = cards.children[i].offsetTop;
+      for (const r of cards.children) r.scrollLeft = c * r.clientWidth;
+      setDot(c);
+    }
+
+    function openAnim(i, c, animate) {
+      if (!animate) return show(i, c);
+      const tile = grid.children[i];
+      let card;
+      name(tile, true);
+      transition('open', () => {
+        name(tile, false);
+        show(i, c);
+        card = cards.children[i].children[c];
+        name(card, true);
+      }).then(() => name(card, false));
+    }
+
+    function closeAnim() {
+      const { i, card } = current();
+      const tile = grid.children[i];
+      name(card, true);
+      transition('close', () => {
+        name(card, false);
+        detail.close();
+        tile.scrollIntoView({ block: 'nearest' });
+        name(tile, true);
+      }).then(() => name(tile, false));
+    }
+
+    // Routing: /node1#3 = Node 1, Detailkarte 3; / = Raster
+    // ponytail: absolute Pfade, App muss im Root liegen; Server braucht Fallback auf index.html (siehe server.py)
+    function route(animate = true) {
+      const i = nodes.findIndex(n => '/' + n.slug === location.pathname);
+      const c = Math.min(Math.max((parseInt(location.hash.slice(1)) || 1) - 1, 0), DETAILS - 1);
+      if (i >= 0) detail.open ? show(i, c) : openAnim(i, c, animate);
+      else if (detail.open) closeAnim();
+    }
+    const go = url => { history.pushState(null, '', url); route(); };
+
+    grid.addEventListener('click', e => {
+      const tile = e.target.closest('[data-i]');
+      if (tile) go(`/${nodes[tile.dataset.i].slug}#${col + 1}`);
+    });
+    document.getElementById('close').onclick = () => go('/');
+    detail.addEventListener('cancel', e => { e.preventDefault(); go('/'); }); // Esc
+    addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
+    route(false); // direkter Aufruf einer URL
+  </script>
+</body>
+</html>
