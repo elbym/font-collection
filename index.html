@@ -69,7 +69,7 @@
       return `
         <div class="w-full h-full flex justify-center">
           <div style="width:min(100cqw,70cqh)" class="h-full min-h-0 [container-type:inline-size]">
-          <div class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[12cqw] text-left">
+          <div class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[14cqw] text-left">
             <!-- ponytail: Padding im inneren Div, damit cqw-Werte auf die Plakatbreite (nicht die Karte) beziehen -->
 
             <p style="${F};font-size:3.6cqw" class="leading-tight">${esc(n.title)}</p>
@@ -80,7 +80,8 @@
             ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 6)}
             ${seq('abcdefghijklmnopqrstuvwxyz', 6)}
             ${seq('0123456789', 6.5)}
-            ${seq(".,:;!?-–—_()[]{}/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
+            ${seq('.,:;!?-–—_()[]{}', 4.5)}
+            ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
           </div>
           </div>
         </div>`;
