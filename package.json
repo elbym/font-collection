@@ -2,13 +2,16 @@
   "name": "font-collection",
   "private": true,
   "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --watch"
+    "build": "eleventy && npm run css",
+    "css": "tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --minify",
+    "dev": "eleventy --watch & tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --watch"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",
+    "@tailwindcss/cli": "^4.3.2",
     "chroma-js": "^3.2.0",
     "fontkit": "^2.0.4",
-    "js-yaml": "^4.2.0"
+    "js-yaml": "^4.2.0",
+    "tailwindcss": "^4.3.2"
   }
 }
