@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Schriftsammlung als Raster aus Kacheln (Name + „Aa"), Klick öffnet eine Vollbild-Detailansicht mit Specimen Postern. UI ist die eine Datei `index.html`; **11ty ist nur das technische CMS** (erzeugt `fonts.json`, `fonts.css`, kopiert Schriften). Kein Linter, keine Tests. Tailwind v4 per CLI. Sprache der UI und Kommentare: Deutsch.
 
-Befehle: `npm install`, `npm run build` (11ty + Tailwind + Basispfad, Ausgabe `_site/`), `npm run dev` (Watch), `python3 server.py` (Port 8000 oder `PORT=…`; liefert `_site/`, Fallback auf `index.html` für Pfade wie `/bodoni`; `--prefix /font-collection` simuliert GitHub Pages). Zugriff vom Smartphone über die Rechner-IP im selben WLAN.
+Befehle: `npm install`, `npm run build` (11ty + Tailwind + Basispfad, Ausgabe `_site/`), `npm run dev` (baut, startet Eleventy-/Tailwind-Watch und `server.py`; Port 8000 oder `PORT=…`), `python3 server.py` allein ( liefert `_site/`, Fallback auf `index.html` für Pfade wie `/bodoni`; `--prefix /font-collection` simuliert GitHub Pages). Zugriff vom Smartphone über die Rechner-IP im selben WLAN.
 
 ## Schriften pflegen (11ty-CMS)
 

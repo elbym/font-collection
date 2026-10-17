@@ -14,6 +14,8 @@ npm run build
 python3 server.py        # http://localhost:8000
 ```
 
+Zum Entwickeln startet `npm run dev` Build, Watch und Server in einem Schritt (Port per `PORT=8010 npm run dev` änderbar).
+
 (Ein einfacher `http.server` genügt nicht, weil Adressen wie `/bodoni` auf `index.html` zurückfallen müssen.)
 
 ## Schrift hinzufügen
