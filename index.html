@@ -56,36 +56,37 @@
       <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>
       <p data-vt="aa" style="font-family:'${n.family}'" class="text-[8em] leading-none text-[color:var(--accent-ui)]">Aa</p>`;
     // --- Karte 2: Poster A (Zeichensatz) ---
+    // Plakat füllt den Viewport. Einheit --u: Hochformat = Breite (wie bisher, aber durch die Höhe begrenzt), Querformat = zwei Spalten mit eigener Einheit.
     const card2 = n => {
       const F = `font-family:'${n.family}'`;
+      const U = k => `calc(var(--u)*${k})`;
       // Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden); HTML-Sonderzeichen escapen
       const keep = s => [...s].filter(c => !n.glyphs || n.glyphs.includes(c.codePointAt(0))).join('');
       const esc = s => s.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
-      const seq = (s, size) => `<p style="${F};font-size:${size}cqw" class="whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
+      const seq = (s, size) => `<p style="${F};font-size:${U(size)}" class="whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
       const hero = keep(n.heroletter || 'Aa');
-      const heroSize = hero.length <= 2 ? 52 : hero.length <= 3 ? 36 : 26; // cqw, nach Länge
+      const heroSize = hero.length <= 2 ? 52 : hero.length <= 3 ? 36 : 26; // in --u, nach Länge
       const meta = [n.author, n.year].filter(Boolean).join(', ');
-      const rule = '<div class="h-[.4cqw] w-full bg-[color:var(--accent-ui)]"></div>';
+      const rule = `<div style="height:max(2px,${U(.4)})" class="w-full bg-[color:var(--accent-ui)]"></div>`;
       return `
-        <div class="w-full h-full flex justify-center">
-          <div style="width:min(100cqw,70cqh)" class="h-full min-h-0 [container-type:inline-size]">
-          <div class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[14cqw] text-left">
-            <!-- ponytail: Padding im inneren Div, damit cqw-Werte auf die Plakatbreite (nicht die Karte) beziehen -->
-
-            <p style="${F};font-size:3.6cqw" class="leading-tight">${esc(n.title)}</p>
-            ${meta ? `<p style="${F};font-size:2.8cqw" class="opacity-60">${esc(meta)}</p>` : ''}
-            ${rule}
-            <p style="${F};font-size:${heroSize}cqw" class="flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
-            ${rule}
-            <!-- Alphabet in zwei gleich langen Zeilen statt zufälligem Umbruch -->
-            ${seq('ABCDEFGHIJKLM', 7)}
-            ${seq('NOPQRSTUVWXYZ', 7)}
-            ${seq('abcdefghijklm', 7)}
-            ${seq('nopqrstuvwxyz', 7)}
-            ${seq('0123456789', 6.5)}
-            ${seq('.,:;!?-–—_()[]{}', 4.5)}
-            ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
-          </div>
+        <div style="--u:min(1cqw,.6cqh)" class="w-full h-full flex justify-center landscape:[--u:min(.55cqw,1.2cqh)]">
+          <div style="padding:${U(6)} ${U(6)} ${U(14)};gap:${U(2.5)}" class="w-[calc(var(--u)*100)] max-w-full h-full min-h-0 flex flex-col text-left landscape:w-full landscape:flex-row landscape:!p-[calc(var(--u)*6)] landscape:!gap-[calc(var(--u)*8)]">
+            <div style="gap:${U(2.5)}" class="flex-1 min-h-0 flex flex-col">
+              <p style="${F};font-size:${U(3.6)}" class="leading-tight">${esc(n.title)}</p>
+              ${meta ? `<p style="${F};font-size:${U(2.8)}" class="opacity-60">${esc(meta)}</p>` : ''}
+              ${rule}
+              <p style="${F};font-size:${U(heroSize)}" class="flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
+            </div>
+            <div style="gap:${U(2.5)}" class="flex flex-col landscape:flex-1 landscape:justify-center">
+              ${rule}
+              ${seq('ABCDEFGHIJKLM', 7)}
+              ${seq('NOPQRSTUVWXYZ', 7)}
+              ${seq('abcdefghijklm', 7)}
+              ${seq('nopqrstuvwxyz', 7)}
+              ${seq('0123456789', 7)}
+              ${seq('.,:;!?-–—_()[]{}', 4.5)}
+              ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
+            </div>
           </div>
         </div>`;
     };
