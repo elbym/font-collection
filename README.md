@@ -1,11 +1,10 @@
-# Schriftsammlung
+# Persönliche Sammlung von freien Schriftarten
 
-Raster aus Schriften (Name + „Aa"); Klick öffnet eine Vollbild-Detailansicht mit Specimen Postern.
+    Jeder hat doch eine Lieblingsschriftart, oder? ODER!?
 
-- Vertikal scrollen: nächste/vorherige Schrift
-- Horizontal scrollen: Karte 1 Name + „Aa", 2 Poster Zeichensatz, 3 Poster Schnitte/Fließtext, 4 Infos (Punkte unten zeigen die aktuelle); die Karte bleibt beim Wechsel der Schrift gleich
-- Hell/Dunkel folgt dem System; die Schriftfarbe dient nur als Akzent
-- × oder Esc schließt die Detailansicht
+Dies ist lediglich eine persönliche und subjektive Sammlung von Schriftarten, die mir im Gedächtnis geblieben sind, und begann als Vorwand, um den font_specimen_generator.py (den ich Claude gebeten hatte, zusammenzubasteln) vorzuführen. Stattdessen bin ich zu einer HTML-Vorschau gewechselt.
+
+Diese Liste ist auch beeinflusst von Teuderun und Free Font Library
 
 ## Ausprobieren
 
@@ -18,7 +17,27 @@ Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build 
 
 ## Schrift hinzufügen
 
-Ordner `src/webfonts/<kategorie>/<Familie>/` mit `.woff2`-Dateien und optional `meta.yaml` (`title`, `tags`, `fontauthor`, `fontyear`, `color`, `heroletter`, `license`, `url`, `comment`) anlegen, dann `npm run build` (bzw. `npm run dev` läuft im Watch weiter).
+1. **Ordner anlegen:** `src/webfonts/<kategorie>/<Familie>/`. Der Ordner ist nur ein Container und hat keinen Einfluss auf die URL (die kommt vom `slug`).
+2. **`.woff2`-Dateien ablegen:** Namensschema `Familie_Gewicht.woff2`, z. B. `Jost_Regular.woff2`, `Jost_Bold.woff2`, `Jost_BoldItalic.woff2`. Gewicht und Stil kommen aus dem Dateinamen.
+   Variable Schriften: Der Dateiname enthält `Variable`, ein `_vf`-Suffix oder eine Achsenliste in eckigen Klammern, z. B. `[wght]`, `[opsz,wght]`, `[MONO,CASL,wght,slnt,CRSV]`. Beliebige vierstellige Achsen-Tags sind erlaubt, nicht nur die registrierten. Sie bekommen auf Detailkarte 2 Slider und auf Karte 1 den Würfel.
+3. **`meta.yaml` anlegen** (optional): `tags` ist die wichtigste Angabe, der erste Tag ist die Kategorie.
+   ```yaml
+   title: Meine Schrift
+   tags: Sans, Humanist Sans
+   ```
+4. **Bauen:** `npm run build` (bzw. `npm run dev` läuft im Watch weiter). Die Schrift erscheint im Raster und unter `/<slug>`.
+
+| Feld | Beispiel | Wirkung |
+| --- | --- | --- |
+| `title` | `Meine Schrift` | Anzeigename |
+| `tags` | `Sans, Humanist Sans` | erster Tag = Kategorie, alle Tags dienen als Filter |
+| `color` | `steelblue` | Akzentfarbe (CSS-Farbname) |
+| `heroletter` | `Aa` | Zeichen(e) im großen Hero auf Poster A |
+| `fontauthor` | `Rasmus Andersson` | Gestalter |
+| `fontyear` | `2017` | Erscheinungsjahr |
+| `license` | `SIL Open Font License 1.1` | überschreibt die Auto-Erkennung aus `OFL.txt`/`LICENSE.txt` |
+| `url` | `https://…` | Projekt- bzw. Quelllink |
+| `comment` | `Hinweis` | Notiz auf der Infokarte |
 
 ## Struktur und Konventionen
 

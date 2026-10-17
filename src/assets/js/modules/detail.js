@@ -1,6 +1,7 @@
 // @ts-check
 import { BASE, DETAILS, state } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
+import { cube } from './cards/cube.js';
 import { acc, content } from './cards/index.js';
 
 /** @type {HTMLDialogElement} */ let detail;
@@ -11,9 +12,10 @@ import { acc, content } from './cards/index.js';
 /** Detailkarten einer Row erst bei Bedarf erzeugen (Row ± 1 Bildschirm im Dialog, oder direkt per show()). @param {HTMLElement} row */
 function fill(row) {
   if (row.firstChild) return;
-  const n = state.nodes[[...cards.children].indexOf(row)];
+  const i = [...cards.children].indexOf(row);
+  const n = state.nodes[i];
   row.innerHTML = Array.from({ length: DETAILS }, (_, c) => `
-        <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('');
+        <section style="${acc(n)}" class="acc relative bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}${c || !n.axes ? '' : cube(n, i)}</section>`).join('');
   row.scrollLeft = state.col * row.clientWidth;
 }
 

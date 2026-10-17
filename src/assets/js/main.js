@@ -3,6 +3,7 @@
 import { state } from './state.js';
 import { init as initGrid } from './modules/grid.js';
 import { init as initDetail } from './modules/detail.js';
+import { init as initCube } from './modules/cube.js';
 import { init as initAxes } from './modules/axes.js';
 import { init as initRouter } from './modules/router.js';
 
@@ -12,4 +13,5 @@ state.nodes = await (await fetch('fonts.json')).json();
 initGrid();
 initDetail();
 initAxes();
+initCube();
 initRouter();
