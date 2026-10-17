@@ -50,7 +50,35 @@
       <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>
       <p data-vt="aa" style="font-family:'${n.family}'" class="text-[8em] leading-none text-[color:var(--accent-ui)]">Aa</p>`;
     // --- Karte 2: Poster A (Zeichensatz) ---
-    const card2 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Poster A</p>`;
+    const card2 = n => {
+      const F = `font-family:'${n.family}'`;
+      // Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden); HTML-Sonderzeichen escapen
+      const keep = s => [...s].filter(c => !n.glyphs || n.glyphs.includes(c.codePointAt(0))).join('');
+      const esc = s => s.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+      const seq = (s, size) => `<p style="${F};font-size:${size}cqw" class="break-all leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
+      const hero = keep(n.heroletter || 'Aa');
+      const heroSize = hero.length <= 2 ? 52 : hero.length <= 3 ? 36 : 26; // cqw, nach Länge
+      const meta = [n.author, n.year].filter(Boolean).join(', ');
+      const rule = '<div class="h-[.4cqw] w-full bg-[color:var(--accent-ui)]"></div>';
+      return `
+        <div class="w-full h-full flex justify-center">
+          <div style="width:min(100cqw,70cqh)" class="h-full min-h-0 [container-type:inline-size]">
+          <div class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[12cqw] text-left">
+            <!-- ponytail: Padding im inneren Div, damit cqw-Werte auf die Plakatbreite (nicht die Karte) beziehen -->
+
+            <p style="${F};font-size:3.6cqw" class="leading-tight">${esc(n.title)}</p>
+            ${meta ? `<p style="${F};font-size:2.8cqw" class="opacity-60">${esc(meta)}</p>` : ''}
+            ${rule}
+            <p style="${F};font-size:${heroSize}cqw" class="flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
+            ${rule}
+            ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 6)}
+            ${seq('abcdefghijklmnopqrstuvwxyz', 6)}
+            ${seq('0123456789', 6.5)}
+            ${seq(".,:;!?-–—_()[]{}/\\&@#%*+=<>|~^\"'„“”‚‘’…", 4.5)}
+          </div>
+          </div>
+        </div>`;
+    };
     // --- Karte 3: Poster B (Schnitte, Fließtext) ---
     const card3 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Poster B</p>`;
     // --- Karte 4: Infos ---
