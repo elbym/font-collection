@@ -4,6 +4,9 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     "index.html": "index.html",
+    "src/favicon.svg": "favicon.svg",
+    "src/img": "img",
+    "src/force-graph.min.js": "force-graph.min.js",
     "src/webfonts": "webfonts",
     // GitHub Pages: .nojekyll verhindert Jekyll; 404.html (Kopie von index.html) erzeugt scripts/set-base.js
     ".nojekyll": ".nojekyll",

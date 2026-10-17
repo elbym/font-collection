@@ -1,4 +1,6 @@
 @import "tailwindcss";
 @source "../../index.html";
 @source "../assets/js";
+@source "../alternatives.njk";
+@source "../network.njk";
 @import "./app.css";
