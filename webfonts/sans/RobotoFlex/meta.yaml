@@ -1,0 +1,15 @@
+title: Roboto Flex
+url: https://fonts.google.com/specimen/Roboto+Flex
+
+tags: Sans, Neo-Grotesk, Variable
+
+fontauthor: Font Bureau, Google
+fontyear: 2021
+
+heroletter: Rf
+heroword: "Roboto"
+herostyle: bold
+color: royalblue
+
+content: |
+  Roboto Flex ist die vollständig variable Neufassung von Googles meistgenutzter Systemschrift, entwickelt vom Font Bureau. Mit zwölf Variationsachsen — darunter Gewicht, Breite, optische Größe und Grade — deckt sie das gesamte typografische Spektrum in einer einzigen Datei ab. Referenz-Implementierung für hochdimensionale Variable Fonts.

@@ -1,0 +1,18 @@
+title: Overpass
+url: https://github.com/RedHatOfficial/Overpass
+wikipedia: https://en.wikipedia.org/wiki/Overpass_(typeface)
+
+tags: Sans, Humanist, Grotesk
+
+comment: "Open-Source-Schrift, inspiriert von Highway Gothic – der Schrift auf amerikanischen Straßenschildern."
+
+fontauthor: Dave Crossland
+fontyear: 2021
+
+heroletter: Sf
+heroword: San José
+herostyle:
+color: forestgreen
+border: lines.svg
+content: |
+  Overpass wurde von Dave Crossland in Anlehnung an Highway Gothic entworfen, die Schrift auf amerikanischen Straßenschildern und Autobahnmarkierungen. Von Red Hat als Open Source gepflegt, verbindet sie die sachliche Lesbarkeit eines Leitsystemfonts mit zeitgemäßen OpenType-Features.

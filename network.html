@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Netzwerk der Schriften</title>
+  <meta name="description" content="Schriften, Schlagwörter und Designer als Netzwerk: Wer ist womit verbunden?">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="tailwind.css">
+</head>
+<body class="flex h-dvh flex-col bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
+<header class="sticky top-0 z-20 flex h-12 shrink-0 items-center gap-3 px-3 sm:px-4 bg-neutral-100/80 backdrop-blur dark:bg-neutral-950/80 border-b border-neutral-300 dark:border-neutral-800">
+  <h1 class="text-base font-semibold"><a href="./">Schriften</a></h1>
+  <a href="alternatives.html" class="ml-auto text-sm underline">Alternativen</a>
+  <a href="network.html" class="text-sm underline">Netzwerk</a>
+</header>
+<main id="net" class="min-h-0 flex-1"></main>
+<script src="force-graph.min.js"></script>
+<script>
+(async () => {
+  const fonts = await (await fetch('fonts.json')).json();
+  const nodes = new Map();
+  const links = [];
+  const add = (id, name, group, extra) => {
+    if (!nodes.has(id)) nodes.set(id, { id, name, group, deg: 0, ...extra });
+    nodes.get(id).deg++;
+  };
+  for (const f of fonts) {
+    const fid = 'f:' + f.slug;
+    nodes.set(fid, { id: fid, name: f.title, group: 'font', slug: f.slug, cat: f.category, deg: 0 });
+    for (const t of f.tags || []) { add('t:' + t.toLowerCase(), t, 'tag'); links.push({ source: fid, target: 't:' + t.toLowerCase() }); }
+    for (const a of (f.author || '').split(',').map((s) => s.trim()).filter(Boolean)) {
+      add('a:' + a.toLowerCase(), a, 'author'); links.push({ source: fid, target: 'a:' + a.toLowerCase() });
+    }
+    nodes.get(fid).deg = links.filter((l) => l.source === fid).length;
+  }
+
+  const COLORS = { Sans: '#4c6ef5', Serif: '#f76707', Display: '#e64980', Monospace: '#12b886', Script: '#be4bdb', Blackletter: '#862e2e' };
+  // Cluster: Schriften zu ihrer Kategorie auf einem Kreis, Schlagwörter/Designer zum Mittel ihrer Schriften
+  const cats = [...new Set(fonts.map((f) => f.category))];
+  const center = (c) => { const a = (2 * Math.PI * cats.indexOf(c)) / cats.length; return { x: Math.cos(a), y: Math.sin(a) }; };
+  const acc = new Map();
+  for (const n of nodes.values()) if (n.group === 'font') n.target = center(n.cat);
+  for (const l of links) {
+    const t = nodes.get(l.source).target, o = nodes.get(l.target);
+    const a = acc.get(o.id) || { x: 0, y: 0, n: 0 };
+    a.x += t.x; a.y += t.y; a.n++; acc.set(o.id, a);
+  }
+  for (const [id, a] of acc) nodes.get(id).target = { x: a.x / a.n, y: a.y / a.n };
+  const RADIUS = 300;
+  const cluster = (alpha) => {
+    for (const n of nodes.values()) {
+      n.vx += (n.target.x * RADIUS - n.x) * 0.3 * alpha;
+      n.vy += (n.target.y * RADIUS - n.y) * 0.3 * alpha;
+    }
+  };
+
+  const dark = matchMedia('(prefers-color-scheme: dark)');
+  const el = document.getElementById('net');
+  const r = (n) => 3 + Math.sqrt(n.deg) * 2;
+  const graph = ForceGraph()(el)
+    .graphData({ nodes: [...nodes.values()], links })
+    .nodeLabel('name')
+    .linkColor(() => 'rgba(128,128,128,.4)')
+    .nodeCanvasObject((n, ctx, scale) => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r(n), 0, 2 * Math.PI);
+      ctx.fillStyle = n.group === 'font' ? COLORS[n.cat] || '#888' : n.group === 'tag' ? '#a3a3a3' : '#525252';
+      ctx.fill();
+      {
+        const font = n.group === 'font';
+        ctx.font = (font ? 12 : 9) / scale + 'px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = dark.matches ? (font ? '#e5e5e5' : '#a3a3a3') : (font ? '#262626' : '#737373');
+        ctx.fillText(n.name, n.x, n.y + r(n) + 2);
+      }
+    })
+    .nodePointerAreaPaint((n, color, ctx) => { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(n.x, n.y, r(n), 0, 2 * Math.PI); ctx.fill(); })
+    .onNodeClick((n) => { if (n.slug) location.href = './' + n.slug + '#1'; });
+  graph.d3Force('charge').strength((n) => -60 * r(n));
+  graph.d3Force('cluster', cluster);
+  graph.d3Force('link').distance(50);
+  const size = () => graph.width(el.clientWidth).height(el.clientHeight);
+  size();
+  addEventListener('resize', size);
+  graph.onEngineStop(() => { if (!graph.__zoomed) { graph.__zoomed = true; graph.zoomToFit(600, 40); } });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+title: Libertinus Mono
+url: https://github.com/alerque/libertinus
+wikipedia: "https://de.wikipedia.org/wiki/Linux_Libertine"
+
+tags: Monospace
+
+fontauthor: Philipp H. Poll, Caleb Maclennan
+fontyear: 2012
+
+heroletter: Ll
+heroword: Monoton
+color: darkolivegreen
+
+content: |
+  Libertinus Mono ist der Monospace-Begleiter zum Libertinus-Projekt und schließt eine Lücke in der Schriftfamilie. Als aktiv gepflegter Fork von Linux Libertine bewahrt die Schrift die universelle Verwendbarkeit und erweitert diese um vollständige Unicode-Unterstützung. Die Monospace-Variante eignet sich hervorragend für Code, technische Dokumentation und typografische Arbeiten, die eine gleichbreitende Schrift erfordern.
