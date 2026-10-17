@@ -1,0 +1,14 @@
+{
+  "name": "font-collection",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "chroma-js": "^3.2.0",
+    "fontkit": "^2.0.4",
+    "js-yaml": "^4.2.0"
+  }
+}
