@@ -8,6 +8,7 @@ module.exports = function () {
 
   for (const n of fonts().list.filter((x) => x.isLeaf)) {
     const family = `f-${n.url.split("/").pop()}`;
+    blocks.push(`.${family} { font-family: ${family}; }`); // Klasse zum Setzen der Schrift (statt Inline-Style)
 
     // Variable Fonts liefern pro Gewicht einen virtuellen Eintrag mit derselben Datei:
     // je Datei und Stil ein Block mit Gewichtsbereich min–max.

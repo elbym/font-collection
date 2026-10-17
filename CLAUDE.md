@@ -12,6 +12,7 @@ Befehle: `npm install`, `npm run build` (11ty + Tailwind + Basispfad, Ausgabe `_
 
 - Schrift hinzufügen = Ordner `src/webfonts/<kategorie>/<Familie>/` mit `.woff2` und optional `meta.yaml` (`title`, `tags` – erster Tag = Kategorie, `fontauthor`, `fontyear`, `color`, `heroletter`, `comment`, `url`, `license`). Gewicht/Stil kommen aus den Dateinamen. Details: `src/_data/fonts.js` (aus dem Vorlageprojekt `font-collection` übernommen; Konventionen stehen in dessen CLAUDE.md).
 - `src/fonts.json.njk` (Daten aus `src/_data/fontsJson.js`) → `/fonts.json`: pro Schrift `slug`, `title`, `family` (CSS-Familie `f-<slug>`), `accent`, `tags`, `author`, `year`, `license`, `source`, `comment`, `heroletter`, `weights`, `variable`, `glyphs`. `src/fonts.css.njk` → `/fonts.css` (ein `@font-face` pro Datei und Stil; lädt erst bei Gebrauch).
+- Schrift setzen per Klasse: `fonts.css` enthält pro Schrift `.f-<slug> { font-family: f-<slug> }`; im JS steht `class="${n.family} …"`, kein Inline-`font-family`. Inline-Styles nur für echte Laufzeitdaten (`--accent` an Kachel/Karte, Zeilengröße von Poster B nach Schnittanzahl, geschrumpfte Alphabet-Größe von Poster A); feste Werte als Tailwind-Klasse (`text-[length:min(2.4cqw,2.6cqh)]`, `p-[max(5cqw,3.75rem)_5cqw_5cqw]`).
 - `color` ist nur Akzentfarbe (`--accent`, in `.acc` zu `--accent-ui` für hell/dunkel abgeleitet; Nutzung per `text-[color:var(--accent-ui)]` o. ä.); Hintergründe folgen `prefers-color-scheme` (`dark:`-Klassen, kein Umschalter).
 
 ## Architektur
