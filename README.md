@@ -3,24 +3,22 @@
 Raster aus Schriften (Name + „Aa"); Klick öffnet eine Vollbild-Detailansicht mit Specimen Postern.
 
 - Vertikal scrollen: nächste/vorherige Schrift
-- Horizontal scrollen: Karte 1 Name + „Aa", 2 Poster Zeichensatz, 3 Poster Schnitte/Fließtext, 4 Infos (Punkte unten zeigen die aktuelle)
+- Horizontal scrollen: Karte 1 Name + „Aa", 2 Poster Zeichensatz, 3 Poster Schnitte/Fließtext, 4 Infos (Punkte unten zeigen die aktuelle); die Karte bleibt beim Wechsel der Schrift gleich
+- Hell/Dunkel folgt dem System; die Schriftfarbe dient nur als Akzent
 - × oder Esc schließt die Detailansicht
 
 ## Ausprobieren
 
 ```
 npm install
-npm run build
-python3 server.py        # http://localhost:8000
+npm run dev              # baut, startet Watch und Server: http://localhost:8000
 ```
 
-Zum Entwickeln startet `npm run dev` Build, Watch und Server in einem Schritt (Port per `PORT=8010 npm run dev` änderbar).
-
-(Ein einfacher `http.server` genügt nicht, weil Adressen wie `/bodoni` auf `index.html` zurückfallen müssen.)
+Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build && python3 server.py`. Ein einfacher `http.server` genügt nicht, weil Adressen wie `/bodoni` auf `index.html` zurückfallen müssen.
 
 ## Schrift hinzufügen
 
-Ordner `src/webfonts/<kategorie>/<Familie>/` mit `.woff2`-Dateien und optional `meta.yaml` anlegen, dann `npm run build`.
+Ordner `src/webfonts/<kategorie>/<Familie>/` mit `.woff2`-Dateien und optional `meta.yaml` (`title`, `tags`, `fontauthor`, `fontyear`, `color`, `heroletter`, `license`, `url`, `comment`) anlegen, dann `npm run build` (bzw. `npm run dev` läuft im Watch weiter).
 
 ## Adressen
 
@@ -29,4 +27,4 @@ Ordner `src/webfonts/<kategorie>/<Familie>/` mit `.woff2`-Dateien und optional `
 
 ## GitHub Pages
 
-`npm run build:pages` (Basispfad `/font-collection/`), Ergebnis in `_site/`.
+`npm run build:pages` (Basispfad `/font-collection/`), Ergebnis in `_site/`; `npm run deploy` pusht `_site/` auf den Branch `gh-pages` von `origin` (Force-Push, vorher `origin` prüfen). Details in `CLAUDE.md`, Migrationsplan in `plan.md`.
