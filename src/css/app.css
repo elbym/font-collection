@@ -1,0 +1,10 @@
+/* Kachel <-> Karte: gemeinsames Element "node" wird per View Transition ineinander überführt */
+::view-transition-group(*) { animation-duration: .4s; animation-timing-function: cubic-bezier(.2,.8,.2,1); }
+/* Ecken: Radius der Kachel (rounded-2xl = 1rem) läuft beim Öffnen auf 0, beim Schließen zurück */
+::view-transition-image-pair(node) { overflow: clip; animation: .4s cubic-bezier(.2,.8,.2,1) both radius; }
+html[data-dir=close]::view-transition-image-pair(node) { animation-direction: reverse; }
+@keyframes radius { from { border-radius: 1rem; } to { border-radius: 0; } }
+/* Akzentfarbe der Schrift (--accent, inline gesetzt): auf hellem Grund abgedunkelt, auf dunklem aufgehellt */
+.acc { --accent-ui: color-mix(in oklab, var(--accent), black 15%); }
+@media (prefers-color-scheme: dark) { .acc { --accent-ui: color-mix(in oklab, var(--accent), white 25%); } }
+@media (prefers-reduced-motion: reduce) { ::view-transition-group(*) { animation-duration: 0s; } }
