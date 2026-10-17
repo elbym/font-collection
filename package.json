@@ -2,9 +2,11 @@
   "name": "font-collection",
   "private": true,
   "scripts": {
-    "build": "eleventy && npm run css",
+    "build": "eleventy && npm run css && node scripts/set-base.js",
+    "build:pages": "BASE_PATH=/font-collection/ npm run build",
     "css": "tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --minify",
-    "dev": "eleventy --watch & tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --watch"
+    "dev": "eleventy --watch & tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --watch",
+    "deploy": "npm run build:pages && cd _site && git init -q && git add -A && git commit -qm deploy && git push \"$(git -C .. remote get-url origin)\" HEAD:gh-pages --force"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5",

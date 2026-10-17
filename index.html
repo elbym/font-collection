@@ -192,7 +192,7 @@
     const syncUrl = () => {
       clearTimeout(urlTimer);
       urlTimer = setTimeout(() => {
-        if (detail.open) history.replaceState(null, '', `/${nodes[current().i].slug}#${col + 1}`);
+        if (detail.open) history.replaceState(null, '', `${BASE}${nodes[current().i].slug}#${col + 1}`);
       }, 150);
     };
     detail.addEventListener('scroll', syncUrl);
@@ -230,10 +230,11 @@
       }).then(() => name(tile, false));
     }
 
-    // Routing: /node1#3 = Node 1, Detailkarte 3; / = Raster
-    // ponytail: absolute Pfade, App muss im Root liegen; Server braucht Fallback auf index.html (siehe server.py)
+    // Routing: <BASE>node1#3 = Node 1, Detailkarte 3; <BASE> = Raster
+    // BASE kommt aus <base href> (Root lokal, /font-collection/ auf GitHub Pages, siehe scripts/set-base.js)
+    const BASE = new URL(document.baseURI).pathname;
     function route(animate = true) {
-      const i = nodes.findIndex(n => '/' + n.slug === location.pathname);
+      const i = nodes.findIndex(n => n.slug === location.pathname.slice(BASE.length));
       const c = Math.min(Math.max((parseInt(location.hash.slice(1)) || 1) - 1, 0), DETAILS - 1);
       if (i >= 0) detail.open ? show(i, c) : openAnim(i, c, animate);
       else if (detail.open) closeAnim();
@@ -242,10 +243,10 @@
 
     grid.addEventListener('click', e => {
       const tile = e.target.closest('[data-i]');
-      if (tile) go(`/${nodes[tile.dataset.i].slug}#${col + 1}`);
+      if (tile) go(`${BASE}${nodes[tile.dataset.i].slug}#${col + 1}`);
     });
-    document.getElementById('close').onclick = () => go('/');
-    detail.addEventListener('cancel', e => { e.preventDefault(); go('/'); }); // Esc
+    document.getElementById('close').onclick = () => go(BASE);
+    detail.addEventListener('cancel', e => { e.preventDefault(); go(BASE); }); // Esc
     addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
     route(false); // direkter Aufruf einer URL
   </script>
