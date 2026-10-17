@@ -60,8 +60,9 @@
       // Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden); HTML-Sonderzeichen escapen
       const keep = s => [...s].filter(c => !n.glyphs || n.glyphs.includes(c.codePointAt(0))).join('');
       const esc = s => s.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
-      // fit: Zeile bekommt data-fit und wird nach dem Öffnen auf die Plakatbreite geschrumpft (siehe fitAlphabet); size = Startgröße als Tailwind-Klasse
-      const seq = (s, size, fit) => `<p ${fit ? 'data-fit' : ''} class="${size} whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
+      const seq = (s, size) => `<p class="${size} whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(s))}</p>`;
+      // Alphabet in einer Zeile: 3.2cqw reicht für die breiteste Schrift (Climate Crisis, ca. 27em je Zeile in 88cqw); Wert anheben, wenn diese Schrift wegfällt
+      const ALPHA = 'text-[3.2cqw]';
       const hero = keep(n.heroletter || 'Aa');
       const heroSize = hero.length <= 2 ? 'text-[52cqw]' : hero.length <= 3 ? 'text-[36cqw]' : 'text-[26cqw]'; // nach Länge
       const meta = [n.author, n.year].filter(Boolean).join(', ');
@@ -77,8 +78,8 @@
             ${rule}
             <p class="${heroSize} flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]">${esc(hero)}</p>
             ${rule}
-            ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'text-[8cqw]', true)}
-            ${seq('abcdefghijklmnopqrstuvwxyz', 'text-[8cqw]', true)}
+            ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', ALPHA)}
+            ${seq('abcdefghijklmnopqrstuvwxyz', ALPHA)}
             ${seq('0123456789', 'text-[6.5cqw]')}
             ${seq('.,:;!?-–—_()[]{}', 'text-[4.5cqw]')}
             ${seq("/\\&@#%*+=<>|~^\"'„“”‚‘’…", 'text-[4.5cqw]')}
@@ -86,17 +87,6 @@
           </div>
         </div>`;
     };
-    // Alphabet-Zeilen von Poster A: eine Zeile je Alphabet, beide Zeilen einer Karte bekommen dieselbe (kleinste nötige) Größe.
-    // Übersprungene Karten (content-visibility:auto) haben Breite 0 und werden erst beim Sichtbarwerden angepasst.
-    const fitSection = sec => {
-      const rows = [...sec.querySelectorAll('[data-fit]')].filter(e => e.clientWidth);
-      if (!rows.length) return;
-      rows.forEach(e => e.style.fontSize = ''); // zurück auf die Klassen-Größe
-      const k = Math.min(1, ...rows.map(e => e.clientWidth / e.scrollWidth));
-      if (k < 1) rows.forEach(e => e.style.fontSize = parseFloat(getComputedStyle(e).fontSize) * k + 'px');
-    };
-    const fitAlphabet = () => cards.querySelectorAll('section').forEach(fitSection);
-    cards.addEventListener('contentvisibilityautostatechange', e => { if (!e.skipped) fitSection(e.target); }, true);
     // --- Karte 3: Poster B (Schnitte, Fließtext) ---
     const card3 = n => {
       const PANGRAM = 'Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.';
@@ -216,7 +206,6 @@
       detail.scrollTop = cards.children[i].offsetTop;
       for (const r of cards.children) r.scrollLeft = c * r.clientWidth;
       setDot(c);
-      fitAlphabet();
     }
 
     function openAnim(i, c, animate) {
@@ -262,9 +251,6 @@
     document.getElementById('close').onclick = () => go(BASE);
     detail.addEventListener('cancel', e => { e.preventDefault(); go(BASE); }); // Esc
     addEventListener('popstate', () => route()); // Zurück/Vor und manuell geänderter Hash
-    document.fonts.ready.then(fitAlphabet); // Schrift erst geladen -> Breite erst dann messbar
-    let fitFrame;
-    addEventListener('resize', () => { cancelAnimationFrame(fitFrame); fitFrame = requestAnimationFrame(fitAlphabet); });
     route(false); // direkter Aufruf einer URL
   </script>
 </body>
