@@ -10,4 +10,4 @@ class Handler(SimpleHTTPRequestHandler):
         p = super().translate_path(path)
         return p if os.path.exists(p) else super().translate_path("/index.html")
 
-ThreadingHTTPServer(("", 8000), Handler).serve_forever()
+ThreadingHTTPServer(("", int(os.environ.get("PORT", 8000))), Handler).serve_forever()

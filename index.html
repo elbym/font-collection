@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Nodes</title>
+  <title>Schriften</title>
+  <base href="/">
+  <link rel="stylesheet" href="fonts.css">
   <!-- ponytail: Tailwind Play-CDN reicht zum Testen; für Produktion Tailwind CLI nutzen -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -13,63 +15,70 @@
     ::view-transition-image-pair(node) { overflow: clip; animation: .4s cubic-bezier(.2,.8,.2,1) both radius; }
     html[data-dir=close]::view-transition-image-pair(node) { animation-direction: reverse; }
     @keyframes radius { from { border-radius: 1rem; } to { border-radius: 0; } }
+    /* Akzentfarbe der Schrift (--accent, inline gesetzt): auf hellem Grund abgedunkelt, auf dunklem aufgehellt */
+    .acc { --accent-ui: color-mix(in oklab, var(--accent), black 15%); }
+    @media (prefers-color-scheme: dark) { .acc { --accent-ui: color-mix(in oklab, var(--accent), white 25%); } }
     @media (prefers-reduced-motion: reduce) { ::view-transition-group(*) { animation-duration: 0s; } }
   </style>
 </head>
-<body class="bg-neutral-950 text-neutral-50">
+<body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
 
   <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
   <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
 
   <!-- Detailansicht: natives <dialog> (Esc, Fokus, Hintergrundsperre inklusive); Karten rasten per scroll-snap ein -->
-  <dialog id="detail" class="m-0 p-0 w-screen h-dvh max-w-none max-h-none bg-transparent text-neutral-50 overflow-y-auto snap-y snap-mandatory overscroll-contain">
+  <dialog id="detail" class="m-0 p-0 w-screen h-dvh max-w-none max-h-none bg-transparent text-neutral-900 dark:text-neutral-50 overflow-y-auto snap-y snap-mandatory overscroll-contain">
     <button id="close" aria-label="Schließen"
-      class="fixed top-3 right-3 z-10 size-11 rounded-full bg-black/40 text-2xl leading-none backdrop-blur hover:bg-black/60">×</button>
+      class="fixed top-3 right-3 z-10 size-11 rounded-full bg-neutral-500/20 text-2xl leading-none backdrop-blur hover:bg-neutral-500/40">×</button>
     <div id="dots" class="fixed bottom-4 inset-x-0 z-10 flex justify-center gap-2 pointer-events-none"></div>
     <div id="cards"></div>
   </dialog>
 
-  <script>
-    // Dummy-Inhalt, wird später ersetzt. Jeder Node hat gleich viele Detailkarten (DETAILS).
+  <script type="module">
+    // Schriften kommen aus dem 11ty-CMS (fonts.json). Jede Schrift hat gleich viele Detailkarten (DETAILS).
     const DETAILS = 4;
-    const nodes = Array.from({ length: 12 }, (_, i) => ({
-      slug: `node${i + 1}`,
-      title: `Node ${i + 1}`,
-      text: 'Hier kommen später die Infos hin.',
-      hue: i * 30,
-    }));
+    const nodes = await (await fetch('fonts.json')).json();
 
     const grid = document.getElementById('grid');
     const cards = document.getElementById('cards');
     const detail = document.getElementById('detail');
 
-    // Detailansicht: vertikal = Node wechseln, horizontal = Detailkarte wechseln
-    // Inhalt einer Detailkarte in em: Karte und Kachel (Detailkarte 1) zeigen dasselbe, nur die Basisschrift unterscheidet sich
-    const content = (n, c) => `
-      <h2 data-vt="title" class="text-[2.25em] leading-tight font-bold">${n.title}</h2>
-      <p data-vt="label" class="mt-[.5em] text-[.875em] uppercase tracking-widest opacity-60">Detail ${c + 1} / ${DETAILS}</p>
-      <p data-vt="text" class="mt-[1em] max-w-prose text-[1.125em] opacity-80">${n.text}</p>`;
-    const bg = (n, c) => `background:hsl(${n.hue} 55% ${35 + c * 6}%)`;
+    // Inhalt der Detailkarten in em/cqw: Kachel = Karte 1 verkleinert. Pro Karte ein eigener Block (CARDS), damit sie einzeln änderbar sind.
+    // --- Karte 1: Name + Aa (auch Kachel) ---
+    const card1 = n => `
+      <p data-vt="title" style="font-family:'${n.family}'" class="text-[1.5em] leading-tight">${n.title}</p>
+      <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>
+      <p data-vt="aa" style="font-family:'${n.family}'" class="text-[8em] leading-none text-[color:var(--accent-ui)]">Aa</p>`;
+    // --- Karte 2: Poster A (Zeichensatz) ---
+    const card2 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Poster A</p>`;
+    // --- Karte 3: Poster B (Schnitte, Fließtext) ---
+    const card3 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Poster B</p>`;
+    // --- Karte 4: Infos ---
+    const card4 = n => `<p class="text-[1.5em]">${n.title}</p><p class="opacity-60">Infos</p>`;
+    // --- Ende Karten ---
+    const CARDS = [card1, card2, card3, card4];
+    const content = (n, c) => CARDS[c](n);
+    const acc = n => `--accent:${n.accent}`;
 
     nodes.forEach((n, i) => {
       // Kachel: Container, Schrift skaliert mit der Kachelbreite (cqw)
       grid.insertAdjacentHTML('beforeend', `
-        <button data-i="${i}" style="${bg(n, 0)}"
-          class="[container-type:inline-size] aspect-square rounded-2xl hover:brightness-110 active:scale-95 transition-transform">
+        <button data-i="${i}" style="${acc(n)}"
+          class="acc [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
           <div style="font-size:5cqw" class="h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
         </button>`);
       cards.insertAdjacentHTML('beforeend', `
         <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           ${Array.from({ length: DETAILS }, (_, c) => `
-            <section style="${bg(n, c)}" class="snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
+            <section style="${acc(n)}" class="acc bg-white dark:bg-neutral-950 [container-type:size] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('')}
         </div>`);
     });
 
     // Punkte: eine Anzeige für die aktuelle Detailkarte
     const dots = document.getElementById('dots');
-    dots.innerHTML = '<i class="size-2 rounded-full bg-white/40 transition"></i>'.repeat(DETAILS);
+    dots.innerHTML = '<i class="size-2 rounded-full bg-neutral-500/40 transition"></i>'.repeat(DETAILS);
     let col = 0; // zuletzt sichtbare Detailkarte (gilt für alle Nodes)
-    const setDot = c => { col = c; [...dots.children].forEach((d, k) => d.classList.toggle('!bg-white', k === c)); };
+    const setDot = c => { col = c; [...dots.children].forEach((d, k) => d.classList.toggle('!bg-neutral-500', k === c)); };
     setDot(0);
 
     // Gleiche Detailkarte in allen Nodes: sobald ein Row ausgescrollt ist, ziehen die anderen nach
