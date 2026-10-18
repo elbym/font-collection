@@ -1,5 +1,6 @@
 {
   "name": "font-collection",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "eleventy && node scripts/subset-fonts.js && npm run css && npm run js && node scripts/set-base.js",

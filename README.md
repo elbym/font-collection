@@ -84,3 +84,7 @@ Neue Datei in `modules/cards/`, in `cards/index.js` in `CARDS` eintragen und `DE
 ## GitHub Pages
 
 `npm run build:pages` (Basispfad `/font-collection/`), Ergebnis in `_site/`; `npm run deploy` pusht `_site/` auf den Branch `gh-pages` von `origin` (Force-Push, vorher `origin` prüfen). Details in `CLAUDE.md`, Migrationsplan in `plan.md`.
+
+## Lizenz
+
+Der Quellcode steht unter der [MIT-Lizenz](LICENSE). Die Schriftdateien unter `src/webfonts/` sind davon ausgenommen und stehen unter den Lizenzen ihrer jeweiligen Urheber (meist SIL Open Font License 1.1).
