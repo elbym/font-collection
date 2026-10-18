@@ -1,5 +1,6 @@
 // @ts-check
 import { BASE, state } from '../state.js';
+import { esc } from '../utils/html.js';
 import { acc, tile } from './cards/index.js';
 import { go } from './router.js';
 
@@ -11,8 +12,9 @@ export function init(root = document) {
   // Kacheln in einem Rutsch einfügen
   grid.innerHTML = state.nodes.map((n, i) => `
       <button data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
-        class="acc scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+        class="acc relative scroll-mt-12[container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
         <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
+        <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-xs text-neutral-500 dark:text-neutral-400">${esc(n.title)}</span>
       </button>`).join('');
 
   // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
