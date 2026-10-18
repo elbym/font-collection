@@ -121,6 +121,7 @@ export function init(root = document) {
   let syncTimer;
   cards.addEventListener('scroll', (e) => {
     const row = /** @type {HTMLElement} */ (e.target);
+    if (!row.firstChild) return; // geleerte Row: scrollLeft springt auf 0, das darf die Spalte nicht zurücksetzen
     setDot(Math.round(row.scrollLeft / row.clientWidth));
     syncUrl();
     clearTimeout(syncTimer);
