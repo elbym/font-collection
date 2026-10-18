@@ -50,8 +50,10 @@ export function init(root = document) {
       await new Promise((r) => (window.requestIdleCallback || setTimeout)(r)); // ponytail: sequenziell im Leerlauf, damit die Übersicht nicht ruckelt
     }
   };
-  if (document.readyState === 'complete') preload();
-  else addEventListener('load', preload, { once: true });
+  if (matchMedia('(hover:hover)').matches) { // Smartphone: kein Hover, nicht vorladen
+    if (document.readyState === 'complete') preload();
+    else addEventListener('load', preload, { once: true });
+  }
 
   grid.addEventListener('pointerleave', hoverStop);
   grid.addEventListener('click', hoverStop, true); // vor dem Öffnen beenden
