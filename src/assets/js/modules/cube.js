@@ -9,7 +9,7 @@ function build(box) {
   const n = state.nodes[Number(box.dataset.cube)];
   const axes = Object.entries(n.axes ?? {}).slice(0, 3);
   const word = [...n.title.toUpperCase()].filter((c) => /\p{L}/u.test(c));
-  const GRID = Math.max(3, Math.min(6, word.length)); // Kantenlänge = Buchstabenzahl des Namens
+  const GRID = Math.max(3, Math.min(4, word.length)); // Kantenlänge = Buchstabenzahl, max. 4 (64 Spans; iOS-Speicher)
   const spacing = Math.min(box.clientWidth, box.clientHeight) / (GRID + 1);
   const half = (GRID - 1) / 2;
   const wghtOn = axes.findIndex(([tag]) => tag === 'wght');
@@ -17,7 +17,7 @@ function build(box) {
   for (let i = 0; i < GRID; i++) for (let j = 0; j < GRID; j++) for (let k = 0; k < GRID; k++) {
     const g = [i, j, k];
     const el = document.createElement('span');
-    el.className = 'absolute left-0 top-0 leading-none will-change-transform';
+    el.className = 'absolute left-0 top-0 leading-none';
     el.style.fontSize = `${spacing * 0.8}px`;
     el.textContent = word[g[wghtOn === 0 ? 2 : 0] % word.length];
     el.style.fontVariationSettings = axes

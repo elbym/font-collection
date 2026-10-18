@@ -23,6 +23,8 @@ function fill(row) {
 const setDot = (c) => {
   state.col = c;
   [...dots.children].forEach((d, k) => d.classList.toggle('!bg-neutral-500', k === c));
+  document.querySelector('#prev')?.classList.toggle('invisible', c === 0);
+  document.querySelector('#next')?.classList.toggle('invisible', c === DETAILS - 1);
 };
 
 /** Aktuell sichtbare Karte (Node i, Detailkarte). */
@@ -106,7 +108,11 @@ export function init(root = document) {
       <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`).join('');
 
   const lazy = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && fill(/** @type {HTMLElement} */ (e.target))), { root: detail, rootMargin: '100% 0px' });
-  for (const row of cards.children) lazy.observe(row);
+  // Rows weit außerhalb wieder leeren (Platzhalter h-dvh bleibt), sonst wächst der Speicher beim Durchblättern (iOS)
+  const unload = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting && detail.open) /** @type {HTMLElement} */ (e.target).replaceChildren();
+  }), { root: detail, rootMargin: '300% 0px' });
+  for (const row of cards.children) { lazy.observe(row); unload.observe(row); }
 
   // Punkte: eine Anzeige für die aktuelle Detailkarte
   dots.innerHTML = '<i class="size-2 rounded-full bg-neutral-500/40 transition"></i>'.repeat(DETAILS);
@@ -125,4 +131,27 @@ export function init(root = document) {
     }, 100);
   }, true);
   detail.addEventListener('scroll', syncUrl);
+
+  // Navigation per Pfeil-Buttons und Tastatur: ←/h →/l = Detailkarte, ↑/k ↓/j = Node
+  /** @param {number} d */
+  const stepCol = (d) => {
+    const row = /** @type {HTMLElement} */ (cards.children[current().i]);
+    const col = Math.max(0, Math.min(DETAILS - 1, Math.round(row.scrollLeft / row.clientWidth) + d));
+    row.scrollTo({ left: col * row.clientWidth, behavior: 'smooth' });
+  };
+  /** @param {number} d */
+  const stepRow = (d) => {
+    const i = Math.max(0, Math.min(state.nodes.length - 1, current().i + d));
+    detail.scrollTo({ top: /** @type {HTMLElement} */ (cards.children[i]).offsetTop, behavior: 'smooth' });
+  };
+  root.querySelector('#prev')?.addEventListener('click', () => stepCol(-1));
+  root.querySelector('#next')?.addEventListener('click', () => stepCol(1));
+  detail.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || /** @type {Element} */ (e.target).closest('input,textarea,select')) return;
+    const k = e.key.toLowerCase();
+    const move = { arrowleft: () => stepCol(-1), h: () => stepCol(-1), arrowright: () => stepCol(1), l: () => stepCol(1), arrowup: () => stepRow(-1), k: () => stepRow(-1), arrowdown: () => stepRow(1), j: () => stepRow(1) }[k];
+    if (!move) return;
+    e.preventDefault();
+    move();
+  });
 }

@@ -11,7 +11,7 @@ export function init(root = document) {
   // Kacheln in einem Rutsch einfügen
   grid.innerHTML = state.nodes.map((n, i) => `
       <button data-i="${i}" style="${acc(n)}"
-        class="acc scroll-mt-12 [container-type:inline-size] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+        class="acc scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
         <div class="text-[5cqw] h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
       </button>`).join('');
 
