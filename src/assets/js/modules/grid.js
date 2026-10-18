@@ -12,7 +12,7 @@ export function init(root = document) {
   grid.innerHTML = state.nodes.map((n, i) => `
       <button data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
         class="acc scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
-        <div class="${n.family} h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
+        <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
       </button>`).join('');
 
   // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
