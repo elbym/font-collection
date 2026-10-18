@@ -17,7 +17,7 @@ export const content = (n, c) => CARDS[c](n);
 /** Kachel: nur die Heroletter von Poster A, gleiches `data-vt="hero"` wie dort (morpht beim Öffnen); alles andere blendet ein/aus. @param {import('../../state.js').Node} n */
 export const tile = (n) => {
   const hero = heroText(n);
-  const size = hero.length <= 2 ? 'text-[60cqw]' : hero.length <= 3 ? 'text-[42cqw]' : 'text-[30cqw]';
+  const size = hero.length <= 1 ? 'text-[60cqw]' : hero.length <= 2 ? 'text-[32cqw]' : hero.length <= 3 ? 'text-[24cqw]' : 'text-[18cqw]';
   return `<span data-vt="hero" class="${size} leading-none whitespace-nowrap">${esc(hero)}</span>`;
 };
 
