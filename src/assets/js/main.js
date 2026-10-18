@@ -13,3 +13,4 @@ initGrid();
 initDetail();
 initAxes();
 initRouter();
+delete document.documentElement.dataset.direct; // Dialog ist jetzt offen, Raster darf darunter sichtbar sein
