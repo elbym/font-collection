@@ -17,7 +17,7 @@ const WEIGHT = { 100: 'font-thin', 200: 'font-extralight', 300: 'font-light', 40
  */
 export const fs = (k, total) => `min(max(2.6cqw,11px),${(total / k).toFixed(2)}cqh)`;
 /** Wie `fs`, aber größer (4.4cqw) für das schmale Hochformat (Smartphone). */
-export const fsMobile = (k, total) => `min(max(4.4cqw,11px),${((total + 8) / k).toFixed(2)}cqh)`;
+export const fsMobile = (k, total) => `min(max(4.4cqw,11px),${((total + 5) / k).toFixed(2)}cqh)`;
 
 /** Karte 2: Poster B (Schnitte, Fließtext). @param {import('../../state.js').Node} n */
 export const card2 = (n) => {
@@ -25,7 +25,7 @@ export const card2 = (n) => {
   const list = (/** @type {Weights} */ ws, /** @type {number} */ total, /** @type {(w: Weights[number]) => string} */ label) => `<div style="--fs:${fs(ws.length, total)};--fm:${fsMobile(ws.length, total)}" class="text-[length:var(--fm)] sm:text-[length:var(--fs)] grid grid-cols-[auto_1fr] content-start gap-x-[2.5cqw] leading-[1.1] whitespace-nowrap">${ws.map((w) => `
         <span>${label(w)}</span>
         <span class="${WEIGHT[w.weight]} ${w.italic ? 'italic' : ''}">Boxkämpfer</span>`).join('')}</div>`;
-  const waterfall = ['text-[length:min(9cqw,8cqh)] sm:text-[length:min(7.5cqw,8cqh)]', 'text-[length:min(5.8cqw,5.2cqh)] sm:text-[length:min(4.8cqw,5.2cqh)]', 'text-[length:min(4cqw,3.4cqh)] sm:text-[length:min(3.2cqw,3.4cqh)]']
+  const waterfall = ['text-[length:min(9cqw,8cqh)] sm:text-[length:min(7.5cqw,8cqh)]', 'text-[length:min(5.8cqw,5.2cqh)] sm:text-[length:min(4.8cqw,5.2cqh)]', 'hidden sm:block sm:text-[length:min(3.2cqw,3.4cqh)]']
     .map((size) => `<p class="${size} leading-[1.2]">${PANGRAM}</p>`).join('');
   return `
       <div class="${n.family} p-[max(5cqw,3.75rem)_5cqw_5cqw] w-full h-full flex flex-col gap-[2.5cqh] overflow-hidden text-left">
