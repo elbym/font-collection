@@ -23,7 +23,7 @@ export const card2 = (n) => {
   const list = (/** @type {Weights} */ ws, /** @type {number} */ total, /** @type {(w: Weights[number]) => string} */ label) => `<div style="font-size:${fs(ws.length, total)}" class="grid grid-cols-[auto_1fr] content-start gap-x-[2.5cqw] leading-[1.1] whitespace-nowrap">${ws.map((w) => `
         <span>${label(w)}</span>
         <span class="${WEIGHT[w.weight]} ${w.italic ? 'italic' : ''}">Boxkämpfer</span>`).join('')}</div>`;
-  const waterfall = ['text-[length:min(10cqw,10.5cqh)]', 'text-[length:min(6.5cqw,7cqh)]', 'text-[length:min(4.4cqw,4.7cqh)]']
+  const waterfall = ['text-[length:min(10cqw,10.5cqh)]', 'text-[length:min(6.5cqw,7cqh)]']
     .map((size) => `<p class="${size} leading-[1.2]">${PANGRAM}</p>`).join('');
   return `
       <div class="${n.family} p-[max(5cqw,3.75rem)_5cqw_5cqw] w-full h-full flex flex-col gap-[2.5cqh] overflow-hidden text-left">
