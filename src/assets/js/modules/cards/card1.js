@@ -1,6 +1,39 @@
 // @ts-check
-/** Karte 1: Name + „Aa“ (auch Kachel). @param {import('../../state.js').Node} n */
-export const card1 = (n) => `
-      <p data-vt="title" class="${n.family} text-[1.5em] leading-tight">${n.title}</p>
-      <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>
-      <p data-vt="aa" class="${n.family} text-[8em] leading-none text-[color:var(--accent-ui)]">Aa</p>`;
+import { esc } from '../../utils/html.js';
+import { axisPanel } from './axisPanel.js';
+
+/** Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden). @param {import('../../state.js').Node} n @param {string} s */
+const keep = (n, s) => [...s].filter((c) => !n.glyphs || n.glyphs.includes(/** @type {number} */ (c.codePointAt(0)))).join('');
+
+/** Heroletter der Schrift (auf Poster A groß, in der Kachel allein). @param {import('../../state.js').Node} n */
+export const heroText = (n) => keep(n, n.heroletter || 'Aa');
+
+/** Karte 1: Poster A (Zeichensatz). @param {import('../../state.js').Node} n */
+export const card1 = (n) => {
+  const seq = (/** @type {string} */ s, /** @type {string} */ size) =>
+    `<p class="${size} whitespace-nowrap leading-[1.2] tracking-[.04em]">${esc(keep(n, s))}</p>`;
+  // Alphabet in einer Zeile mit fester Größe: passt bei den meisten Schriften in die Plakatbreite, sehr breite (z. B. Climate Crisis) laufen bewusst über den Rand
+  const ALPHA = 'text-[5cqw]';
+  const hero = heroText(n);
+  const heroSize = hero.length <= 2 ? 'text-[52cqw]' : hero.length <= 3 ? 'text-[36cqw]' : 'text-[26cqw]'; // nach Länge
+  const meta = [n.author, n.year].filter(Boolean).join(', ');
+  const rule = '<div class="h-[.4cqw] w-full bg-[color:var(--accent-ui)]"></div>';
+  return `
+        <div class="${n.family} w-full h-full flex justify-center">
+          <div class="w-[min(100cqw,70cqh)] h-full min-h-0 [container-type:inline-size]">
+          <div data-axes-target class="h-full flex flex-col gap-[2.5cqw] p-[6cqw] pb-[14cqw] text-left">
+            <!-- ponytail: Padding im inneren Div, damit cqw-Werte auf die Plakatbreite (nicht die Karte) beziehen -->
+
+            <p class="text-[3.6cqw] leading-tight">${esc(n.title)}</p>
+            ${meta ? `<p class="text-[2.8cqw] opacity-60">${esc(meta)}</p>` : ''}
+            ${rule}
+            <p class="${heroSize} flex-1 min-h-0 flex items-center leading-none whitespace-nowrap text-[color:var(--accent-ui)]"><span data-vt="hero">${esc(hero)}</span></p>
+            ${rule}
+            ${axisPanel(n)}
+            ${seq('ABCDEFGHIJKLMNOPQRSTUVWXYZ', ALPHA)}
+            ${seq('abcdefghijklmnopqrstuvwxyz', ALPHA)}
+            ${seq('0123456789', ALPHA)}
+          </div>
+          </div>
+        </div>`;
+};

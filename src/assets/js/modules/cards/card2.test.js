@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fs } from './card3.js';
+import { fs } from './card2.js';
 
 describe('fs', () => {
   it('teilt die Höhe auf die Zeilen auf', () => {

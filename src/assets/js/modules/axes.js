@@ -29,7 +29,7 @@ export function init(root = document) {
 
   // ponytail: eine rAF-Schleife für die sichtbare Karte 2; läuft leer weiter, solange nichts zu tun ist
   requestAnimationFrame(function tick(t) {
-    const panel = isOpen() && state.col === 1 && /** @type {HTMLElement|null} */ (current().card.querySelector('[data-axes]'));
+    const panel = isOpen() && state.col === 0 && /** @type {HTMLElement|null} */ (current().card.querySelector('[data-axes]'));
     if (panel && !panel.dataset.stop) {
       panel.querySelectorAll('input').forEach((inp, k) => {
         const min = +inp.min, max = +inp.max, step = +inp.step;

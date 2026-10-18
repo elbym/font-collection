@@ -2,7 +2,7 @@
 import { esc } from '../../utils/html.js';
 
 /**
- * Variable Schriften: Slider je Achse unter dem „Aa“ (Detailkarte 2 (Poster A)). Verhalten: modules/axes.js.
+ * Variable Schriften: Slider je Achse unter dem „Aa“ (Detailkarte 1 (Poster A)). Verhalten: modules/axes.js.
  * @param {import('../../state.js').Node} n
  */
 export const axisPanel = (n) => !n.axes ? '' : `

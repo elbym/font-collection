@@ -19,7 +19,7 @@ Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build 
 
 1. **Ordner anlegen:** `src/webfonts/<kategorie>/<Familie>/`. Der Ordner ist nur ein Container und hat keinen Einfluss auf die URL (die kommt vom `slug`).
 2. **`.woff2`-Dateien ablegen:** Namensschema `Familie_Gewicht.woff2`, z. B. `Jost_Regular.woff2`, `Jost_Bold.woff2`, `Jost_BoldItalic.woff2`. Gewicht und Stil kommen aus dem Dateinamen.
-   Variable Schriften: Der Dateiname enthält `Variable`, ein `_vf`-Suffix oder eine Achsenliste in eckigen Klammern, z. B. `[wght]`, `[opsz,wght]`, `[MONO,CASL,wght,slnt,CRSV]`. Beliebige vierstellige Achsen-Tags sind erlaubt, nicht nur die registrierten. Sie bekommen auf Detailkarte 2 Slider und auf Karte 1 den Würfel.
+   Variable Schriften: Der Dateiname enthält `Variable`, ein `_vf`-Suffix oder eine Achsenliste in eckigen Klammern, z. B. `[wght]`, `[opsz,wght]`, `[MONO,CASL,wght,slnt,CRSV]`. Beliebige vierstellige Achsen-Tags sind erlaubt, nicht nur die registrierten. Sie bekommen auf Detailkarte 1 Slider.
 3. **`meta.yaml` anlegen** (optional): `tags` ist die wichtigste Angabe, der erste Tag ist die Kategorie.
    ```yaml
    title: Meine Schrift

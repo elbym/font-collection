@@ -1,6 +1,6 @@
 // @ts-check
 import { BASE, state } from '../state.js';
-import { acc, content } from './cards/index.js';
+import { acc, tile } from './cards/index.js';
 import { go } from './router.js';
 
 /** Rasterübersicht: Kacheln aus `state.nodes`, Klick öffnet die Detailansicht, Hover schaltet Schnitte durch. @param {Document} [root] */
@@ -10,9 +10,9 @@ export function init(root = document) {
 
   // Kacheln in einem Rutsch einfügen
   grid.innerHTML = state.nodes.map((n, i) => `
-      <button data-i="${i}" style="${acc(n)}"
+      <button data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
         class="acc scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
-        <div class="text-[5cqw] h-full flex flex-col items-center justify-center p-[6cqw] text-center">${content(n, 0)}</div>
+        <div class="${n.family} h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
       </button>`).join('');
 
   // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
@@ -46,6 +46,6 @@ export function init(root = document) {
 
   grid.addEventListener('click', (e) => {
     const tile = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('[data-i]'));
-    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}#${state.col + 1}`);
+    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}#1`);
   });
 }

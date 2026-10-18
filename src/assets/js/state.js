@@ -2,7 +2,7 @@
 // Geteilter Zustand der Anwendung (ein Ort statt loser Globals).
 
 /** Anzahl Detailkarten pro Schrift. */
-export const DETAILS = 4;
+export const DETAILS = 3;
 
 /** Basispfad aus `<base href>` (Root lokal, /font-collection/ auf GitHub Pages, siehe scripts/set-base.js). */
 export const BASE = new URL(document.baseURI).pathname;
