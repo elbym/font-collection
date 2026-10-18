@@ -43,6 +43,16 @@ export function init(root = document) {
     step();
     hoverTimer = setInterval(step, 300);
   });
+  // Übersicht fertig geladen: Hover-Schnitte (Latin-Subsets) nacheinander vorladen, damit sie sofort bereitstehen
+  const preload = async () => {
+    for (const n of state.nodes) {
+      await Promise.all((n.weights || []).map((w) => document.fonts.load(`${w.italic ? 'italic ' : ''}${w.weight} 1em ${n.family}-s`).catch(() => {})));
+      await new Promise((r) => (window.requestIdleCallback || setTimeout)(r)); // ponytail: sequenziell im Leerlauf, damit die Übersicht nicht ruckelt
+    }
+  };
+  if (document.readyState === 'complete') preload();
+  else addEventListener('load', preload, { once: true });
+
   grid.addEventListener('pointerleave', hoverStop);
   grid.addEventListener('click', hoverStop, true); // vor dem Öffnen beenden
 
