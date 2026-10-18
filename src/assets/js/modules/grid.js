@@ -30,8 +30,10 @@ export function init(root = document) {
     const tile = ev.pointerType === 'mouse' ? /** @type {HTMLElement|null} */ (/** @type {Element} */ (ev.target).closest('[data-i]')) : null;
     if (tile === hoverTile) return;
     hoverStop();
-    const ws = tile && state.nodes[Number(tile.dataset.i)].weights;
-    if (!tile || !ws || ws.length < 2) return;
+    const all = tile && state.nodes[Number(tile.dataset.i)].weights;
+    if (!tile || !all || all.length < 2) return;
+    // erst alle Normal-Schnitte (dünn → fett), dann alle Italic-Schnitte
+    const ws = [...all].sort((a, b) => Number(a.italic) - Number(b.italic) || a.weight - b.weight);
     hoverTile = tile;
     let k = 0;
     const step = () => {
