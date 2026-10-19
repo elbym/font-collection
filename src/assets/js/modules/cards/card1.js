@@ -3,7 +3,7 @@ import { esc } from '../../utils/html.js';
 import { axisPanel } from './axisPanel.js';
 
 /** Zeichen, die laut n.glyphs fehlen, weglassen (glyphs null = alle vorhanden). @param {import('../../state.js').Node} n @param {string} s */
-const keep = (n, s) => [...s].filter((c) => !n.glyphs || n.glyphs.includes(/** @type {number} */ (c.codePointAt(0)))).join('');
+export const keep = (n, s) => [...s].filter((c) => !n.glyphs || n.glyphs.includes(/** @type {number} */ (c.codePointAt(0)))).join('');
 
 /** Heroletter der Schrift (auf Poster A groß, in der Kachel allein). @param {import('../../state.js').Node} n */
 export const heroText = (n) => keep(n, n.heroletter || 'Aa');

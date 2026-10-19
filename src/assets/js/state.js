@@ -19,6 +19,8 @@ export const BASE = new URL(document.baseURI).pathname;
  * @property {string} [license]
  * @property {string} [source]
  * @property {string} [comment]
+ * @property {string} [content]
+ * @property {string} [category]
  * @property {string} [heroletter]
  * @property {{weight: number, italic: boolean}[]} weights
  * @property {number[]|null} glyphs

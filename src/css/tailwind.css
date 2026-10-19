@@ -4,3 +4,4 @@
 @source "../alternatives.njk";
 @source "../network.njk";
 @import "./app.css";
+@import "./print.css";

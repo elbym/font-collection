@@ -1,11 +1,11 @@
 // @ts-check
 /** @typedef {import('../../state.js').Node['weights']} Weights */
 
-const PANGRAM = 'Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.';
+export const PANGRAM = 'Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.';
 const LOREM =
   'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.';
 /** @type {Record<number, string>} */
-const NAME = { 100: 'Thin', 200: 'ExtraLight', 300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'SemiBold', 700: 'Bold', 800: 'ExtraBold', 900: 'Black' };
+export const NAME = { 100: 'Thin', 200: 'ExtraLight', 300: 'Light', 400: 'Regular', 500: 'Medium', 600: 'SemiBold', 700: 'Bold', 800: 'ExtraBold', 900: 'Black' };
 // Tailwind-Klassen vollständig ausgeschrieben (Scan per @source)
 /** @type {Record<number, string>} */
 const WEIGHT = { 100: 'font-thin', 200: 'font-extralight', 300: 'font-light', 400: 'font-normal', 500: 'font-medium', 600: 'font-semibold', 700: 'font-bold', 800: 'font-extrabold', 900: 'font-black' };

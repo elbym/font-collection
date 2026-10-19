@@ -1,0 +1,73 @@
+/* Druckansicht im LaTeX-Look (article/scrartcl), gesetzt in der vorgestellten Schrift.
+   Markup: src/assets/js/modules/print.js. Bildschirm bleibt unberührt (#print ist dort display:none). */
+#print { display: none; }
+
+@page {
+  size: A4;
+  margin: 30mm 32mm 38mm; /* Textbreite 146 mm ≈ 70 Zeichen bei 11 pt; unten mehr als oben */
+  font-family: var(--print-family), serif;
+  font-size: 10pt;
+  @bottom-center { content: counter(page); }
+  @top-center { content: var(--print-title); font-variant-caps: small-caps; letter-spacing: .05em; }
+}
+@page :first { @top-center { content: none; } }
+
+@media print {
+  html, body { background: #fff !important; color: #000 !important; color-scheme: light; }
+  #topbar, #grid, #detail { display: none !important; }
+  #print { display: block; counter-reset: sec fig tab; font-size: 11pt; line-height: 1.4; text-align: justify; hyphens: auto; text-wrap: pretty;
+    font-kerning: normal; font-variant-ligatures: common-ligatures discretionary-ligatures; font-variant-numeric: oldstyle-nums;
+    font-synthesis-weight: none; font-synthesis-style: none; orphans: 3; widows: 3; }
+  #print * { box-shadow: none; background: none; color: inherit; }
+
+  /* \maketitle */
+  .title { text-align: center; margin: 0 0 2em; hyphens: manual; }
+  .title h1 { font-size: 17.3pt; line-height: 1.2; font-weight: 700; margin: 0 0 1.2em; }
+  .title .author { font-size: 12pt; margin: 0 0 .6em; }
+  .title .date { font-size: 12pt; margin: 0; }
+
+  /* abstract */
+  .abstract { margin: 0 2.5em 2em; font-size: 10pt; }
+  #print .abstract h2 { font-size: 10pt; text-align: center; font-weight: 700; margin: 0 0 .6em; counter-increment: none; }
+  #print .abstract h2::before { content: none; }
+
+  /* Absätze: Einzug statt Abstand, keiner nach Überschrift/Abbildung/Tabelle */
+  #print p { margin: 0; text-indent: 1.5em; }
+  #print :is(h2, h3, figure, table, .title) + p, #print .abstract h2 + p { text-indent: 0; }
+
+  /* Gliederung: „1 Zeichensatz“, „1.1 …“ */
+  #print h2 { counter-increment: sec; counter-reset: sub; font-size: 14.4pt; font-weight: 700; margin: 1.6em 0 .8em; line-height: 1.2; text-align: left; hyphens: manual; }
+  #print h2::before { content: counter(sec) "\2003"; }
+  #print h3 { counter-increment: sub; font-size: 12pt; font-weight: 700; margin: 1.2em 0 .6em; text-align: left; break-after: avoid; }
+  #print h3::before { content: counter(sec) "." counter(sub) "\2003"; }
+  #print h2, #print h3 { break-after: avoid; }
+
+  /* Gleitobjekte */
+  figure { margin: 1.2em 0; break-inside: avoid; text-align: center; text-indent: 0; }
+  figcaption, caption { font-size: 10pt; text-align: center; hyphens: manual; }
+  figure { counter-increment: fig; }
+  figcaption { margin-top: .8em; }
+  figcaption::before { content: "Abbildung " counter(fig) ": "; font-weight: 700; }
+  .glyphs p { text-indent: 0; text-align: center; font-size: 15pt; line-height: 1.5; overflow-wrap: anywhere; letter-spacing: .04em; }
+  .wf { text-indent: 0; text-align: left; line-height: 1.15; white-space: nowrap; overflow: hidden; margin: 0 0 .3em; }
+
+  /* Tabellen im booktabs-Stil */
+  table { counter-increment: tab; margin: 1.2em auto; border-collapse: collapse; border-top: 1.2pt solid; border-bottom: 1.2pt solid; break-inside: avoid; font-variant-numeric: lining-nums tabular-nums; font-size: 10.5pt; }
+  table.long { break-inside: auto; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  caption { caption-side: top; padding-bottom: .6em; }
+  caption::before { content: "Tabelle " counter(tab) ": "; font-weight: 700; }
+  thead tr { border-bottom: .6pt solid; }
+  th, td { padding: .25em 1.4em; text-align: left; border: 0; vertical-align: top; font-weight: 400; }
+  thead th, tbody th { font-weight: 700; }
+  td:first-child, th:first-child { padding-left: .5em; }
+  .meta td { hyphens: manual; }
+  .meta { border-top: 1.2pt solid; }
+  .meta tbody th { width: 8em; }
+  .meta caption + tbody { border-top: .6pt solid; }
+
+  /* Quellen: \texttt-artig, URL nicht umbrechen-sensibel */
+  .url { margin-top: 1.2em; text-indent: 0; text-align: left; font: 9pt/1.4 ui-monospace, monospace; overflow-wrap: anywhere; hyphens: none; }
+  a { color: inherit; text-decoration: none; }
+}

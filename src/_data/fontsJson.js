@@ -40,6 +40,7 @@ module.exports = async function () {
         license: n.license ?? null,
         source: n.sourceUrl ?? null,
         comment: n.comment ?? null,
+        content: n.content ?? null,
         description: description(n.comment ?? n.content),
         heroletter: n.heroletter ?? null,
         heroword: n.heroword ?? null,

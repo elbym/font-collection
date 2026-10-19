@@ -2,6 +2,7 @@
 import { BASE, DETAILS, state, tagQuery } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
 import { acc, content } from './cards/index.js';
+import { prepare } from './print.js';
 
 /** @type {HTMLDialogElement} */ let detail;
 /** @type {HTMLElement} */ let cards;
@@ -39,7 +40,10 @@ let urlTimer;
 const syncUrl = () => {
   clearTimeout(urlTimer);
   urlTimer = setTimeout(() => {
-    if (detail.open) history.replaceState(null, '', `${BASE}${state.nodes[current().i].slug}${tagQuery()}#${state.col + 1}`);
+    if (!detail.open) return;
+    const n = state.nodes[current().i];
+    history.replaceState(null, '', `${BASE}${n.slug}${tagQuery()}#${state.col + 1}`);
+    prepare(n);
   }, 150);
 };
 
@@ -55,6 +59,7 @@ export function show(i, c) {
   detail.scrollTop = row.offsetTop;
   for (const r of cards.children) r.scrollLeft = c * r.clientWidth;
   setDot(c);
+  prepare(state.nodes[i]);
 }
 
 /**
@@ -130,6 +135,7 @@ export function init(root = document) {
     }, 100);
   }, true);
   detail.addEventListener('scroll', syncUrl);
+  addEventListener('beforeprint', () => detail.open && prepare(state.nodes[current().i]));
 
   // Navigation per Pfeil-Buttons und Tastatur: ←/h →/l = Detailkarte, ↑/k ↓/j = Node
   /** @param {number} d */
