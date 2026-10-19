@@ -1,5 +1,5 @@
 // @ts-check
-import { BASE, DETAILS, state } from '../state.js';
+import { BASE, DETAILS, state, tagQuery } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
 import { acc, content } from './cards/index.js';
 
@@ -27,7 +27,7 @@ const setDot = (c) => {
 
 /** Aktuell sichtbare Karte (Node i, Detailkarte). */
 export const current = () => {
-  const row = /** @type {HTMLElement} */ (cards.children[Math.round(detail.scrollTop / detail.clientHeight)]);
+  const row = /** @type {HTMLElement} */ ([...cards.children].filter((r) => !(/** @type {HTMLElement} */ (r).hidden))[Math.round(detail.scrollTop / detail.clientHeight)]);
   return { i: [...cards.children].indexOf(row), card: /** @type {HTMLElement} */ (row.children[Math.round(row.scrollLeft / row.clientWidth)]) };
 };
 
@@ -39,7 +39,7 @@ let urlTimer;
 const syncUrl = () => {
   clearTimeout(urlTimer);
   urlTimer = setTimeout(() => {
-    if (detail.open) history.replaceState(null, '', `${BASE}${state.nodes[current().i].slug}#${state.col + 1}`);
+    if (detail.open) history.replaceState(null, '', `${BASE}${state.nodes[current().i].slug}${tagQuery()}#${state.col + 1}`);
   }, 150);
 };
 
@@ -140,8 +140,9 @@ export function init(root = document) {
   };
   /** @param {number} d */
   const stepRow = (d) => {
-    const i = Math.max(0, Math.min(state.nodes.length - 1, current().i + d));
-    detail.scrollTo({ top: /** @type {HTMLElement} */ (cards.children[i]).offsetTop, behavior: 'smooth' });
+    const rows = /** @type {HTMLElement[]} */ ([...cards.children]).filter((r) => !r.hidden);
+    const k = Math.max(0, Math.min(rows.length - 1, rows.indexOf(/** @type {HTMLElement} */ (cards.children[current().i])) + d));
+    detail.scrollTo({ top: rows[k].offsetTop, behavior: 'smooth' });
   };
   root.querySelector('#prev')?.addEventListener('click', () => stepCol(-1));
   root.querySelector('#next')?.addEventListener('click', () => stepCol(1));

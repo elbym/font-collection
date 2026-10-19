@@ -1,22 +1,24 @@
 // @ts-check
-import { BASE, DETAILS, state } from '../state.js';
+import { BASE, DETAILS, state, tagQuery } from '../state.js';
 import { esc } from '../utils/html.js';
 import { closeAnim, isOpen, openAnim, show } from './detail.js';
 
 /** @type {HTMLElement} */ let grid;
 /** @type {HTMLElement} */ let tools;
 
+/** Filter-Pills der Top-Bar (Tag-Werte aus fonts.json); erneuter Klick hebt den Filter auf. */
+const PILLS = ['Sans', 'Serif', 'Monospace', 'Display', 'Script'];
+
 /** Rasterübersicht mit Tag-Filter (?tag=…), beim Öffnen einer Schrift bleibt er erhalten. */
-const home = () => BASE + (state.tag ? `?tag=${encodeURIComponent(state.tag)}` : '');
+const home = () => BASE + tagQuery();
 
 /** Setzt die Ansicht aus der URL: <BASE>slug#3 = Schrift slug, Detailkarte 3; <BASE> = Raster. @param {boolean} [animate] */
 function route(animate = true) {
   const path = location.pathname.slice(BASE.length).replace(/\/$/, "");
-  if (!path) {
-    state.tag = new URLSearchParams(location.search).get('tag') || '';
-    [...grid.children].forEach((t, k) => /** @type {HTMLElement} */ (t).hidden = !!state.tag && !state.nodes[k].tags?.includes(state.tag));
-    tools.innerHTML = state.tag ? `<a data-nav href="${BASE}" class="rounded-full border border-neutral-500/50 px-3 py-1 text-sm">${esc(state.tag)} ×</a>` : '';
-  }
+  state.tag = new URLSearchParams(location.search).get('tag') || '';
+  const cards = document.querySelector('#cards');
+    [grid, cards].forEach((el) => [...(el?.children ?? [])].forEach((t, k) => /** @type {HTMLElement} */ (t).hidden = !!state.tag && !state.nodes[k].tags?.includes(state.tag))); // Filter gilt auch in der Detailansicht
+    tools.innerHTML = (!state.tag || PILLS.includes(state.tag) ? PILLS : [...PILLS, state.tag]).map((p) => `<a data-nav href="${BASE}${p === state.tag ? '' : `?tag=${encodeURIComponent(p)}`}" class="shrink-0 rounded-full border px-3 py-1 text-sm ${p === state.tag ? 'border-transparent bg-neutral-900 text-white dark:bg-neutral-50 dark:text-neutral-900' : 'border-neutral-500/50'}">${esc(p)}</a>`).join('');
   const i = state.nodes.findIndex((n) => n.slug === path);
   const c = Math.min(Math.max((parseInt(location.hash.slice(1)) || 1) - 1, 0), DETAILS - 1);
   if (i >= 0) isOpen() ? show(i, c) : openAnim(i, c, animate);

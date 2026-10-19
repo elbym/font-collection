@@ -33,3 +33,6 @@ export const state = {
   /** aktiver Tag-Filter der Rasteransicht */
   tag: '',
 };
+
+/** Query für den aktiven Tag-Filter ('' ohne Filter), hängt an Raster- und Detail-URLs. */
+export const tagQuery = () => (state.tag ? `?tag=${encodeURIComponent(state.tag)}` : '');

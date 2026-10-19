@@ -1,5 +1,5 @@
 // @ts-check
-import { BASE, state } from '../state.js';
+import { BASE, state, tagQuery } from '../state.js';
 import { esc } from '../utils/html.js';
 import { acc, tile } from './cards/index.js';
 import { go } from './router.js';
@@ -62,6 +62,6 @@ export function init(root = document) {
 
   grid.addEventListener('click', (e) => {
     const tile = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('[data-i]'));
-    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}#1`);
+    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}${tagQuery()}#1`);
   });
 }
