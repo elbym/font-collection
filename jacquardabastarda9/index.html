@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jacquarda Bastarda 9 – Blackletter von Stephen C. Fried (Soft Type) (2023) · Schriften</title>
+  <meta name="description" content="Jacquarda Bastarda 9 ist eine proportionale Bitmap-Blackletter, die auf einem 9-Pixel-Raster konstruiert wurde. Sie vereint zwei Besonderheiten in einer…">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jacquarda Bastarda 9 – Blackletter von Stephen C. Fried (Soft Type) (2023) · Schriften">
+  <meta property="og:description" content="Jacquarda Bastarda 9 ist eine proportionale Bitmap-Blackletter, die auf einem 9-Pixel-Raster konstruiert wurde. Sie vereint zwei Besonderheiten in einer…">
+  <base href="/font-collection/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="tailwind.css">
+  <!-- Direktaufruf einer Schrift (/<slug>#2): Raster bis zum Öffnen des Dialogs ausblenden, sonst blitzt es kurz durch (main.js entfernt das Attribut) -->
+  <script>if (location.pathname !== new URL(document.baseURI).pathname) document.documentElement.dataset.direct = '';</script>
+  <style>html[data-direct] #topbar, html[data-direct] #grid { visibility: hidden; }</style>
+</head>
+<body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
+
+  <!-- Top-Bar: nur über der Rasterübersicht (das <dialog> liegt im Top-Layer und deckt sie ab).
+       Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
+  <header id="topbar" class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800">
+    <h1 class="text-base font-semibold">Schriften</h1>
+    <div id="tools" class="ml-auto flex items-center gap-2"></div>
+    <a href="alternatives.html" class="text-sm underline">Alternativen</a>
+    <a href="network.html" class="text-sm underline">Netzwerk</a>
+  </header>
+
+  <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
+  <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
+
+  <!-- Detailansicht: natives <dialog> (Esc, Fokus, Hintergrundsperre inklusive); Karten rasten per scroll-snap ein -->
+  <dialog id="detail" class="m-0 p-0 w-screen h-dvh max-w-none max-h-none bg-transparent text-neutral-900 dark:text-neutral-50 overflow-y-auto snap-y snap-mandatory overscroll-contain">
+    <button id="close" aria-label="Schließen"
+      class="fixed top-3 right-3 z-10 size-11 rounded-full bg-neutral-500/20 text-2xl leading-none [@media(hover:hover)]:backdrop-blur hover:bg-neutral-500/40">×</button>
+    <button id="prev" aria-label="Vorherige Karte" class="invisible hidden [@media(hover:hover)]:flex fixed top-1/2 -translate-y-1/2 left-3 z-10 size-12 items-center justify-center rounded-full bg-neutral-500/20 text-3xl leading-none hover:bg-neutral-500/40">‹</button>
+    <button id="next" aria-label="Nächste Karte" class="invisible hidden [@media(hover:hover)]:flex fixed top-1/2 -translate-y-1/2 right-3 z-10 size-12 items-center justify-center rounded-full bg-neutral-500/20 text-3xl leading-none hover:bg-neutral-500/40">›</button>
+    <div id="dots" class="fixed bottom-4 inset-x-0 z-10 flex justify-center gap-2 pointer-events-none"></div>
+    <div id="cards"></div>
+  </dialog>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -8,6 +8,9 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="tailwind.css">
+  <!-- Direktaufruf einer Schrift (/<slug>#2): Raster bis zum Öffnen des Dialogs ausblenden, sonst blitzt es kurz durch (main.js entfernt das Attribut) -->
+  <script>if (location.pathname !== new URL(document.baseURI).pathname) document.documentElement.dataset.direct = '';</script>
+  <style>html[data-direct] #topbar, html[data-direct] #grid { visibility: hidden; }</style>
 </head>
 <body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
 
