@@ -11,7 +11,7 @@ const home = () => BASE + (state.tag ? `?tag=${encodeURIComponent(state.tag)}` :
 
 /** Setzt die Ansicht aus der URL: <BASE>slug#3 = Schrift slug, Detailkarte 3; <BASE> = Raster. @param {boolean} [animate] */
 function route(animate = true) {
-  const path = location.pathname.slice(BASE.length);
+  const path = location.pathname.slice(BASE.length).replace(/\/$/, "");
   if (!path) {
     state.tag = new URLSearchParams(location.search).get('tag') || '';
     [...grid.children].forEach((t, k) => /** @type {HTMLElement} */ (t).hidden = !!state.tag && !state.nodes[k].tags?.includes(state.tag));

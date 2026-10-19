@@ -25,7 +25,7 @@ Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build 
    title: Meine Schrift
    tags: Sans, Humanist Sans
    ```
-4. **Bauen:** `npm run build` (bzw. `npm run dev` läuft im Watch weiter). Die Schrift erscheint im Raster und unter `/<slug>`.
+4. **Bauen:** `npm run build` (bzw. `npm run dev` läuft im Watch weiter). Die Schrift erscheint im Raster und unter `/<slug>`. Pro Schrift entsteht dabei eine statische Seite `/<slug>/` mit eigenem `<title>` und Meta-Description (aus `title`, `tags`, `fontauthor`, `fontyear`, `comment`/`content`).
 
 | Feld | Beispiel | Wirkung |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build 
 | `fontyear` | `2017` | Erscheinungsjahr |
 | `license` | `SIL Open Font License 1.1` | überschreibt die Auto-Erkennung aus `OFL.txt`/`LICENSE.txt` |
 | `url` | `https://…` | Projekt- bzw. Quelllink |
-| `comment` | `Hinweis` | Notiz auf der Infokarte |
+| `comment` | `Hinweis` | Notiz auf der Infokarte; zugleich Meta-Description der Schriftseite (ohne `comment` dient `content`) |
 
 ## Struktur und Konventionen
 
@@ -47,7 +47,7 @@ src/_data/               # 11ty-CMS: fonts.js, fontsJson.js, fontFaces.js, fontA
 src/*.njk                # fonts.json und fonts.css
 src/css/                 # tailwind.css (Einstieg, scannt index.html und src/assets/js), app.css (View Transitions, Akzent)
 src/assets/js/           # main.js (Einstieg), state.js (geteilter Zustand), modules/, utils/
-scripts/                 # build-js.js (esbuild), dev.js, set-base.js
+scripts/                 # build-js.js (esbuild), dev.js, set-base.js, font-pages.js + meta.js (Meta-Tags pro Schrift)
 ```
 
 - ES-Module mit `// @ts-check` und JSDoc; keine Globals, geteilter Zustand nur in `state.js`.

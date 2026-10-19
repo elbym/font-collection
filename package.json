@@ -3,7 +3,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "eleventy && node scripts/subset-fonts.js && npm run css && npm run js && node scripts/set-base.js",
+    "build": "eleventy && node scripts/subset-fonts.js && npm run css && npm run js && node scripts/set-base.js && node scripts/font-pages.js",
     "build:pages": "BASE_PATH=/font-collection/ npm run build",
     "css": "tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --minify",
     "dev": "node scripts/dev.js",
