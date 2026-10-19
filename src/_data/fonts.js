@@ -340,6 +340,8 @@ module.exports = function () {
           },
         ];
       })
+      // Statische Dateien neben einer variablen Datei desselben Stils würden die Variable per exaktem Gewicht überstimmen (Slider wirkungslos)
+      .filter((f, _, all) => f.isVariable || !all.some((v) => v.isVariable && v.style === f.style && v.optical === f.optical))
       .sort((a, b) => {
         // Group: upright (0), italic (1), optical variants (2+)
         const groupOf = (f) => {
