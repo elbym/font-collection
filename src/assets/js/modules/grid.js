@@ -13,11 +13,11 @@ export function init(root = document) {
   grid.innerHTML = state.nodes
     .map(
       (n, i) => `
-      <button data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
+      <a href="${n.slug}/" data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
         class="acc relative scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
         <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
         <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-xs text-neutral-500 dark:text-neutral-400">${esc(n.title)}</span>
-      </button>`,
+      </a>`,
     )
     .join('');
 
@@ -74,7 +74,11 @@ export function init(root = document) {
   grid.addEventListener('click', hoverStop, true); // vor dem Öffnen beenden
 
   grid.addEventListener('click', (e) => {
-    const tile = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('[data-i]'));
-    if (tile) go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}${tagQuery()}#1`);
+    // Kacheln sind echte Links (für Crawler, Mittelklick); normaler Klick läuft über den Router
+    const ev = /** @type {MouseEvent} */ (e);
+    const tile = /** @type {HTMLElement|null} */ (/** @type {Element} */ (ev.target).closest('[data-i]'));
+    if (!tile || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+    ev.preventDefault();
+    go(`${BASE}${state.nodes[Number(tile.dataset.i)].slug}${tagQuery()}#1`);
   });
 }

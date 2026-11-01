@@ -2,7 +2,7 @@
 const fonts = require('./fonts');
 const fontCodepoints = require('./fontCodepoints');
 const fontAxes = require('./fontAxes');
-const { description } = require('../../scripts/meta');
+const { description, pageTitle } = require('../../scripts/meta');
 
 module.exports = async function () {
   const codepoints = await fontCodepoints();
@@ -28,7 +28,7 @@ module.exports = async function () {
         })
         .sort((a, b) => a.weight - b.weight || Number(a.italic) - Number(b.italic));
 
-      return {
+      const o = {
         slug,
         title: n.title,
         family: `f-${slug}`,
@@ -53,6 +53,8 @@ module.exports = async function () {
               .sort((a, b) => a - b)
           : null,
       };
+      o.pageTitle = pageTitle(o); // <title> der Schriftseite, auch per JS beim Navigieren gesetzt
+      return o;
     });
 
   return list.sort((a, b) => a.title.localeCompare(b.title, 'de'));

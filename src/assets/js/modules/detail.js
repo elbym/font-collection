@@ -53,6 +53,7 @@ const syncUrl = () => {
     if (!detail.open) return;
     const n = state.nodes[current().i];
     history.replaceState(null, '', `${BASE}${n.slug}${tagQuery()}#${state.col + 1}`);
+    document.title = n.pageTitle;
     prepare(n);
   }, 150);
 };

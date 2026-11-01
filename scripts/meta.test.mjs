@@ -16,9 +16,9 @@ describe('description', () => {
 
 describe('pageTitle', () => {
   it('lässt fehlenden Autor und Jahr weg', () => {
-    expect(pageTitle({ title: 'X', tags: ['Sans'] })).toBe('X – Sans · Schriften');
+    expect(pageTitle({ title: 'X', tags: ['Sans'] })).toBe('X – Sans · Font Collection elbym');
     expect(pageTitle({ title: 'X', tags: ['Sans'], author: 'A', year: 2013 })).toBe(
-      'X – Sans von A (2013) · Schriften',
+      'X – Sans von A (2013) · Font Collection elbym',
     );
   });
 });
