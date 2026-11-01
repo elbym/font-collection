@@ -34,11 +34,23 @@ def faces():
     return {k: v[1] for k, v in best.items()}
 
 
+def regular(font):
+    """Variable Schrift auf wght 400 stellen wie im Browser (Standard-Instanz ist teils Thin, z. B. Raleway)."""
+    try:
+        axes = font.get_variation_axes()
+    except OSError:
+        return font  # statische Schrift
+    font.set_variation_by_axes(
+        [min(max(400, a["minimum"]), a["maximum"]) if a["name"] in (b"Weight", b"wght") else a["default"] for a in axes]
+    )
+    return font
+
+
 def fit(path, text, max_w, max_h, start):
     """Größte Schriftgröße ≤ start, bei der text in max_w × max_h passt."""
     size = start
     while True:
-        font = ImageFont.truetype(str(path), size)
+        font = regular(ImageFont.truetype(str(path), size))
         l, t, r, b = font.getbbox(text)
         if (r - l <= max_w and b - t <= max_h) or size <= 12:
             return font
