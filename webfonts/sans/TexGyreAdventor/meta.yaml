@@ -1,0 +1,23 @@
+title: Tex Gyre Adventor
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+wikipedia: "https://de.wikipedia.org/wiki/Avant_Garde_(Schriftart)"
+favorite: true
+
+tags: Sans, Geometric, Grotesk
+
+comment: "TeX Gyre Adventor kann als Ersatz für ITC Avant Garde Gothic verwendet werden (entworfen von Herb Lubalin und Tom Carnase, 1970)."
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Avant Garde
+herostyle:
+
+
+imageOverrides:
+  "ArcRaiders_KeyArt_Main_1-1_2160x2160.png)":
+    alt: "Embark Studios Press Kit (via fontsinuse.com)"
+    source: "https://www.embark-studios.com/press"
+content: |
+  Tex Gyre Adventor ist die freie Alternative zu ITC Avant Garde Gothic, der 1970 von Herb Lubalin und Tom Carnase entworfenen geometrischen Groteskschrift. Das GUST-Projekt hat die charakteristischen kreisrunden Formen und den Sixties-Charakter in eine vollständig OpenType-konforme, TeX-kompatible Schrift übertragen.

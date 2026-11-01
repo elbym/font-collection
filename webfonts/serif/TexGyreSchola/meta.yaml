@@ -1,0 +1,19 @@
+title: Tex Gyre Schola
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+wikipedia: "https://de.wikipedia.org/wiki/Century_(Schriftart)"
+favorite: true
+
+tags: Serif, Humanist
+
+comment: "TeX Gyre Schola kann als Ersatz für Century Schoolbook verwendet werden (entworfen von Morris Fuller Benton, 1919, für die American Type Founders; ursprünglich ohne Kursiv, die erst in späteren Überarbeitungen von Linotype und ITC ergänzt wurde)."
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Scolar
+herostyle:
+color: rosybrown
+
+content: |
+  Tex Gyre Schola entspricht der Century Schoolbook, die Morris Fuller Benton 1919 für die American Type Founders entwarf. Century Schoolbook wurde speziell für Schulbücher konzipiert – besonders gut voneinander unterscheidbare Buchstaben und hoher Kontrast sollten jungen Leserinnen und Lesern zugutekommen.

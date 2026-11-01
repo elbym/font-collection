@@ -1,0 +1,19 @@
+title: Tex Gyre Pagella
+url: https://www.gust.org.pl/projects/e-foundry/tex-gyre
+wikipedia: "https://de.wikipedia.org/wiki/Palatino"
+favorite: true
+
+tags: Serif, Humanist, Garalde
+
+comment: "TeX Gyre Pagella kann als Ersatz für die renommierte Palatino verwendet werden (entworfen von Hermann Zapf in den 1940er-Jahren für die Schriftgießerei Stempel)."
+
+fontauthor: Bogusław Jackowski, Janusz M. Nowacki, Piotr Strzelczyk
+fontyear: 2006
+
+heroletter: Aa
+heroword: Zapfen
+herostyle:
+color: MediumSlateBlue
+
+content: |
+  Tex Gyre Pagella ist die freie Entsprechung zu Hermann Zapfs Palatino, einer der einflussreichsten humanistischen Serifenschriften des 20. Jahrhunderts. Zapf entwarf Palatino Ende der 1940er Jahre an der Stempel-Schriftgießerei in Frankfurt; die breiten Proportionen und der weiche Duktus spiegeln seinen Einfluss als Kalligraf wider.

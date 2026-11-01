@@ -1,0 +1,16 @@
+title: DINish
+url: https://github.com/playbeing/dinish
+wikipedia: "https://de.wikipedia.org/wiki/DIN_1451"
+
+tags: Sans, Grotesk, Neo
+
+fontauthor: Bert Driehuis, Stefan Peev, Altinn, Datto Inc.
+fontyear: 2023
+
+heroletter: Aa
+heroword: Autobahn
+herostyle:
+color: blue
+border: lines.svg
+content: |
+  DINish ist eine Open-Source-Annäherung an die DIN 1451, die klassische deutsche Normschrift für Verkehrsschilder, Industriebeschriftungen und behördliche Dokumente. Das Projekt ergänzt die ursprünglich technischen Formen um erweiterte Unicode-Abdeckung und variable Gewichte und behält dabei das unverwechselbare konstruktivistische Erscheinungsbild bei.
