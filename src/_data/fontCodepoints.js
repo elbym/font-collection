@@ -1,12 +1,12 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-const WEBFONTS = path.join(__dirname, "../webfonts");
+const WEBFONTS = path.join(__dirname, '../webfonts');
 
 module.exports = async function () {
   // fontkit v2 is ESM-only with named exports (no default); dynamic import works in CJS
-  const fontkit = await import("fontkit");
-  const fonts = require("./fonts")();
+  const fontkit = await import('fontkit');
+  const fonts = require('./fonts')();
 
   const result = {};
 
@@ -23,8 +23,8 @@ module.exports = async function () {
 
     // Prefer Regular upright; fall back to any upright; then any file
     const fontFile =
-      uniqueFiles.find((f) => f.weight === 400 && f.style === "normal") ||
-      uniqueFiles.find((f) => f.style === "normal") ||
+      uniqueFiles.find((f) => f.weight === 400 && f.style === 'normal') ||
+      uniqueFiles.find((f) => f.style === 'normal') ||
       uniqueFiles[0];
 
     const absPath = path.join(WEBFONTS, fontFile.filePath);

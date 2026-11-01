@@ -20,6 +20,8 @@ export const transition = (dir, fn) => {
 export const name = (el, on) => {
   el.style.viewTransitionName = on ? 'node' : '';
   el.querySelectorAll('[data-vt]').forEach((e) => {
-    /** @type {HTMLElement} */ (e).style.viewTransitionName = on ? 'node-' + /** @type {HTMLElement} */ (e).dataset.vt : '';
+    /** @type {HTMLElement} */ (e).style.viewTransitionName = on
+      ? 'node-' + /** @type {HTMLElement} */ (e).dataset.vt
+      : '';
   });
 };

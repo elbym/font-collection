@@ -13,8 +13,11 @@ import { prepare } from './print.js';
 function fill(row) {
   if (row.firstChild) return;
   const n = state.nodes[[...cards.children].indexOf(row)];
-  row.innerHTML = Array.from({ length: DETAILS }, (_, c) => `
-        <section style="${acc(n)}" class="acc relative bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`).join('');
+  row.innerHTML = Array.from(
+    { length: DETAILS },
+    (_, c) => `
+        <section style="${acc(n)}" class="acc relative bg-white dark:bg-neutral-950 [container-type:size] [content-visibility:auto] snap-start snap-always shrink-0 w-full h-dvh flex flex-col items-center justify-center p-6 text-center text-base sm:text-[1.25rem]">${content(n, c)}</section>`,
+  ).join('');
   row.scrollLeft = state.col * row.clientWidth;
 }
 
@@ -28,8 +31,15 @@ const setDot = (c) => {
 
 /** Aktuell sichtbare Karte (Node i, Detailkarte). */
 export const current = () => {
-  const row = /** @type {HTMLElement} */ ([...cards.children].filter((r) => !(/** @type {HTMLElement} */ (r).hidden))[Math.round(detail.scrollTop / detail.clientHeight)]);
-  return { i: [...cards.children].indexOf(row), card: /** @type {HTMLElement} */ (row.children[Math.round(row.scrollLeft / row.clientWidth)]) };
+  const row = /** @type {HTMLElement} */ (
+    [...cards.children].filter((r) => !(/** @type {HTMLElement} */ (r).hidden))[
+      Math.round(detail.scrollTop / detail.clientHeight)
+    ]
+  );
+  return {
+    i: [...cards.children].indexOf(row),
+    card: /** @type {HTMLElement} */ (row.children[Math.round(row.scrollLeft / row.clientWidth)]),
+  };
 };
 
 /** Ist die Detailansicht offen? */
@@ -107,15 +117,29 @@ export function init(root = document) {
   dots = /** @type {HTMLElement} */ (dt);
 
   // leere Rows (h-dvh-Platzhalter, damit Snap/offsetTop stimmen) in einem Rutsch einfügen
-  cards.innerHTML = state.nodes.map(() => `
-      <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`).join('');
+  cards.innerHTML = state.nodes
+    .map(
+      () => `
+      <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`,
+    )
+    .join('');
 
-  const lazy = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && fill(/** @type {HTMLElement} */ (e.target))), { root: detail, rootMargin: '100% 0px' });
+  const lazy = new IntersectionObserver(
+    (es) => es.forEach((e) => e.isIntersecting && fill(/** @type {HTMLElement} */ (e.target))),
+    { root: detail, rootMargin: '100% 0px' },
+  );
   // Rows weit außerhalb wieder leeren (Platzhalter h-dvh bleibt), sonst wächst der Speicher beim Durchblättern (iOS)
-  const unload = new IntersectionObserver((es) => es.forEach((e) => {
-    if (!e.isIntersecting && detail.open) /** @type {HTMLElement} */ (e.target).replaceChildren();
-  }), { root: detail, rootMargin: '300% 0px' });
-  for (const row of cards.children) { lazy.observe(row); unload.observe(row); }
+  const unload = new IntersectionObserver(
+    (es) =>
+      es.forEach((e) => {
+        if (!e.isIntersecting && detail.open) /** @type {HTMLElement} */ (e.target).replaceChildren();
+      }),
+    { root: detail, rootMargin: '300% 0px' },
+  );
+  for (const row of cards.children) {
+    lazy.observe(row);
+    unload.observe(row);
+  }
 
   // Punkte: eine Anzeige für die aktuelle Detailkarte
   dots.innerHTML = '<i class="size-2 rounded-full bg-neutral-500/40 transition"></i>'.repeat(DETAILS);
@@ -124,16 +148,20 @@ export function init(root = document) {
   // Gleiche Detailkarte in allen Nodes: sobald ein Row ausgescrollt ist, ziehen die anderen nach
   // ponytail: Debounce statt scrollend (Safari < 26 kennt es nicht)
   let syncTimer;
-  cards.addEventListener('scroll', (e) => {
-    const row = /** @type {HTMLElement} */ (e.target);
-    if (!row.firstChild) return; // geleerte Row: scrollLeft springt auf 0, das darf die Spalte nicht zurücksetzen
-    setDot(Math.round(row.scrollLeft / row.clientWidth));
-    syncUrl();
-    clearTimeout(syncTimer);
-    syncTimer = setTimeout(() => {
-      for (const r of cards.children) if (r !== row) r.scrollLeft = row.scrollLeft;
-    }, 100);
-  }, true);
+  cards.addEventListener(
+    'scroll',
+    (e) => {
+      const row = /** @type {HTMLElement} */ (e.target);
+      if (!row.firstChild) return; // geleerte Row: scrollLeft springt auf 0, das darf die Spalte nicht zurücksetzen
+      setDot(Math.round(row.scrollLeft / row.clientWidth));
+      syncUrl();
+      clearTimeout(syncTimer);
+      syncTimer = setTimeout(() => {
+        for (const r of cards.children) if (r !== row) r.scrollLeft = row.scrollLeft;
+      }, 100);
+    },
+    true,
+  );
   detail.addEventListener('scroll', syncUrl);
   addEventListener('beforeprint', () => detail.open && prepare(state.nodes[current().i]));
 
@@ -147,15 +175,28 @@ export function init(root = document) {
   /** @param {number} d */
   const stepRow = (d) => {
     const rows = /** @type {HTMLElement[]} */ ([...cards.children]).filter((r) => !r.hidden);
-    const k = Math.max(0, Math.min(rows.length - 1, rows.indexOf(/** @type {HTMLElement} */ (cards.children[current().i])) + d));
+    const k = Math.max(
+      0,
+      Math.min(rows.length - 1, rows.indexOf(/** @type {HTMLElement} */ (cards.children[current().i])) + d),
+    );
     detail.scrollTo({ top: rows[k].offsetTop, behavior: 'smooth' });
   };
   root.querySelector('#prev')?.addEventListener('click', () => stepCol(-1));
   root.querySelector('#next')?.addEventListener('click', () => stepCol(1));
   detail.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey || e.altKey || /** @type {Element} */ (e.target).closest('input,textarea,select')) return;
+    if (e.ctrlKey || e.metaKey || e.altKey || /** @type {Element} */ (e.target).closest('input,textarea,select'))
+      return;
     const k = e.key.toLowerCase();
-    const move = { arrowleft: () => stepCol(-1), h: () => stepCol(-1), arrowright: () => stepCol(1), l: () => stepCol(1), arrowup: () => stepRow(-1), k: () => stepRow(-1), arrowdown: () => stepRow(1), j: () => stepRow(1) }[k];
+    const move = {
+      arrowleft: () => stepCol(-1),
+      h: () => stepCol(-1),
+      arrowright: () => stepCol(1),
+      l: () => stepCol(1),
+      arrowup: () => stepRow(-1),
+      k: () => stepRow(-1),
+      arrowdown: () => stepRow(1),
+      j: () => stepRow(1),
+    }[k];
     if (!move) return;
     e.preventDefault();
     move();

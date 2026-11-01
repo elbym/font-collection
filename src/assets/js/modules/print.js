@@ -12,9 +12,18 @@ const MUSTER = [
 ];
 
 /** @param {string} s */
-const paras = (s) => s.trim().split(/\n\s*\n/).map((p) => `<p>${esc(p.replace(/\s*\n\s*/g, ' '))}</p>`).join('');
+const paras = (s) =>
+  s
+    .trim()
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${esc(p.replace(/\s*\n\s*/g, ' '))}</p>`)
+    .join('');
 /** @param {[string, string?|number|null][]} rows */
-const table = (rows) => `<tbody>${rows.filter(([, v]) => v != null && v !== '').map(([k, v]) => `<tr><th scope="row">${k}</th><td>${esc(v)}</td></tr>`).join('')}</tbody>`;
+const table = (rows) =>
+  `<tbody>${rows
+    .filter(([, v]) => v != null && v !== '')
+    .map(([k, v]) => `<tr><th scope="row">${k}</th><td>${esc(v)}</td></tr>`)
+    .join('')}</tbody>`;
 
 /**
  * Druckfassung für Schrift `n` erzeugen (idempotent) und ihre Schnitte vorladen, sonst druckt der Browser mit Ersatzschrift.
@@ -31,13 +40,26 @@ export function prepare(n) {
 
   const abstract = n.content || n.comment;
   const lines = [
-    keep(n, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'), keep(n, 'abcdefghijklmnopqrstuvwxyz'), keep(n, 'ÄÖÜäöüß&'),
-    keep(n, '0123456789'), keep(n, '.,:;…!?„“‚‘»«()[]/–—@#§%€+='),
+    keep(n, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+    keep(n, 'abcdefghijklmnopqrstuvwxyz'),
+    keep(n, 'ÄÖÜäöüß&'),
+    keep(n, '0123456789'),
+    keep(n, '.,:;…!?„“‚‘»«()[]/–—@#§%€+='),
   ].filter(Boolean);
-  const wf = SIZES.map((s) => `<p style="font-size:${s}pt" class="wf">${s >= 14 ? 'Boxkämpfer' : esc(PANGRAM)}</p>`).join('');
-  const styles = [...n.weights].sort((a, b) => Number(a.italic) - Number(b.italic) || a.weight - b.weight)
-    .map((w) => `<tr><td>${NAME[w.weight]}${w.italic ? ' Italic' : ''}</td><td>${w.weight}</td><td>${w.italic ? 'kursiv' : 'aufrecht'}</td></tr>`).join('');
-  const sources = [n.source].filter(Boolean).map((u) => `<p class="url">${esc(host(/** @type {string} */ (u)))} – ${esc(u)}</p>`).join('');
+  const wf = SIZES.map(
+    (s) => `<p style="font-size:${s}pt" class="wf">${s >= 14 ? 'Boxkämpfer' : esc(PANGRAM)}</p>`,
+  ).join('');
+  const styles = [...n.weights]
+    .sort((a, b) => Number(a.italic) - Number(b.italic) || a.weight - b.weight)
+    .map(
+      (w) =>
+        `<tr><td>${NAME[w.weight]}${w.italic ? ' Italic' : ''}</td><td>${w.weight}</td><td>${w.italic ? 'kursiv' : 'aufrecht'}</td></tr>`,
+    )
+    .join('');
+  const sources = [n.source]
+    .filter(Boolean)
+    .map((u) => `<p class="url">${esc(host(/** @type {string} */ (u)))} – ${esc(u)}</p>`)
+    .join('');
 
   el.className = n.family;
   el.innerHTML = `
@@ -65,7 +87,13 @@ export function prepare(n) {
     </section>
     <section>
       <h2>Angaben</h2>
-      <table class="meta"><caption>Angaben zur Schrift</caption>${table([['Gestalter', n.author], ['Jahr', n.year], ['Kategorie', n.category], ['Schlagwörter', n.tags?.join(', ')], ['Lizenz', n.license]])}</table>
+      <table class="meta"><caption>Angaben zur Schrift</caption>${table([
+        ['Gestalter', n.author],
+        ['Jahr', n.year],
+        ['Kategorie', n.category],
+        ['Schlagwörter', n.tags?.join(', ')],
+        ['Lizenz', n.license],
+      ])}</table>
       ${sources}
     </section>`;
 }

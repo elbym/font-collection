@@ -4,10 +4,17 @@ import { esc, host } from '../../utils/html.js';
 
 /** Karte 3: Infos. @param {import('../../state.js').Node} n */
 export const card3 = (n) => {
-  const rows = [['Designer', n.author], ['Jahr', n.year], ['Lizenz', n.license]]
+  const rows = [
+    ['Designer', n.author],
+    ['Jahr', n.year],
+    ['Lizenz', n.license],
+  ]
     .filter(([, v]) => v != null && v !== '')
     .map(([k, v]) => `<dt class="opacity-60">${k}</dt><dd>${esc(v)}</dd>`);
-  if (n.source) rows.push(`<dt class="opacity-60">Quelle</dt><dd><a href="${esc(n.source)}" target="_blank" rel="noopener" class="underline underline-offset-4 text-[color:var(--accent-ui)]">${esc(host(n.source))}</a></dd>`);
+  if (n.source)
+    rows.push(
+      `<dt class="opacity-60">Quelle</dt><dd><a href="${esc(n.source)}" target="_blank" rel="noopener" class="underline underline-offset-4 text-[color:var(--accent-ui)]">${esc(host(n.source))}</a></dd>`,
+    );
   return `
         <p class="${n.family} text-[2em] leading-tight">${esc(n.title)}</p>
         <div class="my-[.5em] h-[.15em] w-[3em] bg-[color:var(--accent-ui)]"></div>

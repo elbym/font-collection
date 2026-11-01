@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @source "../../index.html";
 @source "../assets/js";
 @source "../alternatives.njk";
 @source "../network.njk";
-@import "./app.css";
-@import "./print.css";
+@import './app.css';
+@import './print.css';

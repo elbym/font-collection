@@ -10,12 +10,16 @@ export function init(root = document) {
   if (!grid) return;
 
   // Kacheln in einem Rutsch einfügen
-  grid.innerHTML = state.nodes.map((n, i) => `
+  grid.innerHTML = state.nodes
+    .map(
+      (n, i) => `
       <button data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
         class="acc relative scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
         <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
         <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-xs text-neutral-500 dark:text-neutral-400">${esc(n.title)}</span>
-      </button>`).join('');
+      </button>`,
+    )
+    .join('');
 
   // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
   /** @type {HTMLElement|null} */
@@ -29,7 +33,10 @@ export function init(root = document) {
   };
   grid.addEventListener('pointerover', (e) => {
     const ev = /** @type {PointerEvent} */ (e);
-    const tile = ev.pointerType === 'mouse' ? /** @type {HTMLElement|null} */ (/** @type {Element} */ (ev.target).closest('[data-i]')) : null;
+    const tile =
+      ev.pointerType === 'mouse'
+        ? /** @type {HTMLElement|null} */ (/** @type {Element} */ (ev.target).closest('[data-i]'))
+        : null;
     if (tile === hoverTile) return;
     hoverStop();
     const all = tile && state.nodes[Number(tile.dataset.i)].weights;
@@ -40,7 +47,8 @@ export function init(root = document) {
     let k = 0;
     const step = () => {
       const w = ws[k++ % ws.length];
-      /** @type {HTMLElement} */ (tile.firstElementChild).style.cssText = `font-weight:${w.weight};font-style:${w.italic ? 'italic' : 'normal'}`;
+      /** @type {HTMLElement} */ (tile.firstElementChild).style.cssText =
+        `font-weight:${w.weight};font-style:${w.italic ? 'italic' : 'normal'}`;
     };
     step();
     hoverTimer = setInterval(step, 300);
@@ -48,11 +56,16 @@ export function init(root = document) {
   // Übersicht fertig geladen: Hover-Schnitte (Latin-Subsets) nacheinander vorladen, damit sie sofort bereitstehen
   const preload = async () => {
     for (const n of state.nodes) {
-      await Promise.all((n.weights || []).map((w) => document.fonts.load(`${w.italic ? 'italic ' : ''}${w.weight} 1em ${n.family}-s`).catch(() => {})));
+      await Promise.all(
+        (n.weights || []).map((w) =>
+          document.fonts.load(`${w.italic ? 'italic ' : ''}${w.weight} 1em ${n.family}-s`).catch(() => {}),
+        ),
+      );
       await new Promise((r) => (window.requestIdleCallback || setTimeout)(r)); // ponytail: sequenziell im Leerlauf, damit die Übersicht nicht ruckelt
     }
   };
-  if (matchMedia('(hover:hover)').matches) { // Smartphone: kein Hover, nicht vorladen
+  if (matchMedia('(hover:hover)').matches) {
+    // Smartphone: kein Hover, nicht vorladen
     if (document.readyState === 'complete') preload();
     else addEventListener('load', preload, { once: true });
   }

@@ -27,17 +27,17 @@ Port ändern: `PORT=8010 npm run dev`. Nur bauen und ausliefern: `npm run build 
    ```
 4. **Bauen:** `npm run build` (bzw. `npm run dev` läuft im Watch weiter). Die Schrift erscheint im Raster und unter `/<slug>`. Pro Schrift entsteht dabei eine statische Seite `/<slug>/` mit eigenem `<title>` und Meta-Description (aus `title`, `tags`, `fontauthor`, `fontyear`, `comment`/`content`).
 
-| Feld | Beispiel | Wirkung |
-| --- | --- | --- |
-| `title` | `Meine Schrift` | Anzeigename |
-| `tags` | `Sans, Humanist Sans` | erster Tag = Kategorie, alle Tags dienen als Filter |
-| `color` | `steelblue` | Akzentfarbe (CSS-Farbname) |
-| `heroletter` | `Aa` | Zeichen(e) im großen Hero auf Poster A |
-| `fontauthor` | `Rasmus Andersson` | Gestalter |
-| `fontyear` | `2017` | Erscheinungsjahr |
-| `license` | `SIL Open Font License 1.1` | überschreibt die Auto-Erkennung aus `OFL.txt`/`LICENSE.txt` |
-| `url` | `https://…` | Projekt- bzw. Quelllink |
-| `comment` | `Hinweis` | Notiz auf der Infokarte; zugleich Meta-Description der Schriftseite (ohne `comment` dient `content`) |
+| Feld         | Beispiel                    | Wirkung                                                                                              |
+| ------------ | --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `title`      | `Meine Schrift`             | Anzeigename                                                                                          |
+| `tags`       | `Sans, Humanist Sans`       | erster Tag = Kategorie, alle Tags dienen als Filter                                                  |
+| `color`      | `steelblue`                 | Akzentfarbe (CSS-Farbname)                                                                           |
+| `heroletter` | `Aa`                        | Zeichen(e) im großen Hero auf Poster A                                                               |
+| `fontauthor` | `Rasmus Andersson`          | Gestalter                                                                                            |
+| `fontyear`   | `2017`                      | Erscheinungsjahr                                                                                     |
+| `license`    | `SIL Open Font License 1.1` | überschreibt die Auto-Erkennung aus `OFL.txt`/`LICENSE.txt`                                          |
+| `url`        | `https://…`                 | Projekt- bzw. Quelllink                                                                              |
+| `comment`    | `Hinweis`                   | Notiz auf der Infokarte; zugleich Meta-Description der Schriftseite (ohne `comment` dient `content`) |
 
 ## Struktur und Konventionen
 
@@ -68,13 +68,13 @@ Neue Datei in `modules/cards/`, in `cards/index.js` in `CARDS` eintragen und `DE
 
 ## Befehle
 
-| Befehl | Zweck |
-| --- | --- |
-| `npm run dev` | baut, startet Eleventy-, Tailwind-, esbuild-Watch (Sourcemap) und Server |
-| `npm run build` | 11ty + Tailwind + minifiziertes JS-Bundle + Basispfad nach `_site/` |
-| `npm run lint` / `npm run format` | ESLint / Prettier |
-| `npm test` | Vitest |
-| `npm run clean` | `_site/` löschen |
+| Befehl                            | Zweck                                                                    |
+| --------------------------------- | ------------------------------------------------------------------------ |
+| `npm run dev`                     | baut, startet Eleventy-, Tailwind-, esbuild-Watch (Sourcemap) und Server |
+| `npm run build`                   | 11ty + Tailwind + minifiziertes JS-Bundle + Basispfad nach `_site/`      |
+| `npm run lint` / `npm run format` | ESLint / Prettier                                                        |
+| `npm test`                        | Vitest                                                                   |
+| `npm run clean`                   | `_site/` löschen                                                         |
 
 ## Adressen
 

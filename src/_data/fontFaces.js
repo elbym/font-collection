@@ -1,13 +1,13 @@
 // @font-face-Blöcke für alle Schriftdateien: src/fonts.css.njk → /fonts.css
-const fonts = require("./fonts");
+const fonts = require('./fonts');
 
-const encodePath = (p) => p.split("/").map(encodeURIComponent).join("/");
+const encodePath = (p) => p.split('/').map(encodeURIComponent).join('/');
 
 module.exports = function () {
   const blocks = [];
 
   for (const n of fonts().list.filter((x) => x.isLeaf)) {
-    const family = `f-${n.url.split("/").pop()}`;
+    const family = `f-${n.url.split('/').pop()}`;
     blocks.push(`.${family} { font-family: ${family}; }`); // Klasse zum Setzen der Schrift (statt Inline-Style)
     blocks.push(`.${family}-s { font-family: ${family}-s; }`); // Latin-Subset für die Kacheln (scripts/subset-fonts.js)
 
@@ -23,9 +23,12 @@ module.exports = function () {
     }
 
     for (const { file, style, min, max } of faces.values()) {
-      const format = file.endsWith(".woff") ? "woff" : "woff2";
+      const format = file.endsWith('.woff') ? 'woff' : 'woff2';
       // .woff gibt es nicht als Subset: die Kachel nimmt dann die volle Datei
-      for (const [fam, dir, fmt] of [[family, "webfonts", format], [`${family}-s`, format === "woff2" ? "webfonts-latin" : "webfonts", format]]) {
+      for (const [fam, dir, fmt] of [
+        [family, 'webfonts', format],
+        [`${family}-s`, format === 'woff2' ? 'webfonts-latin' : 'webfonts', format],
+      ]) {
         blocks.push(
           `@font-face {\n` +
             `  font-family: ${fam};\n` +
@@ -33,11 +36,11 @@ module.exports = function () {
             `  font-weight: ${min} ${max};\n` +
             `  font-style: ${style};\n` +
             `  font-display: swap;\n` +
-            `}`
+            `}`,
         );
       }
     }
   }
 
-  return blocks.join("\n\n") + "\n";
+  return blocks.join('\n\n') + '\n';
 };

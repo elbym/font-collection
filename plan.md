@@ -5,14 +5,14 @@ Ziel: `/home/elby/repos/font-collection-2` (`index.html`, Tailwind, Raster → V
 
 ## Zielbild
 
-| Ansicht | Inhalt |
-|---|---|
-| Top-Bar (nur Übersicht) | fixierte Leiste oben, vorerst Titel; Platz (leerer Slot) für spätere Filter und Sortierungen |
+| Ansicht                                         | Inhalt                                                                                                                                                                                                 |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Top-Bar (nur Übersicht)                         | fixierte Leiste oben, vorerst Titel; Platz (leerer Slot) für spätere Filter und Sortierungen                                                                                                           |
 | Übersicht (Kachel = verkleinerte Detailkarte 1) | nur **Name der Schrift** und **„Aa"**, beides in der Schrift selbst gesetzt; Hintergrund hell/dunkel nach System (Light/Dark-Mode), die Schriftfarbe ist nur **Akzent** (großes „Aa", Trenner, Linien) |
-| Detailkarte 1 | wie Kachel, groß |
-| Detailkarte 2 | **Specimen Poster A** – Zeichensatz (großes „Aa", Alphabet, Ziffern, Satzzeichen) |
-| Detailkarte 3 | **Specimen Poster B** – Schnitte/Waterfall, Pangramm, Fließtext |
-| Detailkarte 4 | Infos: Designer, Jahr, Lizenz, Tags, Quelle, Kommentar (Annahme, da nicht vorgegeben; `DETAILS` bleibt 4) |
+| Detailkarte 1                                   | wie Kachel, groß                                                                                                                                                                                       |
+| Detailkarte 2                                   | **Specimen Poster A** – Zeichensatz (großes „Aa", Alphabet, Ziffern, Satzzeichen)                                                                                                                      |
+| Detailkarte 3                                   | **Specimen Poster B** – Schnitte/Waterfall, Pangramm, Fließtext                                                                                                                                        |
+| Detailkarte 4                                   | Infos: Designer, Jahr, Lizenz, Tags, Quelle, Kommentar (Annahme, da nicht vorgegeben; `DETAILS` bleibt 4)                                                                                              |
 
 ## Entscheidungen
 
@@ -62,6 +62,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** `npx @11ty/eleventy` läuft leer durch.
 **Tun:**
+
 1. `package.json` anlegen (`private: true`), devDependencies aus der Vorlage: `@11ty/eleventy`, `js-yaml`, `chroma-js`, `fontkit` (Versionen aus `/home/elby/repos/font-collection/package.json`). Scripts: `"build": "eleventy"`, `"dev": "eleventy --watch"`.
 2. `eleventy.config.js` (CommonJS, wie `.eleventy.js` der Vorlage, aber minimal): `dir: { input: "src", output: "_site" }`, `addPassthroughCopy({ "index.html": "index.html", "src/webfonts": "webfonts" })` (nur `.woff2` ist nötig, Rest stört nicht). **Keine** Filter aus der Vorlage übernehmen.
 3. `.gitignore`: `node_modules/`, `_site/`.
@@ -73,6 +74,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** `fonts.js` liefert dieselben Knoten wie in der Vorlage.
 **Tun:**
+
 1. Kopieren aus `/home/elby/repos/font-collection/src/_data/`: `fonts.js`, `site.json`, `fontCodepoints.js`. Nicht kopieren: alle anderen `_data`-Dateien.
 2. `site.json` auf das Nötige kürzen: `randomColors`, `panagram`, `paragraph`, `heroword`, `heroletter`.
 3. Pfade in `fonts.js`/`fontCodepoints.js` prüfen (lesen `../webfonts` relativ zu `__dirname` → passt, wenn `src/webfonts` existiert). Nicht umbauen, außer es bricht.
@@ -83,6 +85,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** Alle Schriftdateien liegen im neuen Projekt.
 **Tun:**
+
 1. `rsync -a --include='*/' --include='*.woff2' --include='*.woff' --include='meta.yaml' --include='OFL*.txt' --include='LICENSE*' --exclude='*' /home/elby/repos/font-collection/src/webfonts/ src/webfonts/`
 2. Danach prüfen: `find src/webfonts -name '*.woff2' | wc -l` ≈ 519; `webfonts_disabled/` der Vorlage **nicht** anfassen.
 3. Repo-Größe (~58 MB) ist akzeptiert; falls nicht gewünscht, Rückfrage statt Git-LFS einzuführen.
@@ -93,6 +96,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** `_site/fonts.json` enthält pro Schrift genau die Felder, die die UI braucht.
 **Tun:**
+
 1. `src/fonts.json.njk` mit `permalink: fonts.json`, Ausgabe per `{{ ... | dump | safe }}` aus einer kleinen Datenfunktion (z. B. Frontmatter-JS `eleventyComputed` oder zusätzliche `src/_data/fontsJson.js`, die `fonts().list` auf Blätter (`isLeaf`) filtert und mappt).
 2. Pro Schrift: `slug` (letztes Segment von `url` bzw. `key`, URL-sicher, eindeutig – bei Kollision Fehler werfen), `title`, `family` (CSS-Familienname `f-<slug>`), `accent` (= `colorHex`), `tags`, `category`, `author` (`fontauthor`), `year`, `license`, `source` (`sourceUrl`), `comment`, `heroletter`, `heroword`, `weights` (sortierte Liste `{weight, italic}` aus `ownFonts`), `variable` (bool), `glyphs` (Codepoints als Array aus `fontCodepoints`, oder `null` = alle vorhanden).
 3. Sortierung alphabetisch nach `title`.
@@ -103,6 +107,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** Jede Schrift ist per `font-family: <family>` nutzbar.
 **Tun:**
+
 1. `src/fonts.css.njk` (`permalink: fonts.css`) erzeugt pro Datei in `ownFonts` ein `@font-face`: `font-family: f-<slug>`, `src: url(webfonts/<pfad>.woff2) format("woff2")`, `font-weight` (bei Variable Fonts den Bereich `min max` aus `fontVariableAxes.js` der Vorlage – nur wenn nötig übernehmen, sonst Gewicht aus Dateiname), `font-style`, `font-display: swap`.
 2. Pfade **relativ** zu `fonts.css` (`url(webfonts/<pfad>.woff2)`, ohne führendes `/`), damit die Datei unter jedem Basispfad funktioniert.
 
@@ -112,6 +117,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** Raster zeigt alle Schriften als Kachel „Name + Aa"; Detailansicht hat 4 Karten, deren Inhalt in je einer eigenen Funktion steckt.
 **Tun:**
+
 1. `<base href="/">` in den `<head>` (wird in S11 beim Deployment überschrieben), `<link rel="stylesheet" href="fonts.css">` einfügen; Dummy-`nodes` ersetzen durch `const nodes = await (await fetch('fonts.json')).json()` (Script `type="module"` oder IIFE). `slug`-Feld bleibt Routing-Schlüssel.
 2. `bg()` entfällt. Kachel und Karten bekommen neutrale Flächen (`bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50`). Die Akzentfarbe kommt als `style="--accent:${n.accent}"` an Kachel/Karte und wird über `text-(--accent-ui)`, `border-(--accent-ui)`, `bg-(--accent-ui)` benutzt. Lesbarkeit: `--accent-ui` = `color-mix(in oklab, var(--accent), white 25%)` im Dark-Mode, `color-mix(in oklab, var(--accent), black 15%)` im Light-Mode (zwei Zeilen CSS im `<style>`-Block).
 3. `content(n, c)` wird zum Dispatcher auf `CARDS[c](n)`; `CARDS = [card1, card2, card3, card4]`. Jede Funktion steht in einem eigenen, mit Kommentar markierten Block, damit S7–S9 parallel nur ihren Block ändern:
@@ -126,6 +132,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** Feste Leiste über dem Raster mit Platz für spätere Filter und Sortierungen.
 **Tun:**
+
 1. In `index.html` vor `#grid`: `<header id="topbar" class="sticky top-0 z-20 ...">` mit Seitentitel links und einem leeren Container `<div id="tools" class="ml-auto flex items-center gap-2"></div>` als Slot. Halbtransparenter Hintergrund mit `backdrop-blur` (hell/dunkel), untere Linie in neutraler Farbe.
 2. **Keine** Filter oder Sortierung implementieren (YAGNI), nur den Slot und einen Kommentar, dass hier Bedienelemente eingehängt werden und `nodes` vor dem Rendern gefiltert/sortiert werden kann.
 3. Die Top-Bar gehört nur zur Übersicht: das modale `<dialog>` deckt sie ab. Kacheln bekommen `scroll-mt-<Höhe der Leiste>`, damit `tile.scrollIntoView` beim Schließen die Kachel nicht unter der Leiste platziert.
@@ -160,6 +167,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 
 **Ziel:** Produktions-CSS ohne `cdn.tailwindcss.com`.
 **Tun:**
+
 1. `@tailwindcss/cli` und `tailwindcss` (v4, Versionen aus der Vorlage) als devDependencies. `src/css/tailwind.css`: `@import "tailwindcss";` plus `@source "../../index.html";`. (Vorlage nutzt `tailwindcss/theme` + `utilities` ohne Preflight, hier **mit** Preflight, da kein eigenes Reset existiert.)
 2. npm-Scripts: `"css": "tailwindcss -i src/css/tailwind.css -o _site/tailwind.css --minify"`, `build` = `eleventy && npm run css`, `dev` = Eleventy-Watch + `tailwindcss --watch` parallel (z. B. mit `&` in einem Script, kein zusätzliches Paket).
 3. `<script src="cdn.tailwindcss.com">` in `index.html` durch `<link rel="stylesheet" href="tailwind.css">` (relativ) ersetzen; ponytail-Kommentar dort entfernen.
@@ -170,8 +178,8 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 ## S11 – Deploy auf GitHub Pages (Basispfad konfigurierbar)
 
 **Ziel:** Dieselbe Quelle läuft lokal unter `/` und auf GitHub Pages unter `/font-collection/` (Repo `elbym/font-collection`, URL `https://elbym.github.io/font-collection/`).
-**Tun:**
-0. **Bestehendes Repo ablösen (nur nach ausdrücklicher Freigabe des Nutzers, nicht durch den Agenten):** Das alte `elbym/font-collection` (11ty-Vorlage, `gh-pages` mit dem alten Auftritt) wird ersetzt. Empfohlene Reihenfolge, damit nichts verloren geht: (a) altes Repo auf GitHub in z. B. `font-collection-11ty-archiv` umbenennen (Verlauf und Stand bleiben erhalten; dessen Pages-Auftritt sollte danach abgeschaltet werden), (b) neues Repo `elbym/font-collection` anlegen, (c) lokal `git remote add origin git@github.com:elbym/font-collection.git` und `main` pushen, (d) in den Repo-Einstellungen Pages auf Branch `gh-pages` stellen. Die Alternative „Force-Push auf das alte Repo" löscht den alten Verlauf und wird nicht empfohlen. Folge: Alte Adressen wie `…/font-collection/serif.html` gibt es nicht mehr; Adressen der Form `…/font-collection/<slug>` ersetzen sie. Das lokale Vorlageverzeichnis `/home/elby/repos/font-collection` bleibt unangetastet.
+**Tun:** 0. **Bestehendes Repo ablösen (nur nach ausdrücklicher Freigabe des Nutzers, nicht durch den Agenten):** Das alte `elbym/font-collection` (11ty-Vorlage, `gh-pages` mit dem alten Auftritt) wird ersetzt. Empfohlene Reihenfolge, damit nichts verloren geht: (a) altes Repo auf GitHub in z. B. `font-collection-11ty-archiv` umbenennen (Verlauf und Stand bleiben erhalten; dessen Pages-Auftritt sollte danach abgeschaltet werden), (b) neues Repo `elbym/font-collection` anlegen, (c) lokal `git remote add origin git@github.com:elbym/font-collection.git` und `main` pushen, (d) in den Repo-Einstellungen Pages auf Branch `gh-pages` stellen. Die Alternative „Force-Push auf das alte Repo" löscht den alten Verlauf und wird nicht empfohlen. Folge: Alte Adressen wie `…/font-collection/serif.html` gibt es nicht mehr; Adressen der Form `…/font-collection/<slug>` ersetzen sie. Das lokale Vorlageverzeichnis `/home/elby/repos/font-collection` bleibt unangetastet.
+
 1. **Basispfad per Umgebungsvariable:** `BASE_PATH` (Default `/`, mit führendem und abschließendem Slash). Ein kleines Skript `scripts/set-base.js` (ca. 5 Zeilen, nur `fs`) ersetzt in `_site/index.html` und `_site/404.html` den Text `<base href="/">` durch `<base href="${process.env.BASE_PATH}">`. npm-Scripts: `"build"` = Eleventy + Tailwind (Basis `/`), `"build:pages"` = `BASE_PATH=/font-collection/ npm run build && node scripts/set-base.js`. Kein sed (Quoting, BSD/GNU-Unterschiede).
 2. **Pfadregeln in `index.html`** (Voraussetzung: S4/S5/S6/S10 haben alle Asset-URLs relativ gemacht): `fetch('fonts.json')`, `fonts.css`, `tailwind.css`, `webfonts/…` lösen über `<base>` auf. **Routing** (`route()`, `go()`, `syncUrl()`, Klick-Handler) arbeitet bisher mit absoluten Pfaden `/<slug>`: eine Konstante `const BASE = new URL(document.baseURI).pathname` einführen; URLs bauen als `BASE + slug + '#' + n`; in `route()` den Slug als `location.pathname.slice(BASE.length)` lesen; `go('/')` → `go(BASE)`. Keine weiteren Stellen mit hartem `/`.
 3. **Direktaufruf (`/font-collection/bodoni#2`):** GitHub Pages kennt den Pfad nicht und liefert `404.html`. Deshalb `404.html` = Kopie von `index.html` (Passthrough in `eleventy.config.js`) und `.nojekyll` nach `_site/`. Wichtig: `<base>` muss in `404.html` ebenfalls ersetzt werden (siehe 1.).
@@ -185,6 +193,7 @@ Jeder Schritt: eigener Commit über `git-worker`, Abnahmekriterien müssen erfü
 ## S12 – Doku und Abschlusstest
 
 **Tun:**
+
 1. `CLAUDE.md` und `README.md` anpassen: neue Struktur, Pfade, Befehle (`npm run dev`/`build`, `python3 server.py`), Hinweis „Schrift hinzufügen = Ordner + `meta.yaml`", Beschreibung `CARDS`-Funktionen, `fonts.json`/`fonts.css`. Den Satz „Inhalte nur in `nodes` ändern" ersetzen (Daten kommen jetzt aus dem 11ty-CMS).
 2. Abschlusstest im Browser (Claude in Chrome oder manuell), Viewport 390×844 und 1440×900: Raster, Öffnen/Schließen-Morph, horizontales Wechseln der Karten 1–4, vertikales Wechseln der Schrift (gleiche Karte bleibt sichtbar), Direktaufruf, Zurück-Taste, Esc.
 3. Stichprobe von 10 Schriften quer durch alle Kategorien (sans, serif, mono, blackletter, script, display, comicsans) auf Poster A/B prüfen: Glyphen vollständig, nichts abgeschnitten.

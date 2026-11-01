@@ -1,8 +1,8 @@
 // Flache Liste aller Schriften (Blatt-Knoten) für die UI: src/fonts.json.njk → /fonts.json
-const fonts = require("./fonts");
-const fontCodepoints = require("./fontCodepoints");
-const fontAxes = require("./fontAxes");
-const { description } = require("../../scripts/meta");
+const fonts = require('./fonts');
+const fontCodepoints = require('./fontCodepoints');
+const fontAxes = require('./fontAxes');
+const { description } = require('../../scripts/meta');
 
 module.exports = async function () {
   const codepoints = await fontCodepoints();
@@ -12,14 +12,14 @@ module.exports = async function () {
   const list = fonts()
     .list.filter((n) => n.isLeaf)
     .map((n) => {
-      const slug = n.url.split("/").pop();
+      const slug = n.url.split('/').pop();
       if (slugs.has(slug)) throw new Error(`Doppelter Schrift-Slug: ${slug} (${n.path})`);
       slugs.add(slug);
 
       const cp = codepoints[n.key];
       const seen = new Set();
       const weights = n.ownFonts
-        .map((f) => ({ weight: f.weight, italic: f.style === "italic" }))
+        .map((f) => ({ weight: f.weight, italic: f.style === 'italic' }))
         .filter((w) => {
           const id = `${w.weight}-${w.italic}`;
           if (seen.has(id)) return false;
@@ -47,9 +47,13 @@ module.exports = async function () {
         weights,
         variable: n.ownFonts.some((f) => f.isVariable),
         axes: axes[n.key] ?? null,
-        glyphs: cp ? Object.keys(cp).map(Number).sort((a, b) => a - b) : null,
+        glyphs: cp
+          ? Object.keys(cp)
+              .map(Number)
+              .sort((a, b) => a - b)
+          : null,
       };
     });
 
-  return list.sort((a, b) => a.title.localeCompare(b.title, "de"));
+  return list.sort((a, b) => a.title.localeCompare(b.title, 'de'));
 };
