@@ -1,5 +1,5 @@
 // Erzeugt _site/<slug>/index.html pro Schrift: index.html mit eigenem SEO-Block (läuft nach set-base.js).
-// Mit SITE_URL zusätzlich canonical/og:url (auch für die Startseite) und _site/sitemap.xml.
+// Mit SITE_URL zusätzlich canonical/og:url/og:image, JSON-LD (schema.org) – auch für die Startseite – und _site/sitemap.xml.
 const fs = require('fs');
 const { SITE_NAME } = require('./meta');
 
@@ -28,11 +28,75 @@ const abs = (path, alt) => {
     : ['<meta name="twitter:card" content="summary">'];
   return [`<link rel="canonical" href="${url}">`, `<meta property="og:url" content="${url}">`, ...og];
 };
+// schema.org als JSON-LD (nur mit SITE_URL, @id braucht absolute URLs); `<` escaped, damit kein </script> entsteht
+const ld = (data) =>
+  site
+    ? [
+        `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...data }).replace(/</g, '\\u003c')}</script>`,
+      ]
+    : [];
+const WEBSITE = site && { '@type': 'WebSite', '@id': `${site}#website`, name: SITE_NAME, url: site, inLanguage: 'de' };
+// ponytail: nur die Lizenzen, die in fonts.json vorkommen; unbekannte entfallen
+const LICENSES = {
+  'SIL Open Font License 1.1': 'https://openfontlicense.org/open-font-license-official-text/',
+  'Apache 2.0': 'https://www.apache.org/licenses/LICENSE-2.0',
+};
+const unesc = (s) =>
+  s
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&amp;/g, '&');
+
+/** Schrift als CreativeWork; Autorenfeld ist Freitext (Personen und Foundries gemischt) → creditText. */
+const fontLd = (n) => {
+  const url = `${site}${n.slug}/`;
+  return ld({
+    '@type': 'CreativeWork',
+    '@id': `${url}#font`,
+    name: n.title,
+    url,
+    description: (n.comment ?? n.content)?.replace(/\s+/g, ' ').trim() || undefined, // ungekürzt
+    genre: n.tags?.[0],
+    keywords: n.tags?.join(', '),
+    creditText: n.author ?? undefined,
+    dateCreated: n.year ? String(n.year) : undefined,
+    license: LICENSES[n.license],
+    sameAs: n.source ?? undefined,
+    image: fs.existsSync(`_site/og/${n.slug}.png`) ? `${site}og/${n.slug}.png` : undefined,
+    isPartOf: WEBSITE && { '@id': WEBSITE['@id'] },
+  });
+};
+
 const seo = (lines) => ['<!-- seo -->', ...lines, '<!-- /seo -->'].join('\n  ');
 
 // Startseite: absolute URLs ergänzen (idempotent, alte Zeilen werden vorher entfernt)
-const home = block.split('\n').filter((l) => !/rel="canonical"|property="og:(url|image)|twitter:card/.test(l));
-home.splice(-1, 0, ...abs('', SITE_NAME).map((l) => `    ${l}`));
+const home = block
+  .split('\n')
+  .filter((l) => !/rel="canonical"|property="og:(url|image)|twitter:card|application\/ld\+json/.test(l));
+const homeLd = ld({
+  '@graph': [
+    WEBSITE,
+    {
+      '@type': 'CollectionPage',
+      '@id': `${site}#page`,
+      url: site,
+      name: SITE_NAME,
+      description: unesc(homeDesc),
+      isPartOf: { '@id': `${site}#website` },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: fonts.length,
+        itemListElement: fonts.map((n, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${site}${n.slug}/`,
+          name: n.title,
+        })),
+      },
+    },
+  ],
+});
+home.splice(-1, 0, ...[...abs('', SITE_NAME), ...homeLd].map((l) => `    ${l}`));
 fs.writeFileSync('_site/index.html', html.replace(BLOCK, home.join('\n')));
 
 for (const n of fonts) {
@@ -49,6 +113,7 @@ for (const n of fonts) {
       `<meta property="og:title" content="${t}">`,
       `<meta property="og:description" content="${d}">`,
       ...abs(`${n.slug}/`, `${esc(n.title)} – Schriftmuster`),
+      ...fontLd(n),
     ]),
   );
   fs.mkdirSync(`_site/${n.slug}`, { recursive: true });
