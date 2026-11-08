@@ -39,6 +39,14 @@ export const fs = (k, total) => `min(max(3.2cqw,11px),${(total / k).toFixed(2)}c
 /** Wie `fs`, aber größer (6cqw) für das schmale Hochformat (Smartphone). */
 export const fsMobile = (k, total) => `min(max(6cqw,11px),${((total + 5) / k).toFixed(2)}cqh)`;
 
+/** Pangramm mit Auszeichnungen: „zwölf" fett, „Boxkämpfer" kursiv – nur wenn die Schrift diese Schnitte hat (sonst entstünde synthetischer Fettdruck/Schrägstellung). @param {import('../../state.js').Node} n */
+const pangram = (n) => {
+  let p = PANGRAM;
+  if (n.weights.some((w) => w.weight >= 600)) p = p.replace('zwölf', '<span class="font-bold">zwölf</span>');
+  if (n.weights.some((w) => w.italic)) p = p.replace('Boxkämpfer', '<span class="italic">Boxkämpfer</span>');
+  return p;
+};
+
 /** Karte 2: Poster B (Schnitte, Fließtext). @param {import('../../state.js').Node} n */
 export const card2 = (n) => {
   // Zeilengröße hängt von der Schnittanzahl ab (Daten) und steht deshalb einmal inline am Raster; die Zellen erben sie
@@ -55,7 +63,7 @@ export const card2 = (n) => {
       )
       .join('')}</div>`;
   const waterfall = ['text-[length:min(7cqw,7.5cqh)]', 'text-[length:min(4.5cqw,5cqh)]']
-    .map((size) => `<p class="${size} leading-[1.2]">${PANGRAM}</p>`)
+    .map((size) => `<p class="${size} leading-[1.2]">${pangram(n)}</p>`)
     .join('');
   return `
       <div class="${n.family} p-[max(5cqw,3.75rem)_5cqw_5cqw] w-full h-full flex flex-col gap-[2.5cqh] overflow-hidden text-left">
