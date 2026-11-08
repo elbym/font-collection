@@ -42,9 +42,20 @@
       class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
     >
       <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
-      <div id="tools" class="ml-auto flex min-w-0 items-center gap-2 overflow-x-auto"></div>
+      <input
+        id="search"
+        type="search"
+        placeholder="Suchen …"
+        aria-label="Schriften durchsuchen"
+        autocomplete="off"
+        class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
+      />
+      <div id="tools" class="flex min-w-0 items-center gap-2 overflow-x-auto"></div>
       <a href="alternatives.html" class="text-sm underline">Alternativen</a>
       <a href="network.html" class="text-sm underline">Netzwerk</a>
+      <a href="https://github.com/elbym/font-collection" target="_blank" rel="noopener" class="text-sm underline"
+        >GitHub</a
+      >
     </header>
 
     <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->

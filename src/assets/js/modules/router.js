@@ -7,7 +7,7 @@ import { closeAnim, isOpen, openAnim, show } from './detail.js';
 /** @type {HTMLElement} */ let tools;
 
 /** Filter-Pills der Top-Bar (Tag-Werte aus fonts.json); erneuter Klick hebt den Filter auf. */
-const PILLS = ['Sans', 'Serif', 'Monospace', 'Display', 'Script'];
+const PILLS = ['Star', 'Sans', 'Serif', 'Monospace', 'Display', 'Script'];
 
 /** Rasterübersicht mit Tag-Filter (?tag=…), beim Öffnen einer Schrift bleibt er erhalten. */
 const home = () => BASE + tagQuery();
@@ -15,20 +15,28 @@ const home = () => BASE + tagQuery();
 /** Seitentitel der Startseite (og:site_name aus index.html); Schriften haben `pageTitle` aus fonts.json. */
 const SITE = document.querySelector('meta[property="og:site_name"]')?.getAttribute('content') || document.title;
 
+/** Tag-Filter und Suchtext (Name, Autor, Tags); gilt auch in der Detailansicht. @param {Element|null} [cards] */
+function applyFilter(cards = document.querySelector('#cards')) {
+  const q = state.q.trim().toLowerCase();
+  const hit = (/** @type {import('../state.js').Node} */ n) =>
+    (!state.tag || (state.tag === 'Star' ? !!n.favorite : !!n.tags?.includes(state.tag))) &&
+    (!q || [n.title, n.author, ...(n.tags ?? [])].some((s) => s?.toLowerCase().includes(q)));
+  for (const el of [grid, cards])
+    [...(el?.children ?? [])].forEach((t, k) => {
+      /** @type {HTMLElement} */ (t).hidden = !hit(state.nodes[k]);
+    });
+}
+
 /** Setzt die Ansicht aus der URL: <BASE>slug#3 = Schrift slug, Detailkarte 3; <BASE> = Raster. @param {boolean} [animate] */
 function route(animate = true) {
   const path = location.pathname.slice(BASE.length).replace(/\/$/, '');
   state.tag = new URLSearchParams(location.search).get('tag') || '';
   const cards = document.querySelector('#cards');
-  // Filter gilt auch in der Detailansicht
-  for (const el of [grid, cards])
-    [...(el?.children ?? [])].forEach((t, k) => {
-      /** @type {HTMLElement} */ (t).hidden = !!state.tag && !state.nodes[k].tags?.includes(state.tag);
-    });
+  applyFilter(cards);
   tools.innerHTML = (!state.tag || PILLS.includes(state.tag) ? PILLS : [...PILLS, state.tag])
     .map(
       (p) =>
-        `<a data-nav href="${BASE}${p === state.tag ? '' : `?tag=${encodeURIComponent(p)}`}" class="shrink-0 rounded-full border px-3 py-1 text-sm ${p === state.tag ? 'border-transparent bg-neutral-900 text-white dark:bg-neutral-50 dark:text-neutral-900' : 'border-neutral-500/50'}">${esc(p)}</a>`,
+        `<a data-nav href="${BASE}${p === state.tag ? '' : `?tag=${encodeURIComponent(p)}`}" class="shrink-0 rounded-full border px-3 py-1 text-sm ${p === state.tag ? 'border-transparent bg-neutral-900 text-white dark:bg-neutral-50 dark:text-neutral-900' : 'border-neutral-500/50'}">${p === 'Star' ? '★ ' : ''}${esc(p)}</a>`,
     )
     .join('');
   const i = state.nodes.findIndex((n) => n.slug === path);
@@ -53,6 +61,10 @@ export function init(root = document) {
   if (!g || !t || !detail || !close) return;
   grid = /** @type {HTMLElement} */ (g);
   tools = /** @type {HTMLElement} */ (t);
+  root.querySelector('#search')?.addEventListener('input', (e) => {
+    state.q = /** @type {HTMLInputElement} */ (e.target).value; // ponytail: nur im Speicher, nicht in der URL
+    applyFilter();
+  });
 
   close.addEventListener('click', () => go(home()));
   detail.addEventListener('cancel', (e) => {
