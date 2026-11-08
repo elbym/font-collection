@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- seo -->
+  <title>Silkscreen – Display von Jason Kottke (2001) · Font Collection elbym</title>
+  <meta name="description" content="Silkscreen ist die seltene Spezies der proportionalen Bitmap-Schrift – eine Pixelschrift mit variabler Buchstabenbreite, nicht monospaced. Entworfen von…">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Font Collection elbym">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Silkscreen – Display von Jason Kottke (2001) · Font Collection elbym">
+  <meta property="og:description" content="Silkscreen ist die seltene Spezies der proportionalen Bitmap-Schrift – eine Pixelschrift mit variabler Buchstabenbreite, nicht monospaced. Entworfen von…">
+  <link rel="canonical" href="https://elbym.github.io/font-collection/silkscreen/">
+  <meta property="og:url" content="https://elbym.github.io/font-collection/silkscreen/">
+  <meta property="og:image" content="https://elbym.github.io/font-collection/og/silkscreen.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Silkscreen – Schriftmuster">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","@id":"https://elbym.github.io/font-collection/silkscreen/#font","name":"Silkscreen","url":"https://elbym.github.io/font-collection/silkscreen/","description":"Silkscreen ist die seltene Spezies der proportionalen Bitmap-Schrift – eine Pixelschrift mit variabler Buchstabenbreite, nicht monospaced. Entworfen von Jason Kottke im Jahr 2001 für den Bildschirmeinsatz bei winzigen Größen. Eine wichtige Besonderheit: Pixel-Schriften wirken nur bei ihrer Designgröße und ganzzahligen Vielfachen davon wirklich scharf; dazwischen werden die Kanten unsauber.","genre":"Display","keywords":"Display, Pixel, Bitmap","creditText":"Jason Kottke","dateCreated":"2001","license":"https://openfontlicense.org/open-font-license-official-text/","sameAs":"https://kottke.org/plus/type/silkscreen/","image":"https://elbym.github.io/font-collection/og/silkscreen.png","isPartOf":{"@id":"https://elbym.github.io/font-collection/#website"}}</script>
+  <!-- /seo -->
+    <base href="/font-collection/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <!-- Direktaufruf einer Schrift (/<slug>#2): Raster bis zum Öffnen des Dialogs ausblenden, sonst blitzt es kurz durch (main.js entfernt das Attribut) -->
+    <script>
+      if (location.pathname !== new URL(document.baseURI).pathname) document.documentElement.dataset.direct = '';
+    </script>
+    <style>
+      html[data-direct] #topbar,
+      html[data-direct] #grid {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
+    <!-- Top-Bar: nur über der Rasterübersicht (das <dialog> liegt im Top-Layer und deckt sie ab).
+       Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
+    <header
+      id="topbar"
+      class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
+    >
+      <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
+      <input
+        id="search"
+        type="search"
+        placeholder="Suchen …"
+        aria-label="Schriften durchsuchen"
+        autocomplete="off"
+        class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
+      />
+      <div id="tools" class="flex min-w-0 items-center gap-2 overflow-x-auto"></div>
+      <a href="alternatives.html" class="text-sm underline">Alternativen</a>
+      <a href="network.html" class="text-sm underline">Netzwerk</a>
+    </header>
+
+    <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
+    <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
+
+    <!-- Detailansicht: natives <dialog> (Esc, Fokus, Hintergrundsperre inklusive); Karten rasten per scroll-snap ein -->
+    <dialog
+      id="detail"
+      class="m-0 p-0 w-screen h-dvh max-w-none max-h-none bg-transparent text-neutral-900 dark:text-neutral-50 overflow-y-auto snap-y snap-mandatory overscroll-contain"
+    >
+      <button
+        id="close"
+        aria-label="Schließen"
+        class="fixed top-3 right-3 z-10 size-11 rounded-full bg-neutral-500/20 text-2xl leading-none [@media(hover:hover)]:backdrop-blur hover:bg-neutral-500/40"
+      >
+        ×
+      </button>
+      <button
+        id="prev"
+        aria-label="Vorherige Karte"
+        class="invisible hidden [@media(hover:hover)]:flex fixed top-1/2 -translate-y-1/2 left-3 z-10 size-12 items-center justify-center rounded-full bg-neutral-500/20 text-3xl leading-none hover:bg-neutral-500/40"
+      >
+        ‹
+      </button>
+      <button
+        id="next"
+        aria-label="Nächste Karte"
+        class="invisible hidden [@media(hover:hover)]:flex fixed top-1/2 -translate-y-1/2 right-3 z-10 size-12 items-center justify-center rounded-full bg-neutral-500/20 text-3xl leading-none hover:bg-neutral-500/40"
+      >
+        ›
+      </button>
+      <div id="dots" class="fixed bottom-4 inset-x-0 z-10 flex justify-center gap-2 pointer-events-none"></div>
+      <div id="cards"></div>
+    </dialog>
+
+    <!-- Druckansicht (LaTeX-Look): wird von print.js für die aktuelle Schrift gefüllt, nur in @media print sichtbar -->
+    <article id="print" lang="de"></article>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
