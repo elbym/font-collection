@@ -21,6 +21,12 @@ module.exports = async function () {
       fonts: list.sort((a, b) => a.title.localeCompare(b.title)),
     }))
     .sort((a, b) => a.name.localeCompare(b.name, 'de'));
-  const letters = [...new Set(entries.map((e) => e.name[0].toUpperCase()))];
-  return { entries, letters };
+  // nach Anfangsbuchstaben gruppiert, jeder Buchstabe wird zur Zwischenüberschrift
+  const groups = [];
+  for (const e of entries) {
+    const letter = e.name[0].toUpperCase();
+    if (groups.at(-1)?.letter !== letter) groups.push({ letter, entries: [] });
+    groups.at(-1).entries.push(e);
+  }
+  return { groups };
 };

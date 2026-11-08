@@ -761,19 +761,30 @@ permalink: alternatives.html
 <section class="mt-24">
   <h2 class="mb-4 text-4xl font-bold">Alle Vorbilder und Alternativen von A bis Z</h2>
   <p class="my-4">Zu jeder Schrift der Sammlung sind passende Alternativen hinterlegt – kommerzielle Klassiker ebenso wie andere freie Schriften. Hier steht die Umkehrung: Zu welchem Namen passen welche Schriften der Sammlung?</p>
-  <nav class="my-6 flex flex-wrap gap-x-3 gap-y-1 text-sm" aria-label="Buchstaben">
-    {%- for l in alternativesIndex.letters %}
-    <a href="#alt-{{ l }}" class="underline">{{ l }}</a>
+  <nav class="my-6 flex flex-wrap gap-x-4 gap-y-1 text-base font-semibold" aria-label="Buchstaben">
+    {%- for g in alternativesIndex.groups %}
+    <a href="#alt-{{ g.letter }}" class="underline">{{ g.letter }}</a>
     {%- endfor %}
   </nav>
-  <dl class="gap-x-10 text-sm sm:columns-2 lg:columns-3">
-    {%- for e in alternativesIndex.entries %}
-    <div class="mb-5 break-inside-avoid"{% if loop.first or e.name[0] | upper != alternativesIndex.entries[loop.index0 - 1].name[0] | upper %} id="alt-{{ e.name[0] | upper }}"{% endif %}>
-      <dt class="font-semibold">{% if e.self %}<a href="{{ e.self }}/" class="underline">{{ e.name }}</a>{% else %}{{ e.name }}{% endif %}</dt>
-      <dd>{% for f in e.fonts %}<a href="{{ f.slug }}/" class="underline">{{ f.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
-    </div>
-    {%- endfor %}
-  </dl>
+  {%- for g in alternativesIndex.groups %}
+  <section id="alt-{{ g.letter }}" class="mt-12 scroll-mt-16">
+    <h3 class="border-b-2 border-neutral-900 pb-1 text-3xl font-bold dark:border-neutral-50">{{ g.letter }}</h3>
+    <dl class="gap-x-10 sm:columns-2 lg:columns-3">
+      {%- for e in g.entries %}
+      <div class="break-inside-avoid border-b border-neutral-300 py-3 dark:border-neutral-800">
+        <dt class="text-base font-semibold">{% if e.self %}<a href="{{ e.self }}/" class="underline underline-offset-4">{{ e.name }}</a>{% else %}{{ e.name }}{% endif %}</dt>
+        <dd class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+          <ul class="flex flex-wrap gap-x-3 gap-y-0.5">
+            {%- for f in e.fonts %}
+            <li><a href="{{ f.slug }}/" class="underline decoration-neutral-400 underline-offset-4 hover:decoration-current">{{ f.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </dd>
+      </div>
+      {%- endfor %}
+    </dl>
+  </section>
+  {%- endfor %}
 </section>
 
 </div>
