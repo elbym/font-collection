@@ -2942,6 +2942,42 @@
   font-display: swap;
 }
 
+.f-dmsans { font-family: f-dmsans; }
+
+.f-dmsans-s { font-family: f-dmsans-s; }
+
+@font-face {
+  font-family: f-dmsans;
+  src: url("webfonts/sans/DMSans/DMSans%5Bopsz%2Cwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmsans-s;
+  src: url("webfonts-latin/sans/DMSans/DMSans%5Bopsz%2Cwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmsans;
+  src: url("webfonts/sans/DMSans/DMSans-Italic%5Bopsz%2Cwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmsans-s;
+  src: url("webfonts-latin/sans/DMSans/DMSans-Italic%5Bopsz%2Cwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 .f-epilogue { font-family: f-epilogue; }
 
 .f-epilogue-s { font-family: f-epilogue-s; }
@@ -6830,6 +6866,78 @@
   font-family: f-crimsonpro-s;
   src: url("webfonts-latin/serif/CrimsonPro/CrimsonPro_Variable_Italic.woff2") format("woff2");
   font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+.f-dmserifdisplay { font-family: f-dmserifdisplay; }
+
+.f-dmserifdisplay-s { font-family: f-dmserifdisplay-s; }
+
+@font-face {
+  font-family: f-dmserifdisplay;
+  src: url("webfonts/serif/DMSerifDisplay/DMSerifDisplay-Regular.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmserifdisplay-s;
+  src: url("webfonts-latin/serif/DMSerifDisplay/DMSerifDisplay-Regular.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmserifdisplay;
+  src: url("webfonts/serif/DMSerifDisplay/DMSerifDisplay-Italic.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmserifdisplay-s;
+  src: url("webfonts-latin/serif/DMSerifDisplay/DMSerifDisplay-Italic.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+.f-dmseriftext { font-family: f-dmseriftext; }
+
+.f-dmseriftext-s { font-family: f-dmseriftext-s; }
+
+@font-face {
+  font-family: f-dmseriftext;
+  src: url("webfonts/serif/DMSerifText/DMSerifText-Regular.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmseriftext-s;
+  src: url("webfonts-latin/serif/DMSerifText/DMSerifText-Regular.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmseriftext;
+  src: url("webfonts/serif/DMSerifText/DMSerifText-Italic.woff2") format("woff2");
+  font-weight: 400 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-dmseriftext-s;
+  src: url("webfonts-latin/serif/DMSerifText/DMSerifText-Italic.woff2") format("woff2");
+  font-weight: 400 400;
   font-style: italic;
   font-display: swap;
 }
