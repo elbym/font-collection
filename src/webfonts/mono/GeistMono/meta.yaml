@@ -2,6 +2,7 @@ title: Geist Mono
 url: https://github.com/vercel/geist-font
 
 tags: Monospace, Coding
+alternatives: [SF Mono, JetBrains Mono, IBM Plex Mono, Source Code Pro, Menlo]
 
 fontauthor: Vercel
 fontyear: 2023

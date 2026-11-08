@@ -14,6 +14,8 @@ export const BASE = new URL(document.baseURI).pathname;
  * @property {string} family
  * @property {string} accent
  * @property {string[]} [tags]
+ * @property {string[]} [alternatives]
+ * @property {boolean} [favorite]
  * @property {string} [author]
  * @property {string|number} [year]
  * @property {string} [license]
@@ -34,6 +36,8 @@ export const state = {
   col: 0,
   /** aktiver Tag-Filter der Rasteransicht */
   tag: '',
+  /** Suchtext der Top-Bar */
+  q: '',
 };
 
 /** Query für den aktiven Tag-Filter ('' ohne Filter), hängt an Raster- und Detail-URLs. */

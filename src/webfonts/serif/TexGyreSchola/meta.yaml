@@ -4,6 +4,7 @@ wikipedia: "https://de.wikipedia.org/wiki/Century_(Schriftart)"
 favorite: true
 
 tags: Serif, Humanist
+alternatives: [Century Schoolbook, Georgia, Bookman, Tex Gyre Bonum, Charter]
 
 comment: "TeX Gyre Schola kann als Ersatz für Century Schoolbook verwendet werden (entworfen von Morris Fuller Benton, 1919, für die American Type Founders; ursprünglich ohne Kursiv, die erst in späteren Überarbeitungen von Linotype und ITC ergänzt wurde)."
 

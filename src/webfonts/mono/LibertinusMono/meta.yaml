@@ -3,6 +3,7 @@ url: https://github.com/alerque/libertinus
 wikipedia: "https://de.wikipedia.org/wiki/Linux_Libertine"
 
 tags: Monospace
+alternatives: [Courier, Tex Gyre Cursor, Courier Prime, IBM Plex Mono]
 
 fontauthor: Philipp H. Poll, Caleb Maclennan
 fontyear: 2012

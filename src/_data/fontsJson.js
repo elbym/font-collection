@@ -34,6 +34,8 @@ module.exports = async function () {
         family: `f-${slug}`,
         accent: n.colorHex,
         tags: n.tags,
+        favorite: !!n.favorite,
+        alternatives: n.alternatives ?? [],
         category: n.category,
         author: n.fontauthor ?? null,
         year: n.fontyear ?? null,

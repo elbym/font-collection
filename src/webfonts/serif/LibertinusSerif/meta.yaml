@@ -3,6 +3,7 @@ url: https://github.com/alerque/libertinus
 wikipedia: "https://de.wikipedia.org/wiki/Linux_Libertine"
 
 tags: Serif, Garalde
+alternatives: [Linux Libertine, Palatino, Tex Gyre Pagella, EB Garamond, Junicode]
 
 comment: "Libertinus ist der Nachfolger von Linux Libertine aus der TeX-Gyre-Sammlung."
 
