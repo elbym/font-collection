@@ -1,6 +1,7 @@
 // @ts-check
 import { BASE, DETAILS, state, tagQuery } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
+import { heroText } from './cards/card1.js';
 import { acc, content } from './cards/index.js';
 import { prepare } from './print.js';
 
@@ -31,19 +32,19 @@ const setDot = (c) => {
 
 /** Aktuell sichtbare Karte (Node i, Detailkarte). */
 export const current = () => {
-  const row = /** @type {HTMLElement} */ (
+  const row = /** @type {HTMLElement|undefined} */ (
     [...cards.children].filter((r) => !(/** @type {HTMLElement} */ (r).hidden))[
       Math.round(detail.scrollTop / detail.clientHeight)
     ]
   );
   return {
-    i: [...cards.children].indexOf(row),
-    card: /** @type {HTMLElement} */ (row.children[Math.round(row.scrollLeft / row.clientWidth)]),
+    i: row ? [...cards.children].indexOf(row) : -1, // -1: keine sichtbare Zeile (z. B. vom Filter ausgeblendet)
+    card: /** @type {HTMLElement|undefined} */ (row?.children[Math.round(row.scrollLeft / row.clientWidth)]),
   };
 };
 
 /** Ist die Detailansicht offen? */
-export const isOpen = () => detail.open;
+export const isOpen = () => !!detail?.open;
 
 /** URL der Detailansicht nach dem Scrollen nachziehen (kein neuer History-Eintrag). */
 let urlTimer;
@@ -66,6 +67,9 @@ const syncUrl = () => {
 export function show(i, c) {
   if (!detail.open) detail.showModal();
   const row = /** @type {HTMLElement} */ (cards.children[i]);
+  // Hero kann sich seit dem Erzeugen geändert haben (Raster-Animation): veraltete Karten verwerfen, fill() baut sie neu
+  const hero = row.querySelector('[data-vt="hero"]');
+  if (hero && hero.textContent !== heroText(state.nodes[i])) row.replaceChildren();
   fill(row);
   detail.scrollTop = row.offsetTop;
   for (const r of cards.children) r.scrollLeft = c * r.clientWidth;

@@ -16,7 +16,7 @@ export function init(root = document) {
     .map(
       (n, i) => `
       <a href="${n.slug}/" data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
-        class="acc relative scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
+        class="acc relative scroll-mt-24 sm:scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
         <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
         <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-xs text-neutral-500 dark:text-neutral-400">${esc(n.title)}</span>
       </a>`,
@@ -73,7 +73,8 @@ export function init(root = document) {
   }
 
   // Das Raster lebt: alle 1,2 s bekommt eine zufällige sichtbare Kachel (Heroletter mit zwei Zeichen) eine neue Buchstabenkombination, sie bleibt stehen
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)'); // live geprüft, nicht nur beim Laden
     const visible = new Set();
     const io = new IntersectionObserver((es) =>
       es.forEach((e) => (e.isIntersecting ? visible.add(e.target) : visible.delete(e.target))),
@@ -84,11 +85,13 @@ export function init(root = document) {
       return ok[Math.floor(Math.random() * ok.length)] ?? '';
     };
     // Überblendung eines Zeichens (Kachel und Poster A): 450 ms aus (leicht nach oben), Zeichen tauschen, 450 ms ein; nur ein Zeichen pro Wechsel
-    const flip = async (/** @type {Element} */ span, /** @type {string} */ to) => {
+    const flip = async (/** @type {HTMLElement} */ span, /** @type {string} */ to) => {
       const cur = [...(span.textContent ?? '')];
+      const at = cur.findIndex((c, k) => c !== to[k]);
+      if (at < 0) return;
+      span.dataset.busy = '1'; // keine zweite Animation auf demselben Hero, solange diese läuft
       span.innerHTML = cur.map((c) => `<i class="inline-block not-italic">${esc(c)}</i>`).join('');
-      const el = span.children[cur.findIndex((c, k) => c !== to[k])];
-      if (!el) return;
+      const el = span.children[at];
       const fade = (/** @type {boolean} */ out) =>
         el.animate(
           {
@@ -97,22 +100,29 @@ export function init(root = document) {
           },
           { duration: 450, easing: out ? 'ease-in' : 'ease-out', fill: 'forwards' },
         ).finished;
-      await fade(true);
-      el.textContent = to[cur.findIndex((c, k) => c !== to[k])];
-      await fade(false);
+      try {
+        await fade(true);
+        el.textContent = to[at];
+        await fade(false);
+      } catch {
+        // Animation abgebrochen (Element ersetzt) – Endzustand unten setzen
+      } finally {
+        delete span.dataset.busy;
+        span.textContent = to; // DOM und Modell (n.heroletter) stimmen am Ende immer überein
+      }
     };
     let tick = 0;
     setInterval(() => {
-      if (document.hidden) return;
+      if (document.hidden || reduce.matches) return;
       /** @type {Element|null|undefined} */ let t;
-      /** @type {Element|null|undefined} */ let span;
+      /** @type {HTMLElement|null|undefined} */ let span;
       let i;
       if (isOpen()) {
         // Detailansicht: nur wenn Poster A (Karte 1) sichtbar ist, dessen Hero wechselt mit
         const c = current();
         i = c.i;
-        if (c.card?.previousElementSibling || tick++ % 3) return; // große Karte: nur jeder 3. Tick (3,6 s)
-        span = c.card?.querySelector('[data-vt="hero"]');
+        if (!c.card || c.card.previousElementSibling || tick++ % 3) return; // große Karte: nur jeder 3. Tick (3,6 s)
+        span = c.card.querySelector('[data-vt="hero"]');
         t = grid.children[i];
       } else {
         t = [...visible][Math.floor(Math.random() * visible.size)];
@@ -120,17 +130,19 @@ export function init(root = document) {
         span = t?.querySelector('[data-vt="hero"]');
       }
       const n = state.nodes[i];
-      if (!n || !t || !span || t === hoverTile || [...(n.heroletter || 'Aa')].length !== 2) return; // ponytail: nur 2-Zeichen-Hero, damit die Größe passt
+      const shown = n && [...heroText(n)]; // wie angezeigt (null-sicher, ohne fehlende Glyphen)
+      if (!n || !t || !span || span.dataset.busy || t === hoverTile || shown?.length !== 2) return; // ponytail: nur 2-Zeichen-Hero, damit die Größe passt
       const U = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       const L = 'abcdefghijklmnopqrstuvwxyz';
       // pro Wechsel nur ein Zeichen (zufällig das erste oder zweite), immer ein anderes als vorher
-      const [a, b] = [...n.heroletter];
+      const [a, b] = shown;
       const next = Math.random() < 0.5 ? pick(U.replace(a, ''), n) + b : a + pick(L.replace(b, ''), n);
       if (next.length !== 2) return;
       n.heroletter = next; // gilt für Kachel und Poster A
       flip(span, next);
       const tileHero = t.querySelector('[data-vt="hero"]');
-      if (tileHero && tileHero !== span) tileHero.textContent = next; // Kachel hinter dem Dialog nachziehen (Morph beim Schließen)
+      if (tileHero && tileHero !== span && !(/** @type {HTMLElement} */ (tileHero).dataset.busy))
+        tileHero.textContent = next; // Kachel hinter dem Dialog nachziehen (Morph beim Schließen)
     }, 1200);
   }
 
@@ -146,7 +158,6 @@ export function init(root = document) {
     const n = state.nodes[Number(tile.dataset.i)];
     const span = tile.querySelector('[data-vt="hero"]');
     if (span) span.textContent = heroText(n); // Morph-Übergang zu Poster A braucht den aktuellen Hero (auch mitten in der Animation)
-    document.querySelector('#cards')?.children[Number(tile.dataset.i)]?.replaceChildren(); // bereits erzeugte Karten verwerfen, fill() baut sie mit dem neuen Hero neu
     go(`${BASE}${n.slug}${tagQuery()}#1`);
   });
 }
