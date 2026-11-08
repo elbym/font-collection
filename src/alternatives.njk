@@ -758,6 +758,24 @@ permalink: alternatives.html
 
 </main>
 
+<section class="mt-24">
+  <h2 class="mb-4 text-4xl font-bold">Alle Vorbilder und Alternativen von A bis Z</h2>
+  <p class="my-4">Zu jeder Schrift der Sammlung sind passende Alternativen hinterlegt – kommerzielle Klassiker ebenso wie andere freie Schriften. Hier steht die Umkehrung: Zu welchem Namen passen welche Schriften der Sammlung?</p>
+  <nav class="my-6 flex flex-wrap gap-x-3 gap-y-1 text-sm" aria-label="Buchstaben">
+    {%- for l in alternativesIndex.letters %}
+    <a href="#alt-{{ l }}" class="underline">{{ l }}</a>
+    {%- endfor %}
+  </nav>
+  <dl class="gap-x-10 text-sm sm:columns-2 lg:columns-3">
+    {%- for e in alternativesIndex.entries %}
+    <div class="mb-5 break-inside-avoid"{% if loop.first or e.name[0] | upper != alternativesIndex.entries[loop.index0 - 1].name[0] | upper %} id="alt-{{ e.name[0] | upper }}"{% endif %}>
+      <dt class="font-semibold">{% if e.self %}<a href="{{ e.self }}/" class="underline">{{ e.name }}</a>{% else %}{{ e.name }}{% endif %}</dt>
+      <dd>{% for f in e.fonts %}<a href="{{ f.slug }}/" class="underline">{{ f.title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+    </div>
+    {%- endfor %}
+  </dl>
+</section>
+
 </div>
 </body>
 </html>
