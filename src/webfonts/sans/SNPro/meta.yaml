@@ -1,0 +1,18 @@
+title: SN Pro
+url: https://github.com/supernotes/sn-pro
+
+tags: Sans, Rounded, Humanist
+alternatives: [Nunito, VAG Rounded, Varela Round, Quicksand, Figtree]
+
+comment:
+
+fontauthor: Supernotes, Vernon Adams (Nunito)
+fontyear: 2024
+
+heroletter: Aa
+heroword: Notizen
+herostyle:
+color: MediumSeaGreen
+
+content: |
+  SN Pro ist eine freundliche Groteskschrift, die Supernotes für Markdown-Texte entwickelt hat. Sie basiert auf Nunito von Vernon Adams; jedes Zeichen wurde überarbeitet, damit Auszeichnungssymbole wie Sternchen, Rauten und Klammern im Fließtext gut lesbar bleiben. Die Familie ist als Variable Font mit Gewichts- und Kursivachse unter der OFL erhältlich.

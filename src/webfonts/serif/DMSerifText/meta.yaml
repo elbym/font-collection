@@ -1,0 +1,18 @@
+title: DM Serif Text
+url: https://github.com/googlefonts/dm-fonts
+
+tags: Serif, Transitional
+alternatives: [Source Serif, Georgia, Playfair, Libre Baskerville, Lora]
+
+comment:
+
+fontauthor: Colophon Foundry, Frank Grießhammer (Source Serif)
+fontyear: 2019
+
+heroletter: Aa
+heroword: Lesen
+herostyle:
+color: SaddleBrown
+
+content: |
+  DM Serif Text ist die Textvariante der DM-Serif-Familie, entstanden bei Colophon Foundry im Auftrag von MultiAdaptor auf Grundlage von Frank Grießhammers Source Serif. Weichere Kontraste und kräftigere Serifen machen sie für längere Texte auf dem Bildschirm geeigneter als die Display-Variante.
