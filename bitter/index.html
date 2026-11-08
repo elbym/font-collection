@@ -19,6 +19,7 @@
   <meta property="og:image:alt" content="Bitter – Schriftmuster">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","@id":"https://elbym.github.io/font-collection/bitter/#font","name":"Bitter","url":"https://elbym.github.io/font-collection/bitter/","description":"Bitter von Huerta Tipográfica wurde explizit für langen Fließtext auf Bildschirmen konzipiert: robuste Serifen, hoher x-Grad und gleichmäßige Strichstärken sorgen auch bei kleinen Größen für hohe Lesbarkeit. Seit Version 2 als Variable Font mit voller Gewichtsskala. Als eigenständige Screen-Slab füllt sie eine Lücke, die Arvo und Compagnon mit ihrer eher druckorientierten Ausrichtung lassen.","genre":"Serif","keywords":"Serif, Slab Serif, Variable","creditText":"Huerta Tipográfica","dateCreated":"2011","license":"https://openfontlicense.org/open-font-license-official-text/","sameAs":"https://fonts.google.com/specimen/Bitter","image":"https://elbym.github.io/font-collection/og/bitter.png","isPartOf":{"@id":"https://elbym.github.io/font-collection/#website"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Font Collection elbym","item":"https://elbym.github.io/font-collection/"},{"@type":"ListItem","position":2,"name":"Bitter","item":"https://elbym.github.io/font-collection/bitter/"}]}</script>
   <!-- /seo -->
     <base href="/font-collection/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -40,7 +41,7 @@
        Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
     <header
       id="topbar"
-      class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
+      class="sticky top-0 z-20 flex min-h-12 flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:px-4 sm:py-0 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
     >
       <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
       <input
@@ -51,7 +52,10 @@
         autocomplete="off"
         class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
       />
-      <div id="tools" class="flex min-w-0 items-center gap-2 overflow-x-auto"></div>
+      <div
+        id="tools"
+        class="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto sm:order-none sm:w-auto"
+      ></div>
       <a href="alternatives.html" class="text-sm underline">Alternativen</a>
       <a href="network.html" class="text-sm underline">Netzwerk</a>
       <a href="https://github.com/elbym/font-collection" target="_blank" rel="noopener" class="text-sm underline"

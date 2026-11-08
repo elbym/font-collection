@@ -19,6 +19,7 @@
   <meta property="og:image:alt" content="Amstelvar – Schriftmuster">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","@id":"https://elbym.github.io/font-collection/amstelvar/#font","name":"Amstelvar","url":"https://elbym.github.io/font-collection/amstelvar/","description":"Amstelvar entstand 2016 im Auftrag von Google Fonts als Demonstrationsprojekt für die damals neue OpenType-Variable-Fonts-Technologie. David Berlow (Font Bureau) entwarf die Serifenschrift in Anlehnung an niederländische und belgische Druckschriften vom 16. Jahrhundert bis zur Entstehung der Times Roman in den 1930er Jahren. Mit der Version 1.0 (2018) kamen ein überarbeiteter Roman, ein Kursivschnitt und rund 600 Glyphen hinzu. Neben den gängigen Achsen für Gewicht, Breite und optische Größe bietet Amstelvar ein breites Set parametrischer Achsen — darunter XTRA, XOPQ, YTLC und YTUC — mit denen einzelne formale Proportionen präzise und unabhängig voneinander gesteuert werden können.","genre":"Sans","keywords":"Sans, Humanist, Neo, Grotesk, Variable","creditText":"The Font Bureau","dateCreated":"2019","license":"https://openfontlicense.org/open-font-license-official-text/","sameAs":"https://github.com/googlefonts/amstelvar","image":"https://elbym.github.io/font-collection/og/amstelvar.png","isPartOf":{"@id":"https://elbym.github.io/font-collection/#website"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Font Collection elbym","item":"https://elbym.github.io/font-collection/"},{"@type":"ListItem","position":2,"name":"Amstelvar","item":"https://elbym.github.io/font-collection/amstelvar/"}]}</script>
   <!-- /seo -->
     <base href="/font-collection/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -40,7 +41,7 @@
        Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
     <header
       id="topbar"
-      class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
+      class="sticky top-0 z-20 flex min-h-12 flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:px-4 sm:py-0 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
     >
       <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
       <input
@@ -51,7 +52,10 @@
         autocomplete="off"
         class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
       />
-      <div id="tools" class="flex min-w-0 items-center gap-2 overflow-x-auto"></div>
+      <div
+        id="tools"
+        class="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto sm:order-none sm:w-auto"
+      ></div>
       <a href="alternatives.html" class="text-sm underline">Alternativen</a>
       <a href="network.html" class="text-sm underline">Netzwerk</a>
       <a href="https://github.com/elbym/font-collection" target="_blank" rel="noopener" class="text-sm underline"

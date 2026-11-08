@@ -19,6 +19,7 @@
   <meta property="og:image:alt" content="Varela Round – Schriftmuster">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","@id":"https://elbym.github.io/font-collection/varelaround/#font","name":"Varela Round","url":"https://elbym.github.io/font-collection/varelaround/","description":"Varela Round von Joe Prince ist ein kompakter, sanft gerundeter Grotesk mit hoher Lesbarkeit und freundlichem Tonfall. Die Familie besticht durch ihre geschlossene, utilitaristische Form – angenehm weich aber nicht zu verspielt. Sie ist die kompakteste der drei Rundschriften dieser Sammlung — nur ein Schnitt, dafür ohne jede Verzierung.","genre":"Sans","keywords":"Sans, Rounded","creditText":"Joe Prince","dateCreated":"2011","license":"https://openfontlicense.org/open-font-license-official-text/","sameAs":"https://fonts.google.com/specimen/Varela+Round","image":"https://elbym.github.io/font-collection/og/varelaround.png","isPartOf":{"@id":"https://elbym.github.io/font-collection/#website"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Font Collection elbym","item":"https://elbym.github.io/font-collection/"},{"@type":"ListItem","position":2,"name":"Varela Round","item":"https://elbym.github.io/font-collection/varelaround/"}]}</script>
   <!-- /seo -->
     <base href="/font-collection/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -40,7 +41,7 @@
        Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
     <header
       id="topbar"
-      class="sticky top-0 z-20 flex h-12 items-center gap-3 px-3 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
+      class="sticky top-0 z-20 flex min-h-12 flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:px-4 sm:py-0 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
     >
       <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
       <input
@@ -51,7 +52,10 @@
         autocomplete="off"
         class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
       />
-      <div id="tools" class="flex min-w-0 items-center gap-2 overflow-x-auto"></div>
+      <div
+        id="tools"
+        class="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto sm:order-none sm:w-auto"
+      ></div>
       <a href="alternatives.html" class="text-sm underline">Alternativen</a>
       <a href="network.html" class="text-sm underline">Netzwerk</a>
       <a href="https://github.com/elbym/font-collection" target="_blank" rel="noopener" class="text-sm underline"
