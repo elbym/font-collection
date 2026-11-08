@@ -67,6 +67,16 @@ const fontLd = (n) => {
   });
 };
 
+/** Brotkrumen Startseite → Schrift (Kategorie-Filter ist keine eigene URL, daher nicht als Zwischenstufe). */
+const breadcrumbLd = (n) =>
+  ld({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: site },
+      { '@type': 'ListItem', position: 2, name: n.title, item: `${site}${n.slug}/` },
+    ],
+  });
+
 const seo = (lines) => ['<!-- seo -->', ...lines, '<!-- /seo -->'].join('\n  ');
 
 // Startseite: absolute URLs ergänzen (idempotent, alte Zeilen werden vorher entfernt)
@@ -114,6 +124,7 @@ for (const n of fonts) {
       `<meta property="og:description" content="${d}">`,
       ...abs(`${n.slug}/`, `${esc(n.title)} – Schriftmuster`),
       ...fontLd(n),
+      ...breadcrumbLd(n),
     ]),
   );
   fs.mkdirSync(`_site/${n.slug}`, { recursive: true });
