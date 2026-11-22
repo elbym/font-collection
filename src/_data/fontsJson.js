@@ -18,7 +18,10 @@ module.exports = async function () {
 
       const cp = codepoints[n.key];
       const seen = new Set();
+      // Variable Dateien liefern pauschal 100–900; Schnitte außerhalb der echten wght-Achse (z. B. Mulish ab 200) weglassen
+      const wght = axes[n.key]?.wght;
       const weights = n.ownFonts
+        .filter((f) => !f.isVariable || !wght || (f.weight >= wght.min && f.weight <= wght.max))
         .map((f) => ({ weight: f.weight, italic: f.style === 'italic' }))
         .filter((w) => {
           const id = `${w.weight}-${w.italic}`;
