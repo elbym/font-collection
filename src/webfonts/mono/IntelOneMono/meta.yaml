@@ -1,0 +1,18 @@
+title: Intel One Mono
+url: https://github.com/intel/intel-one-mono
+
+tags: Monospace, Coding
+alternatives: [JetBrains Mono, IBM Plex Mono, Atkinson Hyperlegible Mono, Source Code Pro, Hack]
+
+fontauthor: Frere-Jones Type für Intel
+fontyear: 2023
+
+color: royalblue
+
+heroletter: 1i
+heroword: Klarheit
+
+border: lines.svg
+
+content: |
+  Intel One Mono entstand 2023 bei Frere-Jones Type im Auftrag von Intel, gezielt für sehbehinderte Entwicklerinnen und Entwickler: Ein Panel aus Programmierern mit Sehbehinderung oder gesetzlicher Blindheit gab in jeder Entwurfsphase Rückmeldung. Offene Formen, klar unterscheidbare Zeichen und eine echte Kursive in vier Gewichten sollen Ermüdung und Lesefehler verringern. Die Webfonts sind laut Projekt für die Bildschirmdarstellung von Hand optimiert.
