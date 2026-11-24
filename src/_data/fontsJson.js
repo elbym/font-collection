@@ -3,11 +3,29 @@ const fonts = require('./fonts');
 const fontCodepoints = require('./fontCodepoints');
 const fontAxes = require('./fontAxes');
 const { description, pageTitle } = require('../../scripts/meta');
+const path = require('path');
+
+// wght-Bereich je variabler Datei (aufrecht und kursiv können sich unterscheiden, z. B. Ubuntu Sans Mono 100–700 / 400–700)
+async function fileWghtRanges(list) {
+  const fontkit = await import('fontkit');
+  const ranges = {};
+  for (const f of list.flatMap((n) => n.ownFonts).filter((f) => f.isVariable)) {
+    if (f.filePath in ranges) continue;
+    try {
+      ranges[f.filePath] =
+        fontkit.openSync(path.join(__dirname, '../webfonts', f.filePath)).variationAxes?.wght ?? null;
+    } catch {
+      ranges[f.filePath] = null;
+    }
+  }
+  return ranges;
+}
 
 module.exports = async function () {
   const codepoints = await fontCodepoints();
   const axes = await fontAxes();
   const slugs = new Set();
+  const fileWght = await fileWghtRanges(fonts().list.filter((n) => n.isLeaf));
 
   const list = fonts()
     .list.filter((n) => n.isLeaf)
@@ -18,10 +36,13 @@ module.exports = async function () {
 
       const cp = codepoints[n.key];
       const seen = new Set();
-      // Variable Dateien liefern pauschal 100–900; Schnitte außerhalb der echten wght-Achse (z. B. Mulish ab 200) weglassen
-      const wght = axes[n.key]?.wght;
+      // Variable Dateien liefern pauschal 100–900; Schnitte außerhalb der echten wght-Achse der jeweiligen Datei
+      // (z. B. Mulish ab 200, Ubuntu Sans Mono kursiv ab 400) weglassen
       const weights = n.ownFonts
-        .filter((f) => !f.isVariable || !wght || (f.weight >= wght.min && f.weight <= wght.max))
+        .filter((f) => {
+          const wght = f.isVariable && fileWght[f.filePath];
+          return !wght || (f.weight >= wght.min && f.weight <= wght.max);
+        })
         .map((f) => ({ weight: f.weight, italic: f.style === 'italic' }))
         .filter((w) => {
           const id = `${w.weight}-${w.italic}`;
