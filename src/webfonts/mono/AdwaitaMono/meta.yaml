@@ -1,0 +1,18 @@
+title: Adwaita Mono
+url: https://gitlab.gnome.org/GNOME/adwaita-fonts
+
+tags: Monospace, Coding
+alternatives: [Iosevka, Source Code Pro, Ubuntu Sans Mono, Hack, JetBrains Mono]
+
+fontauthor: Jamie Gravendeel, Florian Müllner (GNOME), auf Basis von Iosevka
+fontyear: 2025
+
+color: "#3584e4"
+
+heroletter: 1i
+heroword: Terminal
+
+border: hash.svg
+
+content: |
+  Adwaita Mono ist seit GNOME 48 (2025) die Standard-Monospace-Schrift des GNOME-Desktops und löste dort Source Code Pro ab. Sie ist kein Neuentwurf, sondern eine eigene Iosevka-Konfiguration, die auf die neue UI-Schrift Adwaita Sans (eine Variante von Inter) abgestimmt ist: etwas breiter und ruhiger als Iosevka, mit echter Kursive. Die Dateien hier stammen aus Release 51.0 und sind auf lateinische Zeichen reduziert.
