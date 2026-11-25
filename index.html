@@ -43,10 +43,10 @@
   </head>
   <body class="bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
     <!-- Top-Bar: nur über der Rasterübersicht (das <dialog> liegt im Top-Layer und deckt sie ab).
-       Hier können Bedienelemente in #tools eingehängt werden; `nodes` lässt sich vor dem Rendern filtern/sortieren. -->
+       Suche, eigener Vorschautext, Sortierung; #tools bekommt die Filter-Pills (router.js). -->
     <header
       id="topbar"
-      class="sticky top-0 z-20 flex min-h-12 flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:px-4 sm:py-0 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
+      class="sticky top-0 z-20 flex min-h-12 flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:px-4 bg-neutral-100/95 dark:bg-neutral-950/95 [@media(hover:hover)]:backdrop-blur border-b border-neutral-300 dark:border-neutral-800"
     >
       <h1 class="shrink-0 whitespace-nowrap text-base font-semibold">Font Collection elbym</h1>
       <input
@@ -57,9 +57,27 @@
         autocomplete="off"
         class="ml-auto w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
       />
+      <input
+        id="text"
+        type="text"
+        placeholder="Eigener Text …"
+        aria-label="Eigener Vorschautext für alle Kacheln"
+        autocomplete="off"
+        class="w-32 shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-3 py-1 text-sm sm:w-48"
+      />
+      <select
+        id="sort"
+        aria-label="Sortierung"
+        class="shrink-0 rounded-full border border-neutral-500/50 bg-transparent px-2 py-1 text-sm dark:[&>option]:bg-neutral-900"
+      >
+        <option value="">A–Z</option>
+        <option value="alt">Älteste zuerst</option>
+        <option value="neu">Neueste zuerst</option>
+      </select>
+      <!-- Pills: eigene Zeile, wischbar; Ausblenden am rechten Rand zeigt, dass es weitergeht (pr-12: letzte Pill scrollt aus der Blende) -->
       <div
         id="tools"
-        class="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto sm:order-none sm:w-auto"
+        class="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto pr-12 [scrollbar-width:none] [mask-image:linear-gradient(to_right,#000_calc(100%-3rem),transparent)]"
       ></div>
       <a href="alternatives.html" class="text-sm underline">Alternativen</a>
       <a href="network.html" class="text-sm underline">Netzwerk</a>
@@ -69,7 +87,10 @@
     </header>
 
     <!-- Rasterübersicht: Kacheln werden unten aus `nodes` erzeugt -->
-    <main id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 p-3 sm:gap-4 sm:p-4"></main>
+    <main
+      id="grid"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8 gap-3 p-3 sm:gap-4 sm:p-4"
+    ></main>
 
     <!-- Detailansicht: natives <dialog> (Esc, Fokus, Hintergrundsperre inklusive); Karten rasten per scroll-snap ein -->
     <dialog
