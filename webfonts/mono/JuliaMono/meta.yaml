@@ -1,0 +1,18 @@
+title: JuliaMono
+url: https://github.com/cormullion/juliamono
+
+tags: Monospace, Coding
+alternatives: [JetBrains Mono, Iosevka, Source Code Pro, DejaVu Sans Mono, Fira Code]
+
+fontauthor: cormullion
+fontyear: 2020
+
+color: "#9558b2"
+
+heroletter: 1i
+heroword: Unicode
+
+border: hash.svg
+
+content: |
+  JuliaMono entstand 2020 im Umfeld der Programmiersprache Julia, deren Quelltext oft Unicode-Zeichen wie griechische Buchstaben, mathematische Operatoren und Pfeile enthält. Entsprechend riesig ist der Zeichenvorrat mit mehreren tausend Glyphen. Die Kursive ist echt gezeichnet, mit einstöckigem a, f mit Unterlänge und geschwungenem l. Hier liegen die offiziellen Webfonts aus Release 0.63.2 unverändert (der Name „JuliaMono“ ist in der Lizenz reserviert, verkleinerte Dateien müssten anders heißen), deshalb nur Regular und Bold mit Kursiven.

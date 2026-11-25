@@ -1,0 +1,19 @@
+title: Ubuntu Sans Mono
+url: https://github.com/canonical/Ubuntu-Sans-Mono-fonts
+license: Ubuntu Font Licence 1.0
+
+tags: Monospace, Coding
+alternatives: [Ubuntu Mono, Adwaita Mono, Source Code Pro, Fira Code, Hack]
+
+fontauthor: Dalton Maag für Canonical
+fontyear: 2023
+
+color: "#e95420"
+
+heroletter: 1i
+heroword: Terminal
+
+border: lines.svg
+
+content: |
+  Ubuntu Sans Mono ist seit Ubuntu 24.04 die Standard-Monospace-Schrift der Distribution und folgt auf Ubuntu Mono. Canonical ließ die Ubuntu-Familie ab 2010 bei Dalton Maag entwickeln und 2022–2023 als variable Schrift überarbeiten. Die Mono-Variante behält den humanistischen, leicht abgerundeten Ubuntu-Charakter und hat eine echte Kursive. Aufrecht reicht die Gewichtsachse von 100 bis 700, kursiv von 400 bis 700.

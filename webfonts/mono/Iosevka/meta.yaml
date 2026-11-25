@@ -1,0 +1,18 @@
+title: Iosevka
+url: https://github.com/be5invis/Iosevka
+
+tags: Monospace, Coding
+alternatives: [JetBrains Mono, Victor Mono, Fira Code, Source Code Pro, Hack]
+
+fontauthor: Renzhi Li (Belleve Invis)
+fontyear: 2015
+
+color: teal
+
+heroletter: 1i
+heroword: Terminal
+
+border: hash.svg
+
+content: |
+  Iosevka von Renzhi Li (Belleve Invis) ist eine besonders schmale Monospace-Schrift: Bei gleicher Schriftgröße passen deutlich mehr Zeichen in eine Zeile als bei den meisten Coding-Fonts. Sie wird nicht von Hand gezeichnet, sondern aus parametrischem Quellcode erzeugt, sodass sich Varianten einzelner Zeichen, Breiten und Schnitte selbst zusammenstellen lassen. Die Kursive ist echt gezeichnet, mit einstöckigem a und geschwungenem f. Die Dateien hier sind aus Release 34.9.1 auf lateinische Zeichen reduziert (von 1,7 MB auf 160 KB je Schnitt).

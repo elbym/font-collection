@@ -1,0 +1,17 @@
+GUST Font License (GFL)
+
+Copyright 2007--2009 for TeX Gyre extensions by B. Jackowski
+and J.M. Nowacki (on behalf of TeX Users Groups).
+
+Vietnamese characters were added by Han The Thanh.
+
+This work can be freely used and distributed under
+the GUST Font License (GFL)
+which is actually an instance of the LaTeX Project Public License
+(LPPL -- see http://www.latex-project.org/lppl.txt).
+
+For the full GFL license, please see:
+http://www.gust.org.pl/projects/e-foundry/licenses/GUST-FONT-LICENSE.txt
+
+This work has the maintenance status "maintained". The Current Maintainer
+of this work is Bogusław Jackowski and Janusz M. Nowacki.
