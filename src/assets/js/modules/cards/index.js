@@ -25,7 +25,7 @@ export const tile = (n) => {
         : hero.length <= 3
           ? 'text-[24cqw]'
           : 'text-[18cqw]';
-  return `<span data-vt="hero" class="${size} leading-none whitespace-nowrap">${esc(hero)}</span>`;
+  return `<span data-vt="hero" class="${size} leading-none whitespace-nowrap [html[data-text]_&]:hidden">${esc(hero)}</span>`;
 };
 
 /** Akzentfarbe als Inline-Style (Laufzeitdaten). @param {import('../../state.js').Node} n */

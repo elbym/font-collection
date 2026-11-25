@@ -36,9 +36,21 @@ export const state = {
   col: 0,
   /** aktiver Tag-Filter der Rasteransicht */
   tag: '',
-  /** Suchtext der Top-Bar */
+  /** Suchtext der Top-Bar (?q=…) */
   q: '',
+  /** Sortierung des Rasters (?sort=alt|neu, '' = A–Z) */
+  sort: '',
+  /** Kacheln und Detail-Rows nach Node-Index (die DOM-Reihenfolge folgt der Sortierung, der Index nicht) */
+  /** @type {HTMLElement[]} */
+  tiles: [],
+  /** @type {HTMLElement[]} */
+  rows: [],
 };
 
-/** Query für den aktiven Tag-Filter ('' ohne Filter), hängt an Raster- und Detail-URLs. */
-export const tagQuery = () => (state.tag ? `?tag=${encodeURIComponent(state.tag)}` : '');
+/** Query aus Tag-Filter, Suche und Sortierung ('' ohne alles), hängt an Raster- und Detail-URLs. @param {Partial<{tag: string, q: string, sort: string}>} [over] */
+export const query = (over = {}) => {
+  const p = new URLSearchParams(
+    Object.entries({ tag: state.tag, q: state.q.trim(), sort: state.sort, ...over }).filter(([, v]) => v),
+  ).toString();
+  return p ? `?${p}` : '';
+};

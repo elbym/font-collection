@@ -1,5 +1,5 @@
 // @ts-check
-import { BASE, state, tagQuery } from '../state.js';
+import { BASE, query, state } from '../state.js';
 import { esc } from '../utils/html.js';
 import { heroText } from './cards/card1.js';
 import { acc, tile } from './cards/index.js';
@@ -17,11 +17,35 @@ export function init(root = document) {
       (n, i) => `
       <a href="${n.slug}/" data-i="${i}" style="${acc(n)}" aria-label="${n.title.replace(/"/g, '&quot;')}" title="${n.title.replace(/"/g, '&quot;')}"
         class="acc relative scroll-mt-24 sm:scroll-mt-12 [container-type:inline-size] [content-visibility:auto] aspect-square rounded-2xl bg-white dark:bg-neutral-900 hover:brightness-95 active:scale-95 transition-transform">
-        <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}</div>
-        <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-xs text-neutral-500 dark:text-neutral-400">${esc(n.title)}</span>
+        <div class="${n.family}-s h-full flex items-center justify-center text-[color:var(--accent-ui)]">${tile(n)}<span data-txt class="hidden"></span></div>
+        <span class="absolute inset-x-3 bottom-2 truncate text-left font-sans text-sm text-neutral-600 dark:text-neutral-300">${esc(n.title)}</span>
       </a>`,
     )
     .join('');
+  state.tiles = /** @type {HTMLElement[]} */ ([...grid.children]);
+
+  // Eigener Vorschautext: ersetzt in allen Kacheln die Heroletter (html[data-text] blendet sie aus), Größe nach Textlänge
+  const text = /** @type {HTMLInputElement|null} */ (root.querySelector('#text'));
+  text?.addEventListener('input', () => {
+    const v = text.value.trim();
+    const len = [...v].length;
+    const size =
+      len <= 2
+        ? 'text-[32cqw]'
+        : len <= 4
+          ? 'text-[20cqw]'
+          : len <= 8
+            ? 'text-[12cqw]'
+            : len <= 16
+              ? 'text-[9cqw]'
+              : 'text-[7cqw]';
+    document.documentElement.toggleAttribute('data-text', !!v);
+    for (const t of state.tiles) {
+      const span = /** @type {HTMLElement} */ (t.querySelector('[data-txt]'));
+      span.textContent = v;
+      span.className = `hidden [html[data-text]_&]:line-clamp-4 w-full px-[6cqw] pb-[8cqw] text-center leading-tight break-words ${size}`;
+    }
+  });
 
   // Hover (nur Maus): Schnitte der Schrift in der Kachel durchschalten
   /** @type {HTMLElement|null} */
@@ -113,7 +137,7 @@ export function init(root = document) {
     };
     let tick = 0;
     setInterval(() => {
-      if (document.hidden || reduce.matches) return;
+      if (document.hidden || reduce.matches || document.documentElement.hasAttribute('data-text')) return; // eigener Text: Hero ist ausgeblendet
       /** @type {Element|null|undefined} */ let t;
       /** @type {HTMLElement|null|undefined} */ let span;
       let i;
@@ -123,7 +147,7 @@ export function init(root = document) {
         i = c.i;
         if (!c.card || c.card.previousElementSibling || tick++ % 3) return; // große Karte: nur jeder 3. Tick (3,6 s)
         span = c.card.querySelector('[data-vt="hero"]');
-        t = grid.children[i];
+        t = state.tiles[i];
       } else {
         t = [...visible][Math.floor(Math.random() * visible.size)];
         i = Number(/** @type {HTMLElement|undefined} */ (t)?.dataset.i);
@@ -158,6 +182,6 @@ export function init(root = document) {
     const n = state.nodes[Number(tile.dataset.i)];
     const span = tile.querySelector('[data-vt="hero"]');
     if (span) span.textContent = heroText(n); // Morph-Übergang zu Poster A braucht den aktuellen Hero (auch mitten in der Animation)
-    go(`${BASE}${n.slug}${tagQuery()}#1`);
+    go(`${BASE}${n.slug}${query()}#1`);
   });
 }

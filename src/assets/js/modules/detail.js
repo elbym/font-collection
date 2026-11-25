@@ -1,5 +1,5 @@
 // @ts-check
-import { BASE, DETAILS, state, tagQuery } from '../state.js';
+import { BASE, DETAILS, query, state } from '../state.js';
 import { name, transition } from '../utils/viewTransition.js';
 import { heroText } from './cards/card1.js';
 import { acc, content } from './cards/index.js';
@@ -7,13 +7,12 @@ import { prepare } from './print.js';
 
 /** @type {HTMLDialogElement} */ let detail;
 /** @type {HTMLElement} */ let cards;
-/** @type {HTMLElement} */ let grid;
 /** @type {HTMLElement} */ let dots;
 
 /** Detailkarten einer Row erst bei Bedarf erzeugen (Row ± 1 Bildschirm im Dialog, oder direkt per show()). @param {HTMLElement} row */
 function fill(row) {
   if (row.firstChild) return;
-  const n = state.nodes[[...cards.children].indexOf(row)];
+  const n = state.nodes[state.rows.indexOf(row)];
   row.innerHTML = Array.from(
     { length: DETAILS },
     (_, c) => `
@@ -38,7 +37,7 @@ export const current = () => {
     ]
   );
   return {
-    i: row ? [...cards.children].indexOf(row) : -1, // -1: keine sichtbare Zeile (z. B. vom Filter ausgeblendet)
+    i: row ? state.rows.indexOf(row) : -1, // -1: keine sichtbare Zeile (z. B. vom Filter ausgeblendet)
     card: /** @type {HTMLElement|undefined} */ (row?.children[Math.round(row.scrollLeft / row.clientWidth)]),
   };
 };
@@ -53,7 +52,7 @@ const syncUrl = () => {
   urlTimer = setTimeout(() => {
     if (!detail.open) return;
     const n = state.nodes[current().i];
-    history.replaceState(null, '', `${BASE}${n.slug}${tagQuery()}#${state.col + 1}`);
+    history.replaceState(null, '', `${BASE}${n.slug}${query()}#${state.col + 1}`);
     document.title = n.pageTitle;
     prepare(n);
   }, 150);
@@ -66,7 +65,7 @@ const syncUrl = () => {
  */
 export function show(i, c) {
   if (!detail.open) detail.showModal();
-  const row = /** @type {HTMLElement} */ (cards.children[i]);
+  const row = state.rows[i];
   // Hero kann sich seit dem Erzeugen geändert haben (Raster-Animation): veraltete Karten verwerfen, fill() baut sie neu
   const hero = row.querySelector('[data-vt="hero"]');
   if (hero && hero.textContent !== heroText(state.nodes[i])) row.replaceChildren();
@@ -85,13 +84,13 @@ export function show(i, c) {
  */
 export function openAnim(i, c, animate) {
   if (!animate) return show(i, c);
-  const tile = /** @type {HTMLElement} */ (grid.children[i]);
+  const tile = state.tiles[i];
   /** @type {HTMLElement} */ let card;
   name(tile, true);
   transition('open', () => {
     name(tile, false);
     show(i, c);
-    card = /** @type {HTMLElement} */ (cards.children[i].children[c]);
+    card = /** @type {HTMLElement} */ (state.rows[i].children[c]);
     name(card, true);
   }).then(() => name(card, false));
 }
@@ -99,7 +98,7 @@ export function openAnim(i, c, animate) {
 /** Schließt die Detailansicht mit Karte→Kachel-Übergang. */
 export function closeAnim() {
   const { i, card } = current();
-  const tile = /** @type {HTMLElement} */ (grid.children[i]);
+  const tile = state.tiles[i];
   name(card, true);
   transition('close', () => {
     name(card, false);
@@ -113,12 +112,10 @@ export function closeAnim() {
 export function init(root = document) {
   const d = root.querySelector('#detail');
   const c = root.querySelector('#cards');
-  const g = root.querySelector('#grid');
   const dt = root.querySelector('#dots');
-  if (!d || !c || !g || !dt) return;
+  if (!d || !c || !dt) return;
   detail = /** @type {HTMLDialogElement} */ (d);
   cards = /** @type {HTMLElement} */ (c);
-  grid = /** @type {HTMLElement} */ (g);
   dots = /** @type {HTMLElement} */ (dt);
 
   // leere Rows (h-dvh-Platzhalter, damit Snap/offsetTop stimmen) in einem Rutsch einfügen
@@ -128,6 +125,7 @@ export function init(root = document) {
       <div class="row h-dvh flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory snap-start snap-always overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>`,
     )
     .join('');
+  state.rows = /** @type {HTMLElement[]} */ ([...cards.children]);
 
   const lazy = new IntersectionObserver(
     (es) => es.forEach((e) => e.isIntersecting && fill(/** @type {HTMLElement} */ (e.target))),
@@ -173,17 +171,14 @@ export function init(root = document) {
   // Navigation per Pfeil-Buttons und Tastatur: ←/h →/l = Detailkarte, ↑/k ↓/j = Node
   /** @param {number} d */
   const stepCol = (d) => {
-    const row = /** @type {HTMLElement} */ (cards.children[current().i]);
+    const row = state.rows[current().i];
     const col = Math.max(0, Math.min(DETAILS - 1, Math.round(row.scrollLeft / row.clientWidth) + d));
     row.scrollTo({ left: col * row.clientWidth, behavior: 'smooth' });
   };
   /** @param {number} d */
   const stepRow = (d) => {
     const rows = /** @type {HTMLElement[]} */ ([...cards.children]).filter((r) => !r.hidden);
-    const k = Math.max(
-      0,
-      Math.min(rows.length - 1, rows.indexOf(/** @type {HTMLElement} */ (cards.children[current().i])) + d),
-    );
+    const k = Math.max(0, Math.min(rows.length - 1, rows.indexOf(state.rows[current().i]) + d));
     detail.scrollTo({ top: rows[k].offsetTop, behavior: 'smooth' });
   };
   root.querySelector('#prev')?.addEventListener('click', () => stepCol(-1));
