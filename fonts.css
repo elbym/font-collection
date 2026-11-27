@@ -1002,6 +1002,26 @@
   font-display: swap;
 }
 
+.f-orbitron { font-family: f-orbitron; }
+
+.f-orbitron-s { font-family: f-orbitron-s; }
+
+@font-face {
+  font-family: f-orbitron;
+  src: url("webfonts/display/Orbitron/Orbitron%5Bwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: f-orbitron-s;
+  src: url("webfonts-latin/display/Orbitron/Orbitron%5Bwght%5D.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 .f-pixelifysans { font-family: f-pixelifysans; }
 
 .f-pixelifysans-s { font-family: f-pixelifysans-s; }
